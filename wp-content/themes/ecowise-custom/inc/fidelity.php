@@ -38,7 +38,11 @@ function ecowise_fidelity_map() {
 }
 
 function ecowise_maybe_serve_fidelity_snapshot() {
-	if ( ! ecowise_fidelity_enabled() || is_admin() || wp_doing_ajax() || is_user_logged_in() || is_preview() ) {
+	$is_rest_request = ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || isset( $_GET['rest_route'] );
+	$is_sitemap      = (bool) get_query_var( 'sitemap' ) || isset( $_GET['sitemap'] );
+	$is_dynamic_view = is_search() || is_feed() || is_trackback() || is_robots() || is_favicon() || is_paged() || is_embed();
+
+	if ( ! ecowise_fidelity_enabled() || is_admin() || wp_doing_ajax() || is_user_logged_in() || is_preview() || $is_rest_request || $is_sitemap || $is_dynamic_view ) {
 		return;
 	}
 

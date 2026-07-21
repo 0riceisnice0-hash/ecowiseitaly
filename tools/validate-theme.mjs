@@ -8,6 +8,8 @@ const themeRoot = path.join(repositoryRoot, 'wp-content', 'themes', 'ecowise-cus
 const capturedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'captured-routes.json'), 'utf8'));
 const indexedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'indexed-routes.json'), 'utf8'));
 const uploadManifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'uploads-manifest.json'), 'utf8'));
+const backupRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'backup-routes.json'), 'utf8'));
+const backupObjectIds = new Map(backupRoutes.filter((item) => item.route && item.id).map((item) => [item.route, Number(item.id)]));
 const uploadPaths = new Set(uploadManifest.map((item) => item.path.replaceAll('\\', '/')));
 const referencedUploads = new Set();
 const internalPageLinks = new Set();
@@ -28,6 +30,9 @@ for (const route of capturedRoutes) {
   }
 
   const html = fs.readFileSync(file, 'utf8');
+  if (backupObjectIds.has(route.route) && route.wordpressObjectId !== backupObjectIds.get(route.route)) {
+    errors.push(`${route.route}: audit object ID ${route.wordpressObjectId} does not match backup ID ${backupObjectIds.get(route.route)}`);
+  }
   const canonicalCount = countMatches(html, /<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/gi);
   if (canonicalCount !== 1) errors.push(`${route.route}: expected one canonical; found ${canonicalCount}`);
   if (!html.includes(`href="${route.canonical}" rel="canonical"`)) errors.push(`${route.route}: canonical does not match ${route.canonical}`);
@@ -96,6 +101,14 @@ if (indexedRoutes.length !== 35) errors.push(`expected 35 indexed routes; found 
 if (facebookEmbedCount !== 80) errors.push(`expected 80 restored Facebook embed instances; found ${facebookEmbedCount}`);
 if (facebookEmbedUrls.size !== 20) errors.push(`expected 20 unique restored Facebook post URLs; found ${facebookEmbedUrls.size}`);
 
+const routeMapPhp = fs.readFileSync(path.join(themeRoot, 'snapshots', 'routes.php'), 'utf8');
+const mappedRoutes = new Map([...routeMapPhp.matchAll(/^\s*'([^']+)'\s*=>\s*'([^']+)',?$/gm)].map((match) => [match[1], match[2]]));
+if (mappedRoutes.size !== capturedRoutes.length) errors.push(`snapshot PHP route map has ${mappedRoutes.size} entries; expected ${capturedRoutes.length}`);
+for (const route of capturedRoutes) {
+  const expectedSnapshot = route.snapshot.split('/snapshots/html/')[1];
+  if (mappedRoutes.get(route.route) !== expectedSnapshot) errors.push(`${route.route}: PHP route map does not point to ${expectedSnapshot}`);
+}
+
 const capturedPaths = new Set(capturedRoutes.map((route) => route.route));
 const allowedInternalPaths = new Set(['/feed/', '/comments/feed/', '/home/']);
 for (const target of internalPageLinks) {
@@ -156,6 +169,11 @@ for (const file of phpFiles) {
   if (!source.includes('<?php')) errors.push(`${path.relative(repositoryRoot, file)}: missing PHP opening tag`);
   if (source.includes('get_field(') || source.includes('the_field(')) errors.push(`${path.relative(repositoryRoot, file)}: ACF API reference found`);
   if (/Elementor\\|elementor\/includes|elementor_pro/i.test(source)) errors.push(`${path.relative(repositoryRoot, file)}: Elementor PHP runtime reference found`);
+}
+
+const fidelityPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'fidelity.php'), 'utf8');
+for (const dynamicGuard of ['is_search()', 'is_feed()', "isset( $_GET['rest_route'] )", "get_query_var( 'sitemap' )", 'is_paged()']) {
+  if (!fidelityPhp.includes(dynamicGuard)) errors.push(`fidelity renderer is missing dynamic-request guard (${dynamicGuard})`);
 }
 
 if (!process.env.PHP_BINARY) warnings.push('PHP_BINARY was not set; run PHP syntax lint in staging/CI.');

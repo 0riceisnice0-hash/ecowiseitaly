@@ -26,3 +26,6 @@
 - Removed the last restored-plugin filesystem dependency by vendoring the archive PDF.js viewer and rewriting all four archive routes to the custom-theme copy.
 - Restored mirror-rewritten `index.html` navigation links to their canonical production permalinks and added all-snapshot internal-link integrity validation.
 - Recovered all 20 original Facebook post embed URLs from the crawl manifest, including their lost query parameters, and removed remaining mirror-local external-domain references.
+- Hardened the fidelity renderer so query-string search, feeds, REST, sitemaps, pagination, embeds, robots and trackbacks always remain native WordPress requests instead of falling through to a matching snapshot path.
+- Corrected four route audit object IDs from the authoritative backup and taught the snapshot compiler to prefer backup IDs during future regeneration.
+- Added native canonical fallbacks for the posts page and date archives when fidelity snapshots are bypassed.

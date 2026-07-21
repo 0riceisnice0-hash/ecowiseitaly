@@ -205,6 +205,10 @@ const mirrorHtmlRoutes = new Map(inventory.map((page) => {
 const sitemapUrls = sitemapFile && fs.existsSync(sitemapFile)
   ? new Set(parseCsv(fs.readFileSync(sitemapFile, 'utf8').replace(/^\uFEFF/, '')).map((row) => row.url).filter((url) => url && !url.endsWith('.xml')))
   : new Set();
+const backupRoutesFile = path.join(auditRoot, 'source', 'backup-routes.json');
+const backupRouteIds = fs.existsSync(backupRoutesFile)
+  ? new Map(JSON.parse(fs.readFileSync(backupRoutesFile, 'utf8')).filter((item) => item.route && item.id).map((item) => [item.route, Number(item.id)]))
+  : new Map();
 const htmlRoot = path.join(themeRoot, 'snapshots', 'html');
 const routes = {};
 const routeAudit = [];
@@ -228,7 +232,7 @@ for (const page of inventory) {
     url: page.url,
     route,
     pageType: page.page_type,
-    wordpressObjectId: page.wp_object_id ? Number(page.wp_object_id) : null,
+    wordpressObjectId: backupRouteIds.get(route) ?? (page.wp_object_id ? Number(page.wp_object_id) : null),
     title: page.title,
     h1: page.h1,
     canonical: page.canonical_url || page.url,

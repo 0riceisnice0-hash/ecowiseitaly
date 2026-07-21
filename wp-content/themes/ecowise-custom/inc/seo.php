@@ -19,6 +19,15 @@ function ecowise_native_canonical() {
 	$url = '';
 	if ( is_singular() ) {
 		$url = get_permalink();
+	} elseif ( is_home() ) {
+		$posts_page = (int) get_option( 'page_for_posts' );
+		$url        = $posts_page ? get_permalink( $posts_page ) : home_url( '/' );
+	} elseif ( is_day() ) {
+		$url = get_day_link( (int) get_query_var( 'year' ), (int) get_query_var( 'monthnum' ), (int) get_query_var( 'day' ) );
+	} elseif ( is_month() ) {
+		$url = get_month_link( (int) get_query_var( 'year' ), (int) get_query_var( 'monthnum' ) );
+	} elseif ( is_year() ) {
+		$url = get_year_link( (int) get_query_var( 'year' ) );
 	} elseif ( is_category() || is_tag() || is_tax() ) {
 		$url = get_term_link( get_queried_object() );
 	} elseif ( is_author() ) {

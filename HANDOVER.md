@@ -43,7 +43,7 @@ The database has no meaningful Yoast, Rank Math, AIOSEO or SEOPress metadata. Hi
 2. Restore the supplied database and `uploads` archive. Confirm `$table_prefix = 'wp_';` before opening wp-admin.
 3. Keep the restored plugin/theme files available for rollback, but deactivate Elementor, Elementor Pro, ElementsKit, Hello Elementor and ACF after activating `ecowise-custom`. The fidelity assets required by visitors are committed inside this theme.
 4. Copy `wp-content/themes/ecowise-custom` from this repository and activate it.
-5. In Settings → Reading, confirm front page ID 6 and posts page `/news/`.
+5. In Settings → Reading, confirm front page ID 6 and posts page ID 2448 (`/news/`).
 6. In Settings → Permalinks, use `/%postname%/` and save once.
 7. Assign the recovered primary/footer menus if WordPress did not retain their locations.
 8. Set the administration email to the monitored Ecowise inbox or configure the `ecowise_form_recipient` filter.
