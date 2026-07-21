@@ -1,0 +1,41 @@
+{
+  "source": "wp_postmeta post 11 (_elementor_page_settings), corroborated by uploads/elementor/css/post-11.css",
+  "active_kit_post_id": 11,
+  "layout": {
+    "content_width_px": 1280,
+    "tablet_breakpoint_px": 1025,
+    "mobile_breakpoint_px": 768
+  },
+  "system_colors": {
+    "secondary_heading": "#171818",
+    "primary_body": "#666666",
+    "text_neutral": "#FFFFFF",
+    "accent_transparent_20": "#FFFFFF2B"
+  },
+  "custom_colors": {
+    "button": "#45A14E",
+    "button_hover": "#E6EFB7",
+    "line": "#DCDCDE",
+    "light_background": "#EAEDF1",
+    "extra_light_background": "#F6F7FB",
+    "smooth_dark_background": "#D5D5D5",
+    "dark_background": "#979797",
+    "extra_dark_background": "#080C14",
+    "accent_1": "#45A14E",
+    "accent_2": "#E6EFB7",
+    "orange": "#EEA731"
+  },
+  "typography": {
+    "primary": {"family": "Outfit", "weight": 600, "desktop_px": 48, "tablet_px": 37, "mobile_px": 30, "line_height_em": 1.2, "letter_spacing_px": -1},
+    "secondary": {"family": "Outfit", "weight": 600, "desktop_px": 39, "tablet_px": 31, "mobile_px": 24, "line_height_em": 1.2, "letter_spacing_px": -0.5},
+    "body": {"family": "Rubik", "weight": 400, "desktop_px": 16, "tablet_px": 15, "mobile_px": 14, "line_height_em": 1.4},
+    "accent": {"family": "Outfit", "weight": 600, "desktop_px": 13, "tablet_px": 12, "mobile_px": 11, "line_height_em": 1, "text_transform": "uppercase"},
+    "big_hero": {"family": "Outfit", "weight": 700, "desktop_px": 61, "tablet_px": 44, "mobile_px": 32, "line_height_em": 1, "letter_spacing_px": -1}
+  },
+  "controls": {
+    "button_radius_px": 30,
+    "button_border_px": 1,
+    "form_field_radius_px": 7,
+    "form_field_border_px": 1
+  }
+}
