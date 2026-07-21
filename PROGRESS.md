@@ -29,3 +29,4 @@
 - Hardened the fidelity renderer so query-string search, feeds, REST, sitemaps, pagination, embeds, robots and trackbacks always remain native WordPress requests instead of falling through to a matching snapshot path.
 - Corrected four route audit object IDs from the authoritative backup and taught the snapshot compiler to prefer backup IDs during future regeneration.
 - Added native canonical fallbacks for the posts page and date archives when fidelity snapshots are bypassed.
+- Removed captured Microsoft Clarity execution from all snapshots, documented intentional external embeds, and mapped the legacy contact form's opaque subject/message field IDs in the custom mail handler.

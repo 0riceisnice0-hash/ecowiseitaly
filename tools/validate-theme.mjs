@@ -38,6 +38,7 @@ for (const route of capturedRoutes) {
   if (!html.includes(`href="${route.canonical}" rel="canonical"`)) errors.push(`${route.route}: canonical does not match ${route.canonical}`);
   if (/__q_[0-9a-f]+/i.test(html)) errors.push(`${route.route}: mirror query-hash artifact remains`);
   if (/google_gtagjs-js/i.test(html)) errors.push(`${route.route}: captured analytics script remains`);
+  if (/www\.clarity\.ms|vf3beobmuf/i.test(html)) errors.push(`${route.route}: captured Microsoft Clarity tracker remains`);
 
   for (const match of html.matchAll(/(?:href|src)=["'](\/wp-content\/themes\/ecowise-custom\/assets\/fidelity\/site\/[^"']+)["']/gi)) {
     const local = path.join(themeRoot, 'assets', 'fidelity', 'site', ...match[1].split('/assets/fidelity/site/')[1].split('/'));

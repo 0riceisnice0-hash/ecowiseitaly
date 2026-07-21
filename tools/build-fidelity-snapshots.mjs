@@ -150,6 +150,8 @@ function repairDocument(html, canonical) {
   // Remove mirror-only query-hash endpoints. WordPress may emit fresh oEmbed
   // links itself on native routes; captured GTM must never be replayed.
   result = result
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, (script) => /www\.clarity\.ms|vf3beobmuf/i.test(script) ? '' : script)
+    .replace(/(<meta content="Site Kit by Google[^>]*\/?>)[ \t]+\r?\n/gi, '$1\n')
     .replace(/<script\b[^>]*google_gtagjs-js[^>]*>[\s\S]*?<\/script>\s*/gi, '')
     .replace(/<link\b[^>]*www\.googletagmanager\.com[^>]*\/?>\s*/gi, '')
     .replace(/<link\b[^>]*(?:rel=["'](?:alternate|shortlink)["']|__q_)[^>]*\/?>\s*/gi, '')
