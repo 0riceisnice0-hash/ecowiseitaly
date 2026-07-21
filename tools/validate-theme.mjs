@@ -10,6 +10,9 @@ const indexedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audi
 const uploadManifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'uploads-manifest.json'), 'utf8'));
 const uploadPaths = new Set(uploadManifest.map((item) => item.path.replaceAll('\\', '/')));
 const referencedUploads = new Set();
+const internalPageLinks = new Set();
+let facebookEmbedCount = 0;
+const facebookEmbedUrls = new Set();
 const errors = [];
 const warnings = [];
 
@@ -51,10 +54,55 @@ for (const route of capturedRoutes) {
       }
     }
   }
+
+  for (const anchor of html.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["']/gi)) {
+    const value = anchor[1];
+    if (!value || /^(?:mailto:|tel:|javascript:|#)/i.test(value)) continue;
+    try {
+      const target = new URL(value.replaceAll('&amp;', '&'), route.canonical);
+      if (target.hostname !== 'ecowiseitaly.com' && target.hostname !== 'www.ecowiseitaly.com') continue;
+      if (/\/index\.html$/i.test(target.pathname)) errors.push(`${route.route}: mirror-style page link remains (${value})`);
+      if (!target.pathname.startsWith('/wp-content/') && !target.pathname.startsWith('/wp-json/') && !target.pathname.startsWith('/wp-admin/')) {
+        internalPageLinks.add(`${target.pathname}${target.search}`);
+      }
+    } catch {
+      warnings.push(`${route.route}: could not parse internal link (${value})`);
+    }
+  }
+
+  for (const form of html.matchAll(/<form\b[^>]*\baction=["']([^"']+)["']/gi)) {
+    if (/index\.html/i.test(form[1])) errors.push(`${route.route}: mirror-style form action remains (${form[1]})`);
+  }
+
+  for (const iframe of html.matchAll(/<iframe\b[^>]*\bsrc=["']([^"']+)["']/gi)) {
+    const value = iframe[1].replaceAll('&amp;', '&');
+    if (/(?:\.\.\/)+(?:www\.|maps\.|gmpg\.)/i.test(value)) errors.push(`${route.route}: mirror-style external iframe remains (${iframe[1]})`);
+    try {
+      const target = new URL(value, route.canonical);
+      if (target.hostname === 'www.facebook.com' && target.pathname === '/plugins/post.php') {
+        facebookEmbedCount += 1;
+        const postUrl = target.searchParams.get('href');
+        if (!postUrl) errors.push(`${route.route}: Facebook embed is missing its post URL`);
+        else facebookEmbedUrls.add(postUrl);
+      }
+    } catch {
+      warnings.push(`${route.route}: could not parse iframe URL (${iframe[1]})`);
+    }
+  }
 }
 
 if (capturedRoutes.length !== 36) errors.push(`expected 36 captured routes; found ${capturedRoutes.length}`);
 if (indexedRoutes.length !== 35) errors.push(`expected 35 indexed routes; found ${indexedRoutes.length}`);
+if (facebookEmbedCount !== 80) errors.push(`expected 80 restored Facebook embed instances; found ${facebookEmbedCount}`);
+if (facebookEmbedUrls.size !== 20) errors.push(`expected 20 unique restored Facebook post URLs; found ${facebookEmbedUrls.size}`);
+
+const capturedPaths = new Set(capturedRoutes.map((route) => route.route));
+const allowedInternalPaths = new Set(['/feed/', '/comments/feed/', '/home/']);
+for (const target of internalPageLinks) {
+  let targetPath = target.split('?')[0] || '/';
+  if (targetPath !== '/' && !targetPath.includes('.')) targetPath = `${targetPath.replace(/\/+$/, '')}/`;
+  if (!capturedPaths.has(targetPath) && !allowedInternalPaths.has(targetPath)) errors.push(`internal page link has no captured or allowed target (${target})`);
+}
 
 const requiredDocs = ['ai.md', 'HANDOVER.md', 'STYLE.md', 'HOMEPAGE.md', 'PROGRESS.md'];
 for (const document of requiredDocs) {
@@ -117,5 +165,5 @@ if (errors.length) {
   process.exit(1);
 }
 
-process.stdout.write(`Theme validation passed: ${capturedRoutes.length} captured routes, ${indexedRoutes.length} indexed routes, ${phpFiles.length} PHP files, ${referencedUploads.size} referenced uploads verified.\n`);
+process.stdout.write(`Theme validation passed: ${capturedRoutes.length} captured routes, ${indexedRoutes.length} indexed routes, ${phpFiles.length} PHP files, ${referencedUploads.size} uploads, ${internalPageLinks.size} internal link targets and ${facebookEmbedCount} Facebook embed instances (${facebookEmbedUrls.size} unique posts) verified.\n`);
 if (warnings.length) process.stdout.write(`Warnings:\n- ${warnings.join('\n- ')}\n`);

@@ -122,9 +122,22 @@ for (const [publicPath, sourceFile] of mirroredAssets) {
 }
 
 function repairDocument(html, canonical) {
+  const escapeAttribute = (value) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+  let result = html.replace(/\b(href|src)=(['"])([^'"]+)\2/gi, (match, attribute, quote, value) => {
+    try {
+      const resolved = new URL(value.replaceAll('&amp;', '&'), canonical);
+      if (resolved.origin === 'https://ecowiseitaly.com' && externalMirrorUrls.has(decodeURI(resolved.pathname))) {
+        return `${attribute}=${quote}${escapeAttribute(externalMirrorUrls.get(decodeURI(resolved.pathname)))}${quote}`;
+      }
+    } catch {
+      return match;
+    }
+    return match;
+  });
+
   // The mirror encoded query strings in local filenames as __q_<hash>.
   // Production WordPress exposes the same assets at their original filenames.
-  let result = html.replace(/__q_[0-9a-f]+(?=\.[a-z0-9]+(?:[?#"'])?)/gi, '');
+  result = result.replace(/__q_[0-9a-f]+(?=\.[a-z0-9]+(?:[?#"'])?)/gi, '');
   const canonicalTag = `<link href="${canonical}" rel="canonical"/>`;
   const canonicalPattern = /<link\b(?=[^>]*\brel=["']canonical["'])[^>]*\/?>/i;
 
@@ -138,6 +151,7 @@ function repairDocument(html, canonical) {
   // links itself on native routes; captured GTM must never be replayed.
   result = result
     .replace(/<script\b[^>]*google_gtagjs-js[^>]*>[\s\S]*?<\/script>\s*/gi, '')
+    .replace(/<link\b[^>]*www\.googletagmanager\.com[^>]*\/?>\s*/gi, '')
     .replace(/<link\b[^>]*(?:rel=["'](?:alternate|shortlink)["']|__q_)[^>]*\/?>\s*/gi, '')
     .replace(
       /(?:\.\.\/)+maps\.google\.com\/maps__q_[0-9a-f]+/gi,
@@ -148,11 +162,14 @@ function repairDocument(html, canonical) {
       '/wp-content/themes/ecowise-custom/assets/fidelity/supplemental/pdfjs/'
     );
 
-  result = result.replace(/\b(href|src)=(['"])([^'"#][^'"]*)\2/gi, (match, attribute, quote, value) => {
+  result = result.replace(/\b(href|src|action)=(['"])([^'"#][^'"]*)\2/gi, (match, attribute, quote, value) => {
     if (/^(?:data:|mailto:|tel:|javascript:)/i.test(value)) return match;
     try {
       const resolved = new URL(value.replaceAll('&amp;', '&'), canonical);
       const publicPath = normalizeMirrorFilename(decodeURI(resolved.pathname));
+      if (['href', 'action'].includes(attribute.toLowerCase()) && resolved.origin === 'https://ecowiseitaly.com' && mirrorHtmlRoutes.has(publicPath)) {
+        return `${attribute}=${quote}${mirrorHtmlRoutes.get(publicPath)}${quote}`;
+      }
       if (mirroredAssets.has(publicPath)) {
         return `${attribute}=${quote}${vendoredUrl(publicPath)}${quote}`;
       }
@@ -171,6 +188,20 @@ function repairDocument(html, canonical) {
 }
 
 const inventory = parseCsv(fs.readFileSync(inventoryFile, 'utf8').replace(/^\uFEFF/, ''));
+const manifestFile = path.join(mirrorRoot, 'manifest.csv');
+const externalMirrorUrls = new Map();
+if (fs.existsSync(manifestFile)) {
+  const manifest = parseCsv(fs.readFileSync(manifestFile, 'utf8').replace(/^\uFEFF/, ''));
+  for (const item of manifest) {
+    const localPath = item.local_path.replaceAll('\\', '/');
+    if (!localPath.startsWith('site/') || localPath.startsWith('site/ecowiseitaly.com/')) continue;
+    externalMirrorUrls.set(`/${localPath.slice('site/'.length)}`, item.url);
+  }
+}
+const mirrorHtmlRoutes = new Map(inventory.map((page) => {
+  const mirrorPath = `/${page.local_path.replaceAll('\\', '/').replace(/^site\/ecowiseitaly\.com\//, '')}`;
+  return [mirrorPath, page.canonical_url || page.url];
+}));
 const sitemapUrls = sitemapFile && fs.existsSync(sitemapFile)
   ? new Set(parseCsv(fs.readFileSync(sitemapFile, 'utf8').replace(/^\uFEFF/, '')).map((row) => row.url).filter((url) => url && !url.endsWith('.xml')))
   : new Set();

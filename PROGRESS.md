@@ -24,3 +24,5 @@
 - Exhaustively compared all 36 desktop routes against production. Thirty-two normal routes had zero differences across document metadata, body classes, content counts and detailed element geometry/styles; four archive routes required iframe-aware inspection because their nested PDF viewers capture evaluation focus.
 - Verified the reconstructed and live mobile menus expose the same control state, navigation order, labels and destinations.
 - Removed the last restored-plugin filesystem dependency by vendoring the archive PDF.js viewer and rewriting all four archive routes to the custom-theme copy.
+- Restored mirror-rewritten `index.html` navigation links to their canonical production permalinks and added all-snapshot internal-link integrity validation.
+- Recovered all 20 original Facebook post embed URLs from the crawl manifest, including their lost query parameters, and removed remaining mirror-local external-domain references.
