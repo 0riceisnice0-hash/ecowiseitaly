@@ -142,6 +142,10 @@ function repairDocument(html, canonical) {
     .replace(
       /(?:\.\.\/)+maps\.google\.com\/maps__q_[0-9a-f]+/gi,
       'https://www.google.com/maps/embed?origin=mfe&amp;pb=!1m4!2m1!1sVia+Mazzini+97+14020+Aramengo+%E2%80%93+Asti+%E2%80%93+Italy!5e0!6i14'
+    )
+    .replace(
+      /(?:\.\.\/)*wp-content\/plugins\/pdfjs-viewer-for-elementor\/assets\/js\/pdfjs\//gi,
+      '/wp-content/themes/ecowise-custom/assets/fidelity/supplemental/pdfjs/'
     );
 
   result = result.replace(/\b(href|src)=(['"])([^'"#][^'"]*)\2/gi, (match, attribute, quote, value) => {

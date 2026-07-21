@@ -21,3 +21,6 @@
 - Browser-compared the live and reconstructed homepage at 1440×900 and 390×844; measured header, hero, headline, introduction and primary CTA geometry/styles matched exactly at both sizes.
 - Browser-compared a representative nested school route; title, canonical, H1 text/geometry and image loading matched the live route, and the local contact page reported no console errors.
 - Passed PHP 8.3 syntax lint across all 16 theme PHP files and passed the custom 36-route/35-indexed-route validation gate.
+- Exhaustively compared all 36 desktop routes against production. Thirty-two normal routes had zero differences across document metadata, body classes, content counts and detailed element geometry/styles; four archive routes required iframe-aware inspection because their nested PDF viewers capture evaluation focus.
+- Verified the reconstructed and live mobile menus expose the same control state, navigation order, labels and destinations.
+- Removed the last restored-plugin filesystem dependency by vendoring the archive PDF.js viewer and rewriting all four archive routes to the custom-theme copy.

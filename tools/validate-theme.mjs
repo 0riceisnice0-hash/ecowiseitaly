@@ -7,6 +7,9 @@ const repositoryRoot = path.resolve(process.argv[2] || '.');
 const themeRoot = path.join(repositoryRoot, 'wp-content', 'themes', 'ecowise-custom');
 const capturedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'captured-routes.json'), 'utf8'));
 const indexedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'indexed-routes.json'), 'utf8'));
+const uploadManifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'uploads-manifest.json'), 'utf8'));
+const uploadPaths = new Set(uploadManifest.map((item) => item.path.replaceAll('\\', '/')));
+const referencedUploads = new Set();
 const errors = [];
 const warnings = [];
 
@@ -32,6 +35,22 @@ for (const route of capturedRoutes) {
     const local = path.join(themeRoot, 'assets', 'fidelity', 'site', ...match[1].split('/assets/fidelity/site/')[1].split('/'));
     if (!fs.existsSync(local)) errors.push(`${route.route}: vendored asset is missing (${match[1]})`);
   }
+
+  for (const attribute of html.matchAll(/\b(?:href|src|poster|srcset)=["']([^"']+)["']/gi)) {
+    const values = attribute[1].split(',').map((candidate) => candidate.trim().split(/\s+/)[0]);
+    for (const value of values) {
+      if (!value || /^(?:data:|mailto:|tel:|#)/i.test(value)) continue;
+      try {
+        const publicUrl = new URL(value.replaceAll('&amp;', '&'), route.canonical);
+        if (!publicUrl.pathname.startsWith('/wp-content/uploads/')) continue;
+        const uploadPath = decodeURIComponent(publicUrl.pathname.slice('/wp-content/uploads/'.length));
+        referencedUploads.add(uploadPath);
+        if (!uploadPaths.has(uploadPath)) errors.push(`${route.route}: referenced upload is missing from backup (${uploadPath})`);
+      } catch {
+        warnings.push(`${route.route}: could not parse asset URL (${value})`);
+      }
+    }
+  }
 }
 
 if (capturedRoutes.length !== 36) errors.push(`expected 36 captured routes; found ${capturedRoutes.length}`);
@@ -40,6 +59,39 @@ if (indexedRoutes.length !== 35) errors.push(`expected 35 indexed routes; found 
 const requiredDocs = ['ai.md', 'HANDOVER.md', 'STYLE.md', 'HOMEPAGE.md', 'PROGRESS.md'];
 for (const document of requiredDocs) {
   if (!fs.existsSync(path.join(repositoryRoot, document))) errors.push(`required documentation is missing: ${document}`);
+}
+
+const supplementalPdfViewer = path.join(themeRoot, 'assets', 'fidelity', 'supplemental', 'pdfjs', 'web', 'viewer.html');
+if (!fs.existsSync(supplementalPdfViewer)) errors.push('supplemental PDF.js viewer is missing');
+for (const route of capturedRoutes.filter((item) => ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/'].includes(item.route))) {
+  const file = path.join(repositoryRoot, ...route.snapshot.split('/'));
+  const html = fs.readFileSync(file, 'utf8');
+  if (html.includes('/wp-content/plugins/pdfjs-viewer-for-elementor/')) errors.push(`${route.route}: legacy PDF viewer plugin path remains`);
+}
+
+const fidelitySiteRoot = path.join(themeRoot, 'assets', 'fidelity', 'site');
+const cssFiles = [];
+function collectCss(directory) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const item = path.join(directory, entry.name);
+    if (entry.isDirectory()) collectCss(item);
+    else if (entry.name.endsWith('.css')) cssFiles.push(item);
+  }
+}
+collectCss(fidelitySiteRoot);
+for (const cssFile of cssFiles) {
+  const css = fs.readFileSync(cssFile, 'utf8');
+  for (const match of css.matchAll(/url\((?:['"]?)([^)'"\s]+)(?:['"]?)\)/gi)) {
+    const value = match[1];
+    if (value.startsWith('/wp-content/themes/ecowise-custom/assets/fidelity/site/')) {
+      const relative = value.slice('/wp-content/themes/ecowise-custom/assets/fidelity/site/'.length);
+      if (!fs.existsSync(path.join(fidelitySiteRoot, ...relative.split('/')))) errors.push(`${path.relative(repositoryRoot, cssFile)}: CSS dependency is missing (${value})`);
+    } else if (value.startsWith('/wp-content/uploads/')) {
+      const uploadPath = decodeURIComponent(value.slice('/wp-content/uploads/'.length).split(/[?#]/)[0]);
+      referencedUploads.add(uploadPath);
+      if (!uploadPaths.has(uploadPath)) errors.push(`${path.relative(repositoryRoot, cssFile)}: CSS upload is missing from backup (${uploadPath})`);
+    }
+  }
 }
 
 const phpFiles = [];
@@ -65,6 +117,5 @@ if (errors.length) {
   process.exit(1);
 }
 
-process.stdout.write(`Theme validation passed: ${capturedRoutes.length} captured routes, ${indexedRoutes.length} indexed routes, ${phpFiles.length} PHP files.\n`);
+process.stdout.write(`Theme validation passed: ${capturedRoutes.length} captured routes, ${indexedRoutes.length} indexed routes, ${phpFiles.length} PHP files, ${referencedUploads.size} referenced uploads verified.\n`);
 if (warnings.length) process.stdout.write(`Warnings:\n- ${warnings.join('\n- ')}\n`);
-
