@@ -35,3 +35,6 @@
 - Added a nonce-protected native form action and hidden-field fallback at render time so enquiry submissions still reach WordPress when browser JavaScript is blocked.
 - Exhaustively exercised all 36 captured routes at 1440×900 and 390×844 in headless Chrome after scrolling lazy content into view; all 72 checks completed with zero local HTTP failures or page exceptions.
 - Compared every route against production at 390×844 across visible text, titles, body classes, H1s, element/link/form counts and key header/content/footer geometry. All 36 matched; the only initial metadata differences were the four intentional canonical repairs.
+- Built a disposable WordPress 6.8.6/MariaDB 11.4.12 restore from the supplied backup, confirmed the substantive `wp_` database (3,899 posts and 30 published pages), restored all 1,950 uploads, disabled all legacy plugins and activated Ecowise Custom.
+- Against real WordPress, verified 36 fidelity responses, the four-child/35-URL native sitemap, search, feeds, REST, robots, legacy redirects, HEAD handling and a nonce-validated form submission. WordPress emitted no debug log.
+- Repeated all 72 desktop/mobile browser checks through the real WordPress renderer and restored media tree; every route and interaction completed with zero local HTTP failures or page exceptions.

@@ -17,6 +17,8 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## What is implemented
 
+The final package was also activated in a disposable WordPress 6.8.6 installation backed by MariaDB 11.4.12 and the substantive `wp_` database from the supplied backup. All legacy plugins were absent/deactivated, all 1,950 upload files were restored, and WordPress produced no debug log during the complete route and interaction test suite.
+
 The theme has two front-end paths:
 
 1. The fidelity renderer serves reviewed static HTML documents for 36 known public routes. Canonicals were repaired to absolute production URLs, mirror query-hash artifacts were removed, captured analytics was disabled, and required CSS/JS/font files—including the static PDF viewer and 84 on-demand interaction chunks—were vendored beneath the custom theme. Public photographs continue to resolve from the restored WordPress uploads directory.
