@@ -38,3 +38,4 @@
 - Built a disposable WordPress 6.8.6/MariaDB 11.4.12 restore from the supplied backup, confirmed the substantive `wp_` database (3,899 posts and 30 published pages), restored all 1,950 uploads, disabled all legacy plugins and activated Ecowise Custom.
 - Against real WordPress, verified 36 fidelity responses, the four-child/35-URL native sitemap, search, feeds, REST, robots, legacy redirects, HEAD handling and a nonce-validated form submission. WordPress emitted no debug log.
 - Repeated all 72 desktop/mobile browser checks through the real WordPress renderer and restored media tree; every route and interaction completed with zero local HTTP failures or page exceptions.
+- Added a GitHub Actions regression gate that syntax-checks the build/validation tools, validates the complete fidelity contract and lints every theme PHP file on each push and pull request.

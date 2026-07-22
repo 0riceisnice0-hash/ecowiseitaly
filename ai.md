@@ -36,7 +36,7 @@ Maintain Ecowise Italy as a fast, accessible, code-driven WordPress site that pr
 
 ## Quality gate
 
-Before committing, verify PHP syntax where PHP is available, inspect changed templates, test desktop and mobile navigation, validate representative URLs, and update the relevant documentation. Dated work belongs only in `PROGRESS.md`.
+Before committing, run `node tools/validate-theme.mjs .`, verify PHP syntax, inspect changed templates, test desktop and mobile navigation when presentation or interaction code changes, and update the relevant documentation. The same static validation and PHP lint run in GitHub Actions on every push and pull request. Dated work belongs only in `PROGRESS.md`.
 
 ## Documentation ownership
 
@@ -45,4 +45,3 @@ Before committing, verify PHP syntax where PHP is available, inspect changed tem
 - `STYLE.md`: site-wide design system and responsive rules.
 - `HOMEPAGE.md`: homepage architecture and behavior.
 - `PROGRESS.md`: dated work log.
-
