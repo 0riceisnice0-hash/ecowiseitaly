@@ -56,3 +56,4 @@
 - Built deterministic theme 1.0.7 package v11 with 727 verified files, 25,154,099 bytes and SHA-256 `E903CDC6D1AA5B1F9A5D09E3E494305B8EA7571EE728F5013A184F5C798B86B5`.
 - Repaired the six inherited `#` footer placeholders on every fidelity page to their exact restored school-program routes; all 216 links now resolve to HTTP 200 without visual or sitemap changes, and the compiler/validator enforce the mapping.
 - Built deterministic theme 1.0.8 package v12 with 727 verified files, 25,165,367 bytes and SHA-256 `3BE711C38C9B62B8596359F1A96E8ACF68292429A03C4C1D9C76DB62BBE25344`.
+- Completed a fresh 390×844 browser interaction pass: mobile navigation expanded with all seven links, the image lightbox opened/closed, YouTube and the restored MP4 loaded responsively, all four archive PDF viewers exposed their correct document text and controls, a repaired footer link navigated to its local restored route, and the console remained clean.
