@@ -64,3 +64,10 @@
 - Made heading repair route- and widget-specific in the snapshot compiler, updated the generated homepage H1 audit value, and expanded validation so every one of the 36 captured routes must contain exactly one H1.
 - Browser-compared the three repaired headings against production at 1440, 1024 and 390 pixels; computed typography, wrapping, bounding rectangles and widget height matched exactly at every breakpoint.
 - Built deterministic theme 1.0.10 package v14 with 727 verified files, 25,166,073 bytes and SHA-256 `B844618F4AFD5467D4FD65BFBC8F37FB424E39107A8E5F16281848ECBCBF2626`.
+- Repaired the inherited skip navigation on all 36 fidelity routes by giving each document exactly one main target, plus explicit banner/contentinfo landmarks and distinct labels for all six repeated navigation regions.
+- Removed the remaining unnamed customer actions: all 330 formerly silent logo, gallery, post-thumbnail and standalone lightbox links now have authoritative alt text or stable accessible labels; validation requires zero unnamed anchors.
+- Added titles to all 96 formerly untitled Facebook/PDF frames, direct no-JavaScript links for all six YouTube widgets and direct-download fallbacks plus accessible names for all four hosted-video instances.
+- Converted the visible contact email and telephone into native `mailto:`/`tel:` actions and changed the phone field from numeric input semantics to `type="tel"` with telephone autocomplete/input-mode hints.
+- Browser-compared homepage, contact, gallery and News against production at desktop and 390-pixel mobile widths. Parent geometry, document height, typography, color and form-control dimensions remained exact; the gallery lightbox opened and the local MP4 reached ready state 4 with no media error.
+- Repeated the exhaustive 72-route desktop/mobile interaction sweep after the repairs; all routes, menus, carousels, lightbox, lazy assets and restored PDF viewers completed with zero local HTTP failures or page exceptions.
+- Built deterministic theme 1.0.11 package v15 with 727 verified files, 25,196,831 bytes and SHA-256 `E2C504FF3DEB0DF34C95EC323F92D9FBCC542B25801540CDA5AB9C2B215C26D2`.

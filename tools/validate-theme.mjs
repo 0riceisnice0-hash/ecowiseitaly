@@ -25,6 +25,20 @@ const archivePdfPaths = [
 const pdfViewersByRoute = new Map();
 let contactFormCount = 0;
 let newsletterFormCount = 0;
+let unnamedAnchorCount = 0;
+let untitledIframeCount = 0;
+let lightboxActionCount = 0;
+let unlabeledLightboxActionCount = 0;
+let youtubeFallbackCount = 0;
+let hostedVideoFallbackCount = 0;
+const accessibleImageAltCounts = new Map([
+  ['67', { text: 'Ecowise Italy', expected: 108, actual: 0 }],
+  ['94', { text: 'A rare sighting of Wolves', expected: 9, actual: 0 }],
+  ['129', { text: 'Spring Friends', expected: 10, actual: 0 }],
+  ['25', { text: 'Tracks in the Snow', expected: 7, actual: 0 }],
+  ['2598', { text: 'Adam Rose', expected: 3, actual: 0 }],
+  ['2622', { text: 'Yenka Honig', expected: 3, actual: 0 }],
+]);
 const footerSchoolLinks = new Map([
   ['/for-schools/science-ecology-environment-field-trips/', 'Science, Ecology &amp; Environment Field trips'],
   ['/for-schools/outdoor-service-education-projects/', 'Outdoor Service Education Projects'],
@@ -64,6 +78,41 @@ for (const route of capturedRoutes) {
   }
 
   const html = fs.readFileSync(file, 'utf8');
+  const contentTargetCount = countMatches(html, /\bid=["']content["']/gi);
+  if (contentTargetCount !== 1) errors.push(`${route.route}: expected one #content skip-link target; found ${contentTargetCount}`);
+  if (countMatches(html, /<a\b[^>]*\bhref=["']#content["']/gi) !== 1) errors.push(`${route.route}: expected one skip link to #content`);
+  if (countMatches(html, /\brole=["']main["']/gi) !== 1) errors.push(`${route.route}: expected one main landmark`);
+  if (countMatches(html, /\brole=["']main["'][^>]*\btabindex=["']-1["']/gi) !== 1) errors.push(`${route.route}: expected a keyboard-focusable main landmark`);
+  if (countMatches(html, /\brole=["']banner["']/gi) !== 1) errors.push(`${route.route}: expected one banner landmark`);
+  if (countMatches(html, /\brole=["']contentinfo["']/gi) !== 1) errors.push(`${route.route}: expected one contentinfo landmark`);
+  for (const label of ['Primary services navigation', 'Primary services dropdown navigation', 'Information navigation', 'Information dropdown navigation', 'Mobile navigation', 'Mobile dropdown navigation']) {
+    if (countMatches(html, new RegExp(`<nav\\b[^>]*\\baria-label=["']${escapeRegExp(label)}["']`, 'gi')) !== 1) errors.push(`${route.route}: expected one ${label} landmark`);
+  }
+  for (const image of html.matchAll(/<img\b[^>]*>/gi)) {
+    for (const [attachmentId, contract] of accessibleImageAltCounts) {
+      if (new RegExp(`\\bwp-image-${attachmentId}\\b`).test(image[0]) && new RegExp(`\\balt=["']${escapeRegExp(contract.text)}["']`, 'i').test(image[0])) {
+        contract.actual += 1;
+      }
+    }
+  }
+  for (const anchor of html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
+    const attributes = anchor[1];
+    const body = anchor[2];
+    const ariaLabel = attributes.match(/\baria-label\s*=\s*["']([^"']*)/i)?.[1] || '';
+    const title = attributes.match(/\btitle\s*=\s*["']([^"']*)/i)?.[1] || '';
+    const imageAlts = [...body.matchAll(/<img\b[^>]*\balt\s*=\s*["']([^"']*)/gi)].map((match) => match[1]).join('');
+    const text = body.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<[^>]+>/g, '').replace(/&nbsp;|&#160;/gi, ' ').trim();
+    if (!(ariaLabel || title || imageAlts || text)) unnamedAnchorCount += 1;
+    if (/\bdata-elementor-open-lightbox=["']yes["']/i.test(attributes)) {
+      lightboxActionCount += 1;
+      if (!ariaLabel) unlabeledLightboxActionCount += 1;
+    }
+  }
+  for (const iframe of html.matchAll(/<iframe\b[^>]*>/gi)) {
+    if (!/\btitle\s*=\s*["'][^"']+["']/i.test(iframe[0])) untitledIframeCount += 1;
+  }
+  youtubeFallbackCount += countMatches(html, /<noscript><p><a href=["']https:\/\/www\.youtube\.com\/watch\?v=[^"']+["']>Watch this Ecowise video on YouTube<\/a><\/p><\/noscript>/gi);
+  hostedVideoFallbackCount += countMatches(html, /<video\b(?=[^>]*\baria-label=["']Ecowise Italy trip video["'])[^>]*>\s*<a href=["'][^"']+\.mp4["']>Download the Ecowise video<\/a>\s*<\/video>/gi);
   const h1Count = countMatches(html, /<h1\b/gi);
   if (h1Count !== 1) errors.push(`${route.route}: expected one H1; found ${h1Count}`);
   for (const headingContract of headingContracts.get(route.route) || []) {
@@ -176,12 +225,28 @@ if (facebookEmbedUrls.size !== 20) errors.push(`expected 20 unique restored Face
 if (pdfViewerCount !== 16) errors.push(`expected 16 archive PDF viewers; found ${pdfViewerCount}`);
 if (contactFormCount !== 1) errors.push(`expected one captured contact form identity; found ${contactFormCount}`);
 if (newsletterFormCount !== 3) errors.push(`expected three captured newsletter form identities; found ${newsletterFormCount}`);
+if (unnamedAnchorCount !== 0) errors.push(`expected every anchor to have an accessible name; found ${unnamedAnchorCount} unnamed anchors`);
+if (untitledIframeCount !== 0) errors.push(`expected every iframe to have a title; found ${untitledIframeCount} untitled iframes`);
+if (lightboxActionCount !== 237) errors.push(`expected 237 lightbox actions; found ${lightboxActionCount}`);
+if (unlabeledLightboxActionCount !== 0) errors.push(`expected every lightbox action to have an accessible label; found ${unlabeledLightboxActionCount} unlabeled actions`);
+if (youtubeFallbackCount !== 6) errors.push(`expected six YouTube no-JavaScript fallbacks; found ${youtubeFallbackCount}`);
+if (hostedVideoFallbackCount !== 4) errors.push(`expected four hosted-video fallbacks; found ${hostedVideoFallbackCount}`);
+for (const [attachmentId, contract] of accessibleImageAltCounts) {
+  if (contract.actual !== contract.expected) errors.push(`expected ${contract.expected} accessible alt values for attachment ${attachmentId}; found ${contract.actual}`);
+}
 for (const [footerRoute, count] of footerSchoolLinkCounts) {
   if (count !== capturedRoutes.length) errors.push(`expected one repaired footer link to ${footerRoute} on every snapshot; found ${count}`);
 }
 for (const route of ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/']) {
   const actual = pdfViewersByRoute.get(route) || [];
   if (actual.length !== 4 || archivePdfPaths.some((pdf) => !actual.includes(pdf))) errors.push(`${route}: archive PDF viewer set is incomplete or incorrect`);
+}
+
+const contactHtml = fs.readFileSync(path.join(themeRoot, 'snapshots', 'html', 'contact-us', 'index.html'), 'utf8');
+if (countMatches(contactHtml, /href=["']mailto:adamecorose@gmail\.com["']/gi) !== 1) errors.push('contact page does not expose exactly one direct email action');
+if (countMatches(contactHtml, /href=["']tel:\+393421363274["']/gi) !== 1) errors.push('contact page does not expose exactly one direct telephone action');
+if (!/<input\b(?=[^>]*\bid=["']form-field-field_44bd0eb["'])(?=[^>]*\btype=["']tel["'])(?=[^>]*\bautocomplete=["']tel["'])(?=[^>]*\binputmode=["']tel["'])[^>]*>/i.test(contactHtml)) {
+  errors.push('contact phone field does not use telephone input semantics');
 }
 
 const routeMapPhp = fs.readFileSync(path.join(themeRoot, 'snapshots', 'routes.php'), 'utf8');

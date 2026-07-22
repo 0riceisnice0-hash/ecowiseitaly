@@ -137,6 +137,7 @@ if (fs.existsSync(supplementalRuntimeRoot)) {
 
 function repairDocument(html, canonical) {
   const escapeAttribute = (value) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+  const canonicalPath = new URL(canonical).pathname;
   let result = html.replace(/\b(href|src)=(['"])([^'"]+)\2/gi, (match, attribute, quote, value) => {
     try {
       const resolved = new URL(value.replaceAll('&amp;', '&'), canonical);
@@ -200,7 +201,7 @@ function repairDocument(html, canonical) {
     '/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged-1.pdf',
     '/wp-content/uploads/2024/12/PG_Autumn_2014_ROSE-3_2.pdf',
   ];
-  if (['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/'].includes(new URL(canonical).pathname)) {
+  if (['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/'].includes(canonicalPath)) {
     let pdfIndex = 0;
     result = result.replace(
       /\/wp-content\/themes\/ecowise-custom\/assets\/fidelity\/supplemental\/pdfjs\/web\/viewer\.html(?!\?file=)/g,
@@ -264,7 +265,7 @@ function repairDocument(html, canonical) {
     ['/for-schools/conflict-resolution-program/', { elementId: '3bac217', fromTag: 'h1', toTag: 'h2', preserveH1Typography: true }],
     ['/for-schools/team-building-wild-rites-of-passage/', { elementId: '799a1c0', fromTag: 'h1', toTag: 'h2', preserveH1Typography: true }],
   ]);
-  const headingRepair = headingRepairs.get(new URL(canonical).pathname);
+  const headingRepair = headingRepairs.get(canonicalPath);
   if (headingRepair) {
     const { elementId, fromTag, toTag, preserveH1Typography } = headingRepair;
     const widgetPattern = new RegExp(`(<div class="elementor-element[^>]*data-id="${elementId}"[^>]*>\\s*<div class="elementor-widget-container">\\s*<)${fromTag}([^>]*>[\\s\\S]*?</)${fromTag}(>)`);
@@ -277,6 +278,138 @@ function repairDocument(html, canonical) {
       return `${prefix}${toTag}${visualStyle}${body}${toTag}${suffix}`;
     });
     if (repairCount !== 1) throw new Error(`${canonical}: expected one ${fromTag} heading in widget ${elementId}; found ${repairCount}`);
+  }
+
+  // Give the inherited skip link a real primary-content destination on every
+  // captured document. Header and footer Elementor roots are intentionally
+  // excluded from this contract.
+  let contentTargetCount = 0;
+  result = result.replace(/<div\b(?=[^>]*\bdata-elementor-type=["'](?:wp-page|single-post|archive)["'])[^>]*>/gi, (tag) => {
+    contentTargetCount += 1;
+    return tag.replace(/^<div\b/i, '<div id="content" role="main" tabindex="-1"');
+  });
+  if (contentTargetCount !== 1) throw new Error(`${canonical}: expected one primary Elementor content root; found ${contentTargetCount}`);
+
+  const landmarkRoles = new Map([
+    ['header', 'banner'],
+    ['footer', 'contentinfo'],
+  ]);
+  for (const [elementorType, role] of landmarkRoles) {
+    let landmarkCount = 0;
+    const pattern = new RegExp(`<div\\b(?=[^>]*\\bdata-elementor-type=["']${elementorType}["'])[^>]*>`, 'gi');
+    result = result.replace(pattern, (tag) => {
+      landmarkCount += 1;
+      return tag.replace(/^<div\b/i, `<div role="${role}"`);
+    });
+    if (landmarkCount !== 1) throw new Error(`${canonical}: expected one ${elementorType} landmark; found ${landmarkCount}`);
+  }
+
+  const navigationLabels = new Map([
+    ['4248a07b', 'Primary services'],
+    ['546f765', 'Information'],
+    ['7a19714', 'Mobile'],
+  ]);
+  result = result.replace(/<nav\b([^>]*)>\s*<ul class="elementor-nav-menu" id="menu-([12])-(4248a07b|546f765|7a19714)"/gi, (match, attributes, menuVariant, widgetId) => {
+    const suffix = menuVariant === '1' ? 'navigation' : 'dropdown navigation';
+    const label = `${navigationLabels.get(widgetId)} ${suffix}`;
+    const labeledAttributes = /\baria-label\s*=/i.test(attributes)
+      ? attributes.replace(/\baria-label=(['"])[^'"]*\1/i, `aria-label="${label}"`)
+      : ` aria-label="${label}"${attributes}`;
+    return `<nav${labeledAttributes}>\n<ul class="elementor-nav-menu" id="menu-${menuVariant}-${widgetId}"`;
+  });
+
+  // Restore high-confidence accessible names from the backup object IDs. The
+  // linked site logos and recurring post thumbnails otherwise expose empty
+  // links to assistive technology.
+  const imageAltRepairs = new Map([
+    ['67', 'Ecowise Italy'],
+    ['94', 'A rare sighting of Wolves'],
+    ['129', 'Spring Friends'],
+    ['25', 'Tracks in the Snow'],
+    ['2598', 'Adam Rose'],
+    ['2622', 'Yenka Honig'],
+  ]);
+  result = result.replace(/<img\b[^>]*>/gi, (tag) => {
+    for (const [attachmentId, altText] of imageAltRepairs) {
+      if (new RegExp(`\\bwp-image-${attachmentId}\\b`).test(tag)) {
+        return tag.replace(/\balt=(['"])\s*\1/i, `alt="${altText}"`);
+      }
+    }
+    return tag;
+  });
+
+  // Name every lightbox action and its CSS-background gallery image. These
+  // labels are invisible and do not alter Elementor's lightbox behavior.
+  let lightboxIndex = 0;
+  result = result.replace(/<a\b(?=[^>]*\bdata-elementor-open-lightbox=["']yes["'])[^>]*>[\s\S]*?<\/a>/gi, (block) => {
+    lightboxIndex += 1;
+    return block
+      .replace(/^<a\b/i, `<a aria-label="Open Ecowise image ${lightboxIndex}"`)
+      .replace(/<div aria-label="" class="e-gallery-image\b/i, `<div aria-label="Ecowise gallery image ${lightboxIndex}" class="e-gallery-image`);
+  });
+
+  // Embedded Facebook posts and PDF.js documents inherited no accessible
+  // titles. The contact map and existing titled embeds are left unchanged.
+  result = result.replace(/<iframe\b[^>]*>/gi, (tag) => {
+    if (/\btitle\s*=/i.test(tag)) return tag;
+    if (/www\.facebook\.com\/plugins\/post\.php/i.test(tag)) return tag.replace(/^<iframe\b/i, '<iframe title="Facebook post from Ecowise Italy"');
+    if (/assets\/fidelity\/supplemental\/pdfjs\/web\/viewer\.html/i.test(tag)) return tag.replace(/^<iframe\b/i, '<iframe title="Ecowise archive PDF document"');
+    return tag;
+  });
+
+  const archiveRoutes = ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/'];
+  const youtubeFallbacks = new Map([
+    ['/news/', { elementId: '511b624', url: 'https://www.youtube.com/watch?v=3ESLqgSMh2M' }],
+    ['/author/admin/', { elementId: '511b624', url: 'https://www.youtube.com/watch?v=3ESLqgSMh2M' }],
+    ['/category/uncategorized/', { elementId: '511b624', url: 'https://www.youtube.com/watch?v=3ESLqgSMh2M' }],
+    ['/2024/09/22/', { elementId: '511b624', url: 'https://www.youtube.com/watch?v=3ESLqgSMh2M' }],
+    ['/outdoor-education-tutorials/', { elementId: 'e8754d6', url: 'https://www.youtube.com/watch?v=3ESLqgSMh2M' }],
+    ['/for-schools/outdoor-service-education-projects/', { elementId: 'e13bc0c', url: 'https://www.youtube.com/watch?v=jpTeuLSY-24' }],
+  ]);
+  const youtubeFallback = youtubeFallbacks.get(canonicalPath);
+  if (youtubeFallback) {
+    const pattern = new RegExp(`(<div class="elementor-element[^>]*data-id="${youtubeFallback.elementId}"[\\s\\S]*?<div class="elementor-video"></div>)`);
+    let fallbackCount = 0;
+    result = result.replace(pattern, (match) => {
+      fallbackCount += 1;
+      return `${match}<noscript><p><a href="${youtubeFallback.url}">Watch this Ecowise video on YouTube</a></p></noscript>`;
+    });
+    if (fallbackCount !== 1) throw new Error(`${canonical}: expected one YouTube widget ${youtubeFallback.elementId}; found ${fallbackCount}`);
+  }
+
+  if (archiveRoutes.includes(canonicalPath)) {
+    let hostedVideoCount = 0;
+    result = result.replace(/<video\b([^>]*\bsrc=(['"])([^'"]+)\2[^>]*)><\/video>/gi, (match, attributes, quote, source) => {
+      hostedVideoCount += 1;
+      return `<video aria-label="Ecowise Italy trip video"${attributes}><a href="${source}">Download the Ecowise video</a></video>`;
+    });
+    if (hostedVideoCount !== 1) throw new Error(`${canonical}: expected one hosted video; found ${hostedVideoCount}`);
+  }
+
+  if (canonicalPath === '/contact-us/') {
+    const contactRepairs = [
+      {
+        pattern: /(<p class="elementor-icon-box-description">\s*)adamecorose@gmail\.com(\s*<\/p>)/i,
+        replacement: '$1<a href="mailto:adamecorose@gmail.com" style="color:inherit;text-decoration:inherit">adamecorose@gmail.com</a>$2',
+        label: 'email action',
+      },
+      {
+        pattern: /(<p class="elementor-icon-box-description">\s*)\+39 3421363274(\s*<\/p>)/i,
+        replacement: '$1<a href="tel:+393421363274" style="color:inherit;text-decoration:inherit">+39 3421363274</a>$2',
+        label: 'telephone action',
+      },
+    ];
+    for (const repair of contactRepairs) {
+      const before = result;
+      result = result.replace(repair.pattern, repair.replacement);
+      if (result === before) throw new Error(`${canonical}: contact ${repair.label} was not repaired`);
+    }
+    let phoneInputCount = 0;
+    result = result.replace(/<input\b(?=[^>]*\bid="form-field-field_44bd0eb")[^>]*>/i, (tag) => {
+      phoneInputCount += 1;
+      return tag.replace(/\btype="number"/i, 'type="tel" autocomplete="tel" inputmode="tel"');
+    });
+    if (phoneInputCount !== 1) throw new Error(`${canonical}: expected one contact phone input; found ${phoneInputCount}`);
   }
 
   return result;

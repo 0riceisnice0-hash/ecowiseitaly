@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.10. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v14.zip`: 727 verified theme files, 25,166,073 bytes, SHA-256 `B844618F4AFD5467D4FD65BFBC8F37FB424E39107A8E5F16281848ECBCBF2626`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current theme is version 1.0.11. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v15.zip`: 727 verified theme files, 25,196,831 bytes, SHA-256 `E2C504FF3DEB0DF34C95EC323F92D9FBCC542B25801540CDA5AB9C2B215C26D2`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -37,6 +37,8 @@ The four archive captures intentionally retain 20 unique Facebook post embeds, t
 The compiler also repairs the six inherited `#` footer placeholders to their existing school-program routes and corrects two mismatched homepage service-card CTAs (team building and mindfulness). These changes affect no styling or sitemap membership, but restore accurate customer navigation.
 
 The captured document outline is repaired deterministically: every one of the 36 fidelity routes has exactly one H1, the homepage hero is the homepage H1, and the repeated headings on the conflict-resolution and team-building pages are semantic H2s. The two demoted headings retain the captured H1 typography through widget-local responsive custom properties, so the accessibility/SEO correction does not change their measured layout.
+
+The fidelity documents now also expose a complete structural and action layer without altering layout: the inherited skip link resolves to a unique main landmark on every route; header/footer landmarks and six repeated navigation regions are named; all image-only links have accessible names; 96 Facebook/PDF frames have titles; six YouTube widgets and four hosted videos have direct fallbacks; and the contact email, telephone and telephone field use native customer-action semantics. Known logo, author and post-thumbnail images received authoritative alt text. Uncertain documentary/gallery images were not given invented descriptions; their link actions are named independently.
 
 ## Backup facts that matter
 
@@ -86,7 +88,7 @@ Before cutover, save `wp option get template`, `wp option get stylesheet` and `w
 
 ## Known source-site defects
 
-The reference site itself has no meta descriptions or JSON-LD, many blank image alt values, no homepage H1, missing canonicals on four archive-style routes and two duplicate-H1 school pages. The rebuild already repairs the four canonicals and the six inherited footer placeholders without changing presentation. Remaining semantic defects should be corrected deliberately after screenshot parity is signed off; fixes that change visible layout must not be mixed into fidelity verification.
+The reference site itself has no meta descriptions or JSON-LD. The rebuild repairs its four missing archive canonicals, homepage/duplicate-H1 outline defects, broken skip-link targets, unnamed customer actions, untitled embeds and six inherited footer placeholders without changing presentation. Meta descriptions, social cards and structured data remain a deliberate editorial SEO phase because adding them would require approved copy, schema choices and share imagery that do not exist on the reference site.
 
 ## Safe rollback
 

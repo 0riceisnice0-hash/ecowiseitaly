@@ -74,6 +74,8 @@ The recurring native vocabulary is: Hero, Section, SplitMedia, PortalLinks, Card
 
 Flip interactions need equivalent focus/tap behavior and cannot hide essential information behind hover alone. Carousels require previous/next controls, sensible announcements, swipe support and a reduced-motion mode. Embeds require a useful link fallback.
 
+Accessibility metadata must remain visually neutral. The header, primary content and footer use banner, main and contentinfo landmarks; repeated navigation regions have distinct labels; image-only links and embedded documents have concise accessible names. Contact email and telephone actions inherit the exact surrounding type and color. Alternative text should be added only when the image purpose is known from authoritative content; decorative or uncertain documentary imagery must not receive invented descriptions.
+
 ## Responsive and motion rules
 
 Primary breakpoints are 1024px and 767px. Always inspect 1440, 1024, 768 and 390px widths. At narrow widths, preserve content order, avoid horizontal scrolling, convert multi-column cards to one column and keep buttons from becoming cramped.

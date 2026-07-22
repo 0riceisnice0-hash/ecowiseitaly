@@ -14,6 +14,7 @@ Maintain Ecowise Italy as a fast, accessible, code-driven WordPress site that pr
 - Preserve user changes in the database. Never make activation destructive.
 - Escape output, sanitize input, use nonces for mutations, and keep WordPress capability checks on administrative actions.
 - Prefer semantic HTML, keyboard-operable controls, visible focus, useful alternative text and reduced-motion support.
+- Every skip link must resolve to a unique main landmark. Navigation regions, embedded documents, media controls and image-only links must have stable accessible names; enforce repairs in the snapshot compiler and validator rather than hand-editing generated HTML.
 - Do not add external trackers, fonts or third-party scripts without documenting purpose, consent implications and removal steps.
 
 ## Architecture rules
