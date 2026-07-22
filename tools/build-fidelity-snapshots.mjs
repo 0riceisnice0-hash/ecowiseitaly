@@ -256,6 +256,29 @@ function repairDocument(html, canonical) {
     result = result.replace(widgetPattern, `$1${route}$2`);
   }
 
+  // Repair the captured document outline without changing Elementor's visual
+  // classes. The live homepage omitted its primary H1, while two school pages
+  // repeated the same H1 in later content widgets.
+  const headingRepairs = new Map([
+    ['/', { elementId: '952c8e2', fromTag: 'h2', toTag: 'h1' }],
+    ['/for-schools/conflict-resolution-program/', { elementId: '3bac217', fromTag: 'h1', toTag: 'h2', preserveH1Typography: true }],
+    ['/for-schools/team-building-wild-rites-of-passage/', { elementId: '799a1c0', fromTag: 'h1', toTag: 'h2', preserveH1Typography: true }],
+  ]);
+  const headingRepair = headingRepairs.get(new URL(canonical).pathname);
+  if (headingRepair) {
+    const { elementId, fromTag, toTag, preserveH1Typography } = headingRepair;
+    const widgetPattern = new RegExp(`(<div class="elementor-element[^>]*data-id="${elementId}"[^>]*>\\s*<div class="elementor-widget-container">\\s*<)${fromTag}([^>]*>[\\s\\S]*?</)${fromTag}(>)`);
+    const visualStyle = preserveH1Typography
+      ? ' style="font-family:var(--e-global-typography-583e54c-font-family), Sans-serif;font-size:var(--e-global-typography-583e54c-font-size);font-weight:var(--e-global-typography-583e54c-font-weight);line-height:var(--e-global-typography-583e54c-line-height);letter-spacing:var(--e-global-typography-583e54c-letter-spacing);word-spacing:var(--e-global-typography-583e54c-word-spacing)"'
+      : '';
+    let repairCount = 0;
+    result = result.replace(widgetPattern, (match, prefix, body, suffix) => {
+      repairCount += 1;
+      return `${prefix}${toTag}${visualStyle}${body}${toTag}${suffix}`;
+    });
+    if (repairCount !== 1) throw new Error(`${canonical}: expected one ${fromTag} heading in widget ${elementId}; found ${repairCount}`);
+  }
+
   return result;
 }
 
@@ -309,7 +332,7 @@ for (const page of inventory) {
     pageType: page.page_type,
     wordpressObjectId: backupRouteIds.get(route) ?? (page.wp_object_id ? Number(page.wp_object_id) : null),
     title: page.title,
-    h1: page.h1,
+    h1: route === '/' ? 'Ecowise Italy: Bringing nature to learning, bringing learning to life!' : page.h1,
     canonical: page.canonical_url || page.url,
     robots: page.robots,
     sourceSha256: page.html_sha256,

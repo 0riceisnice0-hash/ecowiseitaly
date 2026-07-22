@@ -1,5 +1,7 @@
 # Homepage architecture
 
+The visible hero statement, “Ecowise Italy: Bringing nature to learning, bringing learning to life!”, is the page's sole H1. Its fidelity classes and widget-specific typography remain unchanged; only the semantic tag differs from the faulty live capture.
+
 ## Purpose
 
 The homepage is a service gateway, not a generic brand manifesto. A visitor should understand within one screen that Ecowise Italy connects learning and nature, then choose the relevant school, service, corporate or eco-adventure path.
@@ -70,4 +72,3 @@ All meaningful images need alt text, controls need accessible names, focus order
 - Reduced motion disables zoom/autoplay.
 - Canonical is exactly `https://ecowiseitaly.com/` and only one canonical is present.
 - No Elementor/ACF PHP API, shortcode or editor dependency is required.
-

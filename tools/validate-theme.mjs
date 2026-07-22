@@ -34,6 +34,17 @@ const footerSchoolLinks = new Map([
   ['/for-schools/wilderness-encounter-groups-ecoliteracy-camps/', 'Wilderness encounter groups &amp; Ecoliteracy Camps'],
 ]);
 const footerSchoolLinkCounts = new Map([...footerSchoolLinks.keys()].map((route) => [route, 0]));
+const headingContracts = new Map([
+  ['/', [{ elementId: '952c8e2', tagName: 'h1' }]],
+  ['/for-schools/conflict-resolution-program/', [
+    { elementId: 'bb0246b', tagName: 'h1' },
+    { elementId: '3bac217', tagName: 'h2', preservesH1Typography: true },
+  ]],
+  ['/for-schools/team-building-wild-rites-of-passage/', [
+    { elementId: '9819aa8', tagName: 'h1' },
+    { elementId: '799a1c0', tagName: 'h2', preservesH1Typography: true },
+  ]],
+]);
 const errors = [];
 const warnings = [];
 
@@ -53,6 +64,17 @@ for (const route of capturedRoutes) {
   }
 
   const html = fs.readFileSync(file, 'utf8');
+  const h1Count = countMatches(html, /<h1\b/gi);
+  if (h1Count !== 1) errors.push(`${route.route}: expected one H1; found ${h1Count}`);
+  for (const headingContract of headingContracts.get(route.route) || []) {
+    const widgetPattern = new RegExp(`data-id="${headingContract.elementId}"[^>]*>\\s*<div class="elementor-widget-container">\\s*<${headingContract.tagName}\\b([^>]*)>`, 'i');
+    const widgetMatch = html.match(widgetPattern);
+    if (!widgetMatch) {
+      errors.push(`${route.route}: heading widget ${headingContract.elementId} is not ${headingContract.tagName}`);
+    } else if (headingContract.preservesH1Typography && !/font-size:var\(--e-global-typography-583e54c-font-size\)/i.test(widgetMatch[1])) {
+      errors.push(`${route.route}: semantic H2 widget ${headingContract.elementId} does not preserve its captured H1 typography`);
+    }
+  }
   contactFormCount += countMatches(html, /name=["']form_id["'][^>]*value=["']68574d28["']/gi);
   newsletterFormCount += countMatches(html, /name=["']form_id["'][^>]*value=["']1b3fffa7["']/gi);
   for (const [footerRoute, label] of footerSchoolLinks) {

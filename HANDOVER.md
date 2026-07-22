@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.9. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v13.zip`: 727 verified theme files, 25,165,316 bytes, SHA-256 `7FF56CF72019CADED4F04F6B3928F9E3E04C6D71BC2D29214BC12E61158D0936`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current theme is version 1.0.10. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v14.zip`: 727 verified theme files, 25,166,073 bytes, SHA-256 `B844618F4AFD5467D4FD65BFBC8F37FB424E39107A8E5F16281848ECBCBF2626`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -35,6 +35,8 @@ Forms inside fidelity documents are intercepted in the capture phase by `assets/
 The four archive captures intentionally retain 20 unique Facebook post embeds, the contact page retains its Google map, and two travel pages retain eight historical web.archive.org airline links. These are external content dependencies and should be permitted by the production content-security policy or reviewed before launch. Captured Google Tag Manager and Microsoft Clarity execution is removed by the snapshot compiler.
 
 The compiler also repairs the six inherited `#` footer placeholders to their existing school-program routes and corrects two mismatched homepage service-card CTAs (team building and mindfulness). These changes affect no styling or sitemap membership, but restore accurate customer navigation.
+
+The captured document outline is repaired deterministically: every one of the 36 fidelity routes has exactly one H1, the homepage hero is the homepage H1, and the repeated headings on the conflict-resolution and team-building pages are semantic H2s. The two demoted headings retain the captured H1 typography through widget-local responsive custom properties, so the accessibility/SEO correction does not change their measured layout.
 
 ## Backup facts that matter
 

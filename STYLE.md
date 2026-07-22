@@ -1,5 +1,9 @@
 # Site-wide visual system
 
+## Heading semantics and visual fidelity
+
+Each captured route must expose exactly one H1. Semantic tag corrections must retain the existing Elementor classes and computed typography, including responsive font-size variables, so document-outline improvements never alter wrapping, section height or rhythm.
+
 ## Character
 
 The site combines a practical outdoor-education service with the warmth of a nature journal. It should feel knowledgeable, friendly and grounded: large documentary photography, deep dark text, fresh greens, rounded calls to action and generous breathing room. Avoid glossy corporate gradients, generic SaaS cards or decorative effects that compete with the photographs.
@@ -75,4 +79,3 @@ Flip interactions need equivalent focus/tap behavior and cannot hide essential i
 Primary breakpoints are 1024px and 767px. Always inspect 1440, 1024, 768 and 390px widths. At narrow widths, preserve content order, avoid horizontal scrolling, convert multi-column cards to one column and keep buttons from becoming cramped.
 
 Honor `prefers-reduced-motion`. Ken Burns, carousel autoplay and decorative transitions must stop or become effectively instant. Content cannot depend on animation to appear.
-
