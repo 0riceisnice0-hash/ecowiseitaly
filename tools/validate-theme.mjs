@@ -172,11 +172,16 @@ for (const route of capturedRoutes) {
 
 const homepageHtml = fs.readFileSync(path.join(themeRoot, 'snapshots', 'html', 'home.html'), 'utf8');
 for (const [elementId, expectedRoute] of [
+  ['41d2c8b8', '/for-schools/science-ecology-environment-field-trips/'],
+  ['81eb065', '/for-schools/outdoor-service-education-projects/'],
   ['4f9a4fda', '/for-schools/team-building-wild-rites-of-passage/'],
+  ['5c33720d', '/for-schools/residential-field-trips/'],
+  ['5a79a029', '/for-schools/storytelling-drama-experiences-in-nature/'],
   ['6f744906', '/for-schools/mindfulness-and-nature-awareness-workshops/'],
 ]) {
   const widgetPattern = new RegExp(`<div class="elementor-element[^>]*data-id="${elementId}"[\\s\\S]*?<a class="elementor-flip-box__button[^>]*href="([^"]+)"`);
-  const actualRoute = homepageHtml.match(widgetPattern)?.[1];
+  const actualHref = homepageHtml.match(widgetPattern)?.[1];
+  const actualRoute = actualHref ? new URL(actualHref, 'https://ecowiseitaly.com/').pathname : '';
   if (actualRoute !== expectedRoute) errors.push(`homepage card ${elementId} points to ${actualRoute || 'nothing'} instead of ${expectedRoute}`);
 }
 
