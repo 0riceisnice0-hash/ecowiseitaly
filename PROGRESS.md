@@ -33,3 +33,5 @@
 - Vendored all 84 on-demand Elementor/Elementor Pro browser chunks from the backup and rewrote captured asset-base configuration to the custom theme, removing the final lazy-interaction dependency on inactive plugin directories.
 - Headless-browser tested homepage and school carousels, gallery lightbox, contact form enhancement, News widgets, desktop navigation and the mobile menu; added four dynamically discovered lightbox dependencies and reached zero local HTTP or page errors.
 - Added a nonce-protected native form action and hidden-field fallback at render time so enquiry submissions still reach WordPress when browser JavaScript is blocked.
+- Exhaustively exercised all 36 captured routes at 1440×900 and 390×844 in headless Chrome after scrolling lazy content into view; all 72 checks completed with zero local HTTP failures or page exceptions.
+- Compared every route against production at 390×844 across visible text, titles, body classes, H1s, element/link/form counts and key header/content/footer geometry. All 36 matched; the only initial metadata differences were the four intentional canonical repairs.
