@@ -47,3 +47,7 @@
 - Removed stale captured plugin AJAX endpoints/nonces, rendered a real server-observable form honeypot, capped accepted form fields/payloads and eliminated long stale-cache reuse of nonce-bearing pages.
 - Repeated the full real-WordPress suite after hardening: 72 desktop/mobile browser checks, 36 fidelity responses, exact 35-URL sitemap, native endpoints, redirects, form submission and the 1,950-file restore preflight all passed with no WordPress debug log.
 - Built deterministic theme 1.0.5 package v9 with 727 verified files and SHA-256 `84C40EEA3135449A2EBD59A3A52775DE7E11071320D8498F0F007A23403883EF`.
+- Restored the original per-form inbox routing and schemas from the backup: contact and newsletter submissions retain distinct recipients, contact email labels/required fields match Elementor, and no-JavaScript submissions return to an accessible on-page result instead of raw JSON.
+- Re-tested the restored forms inside WordPress: contact validation and 303 return flow passed, newsletter submission passed, and the intercepted mail payloads selected the two exact recovered recipients.
+- Added extension-signature/HTML-masquerade checks for packaged assets and made release generation cross-platform deterministic by normalizing approved text assets; CI now builds twice and verifies `release/theme-package.json`.
+- Built deterministic theme 1.0.6 package v10 with 727 verified files, 8,394,959 bytes and SHA-256 `6DEB710525DF1C7859ABC62200A9282B74F87BC0AA5A26D9AD75D505FA9DF2C9`.

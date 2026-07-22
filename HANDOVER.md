@@ -17,11 +17,11 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.5. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v9.zip`: 727 verified theme files, SHA-256 `84C40EEA3135449A2EBD59A3A52775DE7E11071320D8498F0F007A23403883EF`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory.
+The current theme is version 1.0.6. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v10.zip`: 727 verified theme files, 8,394,959 bytes, SHA-256 `6DEB710525DF1C7859ABC62200A9282B74F87BC0AA5A26D9AD75D505FA9DF2C9`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
-The final package was also activated in a disposable WordPress 6.8.6 installation backed by MariaDB 11.4.12 and the substantive `wp_` database from the supplied backup. All legacy plugins were absent/deactivated, all 1,950 upload files were restored, and WordPress produced no debug log during the complete route and interaction test suite.
+The final package source was also activated in a disposable WordPress 6.8.6 installation backed by MariaDB 11.4.12 and the substantive `wp_` database from the supplied backup. All legacy plugins were absent/deactivated, all 1,950 upload files were restored, both captured form contracts and native redirects passed, and WordPress produced no debug log during the complete route and interaction test suite.
 
 The theme has two front-end paths:
 
@@ -30,7 +30,7 @@ The theme has two front-end paths:
 
 Logged-in users and previews bypass fidelity snapshots so editors can inspect the native WordPress result. Admin, REST, AJAX, feeds and sitemaps are never intercepted.
 
-Forms inside fidelity documents are intercepted by `assets/js/fidelity.js` and sent to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields so submission still reaches the handler when JavaScript is blocked. The recipient defaults to the WordPress administration email and can be changed through the `ecowise_form_recipient` filter.
+Forms inside fidelity documents are intercepted by `assets/js/fidelity.js` and sent to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields; without JavaScript, WordPress redirects back to the source form with an accessible success/error result. Captured routing is preserved: contact form `68574d28` defaults to `adamecorose@gmail.com`, while newsletter form `1b3fffa7` defaults to `saqibbalii099@gmail.com`. The `ecowise_form_recipient` filter receives the default recipient, form type and sanitized fields when production needs an explicit override.
 
 The four archive captures intentionally retain 20 unique Facebook post embeds, the contact page retains its Google map, and two travel pages retain eight historical web.archive.org airline links. These are external content dependencies and should be permitted by the production content-security policy or reviewed before launch. Captured Google Tag Manager and Microsoft Clarity execution is removed by the snapshot compiler.
 
@@ -54,7 +54,7 @@ The database has no meaningful Yoast, Rank Math, AIOSEO or SEOPress metadata. Hi
 5. In Settings → Reading, confirm front page ID 6 and posts page ID 2448 (`/news/`).
 6. In Settings → Permalinks, use `/%postname%/` and save once.
 7. Assign the recovered primary/footer menus if WordPress did not retain their locations.
-8. Set the administration email to the monitored Ecowise inbox or configure the `ecowise_form_recipient` filter.
+8. Confirm the two captured form recipients above are still monitored, or configure the `ecowise_form_recipient` filter with an explicit per-form routing policy.
 9. Configure a real SMTP/mail transport and submit the contact and post forms.
 10. From this repository, run `ECOWISE_EXPECTED_URL=https://staging-host.example wp --path=/absolute/wordpress/path eval-file tools/validate-wordpress.php` to verify the actual database, options, plugin state and all restored upload files.
 11. Purge caches, then run the validation checklist below before exposing staging to search engines.

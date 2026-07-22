@@ -23,6 +23,8 @@ const archivePdfPaths = [
   '/wp-content/uploads/2024/12/PG_Autumn_2014_ROSE-3_2.pdf',
 ];
 const pdfViewersByRoute = new Map();
+let contactFormCount = 0;
+let newsletterFormCount = 0;
 const errors = [];
 const warnings = [];
 
@@ -38,6 +40,8 @@ for (const route of capturedRoutes) {
   }
 
   const html = fs.readFileSync(file, 'utf8');
+  contactFormCount += countMatches(html, /name=["']form_id["'][^>]*value=["']68574d28["']/gi);
+  newsletterFormCount += countMatches(html, /name=["']form_id["'][^>]*value=["']1b3fffa7["']/gi);
   if (backupObjectIds.has(route.route) && route.wordpressObjectId !== backupObjectIds.get(route.route)) {
     errors.push(`${route.route}: audit object ID ${route.wordpressObjectId} does not match backup ID ${backupObjectIds.get(route.route)}`);
   }
@@ -131,6 +135,8 @@ if (indexedRoutes.length !== 35) errors.push(`expected 35 indexed routes; found 
 if (facebookEmbedCount !== 80) errors.push(`expected 80 restored Facebook embed instances; found ${facebookEmbedCount}`);
 if (facebookEmbedUrls.size !== 20) errors.push(`expected 20 unique restored Facebook post URLs; found ${facebookEmbedUrls.size}`);
 if (pdfViewerCount !== 16) errors.push(`expected 16 archive PDF viewers; found ${pdfViewerCount}`);
+if (contactFormCount !== 1) errors.push(`expected one captured contact form identity; found ${contactFormCount}`);
+if (newsletterFormCount !== 3) errors.push(`expected three captured newsletter form identities; found ${newsletterFormCount}`);
 for (const route of ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/']) {
   const actual = pdfViewersByRoute.get(route) || [];
   if (actual.length !== 4 || archivePdfPaths.some((pdf) => !actual.includes(pdf))) errors.push(`${route}: archive PDF viewer set is incomplete or incorrect`);
@@ -240,6 +246,10 @@ for (const formHardening of ['name=\"website\"', 'must-revalidate']) {
 }
 const fidelityJs = fs.readFileSync(path.join(themeRoot, 'assets', 'js', 'fidelity.js'), 'utf8');
 if (/data\.set\(\s*['"]website['"]\s*,\s*['"]['"]\s*\)/.test(fidelityJs)) errors.push('form enhancement clears the honeypot before submission');
+const formsPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'forms.php'), 'utf8');
+for (const formContract of ['68574d28', '1b3fffa7', 'adamecorose@gmail.com', 'saqibbalii099@gmail.com', 'ecowise_form_respond', 'field_44bd0eb', 'field_6fef306']) {
+  if (!formsPhp.includes(formContract)) errors.push(`form handler is missing captured routing/schema contract (${formContract})`);
+}
 
 const malformedThemify = path.join(themeRoot, 'assets', 'fidelity', 'site', 'wp-content', 'plugins', 'skyboot-custom-icons-for-elementor', 'assets', 'css', '_', 'fonts', 'themify.eot');
 if (fs.existsSync(malformedThemify)) errors.push('captured HTML/404 masquerading as themify.eot remains');
@@ -256,8 +266,28 @@ function collectAssetFiles(directory) {
   }
 }
 collectAssetFiles(path.join(themeRoot, 'assets'));
+const assetSignatures = new Map([
+  ['.woff', [[0x77, 0x4f, 0x46, 0x46]]],
+  ['.woff2', [[0x77, 0x4f, 0x46, 0x32]]],
+  ['.ttf', [[0x00, 0x01, 0x00, 0x00], [0x4f, 0x54, 0x54, 0x4f]]],
+  ['.otf', [[0x4f, 0x54, 0x54, 0x4f]]],
+  ['.png', [[0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]]],
+  ['.jpg', [[0xff, 0xd8, 0xff]]],
+  ['.jpeg', [[0xff, 0xd8, 0xff]]],
+  ['.gif', [[0x47, 0x49, 0x46, 0x38]]],
+  ['.webp', [[0x52, 0x49, 0x46, 0x46]]],
+  ['.pdf', [[0x25, 0x50, 0x44, 0x46, 0x2d]]],
+]);
 for (const file of assetFiles) {
   const content = fs.readFileSync(file);
+  if (!content.length) errors.push(`${path.relative(repositoryRoot, file)}: packaged asset is empty`);
+  const signatures = assetSignatures.get(path.extname(file).toLowerCase());
+  if (signatures && !signatures.some((signature) => signature.every((byte, index) => content[index] === byte))) {
+    errors.push(`${path.relative(repositoryRoot, file)}: file signature does not match its extension`);
+  }
+  if (/^\s*(?:<!doctype\s+html\b|<html\b)/i.test(content.subarray(0, 256).toString('utf8')) && !['.html', '.htm', '.js'].includes(path.extname(file).toLowerCase())) {
+    errors.push(`${path.relative(repositoryRoot, file)}: binary/static asset begins with an HTML document`);
+  }
   if (content.includes(Buffer.from('GT-WFMMH42J')) || content.includes(Buffer.from('vf3beobmuf')) || content.includes(Buffer.from('www.clarity.ms'))) {
     errors.push(`${path.relative(repositoryRoot, file)}: captured tracker marker remains in packaged assets`);
   }

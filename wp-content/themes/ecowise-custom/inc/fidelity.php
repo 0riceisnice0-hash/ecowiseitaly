@@ -68,7 +68,8 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 	status_header( 200 );
 	header( 'Content-Type: text/html; charset=' . get_bloginfo( 'charset' ) );
 	header( 'X-Ecowise-Renderer: fidelity-snapshot' );
-	header( 'Cache-Control: public, max-age=300, must-revalidate' );
+	$form_result = isset( $_GET['ecowise_form'] ) ? sanitize_key( wp_unslash( $_GET['ecowise_form'] ) ) : '';
+	header( in_array( $form_result, array( 'success', 'error' ), true ) ? 'Cache-Control: private, no-store, max-age=0' : 'Cache-Control: public, max-age=300, must-revalidate' );
 
 	if ( 'HEAD' !== $method ) {
 		// The file is trusted build output committed with the theme.
@@ -83,11 +84,18 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 				'error'   => __( 'Sorry, the message could not be sent. Please email us directly.', 'ecowise' ),
 			),
 		);
+		$result_markup   = '';
+		if ( 'success' === $form_result ) {
+			$result_markup = '<div id="ecowise-form-status" role="status" style="margin:1rem 0;padding:.85rem 1rem;border:2px solid #19733b;background:#eef9f1;color:#153d23">' . esc_html__( 'Thank you. Your message has been sent.', 'ecowise' ) . '</div>';
+		} elseif ( 'error' === $form_result ) {
+			$result_markup = '<div id="ecowise-form-status" role="alert" style="margin:1rem 0;padding:.85rem 1rem;border:2px solid #a62b2b;background:#fff2f2;color:#641b1b">' . esc_html__( 'The message could not be sent. Please review the form and try again.', 'ecowise' ) . '</div>';
+		}
 		$fallback_fields = sprintf(
-			'<input type="hidden" name="action" value="ecowise_fidelity_form"><input type="hidden" name="nonce" value="%1$s"><input type="hidden" name="source_page" value="%2$s"><input type="hidden" name="form_name" value="%3$s"><div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>',
+			'<input type="hidden" name="action" value="ecowise_fidelity_form"><input type="hidden" name="nonce" value="%1$s"><input type="hidden" name="source_page" value="%2$s"><input type="hidden" name="form_name" value="%3$s"><div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>%4$s',
 			esc_attr( $config['nonce'] ),
 			esc_url( home_url( ecowise_fidelity_route_key() ) ),
-			esc_attr__( 'Website enquiry', 'ecowise' )
+			esc_attr__( 'Website enquiry', 'ecowise' ),
+			$result_markup
 		);
 		$document        = preg_replace_callback(
 			'/<form\b(?=[^>]*\bclass=(["\'])[^"\']*\belementor-form\b[^"\']*\1)[^>]*>/i',

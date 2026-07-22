@@ -42,4 +42,7 @@ jobs:
         run: find wp-content/themes/ecowise-custom -type f -name '*.php' -print0 | xargs -0 -n1 php -l
 
       - name: Build and verify release package
-        run: python3 tools/package-theme.py "$RUNNER_TEMP/ecowise-custom-theme.zip"
+        run: |
+          python3 tools/package-theme.py "$RUNNER_TEMP/ecowise-custom-theme-a.zip" --check-manifest
+          python3 tools/package-theme.py "$RUNNER_TEMP/ecowise-custom-theme-b.zip" --check-manifest
+          cmp "$RUNNER_TEMP/ecowise-custom-theme-a.zip" "$RUNNER_TEMP/ecowise-custom-theme-b.zip"

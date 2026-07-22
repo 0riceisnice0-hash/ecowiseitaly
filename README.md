@@ -50,3 +50,5 @@ Build a deterministic, self-verifying release ZIP with Python 3:
 ```sh
 python3 tools/package-theme.py dist/ecowise-custom-theme.zip
 ```
+
+The builder normalizes approved text assets, verifies every archived byte and produces the same ZIP on Windows and Linux. Pass `--check-manifest` to compare the build with `release/theme-package.json`; CI performs two independent builds and requires byte-identical output.
