@@ -7,8 +7,10 @@ import hashlib
 import json
 import os
 import pathlib
+import struct
 import sys
 import zipfile
+import zlib
 
 
 REPOSITORY_ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -21,7 +23,10 @@ TEXT_FILENAMES = {"LICENSE", "README"}
 
 
 def theme_files() -> list[pathlib.Path]:
-    return sorted(path for path in THEME_ROOT.rglob("*") if path.is_file())
+    return sorted(
+        (path for path in THEME_ROOT.rglob("*") if path.is_file()),
+        key=lambda path: path.relative_to(THEME_ROOT).as_posix(),
+    )
 
 
 def packaged_bytes(source: pathlib.Path) -> bytes:
@@ -29,6 +34,34 @@ def packaged_bytes(source: pathlib.Path) -> bytes:
     if source.suffix.lower() in TEXT_EXTENSIONS or source.name.upper() in TEXT_FILENAMES or source.name.upper().startswith("LICENSE_"):
         content = content.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
     return content
+
+
+def write_archive(output: pathlib.Path, files: list[pathlib.Path]) -> None:
+    dos_time = 0
+    dos_date = ((FIXED_TIMESTAMP[0] - 1980) << 9) | (FIXED_TIMESTAMP[1] << 5) | FIXED_TIMESTAMP[2]
+    utf8_flag = 0x0800
+    central_records: list[bytes] = []
+    with output.open("wb") as archive:
+        for source in files:
+            name = f"ecowise-custom/{source.relative_to(THEME_ROOT).as_posix()}".encode("utf-8")
+            content = packaged_bytes(source)
+            crc = zlib.crc32(content) & 0xFFFFFFFF
+            offset = archive.tell()
+            archive.write(struct.pack("<IHHHHHIIIHH", 0x04034B50, 20, utf8_flag, 0, dos_time, dos_date, crc, len(content), len(content), len(name), 0))
+            archive.write(name)
+            archive.write(content)
+            central_records.append(
+                struct.pack(
+                    "<IHHHHHHIIIHHHHHII",
+                    0x02014B50, (3 << 8) | 20, 20, utf8_flag, 0, dos_time, dos_date, crc,
+                    len(content), len(content), len(name), 0, 0, 0, 0, (0o100644 & 0xFFFF) << 16, offset,
+                ) + name
+            )
+        central_offset = archive.tell()
+        for record in central_records:
+            archive.write(record)
+        central_size = archive.tell() - central_offset
+        archive.write(struct.pack("<IHHHHIIH", 0x06054B50, 0, 0, len(files), len(files), central_size, central_offset, 0))
 
 
 def main() -> int:
@@ -42,18 +75,9 @@ def main() -> int:
         raise SystemExit(f"Theme is empty or missing: {THEME_ROOT}")
 
     output.parent.mkdir(parents=True, exist_ok=True)
-    # Stored entries avoid zlib-version-dependent output and make the archive
-    # byte-identical across Windows, Linux and CI runners.
-    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_STORED) as archive:
-        for source in files:
-            relative = source.relative_to(THEME_ROOT)
-            info = zipfile.ZipInfo(f"ecowise-custom/{relative.as_posix()}", FIXED_TIMESTAMP)
-            info.create_system = 3
-            info.create_version = 20
-            info.extract_version = 20
-            info.compress_type = zipfile.ZIP_STORED
-            info.external_attr = (0o100644 & 0xFFFF) << 16
-            archive.writestr(info, packaged_bytes(source), compress_type=zipfile.ZIP_STORED)
+    # Write the small, stored ZIP structure explicitly so platform-specific
+    # pathlib and zipfile defaults cannot alter release bytes.
+    write_archive(output, files)
 
     expected = [f"ecowise-custom/{path.relative_to(THEME_ROOT).as_posix()}" for path in files]
     with zipfile.ZipFile(output, "r") as archive:
