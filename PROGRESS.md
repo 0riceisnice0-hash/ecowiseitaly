@@ -50,4 +50,4 @@
 - Restored the original per-form inbox routing and schemas from the backup: contact and newsletter submissions retain distinct recipients, contact email labels/required fields match Elementor, and no-JavaScript submissions return to an accessible on-page result instead of raw JSON.
 - Re-tested the restored forms inside WordPress: contact validation and 303 return flow passed, newsletter submission passed, and the intercepted mail payloads selected the two exact recovered recipients.
 - Added extension-signature/HTML-masquerade checks for packaged assets and made release generation cross-platform deterministic by normalizing approved text assets; CI now builds twice and verifies `release/theme-package.json`.
-- Built deterministic theme 1.0.6 package v10 with 727 verified files, 8,394,959 bytes and SHA-256 `6DEB710525DF1C7859ABC62200A9282B74F87BC0AA5A26D9AD75D505FA9DF2C9`.
+- Built deterministic theme 1.0.6 package v10 with 727 verified files, 25,154,039 bytes and SHA-256 `A10359B1AD344D7A8A42F46047D31AE0674F00621BBE0C9DB5B7BE754B9C4F46`.

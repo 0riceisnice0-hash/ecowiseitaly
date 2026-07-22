@@ -41,13 +41,15 @@ def main() -> int:
         raise SystemExit(f"Theme is empty or missing: {THEME_ROOT}")
 
     output.parent.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+    # Stored entries avoid zlib-version-dependent output and make the archive
+    # byte-identical across Windows, Linux and CI runners.
+    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_STORED) as archive:
         for source in files:
             relative = source.relative_to(THEME_ROOT)
             info = zipfile.ZipInfo(f"ecowise-custom/{relative.as_posix()}", FIXED_TIMESTAMP)
-            info.compress_type = zipfile.ZIP_DEFLATED
+            info.compress_type = zipfile.ZIP_STORED
             info.external_attr = (0o100644 & 0xFFFF) << 16
-            archive.writestr(info, packaged_bytes(source), compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
+            archive.writestr(info, packaged_bytes(source), compress_type=zipfile.ZIP_STORED)
 
     expected = [f"ecowise-custom/{path.relative_to(THEME_ROOT).as_posix()}" for path in files]
     with zipfile.ZipFile(output, "r") as archive:
