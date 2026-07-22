@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import pathlib
 import sys
 import zipfile
@@ -74,6 +75,8 @@ def main() -> int:
         actual = {"sha256": digest, "fileCount": len(files), "bytes": size}
         expected_manifest = {key: manifest.get(key) for key in actual}
         if actual != expected_manifest:
+            if os.environ.get("GITHUB_ACTIONS") == "true":
+                print(f"::error title=Release manifest mismatch::expected {expected_manifest}; built {actual}")
             raise SystemExit(f"Release manifest mismatch: expected {expected_manifest}, built {actual}")
         print(f"Release manifest verified: {manifest_path}")
     print(f"Theme package verified: {len(files)} files, {size} bytes")
