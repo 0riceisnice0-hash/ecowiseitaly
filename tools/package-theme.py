@@ -14,7 +14,7 @@ REPOSITORY_ROOT = pathlib.Path(__file__).resolve().parent.parent
 THEME_ROOT = REPOSITORY_ROOT / "wp-content" / "themes" / "ecowise-custom"
 FIXED_TIMESTAMP = (2026, 7, 22, 0, 0, 0)
 TEXT_EXTENSIONS = {
-    ".css", ".html", ".htm", ".js", ".json", ".md", ".mjs", ".php", ".po", ".pot", ".svg", ".txt", ".xml",
+    ".css", ".html", ".htm", ".js", ".json", ".md", ".mjs", ".php", ".po", ".pot", ".properties", ".svg", ".txt", ".xml",
 }
 TEXT_FILENAMES = {"LICENSE", "README"}
 
@@ -25,7 +25,7 @@ def theme_files() -> list[pathlib.Path]:
 
 def packaged_bytes(source: pathlib.Path) -> bytes:
     content = source.read_bytes()
-    if source.suffix.lower() in TEXT_EXTENSIONS or source.name.upper() in TEXT_FILENAMES:
+    if source.suffix.lower() in TEXT_EXTENSIONS or source.name.upper() in TEXT_FILENAMES or source.name.upper().startswith("LICENSE_"):
         content = content.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
     return content
 
