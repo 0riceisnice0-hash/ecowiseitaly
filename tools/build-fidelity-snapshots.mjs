@@ -121,6 +121,16 @@ for (const [publicPath, sourceFile] of mirroredAssets) {
   }
 }
 
+const supplementalRuntimeRoot = path.join(themeRoot, 'assets', 'fidelity', 'supplemental', 'runtime');
+if (fs.existsSync(supplementalRuntimeRoot)) {
+  for (const sourceFile of walkFiles(supplementalRuntimeRoot)) {
+    const relative = path.relative(supplementalRuntimeRoot, sourceFile);
+    const destination = path.join(fidelityAssetRoot, relative);
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.copyFileSync(sourceFile, destination);
+  }
+}
+
 function repairDocument(html, canonical) {
   const escapeAttribute = (value) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
   let result = html.replace(/\b(href|src)=(['"])([^'"]+)\2/gi, (match, attribute, quote, value) => {
@@ -162,6 +172,18 @@ function repairDocument(html, canonical) {
     .replace(
       /(?:\.\.\/)*wp-content\/plugins\/pdfjs-viewer-for-elementor\/assets\/js\/pdfjs\//gi,
       '/wp-content/themes/ecowise-custom/assets/fidelity/supplemental/pdfjs/'
+    )
+    .replaceAll(
+      'https:\\/\\/ecowiseitaly.com\\/wp-content\\/plugins\\/elementor\\/assets\\/',
+      '\\/wp-content\\/themes\\/ecowise-custom\\/assets\\/fidelity\\/site\\/wp-content\\/plugins\\/elementor\\/assets\\/'
+    )
+    .replaceAll(
+      'https:\\/\\/ecowiseitaly.com\\/wp-content\\/plugins\\/elementor-pro\\/assets\\/',
+      '\\/wp-content\\/themes\\/ecowise-custom\\/assets\\/fidelity\\/site\\/wp-content\\/plugins\\/elementor-pro\\/assets\\/'
+    )
+    .replaceAll(
+      'https:\\/\\/ecowiseitaly.com\\/wp-content\\/plugins\\/elementor-pro\\/modules\\/lottie\\/assets\\/animations\\/default.json',
+      '\\/wp-content\\/themes\\/ecowise-custom\\/assets\\/fidelity\\/site\\/wp-content\\/plugins\\/elementor-pro\\/modules\\/lottie\\/assets\\/animations\\/default.json'
     );
 
   result = result.replace(/\b(href|src|action)=(['"])([^'"#][^'"]*)\2/gi, (match, attribute, quote, value) => {

@@ -39,6 +39,9 @@ for (const route of capturedRoutes) {
   if (/__q_[0-9a-f]+/i.test(html)) errors.push(`${route.route}: mirror query-hash artifact remains`);
   if (/google_gtagjs-js/i.test(html)) errors.push(`${route.route}: captured analytics script remains`);
   if (/www\.clarity\.ms|vf3beobmuf/i.test(html)) errors.push(`${route.route}: captured Microsoft Clarity tracker remains`);
+  if (/https:\\?\/\\?\/ecowiseitaly\.com\\?\/wp-content\\?\/plugins\\?\/(?:elementor|elementor-pro)\\?\/assets\\?\//i.test(html)) {
+    errors.push(`${route.route}: legacy Elementor runtime asset base remains`);
+  }
 
   for (const match of html.matchAll(/(?:href|src)=["'](\/wp-content\/themes\/ecowise-custom\/assets\/fidelity\/site\/[^"']+)["']/gi)) {
     const local = path.join(themeRoot, 'assets', 'fidelity', 'site', ...match[1].split('/assets/fidelity/site/')[1].split('/'));
@@ -125,6 +128,28 @@ for (const document of requiredDocs) {
 
 const supplementalPdfViewer = path.join(themeRoot, 'assets', 'fidelity', 'supplemental', 'pdfjs', 'web', 'viewer.html');
 if (!fs.existsSync(supplementalPdfViewer)) errors.push('supplemental PDF.js viewer is missing');
+const lazyRuntimeRoot = path.join(themeRoot, 'assets', 'fidelity', 'supplemental', 'runtime');
+const lazyRuntimeFiles = [];
+function collectLazyRuntime(directory) {
+  if (!fs.existsSync(directory)) return;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const item = path.join(directory, entry.name);
+    if (entry.isDirectory()) collectLazyRuntime(item);
+    else lazyRuntimeFiles.push(item);
+  }
+}
+collectLazyRuntime(lazyRuntimeRoot);
+if (lazyRuntimeFiles.filter((file) => file.endsWith('.bundle.min.js')).length !== 84) {
+  errors.push(`expected 84 vendored Elementor lazy runtime chunks; found ${lazyRuntimeFiles.filter((file) => file.endsWith('.bundle.min.js')).length}`);
+}
+for (const lightboxAsset of [
+  'wp-content/plugins/elementor/assets/css/conditionals/dialog.min.css',
+  'wp-content/plugins/elementor/assets/css/conditionals/lightbox.min.css',
+  'wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js',
+  'wp-content/plugins/elementor/assets/lib/share-link/share-link.min.js',
+]) {
+  if (!fs.existsSync(path.join(lazyRuntimeRoot, ...lightboxAsset.split('/')))) errors.push(`supplemental lightbox dependency is missing (${lightboxAsset})`);
+}
 for (const route of capturedRoutes.filter((item) => ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/'].includes(item.route))) {
   const file = path.join(repositoryRoot, ...route.snapshot.split('/'));
   const html = fs.readFileSync(file, 'utf8');
