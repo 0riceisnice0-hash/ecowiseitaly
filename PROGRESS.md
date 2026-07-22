@@ -54,3 +54,5 @@
 - Prevented the dormant vendored Elementor form listener from competing with the custom handler, changed fidelity responses to private caching, and confirmed in a real browser that one click produces one successful WordPress mail event with no console errors.
 - Re-ran the restored WordPress route, sitemap, endpoint, redirect, native/JavaScript form and cache-header suites with zero failures.
 - Built deterministic theme 1.0.7 package v11 with 727 verified files, 25,154,099 bytes and SHA-256 `E903CDC6D1AA5B1F9A5D09E3E494305B8EA7571EE728F5013A184F5C798B86B5`.
+- Repaired the six inherited `#` footer placeholders on every fidelity page to their exact restored school-program routes; all 216 links now resolve to HTTP 200 without visual or sitemap changes, and the compiler/validator enforce the mapping.
+- Built deterministic theme 1.0.8 package v12 with 727 verified files, 25,165,367 bytes and SHA-256 `3BE711C38C9B62B8596359F1A96E8ACF68292429A03C4C1D9C76DB62BBE25344`.

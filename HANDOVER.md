@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.7. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v11.zip`: 727 verified theme files, 25,154,099 bytes, SHA-256 `E903CDC6D1AA5B1F9A5D09E3E494305B8EA7571EE728F5013A184F5C798B86B5`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current theme is version 1.0.8. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v12.zip`: 727 verified theme files, 25,165,367 bytes, SHA-256 `3BE711C38C9B62B8596359F1A96E8ACF68292429A03C4C1D9C76DB62BBE25344`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -33,6 +33,8 @@ Logged-in users and previews bypass fidelity snapshots so editors can inspect th
 Forms inside fidelity documents are intercepted in the capture phase by `assets/js/fidelity.js`, which suppresses the dormant captured Elementor handler and sends exactly one request to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields; without JavaScript, WordPress redirects back to the source form with an accessible success/error result. Captured routing is preserved: contact form `68574d28` defaults to `adamecorose@gmail.com`, while newsletter form `1b3fffa7` defaults to `saqibbalii099@gmail.com`. The `ecowise_form_recipient` filter receives the default recipient, form type and sanitized fields when production needs an explicit override. Fidelity responses are private-cacheable so a shared cache cannot leak an anonymous snapshot into an editor session; form-result responses are always private and `no-store`.
 
 The four archive captures intentionally retain 20 unique Facebook post embeds, the contact page retains its Google map, and two travel pages retain eight historical web.archive.org airline links. These are external content dependencies and should be permitted by the production content-security policy or reviewed before launch. Captured Google Tag Manager and Microsoft Clarity execution is removed by the snapshot compiler.
+
+The compiler also repairs the six inherited `#` footer placeholders to their existing school-program routes. This changes no styling or sitemap membership, but restores 216 otherwise inert links across the 36 captured pages.
 
 ## Backup facts that matter
 
@@ -82,7 +84,7 @@ Before cutover, save `wp option get template`, `wp option get stylesheet` and `w
 
 ## Known source-site defects
 
-The reference site itself has no meta descriptions or JSON-LD, many blank image alt values, no homepage H1, missing canonicals on four archive-style routes, two duplicate-H1 school pages and six inherited footer school links pointing to `#` on every captured page (216 inert anchors total). Fidelity snapshots preserve presentation, but these defects should be corrected deliberately after screenshot parity is signed off. Fixes that change visible layout must not be mixed into fidelity verification.
+The reference site itself has no meta descriptions or JSON-LD, many blank image alt values, no homepage H1, missing canonicals on four archive-style routes and two duplicate-H1 school pages. The rebuild already repairs the four canonicals and the six inherited footer placeholders without changing presentation. Remaining semantic defects should be corrected deliberately after screenshot parity is signed off; fixes that change visible layout must not be mixed into fidelity verification.
 
 ## Safe rollback
 

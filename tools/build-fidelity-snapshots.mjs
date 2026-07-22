@@ -230,6 +230,23 @@ function repairDocument(html, canonical) {
     '<meta content="Ecowise Custom fidelity capture" name="generator"/>'
   );
 
+  // The captured footer shipped with six inert placeholder anchors even
+  // though every corresponding school page exists in the restored site.
+  const footerSchoolLinks = new Map([
+    ['Science, Ecology &amp; Environment Field trips', '/for-schools/science-ecology-environment-field-trips/'],
+    ['Outdoor Service Education Projects', '/for-schools/outdoor-service-education-projects/'],
+    ['Storytelling &amp; Drama Experiences in Nature', '/for-schools/storytelling-drama-experiences-in-nature/'],
+    ['Team Building &amp; Wild Rites of Passage', '/for-schools/team-building-wild-rites-of-passage/'],
+    ['Mindfulness and Nature Awareness Workshops', '/for-schools/mindfulness-and-nature-awareness-workshops/'],
+    ['Wilderness encounter groups &amp; Ecoliteracy Camps', '/for-schools/wilderness-encounter-groups-ecoliteracy-camps/'],
+  ]);
+  for (const [label, route] of footerSchoolLinks) {
+    result = result.replaceAll(
+      `<a href="#">\n<span class="elementor-icon-list-text">${label}</span>`,
+      `<a href="${route}">\n<span class="elementor-icon-list-text">${label}</span>`
+    );
+  }
+
   return result;
 }
 

@@ -25,6 +25,15 @@ const archivePdfPaths = [
 const pdfViewersByRoute = new Map();
 let contactFormCount = 0;
 let newsletterFormCount = 0;
+const footerSchoolRoutes = [
+  '/for-schools/science-ecology-environment-field-trips/',
+  '/for-schools/outdoor-service-education-projects/',
+  '/for-schools/storytelling-drama-experiences-in-nature/',
+  '/for-schools/team-building-wild-rites-of-passage/',
+  '/for-schools/mindfulness-and-nature-awareness-workshops/',
+  '/for-schools/wilderness-encounter-groups-ecoliteracy-camps/',
+];
+const footerSchoolLinkCounts = new Map(footerSchoolRoutes.map((route) => [route, 0]));
 const errors = [];
 const warnings = [];
 
@@ -42,6 +51,9 @@ for (const route of capturedRoutes) {
   const html = fs.readFileSync(file, 'utf8');
   contactFormCount += countMatches(html, /name=["']form_id["'][^>]*value=["']68574d28["']/gi);
   newsletterFormCount += countMatches(html, /name=["']form_id["'][^>]*value=["']1b3fffa7["']/gi);
+  for (const footerRoute of footerSchoolRoutes) {
+    footerSchoolLinkCounts.set(footerRoute, footerSchoolLinkCounts.get(footerRoute) + countMatches(html, new RegExp(`href=["']${footerRoute.replaceAll('/', '\\/')}["']`, 'gi')));
+  }
   if (backupObjectIds.has(route.route) && route.wordpressObjectId !== backupObjectIds.get(route.route)) {
     errors.push(`${route.route}: audit object ID ${route.wordpressObjectId} does not match backup ID ${backupObjectIds.get(route.route)}`);
   }
@@ -137,6 +149,9 @@ if (facebookEmbedUrls.size !== 20) errors.push(`expected 20 unique restored Face
 if (pdfViewerCount !== 16) errors.push(`expected 16 archive PDF viewers; found ${pdfViewerCount}`);
 if (contactFormCount !== 1) errors.push(`expected one captured contact form identity; found ${contactFormCount}`);
 if (newsletterFormCount !== 3) errors.push(`expected three captured newsletter form identities; found ${newsletterFormCount}`);
+for (const [footerRoute, count] of footerSchoolLinkCounts) {
+  if (count !== capturedRoutes.length) errors.push(`expected one repaired footer link to ${footerRoute} on every snapshot; found ${count}`);
+}
 for (const route of ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/']) {
   const actual = pdfViewersByRoute.get(route) || [];
   if (actual.length !== 4 || archivePdfPaths.some((pdf) => !actual.includes(pdf))) errors.push(`${route}: archive PDF viewer set is incomplete or incorrect`);
