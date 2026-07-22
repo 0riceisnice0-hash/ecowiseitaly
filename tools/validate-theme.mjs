@@ -25,20 +25,24 @@ const archivePdfPaths = [
 const pdfViewersByRoute = new Map();
 let contactFormCount = 0;
 let newsletterFormCount = 0;
-const footerSchoolRoutes = [
-  '/for-schools/science-ecology-environment-field-trips/',
-  '/for-schools/outdoor-service-education-projects/',
-  '/for-schools/storytelling-drama-experiences-in-nature/',
-  '/for-schools/team-building-wild-rites-of-passage/',
-  '/for-schools/mindfulness-and-nature-awareness-workshops/',
-  '/for-schools/wilderness-encounter-groups-ecoliteracy-camps/',
-];
-const footerSchoolLinkCounts = new Map(footerSchoolRoutes.map((route) => [route, 0]));
+const footerSchoolLinks = new Map([
+  ['/for-schools/science-ecology-environment-field-trips/', 'Science, Ecology &amp; Environment Field trips'],
+  ['/for-schools/outdoor-service-education-projects/', 'Outdoor Service Education Projects'],
+  ['/for-schools/storytelling-drama-experiences-in-nature/', 'Storytelling &amp; Drama Experiences in Nature'],
+  ['/for-schools/team-building-wild-rites-of-passage/', 'Team Building &amp; Wild Rites of Passage'],
+  ['/for-schools/mindfulness-and-nature-awareness-workshops/', 'Mindfulness and Nature Awareness Workshops'],
+  ['/for-schools/wilderness-encounter-groups-ecoliteracy-camps/', 'Wilderness encounter groups &amp; Ecoliteracy Camps'],
+]);
+const footerSchoolLinkCounts = new Map([...footerSchoolLinks.keys()].map((route) => [route, 0]));
 const errors = [];
 const warnings = [];
 
 function countMatches(value, pattern) {
   return [...value.matchAll(pattern)].length;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 for (const route of capturedRoutes) {
@@ -51,8 +55,9 @@ for (const route of capturedRoutes) {
   const html = fs.readFileSync(file, 'utf8');
   contactFormCount += countMatches(html, /name=["']form_id["'][^>]*value=["']68574d28["']/gi);
   newsletterFormCount += countMatches(html, /name=["']form_id["'][^>]*value=["']1b3fffa7["']/gi);
-  for (const footerRoute of footerSchoolRoutes) {
-    footerSchoolLinkCounts.set(footerRoute, footerSchoolLinkCounts.get(footerRoute) + countMatches(html, new RegExp(`href=["']${footerRoute.replaceAll('/', '\\/')}["']`, 'gi')));
+  for (const [footerRoute, label] of footerSchoolLinks) {
+    const footerPattern = new RegExp(`<a href=["']${escapeRegExp(footerRoute)}["']>\\s*<span class=["']elementor-icon-list-text["']>${escapeRegExp(label)}</span>`, 'gi');
+    footerSchoolLinkCounts.set(footerRoute, footerSchoolLinkCounts.get(footerRoute) + countMatches(html, footerPattern));
   }
   if (backupObjectIds.has(route.route) && route.wordpressObjectId !== backupObjectIds.get(route.route)) {
     errors.push(`${route.route}: audit object ID ${route.wordpressObjectId} does not match backup ID ${backupObjectIds.get(route.route)}`);
@@ -163,6 +168,16 @@ if (mappedRoutes.size !== capturedRoutes.length) errors.push(`snapshot PHP route
 for (const route of capturedRoutes) {
   const expectedSnapshot = route.snapshot.split('/snapshots/html/')[1];
   if (mappedRoutes.get(route.route) !== expectedSnapshot) errors.push(`${route.route}: PHP route map does not point to ${expectedSnapshot}`);
+}
+
+const homepageHtml = fs.readFileSync(path.join(themeRoot, 'snapshots', 'html', 'home.html'), 'utf8');
+for (const [elementId, expectedRoute] of [
+  ['4f9a4fda', '/for-schools/team-building-wild-rites-of-passage/'],
+  ['6f744906', '/for-schools/mindfulness-and-nature-awareness-workshops/'],
+]) {
+  const widgetPattern = new RegExp(`<div class="elementor-element[^>]*data-id="${elementId}"[\\s\\S]*?<a class="elementor-flip-box__button[^>]*href="([^"]+)"`);
+  const actualRoute = homepageHtml.match(widgetPattern)?.[1];
+  if (actualRoute !== expectedRoute) errors.push(`homepage card ${elementId} points to ${actualRoute || 'nothing'} instead of ${expectedRoute}`);
 }
 
 const capturedPaths = new Set(capturedRoutes.map((route) => route.route));

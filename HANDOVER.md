@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.8. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v12.zip`: 727 verified theme files, 25,165,367 bytes, SHA-256 `3BE711C38C9B62B8596359F1A96E8ACF68292429A03C4C1D9C76DB62BBE25344`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current theme is version 1.0.9. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v13.zip`: 727 verified theme files, 25,165,316 bytes, SHA-256 `7FF56CF72019CADED4F04F6B3928F9E3E04C6D71BC2D29214BC12E61158D0936`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -34,7 +34,7 @@ Forms inside fidelity documents are intercepted in the capture phase by `assets/
 
 The four archive captures intentionally retain 20 unique Facebook post embeds, the contact page retains its Google map, and two travel pages retain eight historical web.archive.org airline links. These are external content dependencies and should be permitted by the production content-security policy or reviewed before launch. Captured Google Tag Manager and Microsoft Clarity execution is removed by the snapshot compiler.
 
-The compiler also repairs the six inherited `#` footer placeholders to their existing school-program routes. This changes no styling or sitemap membership, but restores 216 otherwise inert links across the 36 captured pages.
+The compiler also repairs the six inherited `#` footer placeholders to their existing school-program routes and corrects two mismatched homepage service-card CTAs (team building and mindfulness). These changes affect no styling or sitemap membership, but restore accurate customer navigation.
 
 ## Backup facts that matter
 

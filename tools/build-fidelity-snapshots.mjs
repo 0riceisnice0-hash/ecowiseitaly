@@ -247,6 +247,15 @@ function repairDocument(html, canonical) {
     );
   }
 
+  const homepageCardLinks = new Map([
+    ['4f9a4fda', '/for-schools/team-building-wild-rites-of-passage/'],
+    ['6f744906', '/for-schools/mindfulness-and-nature-awareness-workshops/'],
+  ]);
+  for (const [elementId, route] of homepageCardLinks) {
+    const widgetPattern = new RegExp(`(<div class="elementor-element[^>]*data-id="${elementId}"[\\s\\S]*?<a class="elementor-flip-box__button[^>]*href=")[^"]+("[^>]*>)`);
+    result = result.replace(widgetPattern, `$1${route}$2`);
+  }
+
   return result;
 }
 
