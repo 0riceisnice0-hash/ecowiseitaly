@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.6. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v10.zip`: 727 verified theme files, 25,154,039 bytes, SHA-256 `A10359B1AD344D7A8A42F46047D31AE0674F00621BBE0C9DB5B7BE754B9C4F46`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and uses stored ZIP entries so the same source produces the same archive on Windows and Linux.
+The current theme is version 1.0.6. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v10.zip`: 727 verified theme files, 25,154,039 bytes, SHA-256 `FC744C5D2CD72F1225739CF5516DF8F71DA0BFDD42D183FBB69BF80C4678207E`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and pins stored ZIP metadata so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 

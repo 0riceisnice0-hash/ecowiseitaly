@@ -47,6 +47,9 @@ def main() -> int:
         for source in files:
             relative = source.relative_to(THEME_ROOT)
             info = zipfile.ZipInfo(f"ecowise-custom/{relative.as_posix()}", FIXED_TIMESTAMP)
+            info.create_system = 3
+            info.create_version = 20
+            info.extract_version = 20
             info.compress_type = zipfile.ZIP_STORED
             info.external_attr = (0o100644 & 0xFFFF) << 16
             archive.writestr(info, packaged_bytes(source), compress_type=zipfile.ZIP_STORED)
