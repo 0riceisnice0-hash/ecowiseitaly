@@ -30,3 +30,23 @@ node tools/validate-theme.mjs .
 ```
 
 The check verifies the captured and indexed route inventories, PHP syntax when PHP is available, internal links, referenced uploads, vendored runtime assets, canonical repairs and external embeds. GitHub Actions runs it with PHP 8.3, plus a separate lint of every theme PHP file, on every push and pull request.
+
+After deploying to staging or production, run the HTTP contract check:
+
+```sh
+node tools/validate-deployment.mjs https://staging.example.test
+```
+
+It verifies all 36 public routes, exact sitemap membership, titles, production canonicals, native REST/feed/search/robots responses, permanent legacy redirects and HEAD handling. It makes read-only requests and has no package dependencies.
+
+Validate the restored WordPress database, options, active theme/plugins and all 1,950 uploads through WP-CLI:
+
+```sh
+ECOWISE_EXPECTED_URL=https://staging.example.test wp eval-file tools/validate-wordpress.php
+```
+
+Build a deterministic, self-verifying release ZIP with Python 3:
+
+```sh
+python3 tools/package-theme.py dist/ecowise-custom-theme.zip
+```

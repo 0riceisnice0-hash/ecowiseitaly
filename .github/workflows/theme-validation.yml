@@ -29,7 +29,9 @@ jobs:
       - name: Check validation tools
         run: |
           node --check tools/build-fidelity-snapshots.mjs
+          node --check tools/validate-deployment.mjs
           node --check tools/validate-theme.mjs
+          php -l tools/validate-wordpress.php
 
       - name: Validate fidelity contract
         env:
@@ -38,3 +40,6 @@ jobs:
 
       - name: Lint all theme PHP
         run: find wp-content/themes/ecowise-custom -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: Build and verify release package
+        run: python3 tools/package-theme.py "$RUNNER_TEMP/ecowise-custom-theme.zip"

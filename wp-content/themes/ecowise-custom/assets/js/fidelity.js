@@ -23,8 +23,6 @@
       data.set('nonce', config.nonce);
       data.set('source_page', window.location.href);
       data.set('form_name', form.getAttribute('name') || document.title);
-      data.set('website', '');
-
       if (submit) {
         submit.disabled = true;
         submit.textContent = config.messages.sending;
@@ -53,4 +51,3 @@
     });
   });
 })();
-

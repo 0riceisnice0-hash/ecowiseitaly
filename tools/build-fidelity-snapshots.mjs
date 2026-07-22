@@ -74,6 +74,7 @@ function normalizeMirrorFilename(value) {
 }
 
 function shouldVendor(publicPath) {
+  if (publicPath === '/wp-content/plugins/skyboot-custom-icons-for-elementor/assets/css/_/fonts/themify.eot') return false;
   return publicPath.startsWith('/wp-content/plugins/')
     || publicPath.startsWith('/wp-content/themes/hello-elementor/')
     || publicPath.startsWith('/wp-includes/')
@@ -103,7 +104,10 @@ function rewriteCssUrls(css, sourcePublicPath) {
   return css.replace(/url\((['"]?)([^)'"\s]+)\1\)/gi, (match, quote, value) => {
     if (/^(?:data:|https?:\/\/|#)/i.test(value)) return match;
     const resolved = new URL(value, base);
-    const targetPath = normalizeMirrorFilename(decodeURI(resolved.pathname));
+    let targetPath = normalizeMirrorFilename(decodeURI(resolved.pathname));
+    if (targetPath === '/wp-content/plugins/skyboot-custom-icons-for-elementor/assets/css/_/fonts/themify.eot') {
+      targetPath = '/wp-content/plugins/skyboot-custom-icons-for-elementor/assets/fonts/themify.eot';
+    }
     const replacement = mirroredAssets.has(targetPath) ? vendoredUrl(targetPath) : targetPath;
     return `url(${quote}${replacement}${quote})`;
   });
@@ -184,7 +188,25 @@ function repairDocument(html, canonical) {
     .replaceAll(
       'https:\\/\\/ecowiseitaly.com\\/wp-content\\/plugins\\/elementor-pro\\/modules\\/lottie\\/assets\\/animations\\/default.json',
       '\\/wp-content\\/themes\\/ecowise-custom\\/assets\\/fidelity\\/site\\/wp-content\\/plugins\\/elementor-pro\\/modules\\/lottie\\/assets\\/animations\\/default.json'
+    )
+    .replace(/"ajaxurl":"https:\\\/\\\/ecowiseitaly\.com\\\/wp-admin\\\/admin-ajax\.php"/g, '"ajaxurl":""')
+    .replace(/"nonces":\{"floatingButtonsClickTracking":"[^"]*"\}/g, '"nonces":{}')
+    .replace(/"nonce":"[a-f0-9]+"/gi, '"nonce":""')
+    .replace(/"rest":"https:\\\/\\\/ecowiseitaly\.com\\\/wp-json\\\/"/g, '"rest":""');
+
+  const archivePdfPaths = [
+    '/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged.pdf',
+    '/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged-2.pdf',
+    '/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged-1.pdf',
+    '/wp-content/uploads/2024/12/PG_Autumn_2014_ROSE-3_2.pdf',
+  ];
+  if (['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/'].includes(new URL(canonical).pathname)) {
+    let pdfIndex = 0;
+    result = result.replace(
+      /\/wp-content\/themes\/ecowise-custom\/assets\/fidelity\/supplemental\/pdfjs\/web\/viewer\.html(?!\?file=)/g,
+      (viewer) => `${viewer}?file=${encodeURIComponent(archivePdfPaths[pdfIndex++])}`
     );
+  }
 
   result = result.replace(/\b(href|src|action)=(['"])([^'"#][^'"]*)\2/gi, (match, attribute, quote, value) => {
     if (/^(?:data:|mailto:|tel:|javascript:)/i.test(value)) return match;
@@ -245,7 +267,10 @@ for (const page of inventory) {
 
   const route = routeFromUrl(page.url);
   const relative = snapshotRelativePath(route).replaceAll('\\', '/');
-  const source = path.join(mirrorRoot, ...page.local_path.split(/[\\/]+/));
+  let source = path.join(mirrorRoot, ...page.local_path.split(/[\\/]+/));
+  if (!fs.existsSync(source) && /^site[\\/]ecowiseitaly\.com[\\/]/i.test(page.local_path)) {
+    source = path.join(mirrorRoot, ...page.local_path.replace(/^site[\\/]ecowiseitaly\.com/i, 'raw/ecowiseitaly.com').split(/[\\/]+/));
+  }
   const destination = path.join(htmlRoot, ...relative.split('/'));
   const document = repairDocument(fs.readFileSync(source, 'utf8'), page.canonical_url || page.url);
 

@@ -15,6 +15,14 @@ const referencedUploads = new Set();
 const internalPageLinks = new Set();
 let facebookEmbedCount = 0;
 const facebookEmbedUrls = new Set();
+let pdfViewerCount = 0;
+const archivePdfPaths = [
+  '/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged.pdf',
+  '/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged-2.pdf',
+  '/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged-1.pdf',
+  '/wp-content/uploads/2024/12/PG_Autumn_2014_ROSE-3_2.pdf',
+];
+const pdfViewersByRoute = new Map();
 const errors = [];
 const warnings = [];
 
@@ -39,6 +47,7 @@ for (const route of capturedRoutes) {
   if (/__q_[0-9a-f]+/i.test(html)) errors.push(`${route.route}: mirror query-hash artifact remains`);
   if (/google_gtagjs-js/i.test(html)) errors.push(`${route.route}: captured analytics script remains`);
   if (/www\.clarity\.ms|vf3beobmuf/i.test(html)) errors.push(`${route.route}: captured Microsoft Clarity tracker remains`);
+  if (/wp-admin\\?\/admin-ajax\.php|d495937646|4170390df8|139b2d20a6/i.test(html)) errors.push(`${route.route}: captured plugin endpoint or stale nonce remains`);
   if (/https:\\?\/\\?\/ecowiseitaly\.com\\?\/wp-content\\?\/plugins\\?\/(?:elementor|elementor-pro)\\?\/assets\\?\//i.test(html)) {
     errors.push(`${route.route}: legacy Elementor runtime asset base remains`);
   }
@@ -94,6 +103,23 @@ for (const route of capturedRoutes) {
         if (!postUrl) errors.push(`${route.route}: Facebook embed is missing its post URL`);
         else facebookEmbedUrls.add(postUrl);
       }
+      if (target.pathname.endsWith('/assets/fidelity/supplemental/pdfjs/web/viewer.html')) {
+        pdfViewerCount += 1;
+        const pdfFile = target.searchParams.get('file');
+        if (!pdfFile) {
+          errors.push(`${route.route}: PDF viewer has no file target`);
+        } else {
+          const routeViewers = pdfViewersByRoute.get(route.route) || [];
+          routeViewers.push(pdfFile);
+          pdfViewersByRoute.set(route.route, routeViewers);
+          if (!pdfFile.startsWith('/wp-content/uploads/')) errors.push(`${route.route}: PDF viewer target is not a WordPress upload (${pdfFile})`);
+          else {
+            const uploadPath = decodeURIComponent(pdfFile.slice('/wp-content/uploads/'.length));
+            referencedUploads.add(uploadPath);
+            if (!uploadPaths.has(uploadPath)) errors.push(`${route.route}: PDF viewer upload is missing from backup (${uploadPath})`);
+          }
+        }
+      }
     } catch {
       warnings.push(`${route.route}: could not parse iframe URL (${iframe[1]})`);
     }
@@ -104,6 +130,11 @@ if (capturedRoutes.length !== 36) errors.push(`expected 36 captured routes; foun
 if (indexedRoutes.length !== 35) errors.push(`expected 35 indexed routes; found ${indexedRoutes.length}`);
 if (facebookEmbedCount !== 80) errors.push(`expected 80 restored Facebook embed instances; found ${facebookEmbedCount}`);
 if (facebookEmbedUrls.size !== 20) errors.push(`expected 20 unique restored Facebook post URLs; found ${facebookEmbedUrls.size}`);
+if (pdfViewerCount !== 16) errors.push(`expected 16 archive PDF viewers; found ${pdfViewerCount}`);
+for (const route of ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/']) {
+  const actual = pdfViewersByRoute.get(route) || [];
+  if (actual.length !== 4 || archivePdfPaths.some((pdf) => !actual.includes(pdf))) errors.push(`${route}: archive PDF viewer set is incomplete or incorrect`);
+}
 
 const routeMapPhp = fs.readFileSync(path.join(themeRoot, 'snapshots', 'routes.php'), 'utf8');
 const mappedRoutes = new Map([...routeMapPhp.matchAll(/^\s*'([^']+)'\s*=>\s*'([^']+)',?$/gm)].map((match) => [match[1], match[2]]));
@@ -203,6 +234,33 @@ for (const dynamicGuard of ['is_search()', 'is_feed()', "isset( $_GET['rest_rout
 }
 for (const formFallback of ['fallback_fields', 'admin-post.php', "name=\"nonce\""]) {
   if (!fidelityPhp.includes(formFallback)) errors.push(`fidelity renderer is missing progressive form fallback (${formFallback})`);
+}
+for (const formHardening of ['name=\"website\"', 'must-revalidate']) {
+  if (!fidelityPhp.includes(formHardening)) errors.push(`fidelity renderer is missing form/cache hardening (${formHardening})`);
+}
+const fidelityJs = fs.readFileSync(path.join(themeRoot, 'assets', 'js', 'fidelity.js'), 'utf8');
+if (/data\.set\(\s*['"]website['"]\s*,\s*['"]['"]\s*\)/.test(fidelityJs)) errors.push('form enhancement clears the honeypot before submission');
+
+const malformedThemify = path.join(themeRoot, 'assets', 'fidelity', 'site', 'wp-content', 'plugins', 'skyboot-custom-icons-for-elementor', 'assets', 'css', '_', 'fonts', 'themify.eot');
+if (fs.existsSync(malformedThemify)) errors.push('captured HTML/404 masquerading as themify.eot remains');
+const validThemify = path.join(themeRoot, 'assets', 'fidelity', 'site', 'wp-content', 'plugins', 'skyboot-custom-icons-for-elementor', 'assets', 'fonts', 'themify.eot');
+if (!fs.existsSync(validThemify)) errors.push('valid Themify EOT font is missing');
+else if (/<!doctype|<html/i.test(fs.readFileSync(validThemify).subarray(0, 128).toString('utf8'))) errors.push('Themify EOT font contains HTML instead of font data');
+
+const assetFiles = [];
+function collectAssetFiles(directory) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const item = path.join(directory, entry.name);
+    if (entry.isDirectory()) collectAssetFiles(item);
+    else assetFiles.push(item);
+  }
+}
+collectAssetFiles(path.join(themeRoot, 'assets'));
+for (const file of assetFiles) {
+  const content = fs.readFileSync(file);
+  if (content.includes(Buffer.from('GT-WFMMH42J')) || content.includes(Buffer.from('vf3beobmuf')) || content.includes(Buffer.from('www.clarity.ms'))) {
+    errors.push(`${path.relative(repositoryRoot, file)}: captured tracker marker remains in packaged assets`);
+  }
 }
 
 if (!process.env.PHP_BINARY) warnings.push('PHP_BINARY was not set; run PHP syntax lint in staging/CI.');

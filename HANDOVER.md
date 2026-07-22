@@ -15,6 +15,10 @@ The immediate compatibility contract is:
 
 The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route captured contract, including the date archive, is in `audit/captured-routes.json`. Supporting source inventories are in `audit/source/`.
 
+## Current release
+
+The current theme is version 1.0.5. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v9.zip`: 727 verified theme files, SHA-256 `84C40EEA3135449A2EBD59A3A52775DE7E11071320D8498F0F007A23403883EF`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory.
+
 ## What is implemented
 
 The final package was also activated in a disposable WordPress 6.8.6 installation backed by MariaDB 11.4.12 and the substantive `wp_` database from the supplied backup. All legacy plugins were absent/deactivated, all 1,950 upload files were restored, and WordPress produced no debug log during the complete route and interaction test suite.
@@ -44,18 +48,27 @@ The database has no meaningful Yoast, Rank Math, AIOSEO or SEOPress metadata. Hi
 ## Staging deployment
 
 1. Create a disposable staging WordPress installation using the production PHP and WordPress versions.
-2. Restore the supplied database and `uploads` archive. Confirm `$table_prefix = 'wp_';` before opening wp-admin.
-3. Keep the restored plugin/theme files available for rollback, but deactivate Elementor, Elementor Pro, ElementsKit, Hello Elementor and ACF after activating `ecowise-custom`. The fidelity assets required by visitors are committed inside this theme.
+2. Restore the supplied database and `uploads` archive. Confirm `$table_prefix = 'wp_';` before opening wp-admin. The restored `home` and `siteurl` values point to production, so set staging explicitly before the first web request: either define `WP_HOME` and `WP_SITEURL` as the staging URL in `wp-config.php`, or run `wp option update home https://staging-host.example` and `wp option update siteurl https://staging-host.example` from the WordPress root.
+3. Record the original theme and exact `active_plugins` value before changing them. Activate `ecowise-custom`, then deactivate the 11 recovered legacy plugins listed under **Plugin disposition and rollback**. The fidelity assets required by visitors are committed inside this theme.
 4. Copy `wp-content/themes/ecowise-custom` from this repository and activate it.
 5. In Settings → Reading, confirm front page ID 6 and posts page ID 2448 (`/news/`).
 6. In Settings → Permalinks, use `/%postname%/` and save once.
 7. Assign the recovered primary/footer menus if WordPress did not retain their locations.
 8. Set the administration email to the monitored Ecowise inbox or configure the `ecowise_form_recipient` filter.
 9. Configure a real SMTP/mail transport and submit the contact and post forms.
-10. Purge caches, then run the validation checklist below before exposing staging to search engines.
+10. From this repository, run `ECOWISE_EXPECTED_URL=https://staging-host.example wp --path=/absolute/wordpress/path eval-file tools/validate-wordpress.php` to verify the actual database, options, plugin state and all restored upload files.
+11. Purge caches, then run the validation checklist below before exposing staging to search engines.
+
+## Plugin disposition and rollback
+
+The substantive backup had these 11 plugins active: Duplicate Page, Elementor Pro, Elementor, ElementsKit Lite, Google Site Kit, Microsoft Clarity, PDF.js Viewer for Elementor, PHP Console, Skyboot Custom Icons for Elementor, UpdraftPlus and WP File Manager. Deactivate all 11 for the custom-theme launch. Add only a reviewed SMTP, caching or security plugin afterward when operationally required; do not reactivate a page builder for public rendering.
+
+Before cutover, save `wp option get template`, `wp option get stylesheet` and `wp option get active_plugins --format=json`, plus a database dump and complete `wp-content` copy. To roll back the legacy presentation, restore those exact option values (or reactivate Hello Elementor and the captured 11-plugin set), flush rewrites, and purge server/CDN caches. Switching themes alone is not a complete rollback because the former pages require Elementor, Elementor Pro, ElementsKit and their supporting assets.
 
 ## Validation checklist
 
+- Run `node tools/validate-deployment.mjs https://staging-host.example` from this repository. It automates the route, title, canonical, sitemap, native endpoint, redirect and HEAD checks below; resolve every failure before launch.
+- Run the WP-CLI preflight from staging and require a pass for the substantive `wp_` database, Ecowise Custom activation, Reading/permalink options, legacy-plugin denylist and all 1,950 uploads.
 - Request all 36 entries in `audit/indexed-routes.json`; expect 200 and one correct absolute canonical each.
 - Request `/wp-sitemap.xml` and its four child maps; confirm the same 35 indexed content URLs.
 - Add a clean permanent redirect from `/sitemap.xml` to `/wp-sitemap.xml`; the stored legacy rewrite is malformed.
@@ -73,4 +86,4 @@ The reference site itself has no meta descriptions or JSON-LD, many blank image 
 
 ## Safe rollback
 
-Keep a database dump and complete `wp-content` copy immediately before activation. Rollback is switching to the previous theme and restoring the pre-activation database only if a later migration has changed content. Theme activation itself performs no database writes or destructive migration.
+Keep a database dump, complete `wp-content` copy, active theme values and exact plugin list immediately before activation. Follow **Plugin disposition and rollback** above; restoring the old theme without its plugins is insufficient. Theme activation itself performs no database writes or destructive migration.

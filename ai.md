@@ -36,7 +36,7 @@ Maintain Ecowise Italy as a fast, accessible, code-driven WordPress site that pr
 
 ## Quality gate
 
-Before committing, run `node tools/validate-theme.mjs .`, verify PHP syntax, inspect changed templates, test desktop and mobile navigation when presentation or interaction code changes, and update the relevant documentation. The same static validation and PHP lint run in GitHub Actions on every push and pull request. Dated work belongs only in `PROGRESS.md`.
+Before committing, run `node tools/validate-theme.mjs .`, verify PHP syntax, inspect changed templates, test desktop and mobile navigation when presentation or interaction code changes, and update the relevant documentation. The same static validation, PHP lint and deterministic package build run in GitHub Actions on every push and pull request. Before a staging or production cutover, run both `wp eval-file tools/validate-wordpress.php` against the restored WordPress instance and `node tools/validate-deployment.mjs <base-url>` against its public HTTP surface. Dated work belongs only in `PROGRESS.md`.
 
 ## Documentation ownership
 

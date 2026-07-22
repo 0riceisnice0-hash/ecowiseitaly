@@ -39,3 +39,11 @@
 - Against real WordPress, verified 36 fidelity responses, the four-child/35-URL native sitemap, search, feeds, REST, robots, legacy redirects, HEAD handling and a nonce-validated form submission. WordPress emitted no debug log.
 - Repeated all 72 desktop/mobile browser checks through the real WordPress renderer and restored media tree; every route and interaction completed with zero local HTTP failures or page exceptions.
 - Added a GitHub Actions regression gate that syntax-checks the build/validation tools, validates the complete fidelity contract and lints every theme PHP file on each push and pull request.
+- Added a zero-dependency deployment validator for the complete HTTP route, title, canonical, sitemap, native endpoint, redirect and HEAD contract on staging or production.
+- Added a read-only WP-CLI restore preflight for the substantive database, theme/options/plugin state and all 1,950 uploads; documented staging URL overrides and a complete legacy rollback procedure.
+- Added a deterministic, self-verifying theme ZIP builder and incorporated release packaging into continuous integration.
+- Corrected all 16 archive PDF viewers to open the four original Ecowise PDFs recovered from Elementor widget data instead of PDF.js's bundled sample document.
+- Removed a captured HTML 404 masquerading as a Themify font (including dormant legacy tracker markup), rewrote the font fallback to the valid vendored EOT and added packaged-asset tracker/font validation.
+- Removed stale captured plugin AJAX endpoints/nonces, rendered a real server-observable form honeypot, capped accepted form fields/payloads and eliminated long stale-cache reuse of nonce-bearing pages.
+- Repeated the full real-WordPress suite after hardening: 72 desktop/mobile browser checks, 36 fidelity responses, exact 35-URL sitemap, native endpoints, redirects, form submission and the 1,950-file restore preflight all passed with no WordPress debug log.
+- Built deterministic theme 1.0.5 package v9 with 727 verified files and SHA-256 `84C40EEA3135449A2EBD59A3A52775DE7E11071320D8498F0F007A23403883EF`.

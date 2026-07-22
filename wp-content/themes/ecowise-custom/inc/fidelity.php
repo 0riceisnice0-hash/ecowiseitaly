@@ -68,7 +68,7 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 	status_header( 200 );
 	header( 'Content-Type: text/html; charset=' . get_bloginfo( 'charset' ) );
 	header( 'X-Ecowise-Renderer: fidelity-snapshot' );
-	header( 'Cache-Control: public, max-age=300, stale-while-revalidate=86400' );
+	header( 'Cache-Control: public, max-age=300, must-revalidate' );
 
 	if ( 'HEAD' !== $method ) {
 		// The file is trusted build output committed with the theme.
@@ -84,7 +84,7 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 			),
 		);
 		$fallback_fields = sprintf(
-			'<input type="hidden" name="action" value="ecowise_fidelity_form"><input type="hidden" name="nonce" value="%1$s"><input type="hidden" name="source_page" value="%2$s"><input type="hidden" name="form_name" value="%3$s">',
+			'<input type="hidden" name="action" value="ecowise_fidelity_form"><input type="hidden" name="nonce" value="%1$s"><input type="hidden" name="source_page" value="%2$s"><input type="hidden" name="form_name" value="%3$s"><div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>',
 			esc_attr( $config['nonce'] ),
 			esc_url( home_url( ecowise_fidelity_route_key() ) ),
 			esc_attr__( 'Website enquiry', 'ecowise' )
