@@ -83,6 +83,23 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 				'error'   => __( 'Sorry, the message could not be sent. Please email us directly.', 'ecowise' ),
 			),
 		);
+		$fallback_fields = sprintf(
+			'<input type="hidden" name="action" value="ecowise_fidelity_form"><input type="hidden" name="nonce" value="%1$s"><input type="hidden" name="source_page" value="%2$s"><input type="hidden" name="form_name" value="%3$s">',
+			esc_attr( $config['nonce'] ),
+			esc_url( home_url( ecowise_fidelity_route_key() ) ),
+			esc_attr__( 'Website enquiry', 'ecowise' )
+		);
+		$document        = preg_replace_callback(
+			'/<form\b(?=[^>]*\bclass=(["\'])[^"\']*\belementor-form\b[^"\']*\1)[^>]*>/i',
+			function ( $matches ) use ( $config, $fallback_fields ) {
+				$form = $matches[0];
+				if ( ! preg_match( '/\saction\s*=/i', $form ) ) {
+					$form = preg_replace( '/>$/', ' action="' . esc_url( $config['endpoint'] ) . '">', $form );
+				}
+				return $form . $fallback_fields;
+			},
+			$document
+		);
 		$enhancement = sprintf(
 			'<script>window.ecowiseFidelity=%1$s;</script><script src="%2$s" defer></script>',
 			wp_json_encode( $config, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ),

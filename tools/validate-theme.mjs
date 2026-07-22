@@ -201,6 +201,9 @@ const fidelityPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'fidelity.php'),
 for (const dynamicGuard of ['is_search()', 'is_feed()', "isset( $_GET['rest_route'] )", "get_query_var( 'sitemap' )", 'is_paged()']) {
   if (!fidelityPhp.includes(dynamicGuard)) errors.push(`fidelity renderer is missing dynamic-request guard (${dynamicGuard})`);
 }
+for (const formFallback of ['fallback_fields', 'admin-post.php', "name=\"nonce\""]) {
+  if (!fidelityPhp.includes(formFallback)) errors.push(`fidelity renderer is missing progressive form fallback (${formFallback})`);
+}
 
 if (!process.env.PHP_BINARY) warnings.push('PHP_BINARY was not set; run PHP syntax lint in staging/CI.');
 

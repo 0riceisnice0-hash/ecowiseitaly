@@ -32,3 +32,4 @@
 - Removed captured Microsoft Clarity execution from all snapshots, documented intentional external embeds, and mapped the legacy contact form's opaque subject/message field IDs in the custom mail handler.
 - Vendored all 84 on-demand Elementor/Elementor Pro browser chunks from the backup and rewrote captured asset-base configuration to the custom theme, removing the final lazy-interaction dependency on inactive plugin directories.
 - Headless-browser tested homepage and school carousels, gallery lightbox, contact form enhancement, News widgets, desktop navigation and the mobile menu; added four dynamically discovered lightbox dependencies and reached zero local HTTP or page errors.
+- Added a nonce-protected native form action and hidden-field fallback at render time so enquiry submissions still reach WordPress when browser JavaScript is blocked.

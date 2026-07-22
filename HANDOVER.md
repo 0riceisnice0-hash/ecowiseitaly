@@ -24,7 +24,7 @@ The theme has two front-end paths:
 
 Logged-in users and previews bypass fidelity snapshots so editors can inspect the native WordPress result. Admin, REST, AJAX, feeds and sitemaps are never intercepted.
 
-Forms inside fidelity documents are intercepted by `assets/js/fidelity.js` and sent to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The recipient defaults to the WordPress administration email and can be changed through the `ecowise_form_recipient` filter.
+Forms inside fidelity documents are intercepted by `assets/js/fidelity.js` and sent to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields so submission still reaches the handler when JavaScript is blocked. The recipient defaults to the WordPress administration email and can be changed through the `ecowise_form_recipient` filter.
 
 The four archive captures intentionally retain 20 unique Facebook post embeds, the contact page retains its Google map, and two travel pages retain eight historical web.archive.org airline links. These are external content dependencies and should be permitted by the production content-security policy or reviewed before launch. Captured Google Tag Manager and Microsoft Clarity execution is removed by the snapshot compiler.
 
