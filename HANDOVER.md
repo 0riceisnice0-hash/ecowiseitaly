@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.6. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v10.zip`: 727 verified theme files, 25,154,039 bytes, SHA-256 `9424E1B44390AAA5F80F913CD9278874B6F40B7380EB7BD6DC40B3AE83ED3871`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current theme is version 1.0.7. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v11.zip`: 727 verified theme files, 25,154,099 bytes, SHA-256 `E903CDC6D1AA5B1F9A5D09E3E494305B8EA7571EE728F5013A184F5C798B86B5`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -30,7 +30,7 @@ The theme has two front-end paths:
 
 Logged-in users and previews bypass fidelity snapshots so editors can inspect the native WordPress result. Admin, REST, AJAX, feeds and sitemaps are never intercepted.
 
-Forms inside fidelity documents are intercepted by `assets/js/fidelity.js` and sent to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields; without JavaScript, WordPress redirects back to the source form with an accessible success/error result. Captured routing is preserved: contact form `68574d28` defaults to `adamecorose@gmail.com`, while newsletter form `1b3fffa7` defaults to `saqibbalii099@gmail.com`. The `ecowise_form_recipient` filter receives the default recipient, form type and sanitized fields when production needs an explicit override.
+Forms inside fidelity documents are intercepted in the capture phase by `assets/js/fidelity.js`, which suppresses the dormant captured Elementor handler and sends exactly one request to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields; without JavaScript, WordPress redirects back to the source form with an accessible success/error result. Captured routing is preserved: contact form `68574d28` defaults to `adamecorose@gmail.com`, while newsletter form `1b3fffa7` defaults to `saqibbalii099@gmail.com`. The `ecowise_form_recipient` filter receives the default recipient, form type and sanitized fields when production needs an explicit override. Fidelity responses are private-cacheable so a shared cache cannot leak an anonymous snapshot into an editor session; form-result responses are always private and `no-store`.
 
 The four archive captures intentionally retain 20 unique Facebook post embeds, the contact page retains its Google map, and two travel pages retain eight historical web.archive.org airline links. These are external content dependencies and should be permitted by the production content-security policy or reviewed before launch. Captured Google Tag Manager and Microsoft Clarity execution is removed by the snapshot compiler.
 
@@ -47,7 +47,7 @@ The database has no meaningful Yoast, Rank Math, AIOSEO or SEOPress metadata. Hi
 
 ## Staging deployment
 
-1. Create a disposable staging WordPress installation using the production PHP and WordPress versions.
+1. Create a disposable staging WordPress installation using the production PHP and WordPress versions. Install at the domain root with the standard `/wp-content/` path; the fidelity documents intentionally use production-style root-relative asset URLs.
 2. Restore the supplied database and `uploads` archive. Confirm `$table_prefix = 'wp_';` before opening wp-admin. The restored `home` and `siteurl` values point to production, so set staging explicitly before the first web request: either define `WP_HOME` and `WP_SITEURL` as the staging URL in `wp-config.php`, or run `wp option update home https://staging-host.example` and `wp option update siteurl https://staging-host.example` from the WordPress root.
 3. Record the original theme and exact `active_plugins` value before changing them. Activate `ecowise-custom`, then deactivate the 11 recovered legacy plugins listed under **Plugin disposition and rollback**. The fidelity assets required by visitors are committed inside this theme.
 4. Copy `wp-content/themes/ecowise-custom` from this repository and activate it.
@@ -82,7 +82,7 @@ Before cutover, save `wp option get template`, `wp option get stylesheet` and `w
 
 ## Known source-site defects
 
-The reference site itself has no meta descriptions or JSON-LD, many blank image alt values, missing canonicals on four archive-style routes, two duplicate-H1 school pages and six footer school links pointing to `/`. Fidelity snapshots preserve presentation, but these defects should be corrected deliberately after screenshot parity is signed off. Fixes that change visible layout must not be mixed into fidelity verification.
+The reference site itself has no meta descriptions or JSON-LD, many blank image alt values, no homepage H1, missing canonicals on four archive-style routes, two duplicate-H1 school pages and six inherited footer school links pointing to `#` on every captured page (216 inert anchors total). Fidelity snapshots preserve presentation, but these defects should be corrected deliberately after screenshot parity is signed off. Fixes that change visible layout must not be mixed into fidelity verification.
 
 ## Safe rollback
 

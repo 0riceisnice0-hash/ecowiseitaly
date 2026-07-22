@@ -69,7 +69,7 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 	header( 'Content-Type: text/html; charset=' . get_bloginfo( 'charset' ) );
 	header( 'X-Ecowise-Renderer: fidelity-snapshot' );
 	$form_result = isset( $_GET['ecowise_form'] ) ? sanitize_key( wp_unslash( $_GET['ecowise_form'] ) ) : '';
-	header( in_array( $form_result, array( 'success', 'error' ), true ) ? 'Cache-Control: private, no-store, max-age=0' : 'Cache-Control: public, max-age=300, must-revalidate' );
+	header( in_array( $form_result, array( 'success', 'error' ), true ) ? 'Cache-Control: private, no-store, max-age=0' : 'Cache-Control: private, max-age=300, must-revalidate' );
 
 	if ( 'HEAD' !== $method ) {
 		// The file is trusted build output committed with the theme.

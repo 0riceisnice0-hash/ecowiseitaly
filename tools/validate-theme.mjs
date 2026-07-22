@@ -246,6 +246,9 @@ for (const formHardening of ['name=\"website\"', 'must-revalidate']) {
 }
 const fidelityJs = fs.readFileSync(path.join(themeRoot, 'assets', 'js', 'fidelity.js'), 'utf8');
 if (/data\.set\(\s*['"]website['"]\s*,\s*['"]['"]\s*\)/.test(fidelityJs)) errors.push('form enhancement clears the honeypot before submission');
+for (const submissionGuard of ['stopImmediatePropagation()', 'capture: true']) {
+  if (!fidelityJs.includes(submissionGuard)) errors.push(`form enhancement does not suppress the captured Elementor submit handler (${submissionGuard})`);
+}
 const formsPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'forms.php'), 'utf8');
 for (const formContract of ['68574d28', '1b3fffa7', 'adamecorose@gmail.com', 'saqibbalii099@gmail.com', 'ecowise_form_respond', 'field_44bd0eb', 'field_6fef306']) {
   if (!formsPhp.includes(formContract)) errors.push(`form handler is missing captured routing/schema contract (${formContract})`);

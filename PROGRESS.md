@@ -51,3 +51,6 @@
 - Re-tested the restored forms inside WordPress: contact validation and 303 return flow passed, newsletter submission passed, and the intercepted mail payloads selected the two exact recovered recipients.
 - Added extension-signature/HTML-masquerade checks for packaged assets and made release generation cross-platform deterministic by normalizing approved text assets; CI now builds twice and verifies `release/theme-package.json`.
 - Built deterministic theme 1.0.6 package v10 with 727 verified files, 25,154,039 bytes and SHA-256 `9424E1B44390AAA5F80F913CD9278874B6F40B7380EB7BD6DC40B3AE83ED3871`.
+- Prevented the dormant vendored Elementor form listener from competing with the custom handler, changed fidelity responses to private caching, and confirmed in a real browser that one click produces one successful WordPress mail event with no console errors.
+- Re-ran the restored WordPress route, sitemap, endpoint, redirect, native/JavaScript form and cache-header suites with zero failures.
+- Built deterministic theme 1.0.7 package v11 with 727 verified files, 25,154,099 bytes and SHA-256 `E903CDC6D1AA5B1F9A5D09E3E494305B8EA7571EE728F5013A184F5C798B86B5`.

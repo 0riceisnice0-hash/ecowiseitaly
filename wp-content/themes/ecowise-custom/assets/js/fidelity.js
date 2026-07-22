@@ -7,6 +7,7 @@
   document.querySelectorAll('form.elementor-form').forEach(function (form) {
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
+      event.stopImmediatePropagation();
 
       const submit = form.querySelector('[type="submit"]');
       const originalLabel = submit ? submit.textContent : '';
@@ -48,6 +49,6 @@
           submit.textContent = originalLabel;
         }
       }
-    });
+    }, { capture: true });
   });
 })();
