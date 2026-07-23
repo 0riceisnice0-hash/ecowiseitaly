@@ -17,6 +17,9 @@
 - Added `content/editorial-updates.json` as the maintainable source for future resources and Facebook posts, plus a responsive editorial stylesheet and compiler/validator contracts.
 - Browser-verified the new sections at 1440px and 390px: resource grids, social grids, headings, iframe counts and horizontal overflow all passed with zero console errors.
 - Built deterministic theme 1.0.13 package v17 with 728 verified files, 25,187,807 bytes and SHA-256 `F882A70D243BBFD5AE8A2CDA4D77FBB455073F559EBF543B2F5111908DCAE4E1`.
+- Changed only the approved homepage collage frames: the large 14px frame is red `#CF2E2E`, while both tilted 10px frames are yellow `#FCB900`; image geometry, rotations, overlap and shadows are unchanged.
+- Added compiler and validation contracts for the homepage frame stylesheet and browser-verified the result at 1440px and 390px with no overflow or console errors.
+- Built deterministic theme 1.0.14 package v18 with 729 verified files, 25,188,336 bytes and SHA-256 `8EF974FA930D80D1A545A724BD1FB65019D222058B26E401C1EFD309ADB6B530`.
 
 ## 2026-07-22
 

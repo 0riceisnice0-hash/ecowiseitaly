@@ -289,6 +289,16 @@ for (const route of capturedRoutes) {
 }
 
 const homepageHtml = fs.readFileSync(path.join(themeRoot, 'snapshots', 'html', 'home.html'), 'utf8');
+if (countMatches(homepageHtml, /id=["']ecowise-homepage-styles["']/gi) !== 1) errors.push('homepage frame stylesheet is missing or duplicated');
+const homepageCss = fs.readFileSync(path.join(themeRoot, 'assets', 'css', 'homepage.css'), 'utf8');
+for (const [elementId, expectedColor] of [
+  ['641ee83d', '#cf2e2e'],
+  ['6e20d3eb', '#fcb900'],
+  ['6cef1bd2', '#fcb900'],
+]) {
+  const framePattern = new RegExp(`elementor-element-${elementId}[\\s\\S]*?border-color:\\s*${expectedColor}\\s*!important`, 'i');
+  if (!framePattern.test(homepageCss)) errors.push(`homepage collage frame ${elementId} does not use ${expectedColor}`);
+}
 for (const [elementId, expectedRoute] of [
   ['41d2c8b8', '/for-schools/science-ecology-environment-field-trips/'],
   ['81eb065', '/for-schools/outdoor-service-education-projects/'],

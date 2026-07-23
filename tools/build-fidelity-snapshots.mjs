@@ -22,12 +22,16 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;');
 }
 
-function editorialStylesheet(document) {
-  if (document.includes('id="ecowise-editorial-styles"')) return document;
+function themeStylesheet(document, id, filename) {
+  if (document.includes(`id="${id}"`)) return document;
   return document.replace(
     '</head>',
-    '<link href="/wp-content/themes/ecowise-custom/assets/css/editorial.css" id="ecowise-editorial-styles" rel="stylesheet"/>\n</head>'
+    `<link href="/wp-content/themes/ecowise-custom/assets/css/${filename}" id="${id}" rel="stylesheet"/>\n</head>`
   );
+}
+
+function editorialStylesheet(document) {
+  return themeStylesheet(document, 'ecowise-editorial-styles', 'editorial.css');
 }
 
 function insertBeforeMarker(document, marker, markup, canonical, label) {
@@ -536,6 +540,10 @@ function repairDocument(html, canonical) {
       'service education updates'
     );
     result = editorialStylesheet(result);
+  }
+
+  if (canonicalPath === '/') {
+    result = themeStylesheet(result, 'ecowise-homepage-styles', 'homepage.css');
   }
 
   return result;

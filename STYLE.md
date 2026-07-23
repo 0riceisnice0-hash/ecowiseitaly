@@ -22,6 +22,8 @@ The site combines a practical outdoor-education service with the warmth of a nat
 | White | `#FFFFFF` |
 | Light surfaces | `#EAEDF1`, `#F6F7FB`, `#DCDCDE`, `#D5D5D5` |
 | Warm accent | `#EEA731` |
+| Homepage collage red | `#CF2E2E` |
+| Homepage collage yellow | `#FCB900` |
 | Maximum content width | `1280px` |
 | Standard component gap | `20px` |
 | Pill/button radius | `30px` |

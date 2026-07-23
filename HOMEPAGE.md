@@ -47,7 +47,7 @@ The five choices are part of the hero information architecture. Keep their label
 
 ## About section
 
-The image collage is an important handmade cue. It uses real Ecowise imagery, restrained rotation and overlap. The copy must remain the original three-paragraph explanation about reinforcing school teaching, Piemonte and UNESCO recognition unless content owners approve an editorial change.
+The image collage is an important handmade cue. It uses real Ecowise imagery, restrained rotation and overlap. The large photograph has its captured 14px frame in red `#CF2E2E`; the two smaller tilted photographs retain their captured 10px frames in yellow `#FCB900`. These approved colors live in `assets/css/homepage.css`; do not change the image dimensions, rotations, overlap or shadows when maintaining them. The copy must remain the original three-paragraph explanation about reinforcing school teaching, Piemonte and UNESCO recognition unless content owners approve an editorial change.
 
 ## School offer cards
 
