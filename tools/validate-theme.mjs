@@ -9,6 +9,7 @@ const capturedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'aud
 const indexedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'indexed-routes.json'), 'utf8'));
 const uploadManifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'uploads-manifest.json'), 'utf8'));
 const backupRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'backup-routes.json'), 'utf8'));
+const editorialUpdates = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'editorial-updates.json'), 'utf8'));
 const backupObjectIds = new Map(backupRoutes.filter((item) => item.route && item.id).map((item) => [item.route, Number(item.id)]));
 const uploadPaths = new Set(uploadManifest.map((item) => item.path.replaceAll('\\', '/')));
 const referencedUploads = new Set();
@@ -220,8 +221,10 @@ for (const route of capturedRoutes) {
 
 if (capturedRoutes.length !== 36) errors.push(`expected 36 captured routes; found ${capturedRoutes.length}`);
 if (indexedRoutes.length !== 35) errors.push(`expected 35 indexed routes; found ${indexedRoutes.length}`);
-if (facebookEmbedCount !== 80) errors.push(`expected 80 restored Facebook embed instances; found ${facebookEmbedCount}`);
-if (facebookEmbedUrls.size !== 20) errors.push(`expected 20 unique restored Facebook post URLs; found ${facebookEmbedUrls.size}`);
+const expectedFacebookEmbedCount = 80 + (editorialUpdates.serviceFacebookPosts.length * 5);
+const expectedUniqueFacebookPosts = 20 + editorialUpdates.serviceFacebookPosts.length;
+if (facebookEmbedCount !== expectedFacebookEmbedCount) errors.push(`expected ${expectedFacebookEmbedCount} Facebook embed instances; found ${facebookEmbedCount}`);
+if (facebookEmbedUrls.size !== expectedUniqueFacebookPosts) errors.push(`expected ${expectedUniqueFacebookPosts} unique Facebook post URLs; found ${facebookEmbedUrls.size}`);
 if (pdfViewerCount !== 16) errors.push(`expected 16 archive PDF viewers; found ${pdfViewerCount}`);
 if (contactFormCount !== 1) errors.push(`expected one captured contact form identity; found ${contactFormCount}`);
 if (newsletterFormCount !== 3) errors.push(`expected three captured newsletter form identities; found ${newsletterFormCount}`);
@@ -240,6 +243,34 @@ for (const [footerRoute, count] of footerSchoolLinkCounts) {
 for (const route of ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/']) {
   const actual = pdfViewersByRoute.get(route) || [];
   if (actual.length !== 4 || archivePdfPaths.some((pdf) => !actual.includes(pdf))) errors.push(`${route}: archive PDF viewer set is incomplete or incorrect`);
+}
+
+const archiveEditorialRoutes = ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/'];
+for (const route of archiveEditorialRoutes) {
+  const routeAudit = capturedRoutes.find((item) => item.route === route);
+  const html = fs.readFileSync(path.join(repositoryRoot, ...routeAudit.snapshot.split('/')), 'utf8');
+  if (countMatches(html, /data-ecowise-editorial=["']latest-service-updates["']/gi) !== 1) errors.push(`${route}: latest service update section is missing or duplicated`);
+  if (/elementor-element-302344d/i.test(html)) errors.push(`${route}: the former hidden article block was not moved out of News`);
+  for (const post of editorialUpdates.serviceFacebookPosts) {
+    if (countMatches(html, new RegExp(`facebook\\.com%2FEcowiseitaly%2Fposts%2F${escapeRegExp(new URL(post.facebookUrl).pathname.split('/').filter(Boolean).at(-1))}%2F`, 'gi')) !== 1) {
+      errors.push(`${route}: expected one embed for ${post.facebookUrl}`);
+    }
+  }
+}
+
+const tutorialHtml = fs.readFileSync(path.join(themeRoot, 'snapshots', 'html', 'outdoor-education-tutorials', 'index.html'), 'utf8');
+if (countMatches(tutorialHtml, /data-ecowise-editorial=["']outdoor-education-resources["']/gi) !== 1) errors.push('outdoor education resource section is missing or duplicated');
+for (const resource of editorialUpdates.outdoorEducationResources) {
+  if (countMatches(tutorialHtml, new RegExp(`href=["']${escapeRegExp(resource.url)}["']`, 'gi')) !== 1) errors.push(`outdoor education resource is missing or duplicated (${resource.url})`);
+}
+
+const serviceHtml = fs.readFileSync(path.join(themeRoot, 'snapshots', 'html', 'for-schools', 'outdoor-service-education-projects', 'index.html'), 'utf8');
+if (countMatches(serviceHtml, /data-ecowise-editorial=["']service-project-updates["']/gi) !== 1) errors.push('service project update section is missing or duplicated');
+for (const post of editorialUpdates.serviceFacebookPosts) {
+  const postId = new URL(post.facebookUrl).pathname.split('/').filter(Boolean).at(-1);
+  if (countMatches(serviceHtml, new RegExp(`facebook\\.com%2FEcowiseitaly%2Fposts%2F${escapeRegExp(postId)}%2F`, 'gi')) !== 1) {
+    errors.push(`service project page: expected one embed for ${post.facebookUrl}`);
+  }
 }
 
 const contactHtml = fs.readFileSync(path.join(themeRoot, 'snapshots', 'html', 'contact-us', 'index.html'), 'utf8');

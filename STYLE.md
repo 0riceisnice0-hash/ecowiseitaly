@@ -72,6 +72,8 @@ Collage images may use slight rotation and overlap. Keep faces and learning acti
 
 The recurring native vocabulary is: Hero, Section, SplitMedia, PortalLinks, CardGrid, FlipCard, IconList, CTA, Testimonials, Gallery, Video, PdfEmbed, PostGrid, ContactForm, Map and SiteFooter. Prefer these shared structures over route-specific markup.
 
+Editorial additions use the same section rhythm and tokens through `assets/css/editorial.css`. Reading resources use two-column document cards on desktop and one column below 1024px. Social updates use three equal columns on desktop and one centered column on tablet/mobile. Cards use restrained borders, soft shadows and green focus treatment; they must not introduce gradients or override the captured header and hero.
+
 Flip interactions need equivalent focus/tap behavior and cannot hide essential information behind hover alone. Carousels require previous/next controls, sensible announcements, swipe support and a reduced-motion mode. Embeds require a useful link fallback.
 
 Accessibility metadata must remain visually neutral. The header, primary content and footer use banner, main and contentinfo landmarks; repeated navigation regions have distinct labels; image-only links and embedded documents have concise accessible names. Contact email and telephone actions inherit the exact surrounding type and color. Alternative text should be added only when the image purpose is known from authoritative content; decorative or uncertain documentary imagery must not receive invented descriptions.

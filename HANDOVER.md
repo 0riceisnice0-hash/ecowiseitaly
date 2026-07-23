@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.12. The deterministic handoff archive is `ecowise-custom-theme-2026-07-23-v16.zip`: 727 verified theme files, 25,197,848 bytes, SHA-256 `0CD41469DF0F84FFA616F58213D42DE7AB7C259244F1341E43E95F5B39E54BB3`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current theme is version 1.0.13. The deterministic handoff archive is `ecowise-custom-theme-2026-07-23-v17.zip`: 728 verified theme files, 25,187,807 bytes, SHA-256 `F882A70D243BBFD5AE8A2CDA4D77FBB455073F559EBF543B2F5111908DCAE4E1`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -36,6 +36,12 @@ This is a custom PHP/JavaScript/CSS theme with no Elementor, Elementor Pro or AC
 
 The 36 fidelity routes are code-customizable through the snapshot compiler, theme CSS and compatibility JavaScript, but they are not yet block-editor/WYSIWYG templates. Editing a fidelity page in wp-admin changes the native WordPress fallback seen by logged-in users; it does not automatically rewrite the anonymous snapshot. New or unmapped content uses native templates immediately. Migrate a captured route from its snapshot to native PHP only after the replacement has passed desktop/mobile visual comparison, SEO validation and interaction testing.
 
+Curated content added after the original capture lives in `content/editorial-updates.json`. It currently owns the four Outdoor Education reading resources and three Road Less Traveled Facebook posts. The compiler adds those posts to News, its equivalent archive views and Outdoor Service Education Projects, while the reading resources appear only on Outdoor Education Tutorials. Do not hand-edit the generated snapshots for these items. Resolve Facebook share links to stable post URLs, update the JSON, then regenerate with:
+
+`node tools/build-fidelity-snapshots.mjs ../scrape-analysis/page-inventory.csv ../scrape-analysis/extracted/ecowiseitaly-mirror wp-content/themes/ecowise-custom audit ../scrape-analysis/sitemap-urls.csv`
+
+The generated sections use `assets/css/editorial.css`. The validator derives its editorial contracts from the JSON and requires every configured item on its intended routes.
+
 ## Verified Local installation
 
 The primary working installation is `C:\Users\zacpl\Local Sites\ecowise`, Local site ID `6YdNrqjzJ`, available at `http://ecowise.local/`. It runs WordPress 6.8.6, PHP 8.2 and MySQL 8 with `ecowise-custom` active and no active legacy plugins. The restored substantive `wp_` database contains 30 published pages, three published posts and 413 attachments; all 1,950 upload files are present.
@@ -51,13 +57,13 @@ Use deployment concurrency `1` for this Local installation because its Windows P
 
 Forms inside fidelity documents are intercepted in the capture phase by `assets/js/fidelity.js`, which suppresses the dormant captured Elementor handler and sends exactly one request to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields; without JavaScript, WordPress redirects back to the source form with an accessible success/error result. Captured routing is preserved: contact form `68574d28` defaults to `adamecorose@gmail.com`, while newsletter form `1b3fffa7` defaults to `saqibbalii099@gmail.com`. The `ecowise_form_recipient` filter receives the default recipient, form type and sanitized fields when production needs an explicit override. Fidelity responses are private-cacheable so a shared cache cannot leak an anonymous snapshot into an editor session; form-result responses are always private and `no-store`.
 
-The four archive captures intentionally retain 20 unique Facebook post embeds, the contact page retains its Google map, and two travel pages retain eight historical web.archive.org airline links. These are external content dependencies and should be permitted by the production content-security policy or reviewed before launch. Captured Google Tag Manager and Microsoft Clarity execution is removed by the snapshot compiler.
+The four archive captures intentionally retain 20 historical Facebook posts, and the editorial overlay adds three current Road Less Traveled posts to those archives and the service-project page. The theme therefore contains 23 unique Facebook posts. The contact page retains its Google map, and two travel pages retain eight historical web.archive.org airline links. These are external content dependencies and should be permitted by the production content-security policy or reviewed before launch. Captured Google Tag Manager and Microsoft Clarity execution is removed by the snapshot compiler.
 
 The compiler also repairs the six inherited `#` footer placeholders to their existing school-program routes and corrects two mismatched homepage service-card CTAs (team building and mindfulness). These changes affect no styling or sitemap membership, but restore accurate customer navigation.
 
 The captured document outline is repaired deterministically: every one of the 36 fidelity routes has exactly one H1, the homepage hero is the homepage H1, and the repeated headings on the conflict-resolution and team-building pages are semantic H2s. The two demoted headings retain the captured H1 typography through widget-local responsive custom properties, so the accessibility/SEO correction does not change their measured layout.
 
-The fidelity documents now also expose a complete structural and action layer without altering layout: the inherited skip link resolves to a unique main landmark on every route; header/footer landmarks and six repeated navigation regions are named; all image-only links have accessible names; 96 Facebook/PDF frames have titles; six YouTube widgets and four hosted videos have direct fallbacks; and the contact email, telephone and telephone field use native customer-action semantics. Known logo, author and post-thumbnail images received authoritative alt text. Uncertain documentary/gallery images were not given invented descriptions; their link actions are named independently.
+The fidelity documents now also expose a complete structural and action layer without altering layout: the inherited skip link resolves to a unique main landmark on every route; header/footer landmarks and six repeated navigation regions are named; all image-only links have accessible names; 111 Facebook/PDF frames have titles; six YouTube widgets and four hosted videos have direct fallbacks; and the contact email, telephone and telephone field use native customer-action semantics. Known logo, author and post-thumbnail images received authoritative alt text. Uncertain documentary/gallery images were not given invented descriptions; their link actions are named independently.
 
 ## Backup facts that matter
 

@@ -9,6 +9,84 @@ if (!inventoryFile || !mirrorRoot || !themeRoot || !auditRoot) {
   throw new Error('Usage: node tools/build-fidelity-snapshots.mjs <page-inventory.csv> <mirror-root> <theme-root> <audit-root> [sitemap-urls.csv]');
 }
 
+const repositoryRoot = path.resolve(import.meta.dirname, '..');
+const editorialUpdatesFile = path.join(repositoryRoot, 'content', 'editorial-updates.json');
+const editorialUpdates = JSON.parse(fs.readFileSync(editorialUpdatesFile, 'utf8'));
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function editorialStylesheet(document) {
+  if (document.includes('id="ecowise-editorial-styles"')) return document;
+  return document.replace(
+    '</head>',
+    '<link href="/wp-content/themes/ecowise-custom/assets/css/editorial.css" id="ecowise-editorial-styles" rel="stylesheet"/>\n</head>'
+  );
+}
+
+function insertBeforeMarker(document, marker, markup, canonical, label) {
+  const index = document.indexOf(marker);
+  if (index === -1) throw new Error(`${canonical}: could not find insertion marker for ${label}`);
+  if (document.indexOf(marker, index + marker.length) !== -1) throw new Error(`${canonical}: found more than one insertion marker for ${label}`);
+  return `${document.slice(0, index)}${markup}\n${document.slice(index)}`;
+}
+
+function replaceBetweenMarkers(document, startMarker, endMarker, markup, canonical, label) {
+  const start = document.indexOf(startMarker);
+  const end = document.indexOf(endMarker);
+  if (start === -1 || end === -1 || end <= start) throw new Error(`${canonical}: could not locate ${label}`);
+  return `${document.slice(0, start)}${markup}\n${document.slice(end)}`;
+}
+
+function resourceSectionMarkup(resources) {
+  const cards = resources.map((resource) => `
+<a class="ecowise-editorial-card ecowise-resource-card" href="${escapeHtml(resource.url)}" target="_blank">
+  <span aria-hidden="true" class="ecowise-resource-icon">PDF</span>
+  <span>
+    <h3>${escapeHtml(resource.title)}</h3>
+    <p>${escapeHtml(resource.description)}</p>
+  </span>
+</a>`).join('');
+
+  return `<section aria-labelledby="ecowise-resources-title" class="ecowise-editorial-section" data-ecowise-editorial="outdoor-education-resources">
+  <div class="ecowise-editorial-inner">
+    <p class="ecowise-editorial-eyebrow">Articles and teaching resources</p>
+    <h2 class="ecowise-editorial-title" id="ecowise-resources-title">Outdoor education reading</h2>
+    <p class="ecowise-editorial-intro">Explore articles by Adam Rose on outdoor education, geography and meaningful connections with the natural world.</p>
+    <div class="ecowise-editorial-grid ecowise-resource-grid">${cards}
+    </div>
+  </div>
+</section>`;
+}
+
+function facebookSectionMarkup(posts, options = {}) {
+  const cards = posts.map((post) => {
+    const pluginUrl = `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(post.facebookUrl)}&show_text=true&width=500`;
+    return `
+<article class="ecowise-editorial-card ecowise-facebook-card">
+  <iframe allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen="true" height="${Number(post.height) || 820}" loading="lazy" scrolling="no" src="${escapeHtml(pluginUrl)}" title="${escapeHtml(post.title)}" width="500"></iframe>
+  <p class="ecowise-facebook-fallback"><a href="${escapeHtml(post.facebookUrl)}" rel="noopener" target="_blank">View ${escapeHtml(post.title)} on Facebook</a></p>
+</article>`;
+  }).join('');
+
+  const sectionClass = options.white ? ' ecowise-editorial-section--white' : '';
+  return `<section aria-labelledby="${escapeHtml(options.id)}-title" class="ecowise-editorial-section${sectionClass}" data-ecowise-editorial="${escapeHtml(options.id)}">
+  <div class="ecowise-editorial-inner">
+    <p class="ecowise-editorial-eyebrow">${escapeHtml(options.eyebrow)}</p>
+    <h2 class="ecowise-editorial-title" id="${escapeHtml(options.id)}-title">${escapeHtml(options.title)}</h2>
+    <p class="ecowise-editorial-intro">${escapeHtml(options.intro)}</p>
+    <div class="ecowise-editorial-grid">${cards}
+    </div>
+  </div>
+</section>`;
+}
+
 function parseCsv(input) {
   const rows = [];
   let row = [];
@@ -410,6 +488,54 @@ function repairDocument(html, canonical) {
       return tag.replace(/\btype="number"/i, 'type="tel" autocomplete="tel" inputmode="tel"');
     });
     if (phoneInputCount !== 1) throw new Error(`${canonical}: expected one contact phone input; found ${phoneInputCount}`);
+  }
+
+  const editorialArchiveRoutes = ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/'];
+  if (editorialArchiveRoutes.includes(canonicalPath)) {
+    const latestUpdates = facebookSectionMarkup(editorialUpdates.serviceFacebookPosts, {
+      id: 'latest-service-updates',
+      eyebrow: 'Latest from Ecowise',
+      title: 'Service education in action',
+      intro: 'Recent projects with Road Less Traveled and our partner communities in Piemonte.',
+      white: true,
+    });
+    result = replaceBetweenMarkers(
+      result,
+      '<div class="elementor-element elementor-element-302344d ',
+      '<div class="elementor-element elementor-element-3e4a64df ',
+      latestUpdates,
+      canonical,
+      'archive resource block'
+    );
+    result = editorialStylesheet(result);
+  }
+
+  if (canonicalPath === '/outdoor-education-tutorials/') {
+    result = insertBeforeMarker(
+      result,
+      '<div class="elementor-element elementor-element-22b29b1 ',
+      resourceSectionMarkup(editorialUpdates.outdoorEducationResources),
+      canonical,
+      'outdoor education resources'
+    );
+    result = editorialStylesheet(result);
+  }
+
+  if (canonicalPath === '/for-schools/outdoor-service-education-projects/') {
+    const serviceUpdates = facebookSectionMarkup(editorialUpdates.serviceFacebookPosts, {
+      id: 'service-project-updates',
+      eyebrow: 'Recent projects',
+      title: 'Road Less Traveled in Piemonte',
+      intro: 'See how visiting students have supported rural communities through practical service and environmental education.',
+    });
+    result = insertBeforeMarker(
+      result,
+      '<div class="elementor-element elementor-element-a62d698 ',
+      serviceUpdates,
+      canonical,
+      'service education updates'
+    );
+    result = editorialStylesheet(result);
   }
 
   return result;

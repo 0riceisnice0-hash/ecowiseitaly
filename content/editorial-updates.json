@@ -1,0 +1,44 @@
+{
+  "outdoorEducationResources": [
+    {
+      "title": "A Reflection on Outdoor Education",
+      "description": "Adam Rose’s article exploring outdoor education, geography and our relationship with the natural world.",
+      "url": "/wp-content/uploads/2024/12/PG_Autumn_2014_ROSE-3.pdf"
+    },
+    {
+      "title": "Outdoor Education and Geography — Part 1",
+      "description": "Primary Geography, Spring 2020.",
+      "url": "/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged-1.pdf"
+    },
+    {
+      "title": "Outdoor Education and Geography — Part 2",
+      "description": "Primary Geography, Spring 2020.",
+      "url": "/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged-2.pdf"
+    },
+    {
+      "title": "Outdoor Education and Geography — Part 3",
+      "description": "Primary Geography, Spring 2020.",
+      "url": "/wp-content/uploads/2024/12/PG_SPR_2020_Rose-dragged.pdf"
+    }
+  ],
+  "serviceFacebookPosts": [
+    {
+      "title": "Road Less Traveled volunteers in Rueglio",
+      "facebookUrl": "https://www.facebook.com/Ecowiseitaly/posts/1018459637482408/",
+      "sourceShareUrl": "https://www.facebook.com/share/p/1LfKWvvceN/",
+      "height": 820
+    },
+    {
+      "title": "Service projects with rural communities in Piemonte",
+      "facebookUrl": "https://www.facebook.com/Ecowiseitaly/posts/1017291564265882/",
+      "sourceShareUrl": "https://www.facebook.com/share/p/1FWtfreDR1/",
+      "height": 900
+    },
+    {
+      "title": "Road Less Traveled returns for a third summer",
+      "facebookUrl": "https://www.facebook.com/Ecowiseitaly/posts/1012602621401443/",
+      "sourceShareUrl": "https://www.facebook.com/share/p/1BaGM2Hj3a/",
+      "height": 840
+    }
+  ]
+}

@@ -11,6 +11,12 @@
 - Browser-confirmed the Local homepage dimensions match production and verified Local navigation remains within `ecowise.local`.
 - Documented the exact customization boundary: the theme is builder-independent and code-customizable, while the 36 fidelity snapshots are intentionally not WYSIWYG editor templates.
 - Built deterministic theme 1.0.12 package v16 with 727 verified files, 25,197,848 bytes and SHA-256 `0CD41469DF0F84FFA616F58213D42DE7AB7C259244F1341E43E95F5B39E54BB3`.
+- Translated the supplied WhatsApp brief into a deterministic editorial overlay without changing the approved homepage.
+- Moved the four outdoor-education article/PDF resources out of News and added them as visible, clearly named reading cards on Outdoor Education Tutorials.
+- Resolved three Facebook share links to stable Ecowise Italy post URLs and added the Road Less Traveled updates to News, equivalent archive views and Outdoor Service Education Projects.
+- Added `content/editorial-updates.json` as the maintainable source for future resources and Facebook posts, plus a responsive editorial stylesheet and compiler/validator contracts.
+- Browser-verified the new sections at 1440px and 390px: resource grids, social grids, headings, iframe counts and horizontal overflow all passed with zero console errors.
+- Built deterministic theme 1.0.13 package v17 with 728 verified files, 25,187,807 bytes and SHA-256 `F882A70D243BBFD5AE8A2CDA4D77FBB455073F559EBF543B2F5111908DCAE4E1`.
 
 ## 2026-07-22
 
