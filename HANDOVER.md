@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.11. The deterministic handoff archive is `ecowise-custom-theme-2026-07-22-v15.zip`: 727 verified theme files, 25,196,831 bytes, SHA-256 `E2C504FF3DEB0DF34C95EC323F92D9FBCC542B25801540CDA5AB9C2B215C26D2`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current theme is version 1.0.12. The deterministic handoff archive is `ecowise-custom-theme-2026-07-23-v16.zip`: 727 verified theme files, 25,197,848 bytes, SHA-256 `0CD41469DF0F84FFA616F58213D42DE7AB7C259244F1341E43E95F5B39E54BB3`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -29,6 +29,25 @@ The theme has two front-end paths:
 2. Native PHP templates handle unmapped pages, future posts, search, 404s and other normal WordPress requests. They do not call Elementor or ACF.
 
 Logged-in users and previews bypass fidelity snapshots so editors can inspect the native WordPress result. Admin, REST, AJAX, feeds and sitemaps are never intercepted.
+
+### Customization model
+
+This is a custom PHP/JavaScript/CSS theme with no Elementor, Elementor Pro or ACF runtime dependency. The retained `elementor-*` class names are static compatibility markup and CSS selectors, not evidence that the builder is installed or executing.
+
+The 36 fidelity routes are code-customizable through the snapshot compiler, theme CSS and compatibility JavaScript, but they are not yet block-editor/WYSIWYG templates. Editing a fidelity page in wp-admin changes the native WordPress fallback seen by logged-in users; it does not automatically rewrite the anonymous snapshot. New or unmapped content uses native templates immediately. Migrate a captured route from its snapshot to native PHP only after the replacement has passed desktop/mobile visual comparison, SEO validation and interaction testing.
+
+## Verified Local installation
+
+The primary working installation is `C:\Users\zacpl\Local Sites\ecowise`, Local site ID `6YdNrqjzJ`, available at `http://ecowise.local/`. It runs WordPress 6.8.6, PHP 8.2 and MySQL 8 with `ecowise-custom` active and no active legacy plugins. The restored substantive `wp_` database contains 30 published pages, three published posts and 413 attachments; all 1,950 upload files are present.
+
+`WP_HOME` and `WP_SITEURL` are pinned to the Local URL in its `wp-config.php`. Keep `DB_HOST` as `localhost`: Local assigns its MySQL port dynamically and supplies it to the site runtime. The original Local rollback SQL at `app\sql\local.sql` was preserved. Internal interactive links are rewritten to the current installation at render time, while canonical metadata intentionally remains on `https://ecowiseitaly.com/`.
+
+The Local deployment passed both:
+
+- `ECOWISE_EXPECTED_URL=http://ecowise.local wp eval-file tools/validate-wordpress.php`
+- `ECOWISE_DEPLOYMENT_CONCURRENCY=1 node tools/validate-deployment.mjs http://ecowise.local`
+
+Use deployment concurrency `1` for this Local installation because its Windows PHP service has two workers. Staging and production continue to default to concurrency `6`.
 
 Forms inside fidelity documents are intercepted in the capture phase by `assets/js/fidelity.js`, which suppresses the dormant captured Elementor handler and sends exactly one request to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields; without JavaScript, WordPress redirects back to the source form with an accessible success/error result. Captured routing is preserved: contact form `68574d28` defaults to `adamecorose@gmail.com`, while newsletter form `1b3fffa7` defaults to `saqibbalii099@gmail.com`. The `ecowise_form_recipient` filter receives the default recipient, form type and sanitized fields when production needs an explicit override. Fidelity responses are private-cacheable so a shared cache cannot leak an anonymous snapshot into an editor session; form-result responses are always private and `no-store`.
 

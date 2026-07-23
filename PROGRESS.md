@@ -1,5 +1,17 @@
 # Progress log
 
+## 2026-07-23
+
+- Repaired and started the existing Local site at `C:\Users\zacpl\Local Sites\ecowise` without replacing its preserved rollback SQL.
+- Recreated the missing MySQL runtime, repaired the incomplete WordPress core with WordPress 6.8.6, restored the substantive `wp_` backup database, copied all 1,950 uploads and activated Ecowise Custom with no legacy plugins active.
+- Set the Local URL to `http://ecowise.local/`, retained a port-independent `localhost` database host and performed a serialization-safe production-to-Local database URL replacement.
+- Passed the read-only WordPress preflight against 30 pages, three posts, 413 attachments and the complete upload tree.
+- Added configurable deployment-validator concurrency for constrained environments and passed all 36 routes, 35 sitemap URLs, four child sitemaps, four native endpoints, two redirects and HEAD handling against Local.
+- Added render-time rewriting for interactive snapshot links on non-production installations while preserving production canonical metadata.
+- Browser-confirmed the Local homepage dimensions match production and verified Local navigation remains within `ecowise.local`.
+- Documented the exact customization boundary: the theme is builder-independent and code-customizable, while the 36 fidelity snapshots are intentionally not WYSIWYG editor templates.
+- Built deterministic theme 1.0.12 package v16 with 727 verified files, 25,197,848 bytes and SHA-256 `0CD41469DF0F84FFA616F58213D42DE7AB7C259244F1341E43E95F5B39E54BB3`.
+
 ## 2026-07-22
 
 - Cloned the empty `0riceisnice0-hash/ecowiseitaly` repository and established a code-driven WordPress theme structure.

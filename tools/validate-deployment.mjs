@@ -32,6 +32,10 @@ target.hash = '';
 const errors = [];
 const warnings = [];
 const timeoutMs = 20_000;
+const requestedConcurrency = Number.parseInt(process.env.ECOWISE_DEPLOYMENT_CONCURRENCY || '6', 10);
+const deploymentConcurrency = Number.isInteger(requestedConcurrency) && requestedConcurrency >= 1 && requestedConcurrency <= 16
+  ? requestedConcurrency
+  : 6;
 
 function deploymentUrl(route) {
   return new URL(route.replace(/^\//, ''), target);
@@ -103,6 +107,12 @@ async function validateRoute(route) {
 
   const canonical = extractCanonical(html);
   if (canonical !== route.canonical) errors.push(`${route.route}: canonical mismatch (expected ${route.canonical}, received ${canonical || '[missing]'})`);
+
+  const isProductionTarget = ['ecowiseitaly.com', 'www.ecowiseitaly.com'].includes(target.hostname.toLowerCase());
+  const productionAnchor = html.match(/<a\b[^>]*\bhref=["'](?:https?:)?\/\/(?:www\.)?ecowiseitaly\.com(?:\/|["'])/i);
+  if (!isProductionTarget && productionAnchor) {
+    errors.push(`${route.route}: an interactive link still points to production instead of ${target.origin}`);
+  }
 }
 
 async function mapWithConcurrency(items, concurrency, callback) {
@@ -135,7 +145,7 @@ async function validateSitemap() {
   if (childPaths.length !== 4) errors.push(`/wp-sitemap.xml: expected four child sitemaps, found ${childPaths.length}`);
 
   const sitemapPaths = new Set();
-  await mapWithConcurrency(childPaths, 4, async (childPath) => {
+  await mapWithConcurrency(childPaths, Math.min(deploymentConcurrency, 4), async (childPath) => {
     try {
       const response = await request(childPath);
       if (response.status !== 200) {
@@ -184,16 +194,16 @@ async function validateRedirect(route, expectedPath) {
   }
 }
 
-await mapWithConcurrency(capturedRoutes, 6, validateRoute);
+await mapWithConcurrency(capturedRoutes, deploymentConcurrency, validateRoute);
 await validateSitemap();
-await Promise.all([
-  validateNativeEndpoint('/wp-json/', 'application/json'),
-  validateNativeEndpoint('/feed/', 'xml'),
-  validateNativeEndpoint('/robots.txt', 'text/plain'),
-  validateNativeEndpoint('/?s=ecowise', 'text/html'),
-  validateRedirect('/home/', '/'),
-  validateRedirect('/sitemap.xml', '/wp-sitemap.xml'),
-]);
+await mapWithConcurrency([
+  () => validateNativeEndpoint('/wp-json/', 'application/json'),
+  () => validateNativeEndpoint('/feed/', 'xml'),
+  () => validateNativeEndpoint('/robots.txt', 'text/plain'),
+  () => validateNativeEndpoint('/?s=ecowise', 'text/html'),
+  () => validateRedirect('/home/', '/'),
+  () => validateRedirect('/sitemap.xml', '/wp-sitemap.xml'),
+], deploymentConcurrency, (check) => check());
 
 try {
   const response = await request('/', { method: 'HEAD' });

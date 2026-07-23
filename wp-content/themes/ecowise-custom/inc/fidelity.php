@@ -37,6 +37,35 @@ function ecowise_fidelity_map() {
 	return is_array( $map ) ? $map : array();
 }
 
+/**
+ * Point interactive links at the current WordPress installation.
+ *
+ * Canonical and social metadata intentionally keep the production URL, while
+ * links a visitor can follow must remain inside staging and local clones.
+ */
+function ecowise_rewrite_snapshot_links( $document ) {
+	$current_host = wp_parse_url( home_url( '/' ), PHP_URL_HOST );
+	if ( in_array( strtolower( (string) $current_host ), array( 'ecowiseitaly.com', 'www.ecowiseitaly.com' ), true ) ) {
+		return $document;
+	}
+
+	$local_base = untrailingslashit( home_url( '/' ) );
+
+	return preg_replace_callback(
+		'/<(?:a|form)\b[^>]*>/i',
+		function ( $tag_match ) use ( $local_base ) {
+			return preg_replace_callback(
+				'/\b(href|action)=(["\'])(https?:)?\/\/(?:www\.)?ecowiseitaly\.com(?=\/|["\'])/i',
+				function ( $attribute_match ) use ( $local_base ) {
+					return $attribute_match[1] . '=' . $attribute_match[2] . $local_base;
+				},
+				$tag_match[0]
+			);
+		},
+		$document
+	);
+}
+
 function ecowise_maybe_serve_fidelity_snapshot() {
 	$is_rest_request = ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || isset( $_GET['rest_route'] );
 	$is_sitemap      = (bool) get_query_var( 'sitemap' ) || isset( $_GET['sitemap'] );
@@ -114,6 +143,7 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 			esc_url( get_theme_file_uri( '/assets/js/fidelity.js' ) . '?ver=' . wp_get_theme()->get( 'Version' ) )
 		);
 		$document = str_replace( '</body>', $enhancement . '</body>', $document );
+		$document = ecowise_rewrite_snapshot_links( $document );
 		echo $document; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	exit;
