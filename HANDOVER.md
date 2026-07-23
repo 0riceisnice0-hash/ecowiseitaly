@@ -65,6 +65,16 @@ The captured document outline is repaired deterministically: every one of the 36
 
 The fidelity documents now also expose a complete structural and action layer without altering layout: the inherited skip link resolves to a unique main landmark on every route; header/footer landmarks and six repeated navigation regions are named; all image-only links have accessible names; 111 Facebook/PDF frames have titles; six YouTube widgets and four hosted videos have direct fallbacks; and the contact email, telephone and telephone field use native customer-action semantics. Known logo, author and post-thumbnail images received authoritative alt text. Uncertain documentary/gallery images were not given invented descriptions; their link actions are named independently.
 
+## Production installation
+
+Theme 1.0.14 was deployed to `https://ecowiseitaly.com/` on 23 July 2026. Production is WordPress 6.8.1 at `/home/customer/www/ecowiseitaly.com/public_html`. `ecowise-custom` is active, all 11 legacy plugins are inactive, the front page remains ID 6, the posts page remains ID 2448, the permalink structure remains `/%postname%/`, and the substantive `wp_` database and production uploads were left in place.
+
+The exact pre-cutover SSH rollback bundle is `/home/customer/ecowise-deploy-20260723-v18`. It contains the pre-deployment database dump, Hello Elementor archive, original theme/plugin option records, inventories, validator and deployed theme ZIP. Keep this directory until the new production release has completed an agreed retention period. SiteGround's separately created user backup is the broader recovery point.
+
+SiteGround Dynamic Cache can continue serving an older full-page response after an SSH theme cutover. Purge it in Site Tools under **Speed → Caching → Dynamic Cache → Flush Cache** after every production theme deployment. If SiteGround CDN is enabled, also use **Speed → CDN → Purge Cache**. A query-string cache miss is not a substitute for validating the bare public URLs after the purge.
+
+The uncached production renderer was browser-verified at 1440×1000 and 390×844: the homepage has no broken images or horizontal overflow, its collage borders compute to red/yellow/yellow, and News exposes the correct canonical plus all 23 Facebook embeds. The one observed console exception comes from retained captured Elementor compatibility JavaScript attempting to observe an absent optional widget node; it does not stop rendering, navigation or embeds. Treat removal as a separate regression-tested cleanup because the static compatibility runtime is shared across the fidelity captures.
+
 ## Backup facts that matter
 
 The supplied backup has two WordPress table prefixes:

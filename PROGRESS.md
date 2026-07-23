@@ -20,6 +20,11 @@
 - Changed only the approved homepage collage frames: the large 14px frame is red `#CF2E2E`, while both tilted 10px frames are yellow `#FCB900`; image geometry, rotations, overlap and shadows are unchanged.
 - Added compiler and validation contracts for the homepage frame stylesheet and browser-verified the result at 1440px and 390px with no overflow or console errors.
 - Built deterministic theme 1.0.14 package v18 with 729 verified files, 25,188,336 bytes and SHA-256 `8EF974FA930D80D1A545A724BD1FB65019D222058B26E401C1EFD309ADB6B530`.
+- Created an additional SSH rollback bundle at `/home/customer/ecowise-deploy-20260723-v18`, including a pre-cutover database dump, Hello Elementor archive, exact theme/plugin option records, inventories and the verified v18 package.
+- Deployed Ecowise Custom 1.0.14 to the production WordPress 6.8.1 installation without replacing its substantive database or larger production uploads tree.
+- Activated the custom theme, deactivated all 11 legacy plugins, flushed WordPress rewrites/object cache and confirmed front page ID 6, posts page ID 2448, `/%postname%/` permalinks and the production home URL remain intact.
+- Verified uncached production output at desktop and mobile sizes: zero broken images or horizontal overflow, red/yellow/yellow homepage collage frames, correct News canonical and all 23 Facebook embeds.
+- Identified two bare-URL deployment-validator failures as stale SiteGround Dynamic Cache responses; documented the required Dynamic Cache/CDN purge and retained final bare-URL validation as the last launch gate.
 
 ## 2026-07-22
 
