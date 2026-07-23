@@ -25,6 +25,12 @@
 - Activated the custom theme, deactivated all 11 legacy plugins, flushed WordPress rewrites/object cache and confirmed front page ID 6, posts page ID 2448, `/%postname%/` permalinks and the production home URL remain intact.
 - Verified uncached production output at desktop and mobile sizes: zero broken images or horizontal overflow, red/yellow/yellow homepage collage frames, correct News canonical and all 23 Facebook embeds.
 - Identified two bare-URL deployment-validator failures as stale SiteGround Dynamic Cache responses; documented the required Dynamic Cache/CDN purge and retained final bare-URL validation as the last launch gate.
+- Reproduced the visibly broken first production response and confirmed SiteGround Dynamic Cache was serving legacy Elementor HTML after the legacy theme/plugins had been deactivated.
+- Installed the official SiteGround Speed Optimizer solely for supported cache operations, ran `wp sg purge`, and immediately restored the complete custom-theme presentation.
+- Passed the full 36-route/35-sitemap-URL production validator after the purge; browser verification found correct homepage styling, the approved red frame, no broken images, no overflow and no console errors.
+- Fixed the separate administrator-view defect: mapped routes no longer fall back to unfinished native templates merely because the visitor is logged in.
+- Made authenticated snapshot responses `private, no-store`, added a regression contract for the logged-in renderer and released the correction as theme 1.0.15.
+- Built deterministic theme 1.0.15 package v19 with 729 verified files, 25,188,534 bytes and SHA-256 `F6BDE814BF3AF6913FF10CF2D4044723F8CA14F8DFE848625D78898612EE9A17`.
 
 ## 2026-07-22
 

@@ -5,6 +5,8 @@
  * The snapshots are complete, captured public documents. They are served only
  * for explicitly mapped GET/HEAD front-end routes. WordPress continues to own
  * admin, feeds, REST, previews, search, sitemaps and all unmapped requests.
+ * Mapped front-end routes use the same renderer for signed-in administrators
+ * and public visitors so a login never exposes the unfinished native fallback.
  *
  * @package Ecowise
  */
@@ -70,8 +72,9 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 	$is_rest_request = ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || isset( $_GET['rest_route'] );
 	$is_sitemap      = (bool) get_query_var( 'sitemap' ) || isset( $_GET['sitemap'] );
 	$is_dynamic_view = is_search() || is_feed() || is_trackback() || is_robots() || is_favicon() || is_paged() || is_embed();
+	$is_authenticated = is_user_logged_in();
 
-	if ( ! ecowise_fidelity_enabled() || is_admin() || wp_doing_ajax() || is_user_logged_in() || is_preview() || $is_rest_request || $is_sitemap || $is_dynamic_view ) {
+	if ( ! ecowise_fidelity_enabled() || is_admin() || wp_doing_ajax() || is_preview() || $is_rest_request || $is_sitemap || $is_dynamic_view ) {
 		return;
 	}
 
@@ -98,7 +101,7 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 	header( 'Content-Type: text/html; charset=' . get_bloginfo( 'charset' ) );
 	header( 'X-Ecowise-Renderer: fidelity-snapshot' );
 	$form_result = isset( $_GET['ecowise_form'] ) ? sanitize_key( wp_unslash( $_GET['ecowise_form'] ) ) : '';
-	header( in_array( $form_result, array( 'success', 'error' ), true ) ? 'Cache-Control: private, no-store, max-age=0' : 'Cache-Control: private, max-age=300, must-revalidate' );
+	header( $is_authenticated || in_array( $form_result, array( 'success', 'error' ), true ) ? 'Cache-Control: private, no-store, max-age=0' : 'Cache-Control: private, max-age=300, must-revalidate' );
 
 	if ( 'HEAD' !== $method ) {
 		// The file is trusted build output committed with the theme.

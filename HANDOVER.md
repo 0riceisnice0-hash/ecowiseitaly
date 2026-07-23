@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.14. The deterministic handoff archive is `ecowise-custom-theme-2026-07-23-v18.zip`: 729 verified theme files, 25,188,336 bytes, SHA-256 `8EF974FA930D80D1A545A724BD1FB65019D222058B26E401C1EFD309ADB6B530`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current theme is version 1.0.15. The deterministic handoff archive is `ecowise-custom-theme-2026-07-23-v19.zip`: 729 verified theme files, 25,188,534 bytes, SHA-256 `F6BDE814BF3AF6913FF10CF2D4044723F8CA14F8DFE848625D78898612EE9A17`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -28,13 +28,13 @@ The theme has two front-end paths:
 1. The fidelity renderer serves reviewed static HTML documents for 36 known public routes. Canonicals were repaired to absolute production URLs, mirror query-hash artifacts were removed, captured analytics was disabled, and required CSS/JS/font files—including the static PDF viewer and 84 on-demand interaction chunks—were vendored beneath the custom theme. Public photographs continue to resolve from the restored WordPress uploads directory.
 2. Native PHP templates handle unmapped pages, future posts, search, 404s and other normal WordPress requests. They do not call Elementor or ACF.
 
-Logged-in users and previews bypass fidelity snapshots so editors can inspect the native WordPress result. Admin, REST, AJAX, feeds and sitemaps are never intercepted.
+Mapped front-end routes use the fidelity snapshots for both public and logged-in visitors; authenticated responses are explicitly `private, no-store`. This prevents administrators from seeing the unfinished native fallback merely because they are logged in. WordPress previews still bypass fidelity, while admin, REST, AJAX, feeds and sitemaps are never intercepted.
 
 ### Customization model
 
 This is a custom PHP/JavaScript/CSS theme with no Elementor, Elementor Pro or ACF runtime dependency. The retained `elementor-*` class names are static compatibility markup and CSS selectors, not evidence that the builder is installed or executing.
 
-The 36 fidelity routes are code-customizable through the snapshot compiler, theme CSS and compatibility JavaScript, but they are not yet block-editor/WYSIWYG templates. Editing a fidelity page in wp-admin changes the native WordPress fallback seen by logged-in users; it does not automatically rewrite the anonymous snapshot. New or unmapped content uses native templates immediately. Migrate a captured route from its snapshot to native PHP only after the replacement has passed desktop/mobile visual comparison, SEO validation and interaction testing.
+The 36 fidelity routes are code-customizable through the snapshot compiler, theme CSS and compatibility JavaScript, but they are not yet block-editor/WYSIWYG templates. Editing a fidelity page in wp-admin changes its native WordPress source/fallback; it does not automatically rewrite the front-end snapshot. New or unmapped content uses native templates immediately. Migrate a captured route from its snapshot to native PHP only after the replacement has passed desktop/mobile visual comparison, SEO validation and interaction testing.
 
 Curated content added after the original capture lives in `content/editorial-updates.json`. It currently owns the four Outdoor Education reading resources and three Road Less Traveled Facebook posts. The compiler adds those posts to News, its equivalent archive views and Outdoor Service Education Projects, while the reading resources appear only on Outdoor Education Tutorials. Do not hand-edit the generated snapshots for these items. Resolve Facebook share links to stable post URLs, update the JSON, then regenerate with:
 
@@ -67,11 +67,11 @@ The fidelity documents now also expose a complete structural and action layer wi
 
 ## Production installation
 
-Theme 1.0.14 was deployed to `https://ecowiseitaly.com/` on 23 July 2026. Production is WordPress 6.8.1 at `/home/customer/www/ecowiseitaly.com/public_html`. `ecowise-custom` is active, all 11 legacy plugins are inactive, the front page remains ID 6, the posts page remains ID 2448, the permalink structure remains `/%postname%/`, and the substantive `wp_` database and production uploads were left in place.
+Theme 1.0.15 was deployed to `https://ecowiseitaly.com/` on 23 July 2026. Production is WordPress 6.8.1 at `/home/customer/www/ecowiseitaly.com/public_html`. `ecowise-custom` is active, all 11 legacy plugins are inactive, SiteGround Speed Optimizer is active solely for supported cache management, the front page remains ID 6, the posts page remains ID 2448, the permalink structure remains `/%postname%/`, and the substantive `wp_` database and production uploads were left in place.
 
 The exact pre-cutover SSH rollback bundle is `/home/customer/ecowise-deploy-20260723-v18`. It contains the pre-deployment database dump, Hello Elementor archive, original theme/plugin option records, inventories, validator and deployed theme ZIP. Keep this directory until the new production release has completed an agreed retention period. SiteGround's separately created user backup is the broader recovery point.
 
-SiteGround Dynamic Cache can continue serving an older full-page response after an SSH theme cutover. Purge it in Site Tools under **Speed → Caching → Dynamic Cache → Flush Cache** after every production theme deployment. If SiteGround CDN is enabled, also use **Speed → CDN → Purge Cache**. A query-string cache miss is not a substitute for validating the bare public URLs after the purge.
+SiteGround Dynamic Cache can continue serving an older full-page response after an SSH theme cutover. That occurred at the first production launch: the cache served legacy Elementor HTML after its plugins were inactive, leaving the page visibly unstyled. Purge it after every deployment with `wp sg purge` from the WordPress root. The equivalent Site Tools route is **Speed → Caching → Dynamic Cache → Flush Cache**. If SiteGround CDN is enabled, also use **Speed → CDN → Purge Cache**. A query-string cache miss is not a substitute for validating the bare public URLs after the purge.
 
 The uncached production renderer was browser-verified at 1440×1000 and 390×844: the homepage has no broken images or horizontal overflow, its collage borders compute to red/yellow/yellow, and News exposes the correct canonical plus all 23 Facebook embeds. The one observed console exception comes from retained captured Elementor compatibility JavaScript attempting to observe an absent optional widget node; it does not stop rendering, navigation or embeds. Treat removal as a separate regression-tested cleanup because the static compatibility runtime is shared across the fidelity captures.
 

@@ -407,6 +407,12 @@ for (const formFallback of ['fallback_fields', 'admin-post.php', "name=\"nonce\"
 for (const formHardening of ['name=\"website\"', 'must-revalidate']) {
   if (!fidelityPhp.includes(formHardening)) errors.push(`fidelity renderer is missing form/cache hardening (${formHardening})`);
 }
+if (/\|\|\s*is_user_logged_in\(\)/.test(fidelityPhp)) {
+  errors.push('fidelity renderer bypasses mapped front-end routes for logged-in users');
+}
+if (!fidelityPhp.includes('$is_authenticated = is_user_logged_in();') || !fidelityPhp.includes('$is_authenticated || in_array')) {
+  errors.push('fidelity renderer is missing authenticated-response no-store handling');
+}
 const fidelityJs = fs.readFileSync(path.join(themeRoot, 'assets', 'js', 'fidelity.js'), 'utf8');
 if (/data\.set\(\s*['"]website['"]\s*,\s*['"]['"]\s*\)/.test(fidelityJs)) errors.push('form enhancement clears the honeypot before submission');
 for (const submissionGuard of ['stopImmediatePropagation()', 'capture: true']) {
