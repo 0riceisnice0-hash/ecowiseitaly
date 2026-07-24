@@ -1,6 +1,14 @@
 # Homepage architecture
 
-The visible hero statement, “Ecowise Italy: Bringing nature to learning, bringing learning to life!”, is the page's sole H1. Its fidelity classes and widget-specific typography remain unchanged; only the semantic tag differs from the faulty live capture.
+## Approved July 2026 image configuration
+
+`content/homepage-updates.json` is the source of truth for the five hero slides and the three About-collage photographs. The approved hero order is `Ecowise-Italy-211.jpg`, `mindfulll.jpg`, `Ecowise-Italy-254.jpg`, the locally retained `river-fieldwork.jpeg`, and `ecowisely-tour-22.jpg`. The first four were supplied directly; the fifth is the first image from the supplied Gallery page because only four concrete hero files accompanied the five-image request.
+
+`Ecowise-Italy-211.jpg` uses `background-size: contain` so its complete landscape remains visible; the other slides retain cover cropping. The About collage places the city-square group in the central red frame, the field group in the bottom-left yellow frame and the natural-pool group in the top-right yellow frame.
+
+Customer-facing homepage copy uses `EcoWise Italy`. This presentation rule does not alter the logo artwork, domain, URLs, slugs, media filenames or technical identifiers.
+
+The visible hero statement, “EcoWise Italy: Bringing nature to learning, bringing learning to life!”, is the page's sole H1. Its fidelity classes and widget-specific typography remain unchanged; only the semantic tag differs from the faulty live capture.
 
 ## Purpose
 
@@ -11,8 +19,8 @@ The canonical homepage is `/` and corresponds to WordPress page ID 6. `/home/` i
 ## Reference sequence
 
 1. Overlay header and centered brand/navigation.
-2. Full-width slideshow hero using `home-1.webp` through `home-5.webp`.
-3. Main promise: “Ecowise Italy: Bringing nature to learning, bringing learning to life!”
+2. Full-width slideshow hero using the five entries in `content/homepage-updates.json`.
+3. Main promise: “EcoWise Italy: Bringing nature to learning, bringing learning to life!”
 4. Supporting explanation about storytelling, mindfulness and unplugged outdoor adventure.
 5. Five portal calls to action:
    - Schools & Education
@@ -21,7 +29,7 @@ The canonical homepage is `/` and corresponds to WordPress page ID 6. `/home/` i
    - Corporate Team Building
    - Vacations and Eco Adventures
 6. Pyramid/mountain bottom divider.
-7. About Ecowise split-media section with layered, slightly rotated photography and “Who we are / About Ecowise” copy.
+7. About EcoWise Italy split-media section with layered, slightly rotated photography and “Who we are / About EcoWise Italy” copy.
 8. “What we offer Schools” section with six interactive service cards linking to the existing school routes.
 9. Testimonial section and rotating testimonial content.
 10. Global green footer with organization, service and contact information.
@@ -47,7 +55,7 @@ The five choices are part of the hero information architecture. Keep their label
 
 ## About section
 
-The image collage is an important handmade cue. It uses real Ecowise imagery, restrained rotation and overlap. The large photograph has its captured 14px frame in red `#CF2E2E`; the two smaller tilted photographs retain their captured 10px frames in yellow `#FCB900`. These approved colors live in `assets/css/homepage.css`; do not change the image dimensions, rotations, overlap or shadows when maintaining them. The copy must remain the original three-paragraph explanation about reinforcing school teaching, Piemonte and UNESCO recognition unless content owners approve an editorial change.
+The image collage is an important handmade cue. It uses real EcoWise Italy imagery, restrained rotation and overlap. The large photograph has its captured 14px frame in red `#CF2E2E`; the two smaller tilted photographs retain their captured 10px frames in yellow `#FCB900`. These approved colors live in `assets/css/homepage.css`; do not change the image dimensions, rotations, overlap or shadows when maintaining them. The copy must remain the original three-paragraph explanation about reinforcing school teaching, Piemonte and UNESCO recognition unless content owners approve an editorial change.
 
 ## School offer cards
 

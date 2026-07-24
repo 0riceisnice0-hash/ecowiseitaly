@@ -12,6 +12,13 @@ if (!inventoryFile || !mirrorRoot || !themeRoot || !auditRoot) {
 const repositoryRoot = path.resolve(import.meta.dirname, '..');
 const editorialUpdatesFile = path.join(repositoryRoot, 'content', 'editorial-updates.json');
 const editorialUpdates = JSON.parse(fs.readFileSync(editorialUpdatesFile, 'utf8'));
+const homepageUpdatesFile = path.join(repositoryRoot, 'content', 'homepage-updates.json');
+const homepageUpdates = JSON.parse(fs.readFileSync(homepageUpdatesFile, 'utf8'));
+const themeVersion = fs.readFileSync(path.join(themeRoot, 'style.css'), 'utf8').match(/^Version:\s*(\S+)/m)?.[1];
+
+if (!themeVersion) {
+  throw new Error('Theme Version header is missing from style.css');
+}
 
 function escapeHtml(value) {
   return String(value)
@@ -26,12 +33,63 @@ function themeStylesheet(document, id, filename) {
   if (document.includes(`id="${id}"`)) return document;
   return document.replace(
     '</head>',
-    `<link href="/wp-content/themes/ecowise-custom/assets/css/${filename}" id="${id}" rel="stylesheet"/>\n</head>`
+    `<link href="/wp-content/themes/ecowise-custom/assets/css/${filename}?ver=${escapeHtml(themeVersion)}" id="${id}" rel="stylesheet"/>\n</head>`
   );
 }
 
 function editorialStylesheet(document) {
   return themeStylesheet(document, 'ecowise-editorial-styles', 'editorial.css');
+}
+
+function normalizedBrandCopy(value) {
+  const placeholder = '__ECOWISE_ITALY_BRAND__';
+  return String(value)
+    .replace(/\bEcoWise Italy\b/gi, placeholder)
+    .replace(/\bEcoWise\b/gi, placeholder)
+    .replaceAll(placeholder, 'EcoWise Italy');
+}
+
+function normalizeBrandPresentation(document) {
+  return document.replace(
+    /<script\b[^>]*>[\s\S]*?<\/script>|<style\b[^>]*>[\s\S]*?<\/style>|<[^>]+>|[^<]+/gi,
+    (token) => {
+      if (/^<(?:script|style)\b/i.test(token)) return token;
+      if (!token.startsWith('<')) return normalizedBrandCopy(token);
+      return token.replace(/\b(aria-label|title|alt)=(["'])(.*?)\2/gi, (attribute, name, quote, value) => {
+        if (name.toLowerCase() === 'alt' && /\bwp-image-67\b/.test(token)) return attribute;
+        return `${name}=${quote}${normalizedBrandCopy(value)}${quote}`;
+      });
+    }
+  );
+}
+
+function applyHomepageImages(document, canonical) {
+  let result = document;
+  let slideshowCount = 0;
+  result = result.replace(
+    /(<div class="elementor-element[^>]*\bdata-id="c82fb10"[^>]*\bdata-settings=')([^']+)('>)/i,
+    (match, prefix, settingsJson, suffix) => {
+      slideshowCount += 1;
+      const settings = JSON.parse(settingsJson.replaceAll('&quot;', '"'));
+      settings.background_slideshow_gallery = homepageUpdates.heroSlides.map(({ id, url }) => ({ id, url }));
+      return `${prefix}${JSON.stringify(settings)}${suffix}`;
+    }
+  );
+  if (slideshowCount !== 1) throw new Error(`${canonical}: expected one homepage hero slideshow; found ${slideshowCount}`);
+
+  for (const image of homepageUpdates.aboutImages) {
+    let imageCount = 0;
+    const widgetPattern = new RegExp(
+      `(<div class="elementor-element[^>]*\\bdata-id="${image.elementId}"[\\s\\S]*?<div class="elementor-widget-container">\\s*)<img\\b[^>]*>(\\s*</div>)`
+    );
+    result = result.replace(widgetPattern, (match, prefix, suffix) => {
+      imageCount += 1;
+      return `${prefix}<img alt="${escapeHtml(image.alt)}" class="attachment-full size-full" decoding="async" height="${Number(image.height)}" src="${escapeHtml(image.url)}" width="${Number(image.width)}"/>${suffix}`;
+    });
+    if (imageCount !== 1) throw new Error(`${canonical}: expected one homepage image widget ${image.elementId}; found ${imageCount}`);
+  }
+
+  return result;
 }
 
 function insertBeforeMarker(document, marker, markup, canonical, label) {
@@ -543,10 +601,11 @@ function repairDocument(html, canonical) {
   }
 
   if (canonicalPath === '/') {
+    result = applyHomepageImages(result, canonical);
     result = themeStylesheet(result, 'ecowise-homepage-styles', 'homepage.css');
   }
 
-  return result;
+  return normalizeBrandPresentation(result).replace(/[ \t]+$/gm, '');
 }
 
 const inventory = parseCsv(fs.readFileSync(inventoryFile, 'utf8').replace(/^\uFEFF/, ''));

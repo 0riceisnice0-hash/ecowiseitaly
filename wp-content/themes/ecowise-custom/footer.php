@@ -19,9 +19,8 @@
 			<a href="mailto:adamecorose@gmail.com">adamecorose@gmail.com</a>
 		</address>
 	</div>
-	<div class="site-footer__legal shell">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> Ecowise Italy</div>
+	<div class="site-footer__legal shell">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> EcoWise Italy</div>
 </footer>
 <?php wp_footer(); ?>
 </body>
 </html>
-

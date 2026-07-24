@@ -1,5 +1,21 @@
 # Progress log
 
+## 2026-07-24
+
+- Added `content/homepage-updates.json` as the deterministic source for homepage hero and About-collage image assignments.
+- Replaced the five rotating hero slides with `Ecowise-Italy-211.jpg`, `mindfulll.jpg`, `Ecowise-Italy-254.jpg`, the supplied river-fieldwork photograph and `ecowisely-tour-22.jpg`.
+- Selected `ecowisely-tour-22.jpg` as the fifth slide because the brief supplied four concrete files plus the Gallery page, but requested five images.
+- Kept the complete `Ecowise-Italy-211.jpg` landscape visible with a contained background treatment while retaining cover cropping for the other slides.
+- Replaced the About collage with the city-square group in the central red frame, the field group in the bottom-left yellow frame and the natural-pool group in the top-right yellow frame.
+- Normalized customer-facing snapshot, native footer and form-email branding to `EcoWise Italy`, while excluding the logo artwork, domain, URLs, slugs, filenames and code identifiers.
+- Added deterministic compiler and validation contracts for all eight image assignments, image availability, the special landscape fit and public brand presentation.
+- Built deterministic theme 1.0.16 package v20 with 733 verified files, 29,954,964 bytes and SHA-256 `1AFE6319E0ECA9B42B80F96F3C5861B736A69FE4FEEF3C8C43D5EC1A52E17BFA`.
+- Deployed theme 1.0.16 to production with an exact 1.0.15 rollback archive, updated the WordPress site name to `EcoWise Italy`, deactivated the unexpectedly reactivated Elementor and Duplicate Page plugins, and purged SiteGround Dynamic Cache.
+- Browser QA caught the existing unversioned homepage stylesheet in a returning browser cache; added theme-version query strings to compiler-injected stylesheets and advanced the corrective release to 1.0.17.
+- Built deterministic theme 1.0.17 package v21 with 733 verified files, 29,955,041 bytes and SHA-256 `1EF89BFBDEA1F03DFF53FA4384A51EAA23460783B4AAF379B1C68C05929F5969`.
+- Deployed the corrective 1.0.17 release, purged SiteGround Dynamic Cache and passed the complete production validator: 36 routes, 35 sitemap URLs, four child sitemaps, four native endpoints, two redirects and HEAD handling.
+- Browser-verified production at 1440×900 and 390×844: exact five-slide order, contained mountain landscape, correct city/field/pool collage assignments, red/yellow/yellow frames, `EcoWise Italy` presentation, zero broken images, zero horizontal overflow and zero console warnings/errors.
+
 ## 2026-07-23
 
 - Repaired and started the existing Local site at `C:\Users\zacpl\Local Sites\ecowise` without replacing its preserved rollback SQL.

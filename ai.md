@@ -6,6 +6,7 @@ Maintain Ecowise Italy as a fast, accessible, code-driven WordPress site that pr
 
 ## Non-negotiable constraints
 
+- Write the public brand as `EcoWise Italy` in all customer-facing copy. Do not apply this normalization to the logo artwork, `ecowiseitaly.com`, existing URLs/slugs, media filenames, PHP identifiers, package names or the `ecowise-custom` technical name.
 - Do not introduce Elementor, ACF, another page builder, or builder-generated shortcodes.
 - Do not change an existing public permalink without an explicit redirect and an update to the route audit.
 - Do not delete indexed pages, posts, media, metadata, schema or sitemap coverage merely because the content appears duplicated.

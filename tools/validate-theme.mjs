@@ -10,6 +10,7 @@ const indexedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audi
 const uploadManifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'uploads-manifest.json'), 'utf8'));
 const backupRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'backup-routes.json'), 'utf8'));
 const editorialUpdates = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'editorial-updates.json'), 'utf8'));
+const homepageUpdates = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'homepage-updates.json'), 'utf8'));
 const backupObjectIds = new Map(backupRoutes.filter((item) => item.route && item.id).map((item) => [item.route, Number(item.id)]));
 const uploadPaths = new Set(uploadManifest.map((item) => item.path.replaceAll('\\', '/')));
 const referencedUploads = new Set();
@@ -79,6 +80,16 @@ for (const route of capturedRoutes) {
   }
 
   const html = fs.readFileSync(file, 'utf8');
+  const visibleText = html
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/<[^>]+>/g, ' ');
+  if (/\bEcowise\b/.test(visibleText)) errors.push(`${route.route}: customer-facing copy still uses Ecowise instead of EcoWise Italy`);
+  for (const tag of html.matchAll(/<(?!img\b[^>]*\bwp-image-67\b)[^>]+>/gi)) {
+    for (const attribute of tag[0].matchAll(/\b(?:aria-label|title|alt)=(["'])(.*?)\1/gi)) {
+      if (/\bEcowise\b/.test(attribute[2])) errors.push(`${route.route}: accessible copy still uses Ecowise instead of EcoWise Italy`);
+    }
+  }
   const contentTargetCount = countMatches(html, /\bid=["']content["']/gi);
   if (contentTargetCount !== 1) errors.push(`${route.route}: expected one #content skip-link target; found ${contentTargetCount}`);
   if (countMatches(html, /<a\b[^>]*\bhref=["']#content["']/gi) !== 1) errors.push(`${route.route}: expected one skip link to #content`);
@@ -112,8 +123,8 @@ for (const route of capturedRoutes) {
   for (const iframe of html.matchAll(/<iframe\b[^>]*>/gi)) {
     if (!/\btitle\s*=\s*["'][^"']+["']/i.test(iframe[0])) untitledIframeCount += 1;
   }
-  youtubeFallbackCount += countMatches(html, /<noscript><p><a href=["']https:\/\/www\.youtube\.com\/watch\?v=[^"']+["']>Watch this Ecowise video on YouTube<\/a><\/p><\/noscript>/gi);
-  hostedVideoFallbackCount += countMatches(html, /<video\b(?=[^>]*\baria-label=["']Ecowise Italy trip video["'])[^>]*>\s*<a href=["'][^"']+\.mp4["']>Download the Ecowise video<\/a>\s*<\/video>/gi);
+  youtubeFallbackCount += countMatches(html, /<noscript><p><a href=["']https:\/\/www\.youtube\.com\/watch\?v=[^"']+["']>Watch this EcoWise Italy video on YouTube<\/a><\/p><\/noscript>/gi);
+  hostedVideoFallbackCount += countMatches(html, /<video\b(?=[^>]*\baria-label=["']EcoWise Italy trip video["'])[^>]*>\s*<a href=["'][^"']+\.mp4["']>Download the EcoWise Italy video<\/a>\s*<\/video>/gi);
   const h1Count = countMatches(html, /<h1\b/gi);
   if (h1Count !== 1) errors.push(`${route.route}: expected one H1; found ${h1Count}`);
   for (const headingContract of headingContracts.get(route.route) || []) {
@@ -298,6 +309,36 @@ for (const [elementId, expectedColor] of [
 ]) {
   const framePattern = new RegExp(`elementor-element-${elementId}[\\s\\S]*?border-color:\\s*${expectedColor}\\s*!important`, 'i');
   if (!framePattern.test(homepageCss)) errors.push(`homepage collage frame ${elementId} does not use ${expectedColor}`);
+}
+const slideshowSettingsMatch = homepageHtml.match(
+  /<div class="elementor-element[^>]*\bdata-id="c82fb10"[^>]*\bdata-settings='([^']+)'/i
+);
+if (!slideshowSettingsMatch) {
+  errors.push('homepage hero slideshow settings are missing');
+} else {
+  const slideshowSettings = JSON.parse(slideshowSettingsMatch[1]);
+  const actualSlides = slideshowSettings.background_slideshow_gallery || [];
+  const expectedSlides = homepageUpdates.heroSlides.map(({ id, url }) => ({ id, url }));
+  if (JSON.stringify(actualSlides) !== JSON.stringify(expectedSlides)) errors.push('homepage hero slideshow does not match content/homepage-updates.json');
+}
+if (!/Ecowise-Italy-211\.jpg["'\]]?[\s\S]*?background-size:\s*contain\s*!important/i.test(homepageCss)) {
+  errors.push('homepage mountain hero slide is not configured to show the complete landscape');
+}
+for (const image of homepageUpdates.aboutImages) {
+  const widgetPattern = new RegExp(
+    `<div class="elementor-element[^>]*data-id="${image.elementId}"[\\s\\S]*?<img\\b(?=[^>]*\\bsrc="${escapeRegExp(image.url)}")(?=[^>]*\\balt="${escapeRegExp(image.alt)}")[^>]*>`,
+    'i'
+  );
+  if (!widgetPattern.test(homepageHtml)) errors.push(`homepage ${image.position} does not use ${image.url}`);
+}
+for (const image of [...homepageUpdates.heroSlides, ...homepageUpdates.aboutImages]) {
+  if (image.url.startsWith('/wp-content/themes/ecowise-custom/')) {
+    const relative = image.url.slice('/wp-content/themes/ecowise-custom/'.length);
+    if (!fs.existsSync(path.join(themeRoot, ...relative.split('/')))) errors.push(`homepage image asset is missing (${image.url})`);
+  } else if (image.url.startsWith('/wp-content/uploads/')) {
+    const relative = image.url.slice('/wp-content/uploads/'.length);
+    if (!uploadPaths.has(relative)) errors.push(`homepage upload is missing from the restored media contract (${image.url})`);
+  }
 }
 for (const [elementId, expectedRoute] of [
   ['41d2c8b8', '/for-schools/science-ecology-environment-field-trips/'],

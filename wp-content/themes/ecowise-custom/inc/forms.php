@@ -127,7 +127,7 @@ function ecowise_handle_fidelity_form() {
 
 	$recipient    = sanitize_email( apply_filters( 'ecowise_form_recipient', $default_recipient, $form_type, $fields ) );
 	$mail_subject = substr( ! empty( $fields['field_6fef306'] ) ? $fields['field_6fef306'] : $form_name, 0, 200 );
-	$sent         = wp_mail( $recipient, '[Ecowise Italy] ' . $mail_subject, implode( "\n", $lines ), $headers );
+	$sent         = wp_mail( $recipient, '[EcoWise Italy] ' . $mail_subject, implode( "\n", $lines ), $headers );
 
 	if ( ! $sent ) {
 		ecowise_form_respond( false, __( 'The message could not be sent. Please email us directly.', 'ecowise' ), 500 );

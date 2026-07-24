@@ -17,7 +17,7 @@ The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route ca
 
 ## Current release
 
-The current theme is version 1.0.15. The deterministic handoff archive is `ecowise-custom-theme-2026-07-23-v19.zip`: 729 verified theme files, 25,188,534 bytes, SHA-256 `F6BDE814BF3AF6913FF10CF2D4044723F8CA14F8DFE848625D78898612EE9A17`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current source release is theme 1.0.17. It replaces the five homepage hero images and the three About collage images from `content/homepage-updates.json`, keeps the full `Ecowise-Italy-211.jpg` landscape visible, normalizes customer-facing brand text to `EcoWise Italy`, and versions compiler-injected stylesheets so returning browsers cannot retain stale homepage presentation. The deterministic handoff archive is `ecowise-custom-theme-2026-07-24-v21.zip`: 733 verified theme files, 29,955,041 bytes, SHA-256 `1EF89BFBDEA1F03DFF53FA4384A51EAA23460783B4AAF379B1C68C05929F5969`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -41,6 +41,8 @@ Curated content added after the original capture lives in `content/editorial-upd
 `node tools/build-fidelity-snapshots.mjs ../scrape-analysis/page-inventory.csv ../scrape-analysis/extracted/ecowiseitaly-mirror wp-content/themes/ecowise-custom audit ../scrape-analysis/sitemap-urls.csv`
 
 The generated sections use `assets/css/editorial.css`. The validator derives its editorial contracts from the JSON and requires every configured item on its intended routes.
+
+Homepage image choices live separately in `content/homepage-updates.json`. That file is the source of truth for the five hero slides and three About-collage assignments; regenerate snapshots after changing it. The compiler also enforces the public `EcoWise Italy` presentation rule across visible and accessible snapshot copy while deliberately leaving technical paths and logo artwork intact.
 
 ## Verified Local installation
 
@@ -67,7 +69,7 @@ The fidelity documents now also expose a complete structural and action layer wi
 
 ## Production installation
 
-Theme 1.0.15 was deployed to `https://ecowiseitaly.com/` on 23 July 2026. Production is WordPress 6.8.1 at `/home/customer/www/ecowiseitaly.com/public_html`. `ecowise-custom` is active, all 11 legacy plugins are inactive, SiteGround Speed Optimizer is active solely for supported cache management, the front page remains ID 6, the posts page remains ID 2448, the permalink structure remains `/%postname%/`, and the substantive `wp_` database and production uploads were left in place.
+Theme 1.0.17 is deployed to `https://ecowiseitaly.com/`. Production is WordPress 6.8.1 at `/home/customer/www/ecowiseitaly.com/public_html`. `ecowise-custom` is active, all legacy plugins are inactive, SiteGround Speed Optimizer is active solely for supported cache management, the front page remains ID 6, the posts page remains ID 2448, the permalink structure remains `/%postname%/`, and the substantive `wp_` database and production uploads were left in place. The release rollback bundle is `/home/customer/ecowise-deploy-20260724-v21`; the prior `/home/customer/ecowise-deploy-20260724-v20` bundle retains the 1.0.15 pre-change archive and intermediate 1.0.16 package.
 
 The exact pre-cutover SSH rollback bundle is `/home/customer/ecowise-deploy-20260723-v18`. It contains the pre-deployment database dump, Hello Elementor archive, original theme/plugin option records, inventories, validator and deployed theme ZIP. Keep this directory until the new production release has completed an agreed retention period. SiteGround's separately created user backup is the broader recovery point.
 

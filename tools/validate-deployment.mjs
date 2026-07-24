@@ -69,6 +69,14 @@ function normalizeText(value) {
     .trim();
 }
 
+function normalizeBrandPresentation(value) {
+  const placeholder = '__ECOWISE_ITALY_BRAND__';
+  return value
+    .replace(/\bEcowise Italy\b/gi, placeholder)
+    .replace(/\bEcowise\b/gi, placeholder)
+    .replaceAll(placeholder, 'EcoWise Italy');
+}
+
 function extractTag(html, pattern) {
   const match = html.match(pattern);
   return match ? normalizeText(match[1]) : '';
@@ -103,7 +111,8 @@ async function validateRoute(route) {
   if (/fatal error|uncaught (?:error|exception)|wordpress database error/i.test(html)) errors.push(`${route.route}: WordPress/PHP error text is present`);
 
   const title = extractTag(html, /<title\b[^>]*>([\s\S]*?)<\/title>/i);
-  if (title !== normalizeText(route.title)) errors.push(`${route.route}: title mismatch (expected "${normalizeText(route.title)}", received "${title || '[missing]'}")`);
+  const expectedTitle = normalizeBrandPresentation(normalizeText(route.title));
+  if (title !== expectedTitle) errors.push(`${route.route}: title mismatch (expected "${expectedTitle}", received "${title || '[missing]'}")`);
 
   const canonical = extractCanonical(html);
   if (canonical !== route.canonical) errors.push(`${route.route}: canonical mismatch (expected ${route.canonical}, received ${canonical || '[missing]'})`);

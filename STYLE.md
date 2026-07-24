@@ -1,5 +1,9 @@
 # Site-wide visual system
 
+## Brand presentation
+
+Customer-facing text uses `EcoWise Italy`, with capital E and W and with Italy present. Preserve the existing logo artwork unchanged. Never rewrite the domain, URLs, slugs, media filenames, code identifiers or technical theme name to enforce this presentation rule.
+
 ## Heading semantics and visual fidelity
 
 Each captured route must expose exactly one H1. Semantic tag corrections must retain the existing Elementor classes and computed typography, including responsive font-size variables, so document-outline improvements never alter wrapping, section height or rhythm.
