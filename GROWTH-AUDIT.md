@@ -1,7 +1,9 @@
 # SEO, UX and lead-generation audit
 
-Audit date: 26 July 2026  
-Site: `https://ecowiseitaly.com/`  
+Audit date: 26 July 2026
+
+Site: `https://ecowiseitaly.com/`
+
 Scope: live technical SEO, search positioning, customer journeys, conversion systems, offer clarity and a practical lead-growth roadmap.
 
 ## Executive verdict
