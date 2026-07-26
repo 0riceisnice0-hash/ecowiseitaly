@@ -14,6 +14,7 @@
 - Forensically confirmed the persistence was inherited from the supplied 21 July backup: its SQL already contained all three rogue users, its plugin payload contained PHP Console and WP File Manager, and its archived Hello Elementor theme already contained injected `sidebar-soap.php`.
 - Recorded the evidentiary limit: logs prove the random-name malicious plugin wrote payloads on 23 July, but neither the first exploit nor a responsible human can be attributed from the retained evidence.
 - Locked WordPress ownership to the sole administrator at `marketinghydron@gmail.com`: registration remains disabled, all sessions and application passwords were destroyed, and dashboard PHP editing was disabled with `DISALLOW_FILE_EDIT`.
+- Replaced the sole administrator's former password with a newly generated WordPress password and sent the notification only to `marketinghydron@gmail.com`, then destroyed sessions and application passwords again.
 - Extended the read-only WordPress validator with `ECOWISE_EXPECTED_ADMIN_EMAIL` so deployment checks fail if another user, a different owner, public registration or an application password reappears.
 - Stored the cleanup script in `tools/siteground-malware-cleanup-2026-07-26.sh` and server-side incident inventories outside the webroot at `/home/customer/ecowise-security-cleanup-20260726`.
 - SiteGround reactivation is pending its authenticated Client Area **Request Scan**.
