@@ -17,7 +17,7 @@
 - Replaced the sole administrator's former password with a newly generated WordPress password and sent the notification only to `marketinghydron@gmail.com`, then destroyed sessions and application passwords again.
 - Extended the read-only WordPress validator with `ECOWISE_EXPECTED_ADMIN_EMAIL` so deployment checks fail if another user, a different owner, public registration or an application password reappears.
 - Stored the cleanup script in `tools/siteground-malware-cleanup-2026-07-26.sh` and server-side incident inventories outside the webroot at `/home/customer/ecowise-security-cleanup-20260726`.
-- SiteGround reactivation is pending its authenticated Client Area **Request Scan**.
+- SiteGround accepted the cleanup and restored public access. Reverified HTTP 200, all 36 routes, all 35 sitemap URLs, four child sitemaps, native endpoints, redirects and the live custom homepage presentation.
 
 ## 2026-07-24
 
