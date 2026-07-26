@@ -36,6 +36,32 @@ if ( $expected_url ) {
 	ecowise_preflight_expect( $home_url === $expected_url, "Expected deployed URL {$expected_url}; WordPress reports {$home_url}." );
 }
 
+$expected_admin_email = strtolower( trim( (string) getenv( 'ECOWISE_EXPECTED_ADMIN_EMAIL' ) ) );
+if ( $expected_admin_email ) {
+	$users = get_users(
+		array(
+			'fields' => array( 'ID', 'user_email' ),
+		)
+	);
+	ecowise_preflight_expect( 1 === count( $users ), 'Expected exactly one WordPress user; found ' . count( $users ) . '.' );
+	if ( 1 === count( $users ) ) {
+		$owner = $users[0];
+		ecowise_preflight_expect(
+			$expected_admin_email === strtolower( $owner->user_email ),
+			"Expected sole WordPress owner {$expected_admin_email}; found {$owner->user_email}."
+		);
+		ecowise_preflight_expect(
+			user_can( $owner->ID, 'manage_options' ),
+			"Expected {$owner->user_email} to be an administrator."
+		);
+		ecowise_preflight_expect(
+			empty( get_user_meta( $owner->ID, '_application_passwords', true ) ),
+			"Unexpected application password exists for {$owner->user_email}."
+		);
+	}
+	ecowise_preflight_expect( ! get_option( 'users_can_register' ), 'Public WordPress user registration is enabled.' );
+}
+
 $total_posts = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->posts}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 ecowise_preflight_expect( 3899 <= $total_posts, "Expected at least 3,899 restored post rows; found {$total_posts}." );
 
@@ -73,6 +99,10 @@ if ( is_readable( $manifest_file ) ) {
 	ecowise_preflight_expect( is_array( $manifest ), 'Upload manifest is not valid JSON.' );
 	if ( is_array( $manifest ) ) {
 		foreach ( $manifest as $item ) {
+			$relative_path = (string) $item['path'];
+			if ( preg_match( '#^(?:template-kits/.*\.php|elementor/css/post-\d+\.css)$#i', $relative_path ) ) {
+				continue;
+			}
 			$file = trailingslashit( $upload_dir['basedir'] ) . str_replace( '/', DIRECTORY_SEPARATOR, $item['path'] );
 			if ( ! is_file( $file ) ) {
 				$errors[] = "Restored upload is missing: {$item['path']}.";
@@ -83,6 +113,15 @@ if ( is_readable( $manifest_file ) ) {
 				continue;
 			}
 			++$upload_count;
+		}
+	}
+
+	$uploads = new RecursiveIteratorIterator(
+		new RecursiveDirectoryIterator( $upload_dir['basedir'], FilesystemIterator::SKIP_DOTS )
+	);
+	foreach ( $uploads as $upload ) {
+		if ( $upload->isFile() && preg_match( '/\.(?:php\d*|phtml|phar)$/i', $upload->getFilename() ) ) {
+			$errors[] = 'Executable PHP is present in uploads: ' . $upload->getPathname() . '.';
 		}
 	}
 }
@@ -96,7 +135,7 @@ if ( $errors ) {
 	exit( 1 );
 }
 
-echo "WordPress restore validation passed: wp_ database, Ecowise Custom theme, reading/permalink settings, 30 pages, 3 posts, 413 attachments and {$upload_count} upload files verified." . PHP_EOL;
+echo "WordPress restore validation passed: wp_ database, Ecowise Custom theme, reading/permalink settings, account ownership, 30 pages, 3 posts, 413 attachments and {$upload_count} upload files verified." . PHP_EOL;
 if ( $warnings ) {
 	echo 'Warnings:' . PHP_EOL . '- ' . implode( PHP_EOL . '- ', $warnings ) . PHP_EOL;
 }

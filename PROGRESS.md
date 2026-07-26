@@ -1,5 +1,23 @@
 # Progress log
 
+## 2026-07-26
+
+- Diagnosed the public outage as a SiteGround malware suspension returning HTTP 429 with `X-Limited: 1`; WordPress and the custom theme remained reachable and healthy over SSH.
+- Confirmed the infection predated the custom-theme release: SiteGround had quarantined 48 fabricated PHP files across WordPress core, inactive themes and legacy plugins, and the PHP log identified a random-name malicious plugin writing payloads on 23 July.
+- Removed three unauthorized administrator accounts: `articles_table`, `devoption` and `webtable`; reassigned any owned content to the sole retained administrator.
+- Deleted all 12 unused legacy or malicious plugin trees, including Elementor, Elementor Pro, WP File Manager, PHP Console and the random-name `chagirein-riereagaigol` plugin.
+- Reinstalled SiteGround Speed Optimizer 7.8.0 from WordPress.org as the sole active normal plugin.
+- Upgraded and replaced WordPress core from the official 6.8.6 distribution and removed every non-core file reported by checksum verification.
+- Replaced the active custom theme from the verified 1.0.17 v21 archive, reinstalled a clean Twenty Twenty-Five fallback and removed poisoned server rollback bundles v18/v20.
+- Removed executable PHP from uploads, rotated WordPress salts, flushed rewrites/object cache and purged SiteGround Dynamic Cache.
+- Passed post-cleanup checks: official WordPress core checksums, official active-plugin checksums, 733 exact custom-theme package files, zero permission-quarantined webroot files, zero PHP files in uploads and only `sg-cachepress` active.
+- Forensically confirmed the persistence was inherited from the supplied 21 July backup: its SQL already contained all three rogue users, its plugin payload contained PHP Console and WP File Manager, and its archived Hello Elementor theme already contained injected `sidebar-soap.php`.
+- Recorded the evidentiary limit: logs prove the random-name malicious plugin wrote payloads on 23 July, but neither the first exploit nor a responsible human can be attributed from the retained evidence.
+- Locked WordPress ownership to the sole administrator at `marketinghydron@gmail.com`: registration remains disabled, all sessions and application passwords were destroyed, and dashboard PHP editing was disabled with `DISALLOW_FILE_EDIT`.
+- Extended the read-only WordPress validator with `ECOWISE_EXPECTED_ADMIN_EMAIL` so deployment checks fail if another user, a different owner, public registration or an application password reappears.
+- Stored the cleanup script in `tools/siteground-malware-cleanup-2026-07-26.sh` and server-side incident inventories outside the webroot at `/home/customer/ecowise-security-cleanup-20260726`.
+- SiteGround reactivation is pending its authenticated Client Area **Request Scan**.
+
 ## 2026-07-24
 
 - Added `content/homepage-updates.json` as the deterministic source for homepage hero and About-collage image assignments.

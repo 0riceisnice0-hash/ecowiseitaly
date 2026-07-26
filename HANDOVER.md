@@ -52,7 +52,7 @@ The primary working installation is `C:\Users\zacpl\Local Sites\ecowise`, Local 
 
 The Local deployment passed both:
 
-- `ECOWISE_EXPECTED_URL=http://ecowise.local wp eval-file tools/validate-wordpress.php`
+- `ECOWISE_EXPECTED_URL=http://ecowise.local ECOWISE_EXPECTED_ADMIN_EMAIL=marketinghydron@gmail.com wp eval-file tools/validate-wordpress.php`
 - `ECOWISE_DEPLOYMENT_CONCURRENCY=1 node tools/validate-deployment.mjs http://ecowise.local`
 
 Use deployment concurrency `1` for this Local installation because its Windows PHP service has two workers. Staging and production continue to default to concurrency `6`.
@@ -69,7 +69,19 @@ The fidelity documents now also expose a complete structural and action layer wi
 
 ## Production installation
 
-Theme 1.0.17 is deployed to `https://ecowiseitaly.com/`. Production is WordPress 6.8.1 at `/home/customer/www/ecowiseitaly.com/public_html`. `ecowise-custom` is active, all legacy plugins are inactive, SiteGround Speed Optimizer is active solely for supported cache management, the front page remains ID 6, the posts page remains ID 2448, the permalink structure remains `/%postname%/`, and the substantive `wp_` database and production uploads were left in place. The release rollback bundle is `/home/customer/ecowise-deploy-20260724-v21`; the prior `/home/customer/ecowise-deploy-20260724-v20` bundle retains the 1.0.15 pre-change archive and intermediate 1.0.16 package.
+Theme 1.0.17 is deployed to `https://ecowiseitaly.com/`. Production is WordPress 6.8.6 at `/home/customer/www/ecowiseitaly.com/public_html`. `ecowise-custom` is active, all legacy plugins have been removed, SiteGround Speed Optimizer is active solely for supported cache management, the front page remains ID 6, the posts page remains ID 2448, the permalink structure remains `/%postname%/`, and the substantive `wp_` content and production uploads remain in place. The clean release rollback bundle is `/home/customer/ecowise-deploy-20260724-v21`; earlier server-side bundles were removed during malware cleanup.
+
+### July 2026 security cleanup
+
+SiteGround suspended web access on 26 July after its scanner found a pre-existing malware infection in the restored WordPress tree. The infection was not present in the Git repository or deterministic custom-theme package. Quarantined fabricated PHP files existed in WordPress core, Hello Elementor, Twenty Twenty-Five and legacy plugin directories; PHP logs identified a random-name malicious plugin writing payloads on 23 July. Three unauthorized administrator accounts (`articles_table`, `devoption` and `webtable`) were also present.
+
+The original 21 July backup independently proves the persistence was inherited: its SQL already contains all three unauthorized user records, its plugin archive contains PHP Console and WP File Manager, and its Hello Elementor archive already contains the injected `sidebar-soap.php`. The unauthorized accounts were registered in 2020 and 2021, years before the substantive EcoWise Italy content and the custom-theme project. The available evidence therefore supports an old compromised WordPress installation carried forward through backup/restore, with unauthorized administrators and malicious PHP providing continued access. It does not reliably identify the first vulnerability, the initial compromise date or the human responsible; malicious file timestamps can be forged, and the presence of a risky plugin alone does not prove it was the original entry point.
+
+The production cleanup upgraded and replaced WordPress core from the official 6.8.6 package, removed all 12 unused legacy/malicious plugins, reinstalled SiteGround Speed Optimizer 7.8.0 from WordPress.org, replaced `ecowise-custom` from the verified v21 archive, reinstalled a clean Twenty Twenty-Five fallback, removed executable files from uploads, deleted poisoned rollback bundles v18/v20, removed the three unauthorized administrators and rotated WordPress salts. After cleanup, core and the active plugin passed official checksums; the webroot had zero permission-quarantined files, uploads had zero PHP files, the custom theme had exactly 733 package files, and only `sg-cachepress` remained active. Incident inventories are stored outside the webroot at `/home/customer/ecowise-security-cleanup-20260726`.
+
+Production now has exactly one WordPress user: ID 1, administrator `admin`, with the sole owner email and email-login address `marketinghydron@gmail.com`. Registration is disabled, all sessions and application passwords have been destroyed, WordPress salts were rotated, and `DISALLOW_FILE_EDIT` prevents dashboard editing of plugin/theme PHP. The restore validator enforces the one-user owner contract whenever `ECOWISE_EXPECTED_ADMIN_EMAIL=marketinghydron@gmail.com` is supplied. The owner should still rotate the WordPress password, SiteGround password and every SSH/SFTP credential through their respective authenticated interfaces; do not store those secrets in Git.
+
+SiteGround web access remains suspended until its Client Area malware incident receives a successful **Request Scan**. Do not spend one of the three daily scans until all cleanup checks above pass. After reactivation, purge Dynamic Cache and rerun the WordPress, deployment and browser gates.
 
 The exact pre-cutover SSH rollback bundle is `/home/customer/ecowise-deploy-20260723-v18`. It contains the pre-deployment database dump, Hello Elementor archive, original theme/plugin option records, inventories, validator and deployed theme ZIP. Keep this directory until the new production release has completed an agreed retention period. SiteGround's separately created user backup is the broader recovery point.
 
@@ -99,7 +111,7 @@ The database has no meaningful Yoast, Rank Math, AIOSEO or SEOPress metadata. Hi
 7. Assign the recovered primary/footer menus if WordPress did not retain their locations.
 8. Confirm the two captured form recipients above are still monitored, or configure the `ecowise_form_recipient` filter with an explicit per-form routing policy.
 9. Configure a real SMTP/mail transport and submit the contact and post forms.
-10. From this repository, run `ECOWISE_EXPECTED_URL=https://staging-host.example wp --path=/absolute/wordpress/path eval-file tools/validate-wordpress.php` to verify the actual database, options, plugin state and all restored upload files.
+10. From this repository, run `ECOWISE_EXPECTED_URL=https://staging-host.example ECOWISE_EXPECTED_ADMIN_EMAIL=marketinghydron@gmail.com wp --path=/absolute/wordpress/path eval-file tools/validate-wordpress.php` to verify the actual database, sole WordPress owner, options, plugin state and all restored upload files.
 11. Purge caches, then run the validation checklist below before exposing staging to search engines.
 
 ## Plugin disposition and rollback

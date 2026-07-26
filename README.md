@@ -42,7 +42,7 @@ It verifies all 36 public routes, exact sitemap membership, titles, production c
 Validate the restored WordPress database, options, active theme/plugins and all 1,950 uploads through WP-CLI:
 
 ```sh
-ECOWISE_EXPECTED_URL=https://staging.example.test wp eval-file tools/validate-wordpress.php
+ECOWISE_EXPECTED_URL=https://staging.example.test ECOWISE_EXPECTED_ADMIN_EMAIL=marketinghydron@gmail.com wp eval-file tools/validate-wordpress.php
 ```
 
 Build a deterministic, self-verifying release ZIP with Python 3:
