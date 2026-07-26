@@ -2,6 +2,11 @@
 
 ## 2026-07-26
 
+- Completed a live SEO, UX, customer-journey, search-market and lead-generation audit and recorded the prioritised strategy in `GROWTH-AUDIT.md`.
+- Verified all 35 sitemap URLs return 200 with one H1 and correct self-canonicals, while identifying sitewide missing descriptions/social metadata/schema, duplicate indexable archives, weak commercial intent targeting and substantial legacy asset weight.
+- Identified the highest-value acquisition wedge as international/bilingual schools, followed by Italian schools in Piemonte; positioned corporate retreats as the second offer engine and family travel as conditional on operational/pricing clarity.
+- Found that the inherited newsletter form still routes visitor data to former-development address `saqibbalii099@gmail.com`, with the legacy database referencing `email@dev3.saqib07.com`; made correction and owned lead delivery the stop-the-line recommendation before traffic acquisition.
+- Audited desktop customer paths and found no active conversion analytics, no CRM/lead ledger, no verified SMTP, no privacy layer, generic contact qualification and missing contextual CTAs across most commercial pages.
 - Diagnosed the public outage as a SiteGround malware suspension returning HTTP 429 with `X-Limited: 1`; WordPress and the custom theme remained reachable and healthy over SSH.
 - Confirmed the infection predated the custom-theme release: SiteGround had quarantined 48 fabricated PHP files across WordPress core, inactive themes and legacy plugins, and the PHP log identified a random-name malicious plugin writing payloads on 23 July.
 - Removed three unauthorized administrator accounts: `articles_table`, `devoption` and `webtable`; reassigned any owned content to the sole retained administrator.

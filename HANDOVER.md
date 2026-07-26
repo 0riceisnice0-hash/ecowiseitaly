@@ -15,6 +15,8 @@ The immediate compatibility contract is:
 
 The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route captured contract, including the date archive, is in `audit/captured-routes.json`. Supporting source inventories are in `audit/source/`.
 
+The 26 July 2026 SEO, UX, customer-journey and lead-generation findings are consolidated in `GROWTH-AUDIT.md`. Its first operational priority is correcting the inherited newsletter/form recipient and establishing tested lead delivery before acquiring traffic.
+
 ## Current release
 
 The current source release is theme 1.0.17. It replaces the five homepage hero images and the three About collage images from `content/homepage-updates.json`, keeps the full `Ecowise-Italy-211.jpg` landscape visible, normalizes customer-facing brand text to `EcoWise Italy`, and versions compiler-injected stylesheets so returning browsers cannot retain stale homepage presentation. The deterministic handoff archive is `ecowise-custom-theme-2026-07-24-v21.zip`: 733 verified theme files, 29,955,041 bytes, SHA-256 `1EF89BFBDEA1F03DFF53FA4384A51EAA23460783B4AAF379B1C68C05929F5969`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
