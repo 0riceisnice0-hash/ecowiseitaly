@@ -1,0 +1,66 @@
+.ecowise-school-cta {
+  position: relative;
+  z-index: 2;
+  margin: 72px auto 28px;
+  padding: 34px;
+  border-radius: 22px;
+  color: #fff;
+  background: linear-gradient(120deg, #173b24, #2f7d43);
+  box-shadow: 0 20px 55px rgba(10, 30, 18, .18);
+  font-family: "Rubik", sans-serif;
+}
+
+.ecowise-school-cta__inner {
+  width: min(calc(100% - 30px), 1100px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.ecowise-school-cta p {
+  margin: 0;
+}
+
+.ecowise-school-cta strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #f6bd23;
+  font: 750 clamp(1.3rem, 2.4vw, 2rem)/1.1 "Outfit", sans-serif;
+}
+
+.ecowise-school-cta span {
+  color: rgba(255,255,255,.8);
+}
+
+.ecowise-school-cta a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  padding: 13px 23px;
+  border-radius: 999px;
+  color: #172018;
+  background: #f6bd23;
+  font: 800 .76rem/1 "Outfit", sans-serif;
+  letter-spacing: .06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .ecowise-school-cta {
+    margin-top: 48px;
+    padding: 25px 10px;
+    border-radius: 0;
+  }
+  .ecowise-school-cta__inner {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .ecowise-school-cta a {
+    justify-content: center;
+  }
+}
+

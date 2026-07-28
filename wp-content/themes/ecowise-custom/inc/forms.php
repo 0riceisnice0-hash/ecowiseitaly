@@ -127,6 +127,9 @@ function ecowise_handle_fidelity_form() {
 
 	$recipient    = sanitize_email( apply_filters( 'ecowise_form_recipient', $default_recipient, $form_type, $fields ) );
 	$mail_subject = substr( ! empty( $fields['field_6fef306'] ) ? $fields['field_6fef306'] : $form_name, 0, 200 );
+	if ( function_exists( 'ecowise_record_enquiry' ) ) {
+		ecowise_record_enquiry( $form_type, $fields, $page, $email );
+	}
 	$sent         = wp_mail( $recipient, '[EcoWise Italy] ' . $mail_subject, implode( "\n", $lines ), $headers );
 
 	if ( ! $sent ) {

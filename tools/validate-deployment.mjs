@@ -5,7 +5,9 @@ import path from 'node:path';
 
 const repositoryRoot = path.resolve(import.meta.dirname, '..');
 const capturedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'captured-routes.json'), 'utf8'));
+const nativeRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'native-routes.json'), 'utf8'));
 const indexedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'indexed-routes.json'), 'utf8'));
+const seoProfiles = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'wp-content', 'themes', 'ecowise-custom', 'config', 'seo-metadata.json'), 'utf8'));
 const targetArgument = process.argv[2];
 
 if (!targetArgument || targetArgument === '--help' || targetArgument === '-h') {
@@ -89,6 +91,13 @@ function extractCanonical(html) {
   return canonical.match(/\bhref=["']([^"']+)["']/i)?.[1]?.replaceAll('&amp;', '&') || '';
 }
 
+function extractMeta(html, attribute, value) {
+  const escaped = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const tags = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => match[0]);
+  const tag = tags.find((candidate) => new RegExp(`\\b${attribute}=["']${escaped}["']`, 'i').test(candidate));
+  return tag?.match(/\bcontent=["']([^"']*)["']/i)?.[1]?.replaceAll('&amp;', '&') || '';
+}
+
 async function validateRoute(route) {
   let response;
   try {
@@ -111,11 +120,52 @@ async function validateRoute(route) {
   if (/fatal error|uncaught (?:error|exception)|wordpress database error/i.test(html)) errors.push(`${route.route}: WordPress/PHP error text is present`);
 
   const title = extractTag(html, /<title\b[^>]*>([\s\S]*?)<\/title>/i);
-  const expectedTitle = normalizeBrandPresentation(normalizeText(route.title));
+  const seoProfile = seoProfiles[route.route];
+  const expectedTitle = seoProfile ? seoProfile.title : normalizeBrandPresentation(normalizeText(route.title));
   if (title !== expectedTitle) errors.push(`${route.route}: title mismatch (expected "${expectedTitle}", received "${title || '[missing]'}")`);
 
   const canonical = extractCanonical(html);
   if (canonical !== route.canonical) errors.push(`${route.route}: canonical mismatch (expected ${route.canonical}, received ${canonical || '[missing]'})`);
+
+  if (seoProfile) {
+    const metadataContracts = [
+      ['name', 'description', seoProfile.description],
+      ['property', 'og:title', seoProfile.title],
+      ['property', 'og:description', seoProfile.description],
+      ['property', 'og:url', seoProfile.canonical],
+      ['property', 'og:type', 'website'],
+      ['property', 'og:site_name', 'EcoWise Italy'],
+      ['property', 'og:locale', seoProfile.locale],
+      ['name', 'twitter:card', 'summary_large_image'],
+      ['name', 'twitter:title', seoProfile.title],
+      ['name', 'twitter:description', seoProfile.description],
+    ];
+    for (const [attribute, key, expected] of metadataContracts) {
+      const actual = normalizeText(extractMeta(html, attribute, key));
+      if (actual !== normalizeText(expected)) errors.push(`${route.route}: ${key} mismatch`);
+    }
+    const schemaMatch = html.match(/<script\b[^>]*\bid=["']ecowise-schema["'][^>]*>([\s\S]*?)<\/script>/i);
+    if (!schemaMatch) {
+      errors.push(`${route.route}: structured data is missing`);
+    } else {
+      try {
+        const schema = JSON.parse(schemaMatch[1]);
+        if (schema['@context'] !== 'https://schema.org' || !Array.isArray(schema['@graph']) || schema['@graph'].length < 2) {
+          errors.push(`${route.route}: structured data graph is incomplete`);
+        }
+      } catch {
+        errors.push(`${route.route}: structured data is invalid JSON`);
+      }
+    }
+  }
+
+  if (route.pageType === 'native-page') {
+    const h1 = extractTag(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i);
+    if (h1 !== route.h1) errors.push(`${route.route}: native H1 mismatch (expected "${route.h1}", received "${h1 || '[missing]'}")`);
+    for (const marker of ['data-school-enquiry', 'Request a tailored school-trip proposal', '15–80', 'November–March']) {
+      if (!html.includes(marker)) errors.push(`${route.route}: native school funnel is missing ${marker}`);
+    }
+  }
 
   const isProductionTarget = ['ecowiseitaly.com', 'www.ecowiseitaly.com'].includes(target.hostname.toLowerCase());
   const productionAnchor = html.match(/<a\b[^>]*\bhref=["'](?:https?:)?\/\/(?:www\.)?ecowiseitaly\.com(?:\/|["'])/i);
@@ -203,7 +253,7 @@ async function validateRedirect(route, expectedPath) {
   }
 }
 
-await mapWithConcurrency(capturedRoutes, deploymentConcurrency, validateRoute);
+await mapWithConcurrency([...capturedRoutes, ...nativeRoutes], deploymentConcurrency, validateRoute);
 await validateSitemap();
 await mapWithConcurrency([
   () => validateNativeEndpoint('/wp-json/', 'application/json'),
@@ -226,5 +276,5 @@ if (errors.length) {
   process.exit(1);
 }
 
-process.stdout.write(`Deployment validation passed for ${target.origin}: ${capturedRoutes.length} routes, ${indexedRoutes.length} sitemap URLs, four child sitemaps, four native endpoints, two redirects and HEAD handling verified.\n`);
+process.stdout.write(`Deployment validation passed for ${target.origin}: ${capturedRoutes.length} preserved routes, ${nativeRoutes.length} native growth route, ${indexedRoutes.length} sitemap URLs, four child sitemaps, four native endpoints, two redirects and HEAD handling verified.\n`);
 if (warnings.length) process.stdout.write(`Warnings:\n- ${warnings.join('\n- ')}\n`);

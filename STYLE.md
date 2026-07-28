@@ -89,3 +89,11 @@ Accessibility metadata must remain visually neutral. The header, primary content
 Primary breakpoints are 1024px and 767px. Always inspect 1440, 1024, 768 and 390px widths. At narrow widths, preserve content order, avoid horizontal scrolling, convert multi-column cards to one column and keep buttons from becoming cramped.
 
 Honor `prefers-reduced-motion`. Ken Burns, carousel autoplay and decorative transitions must stop or become effectively instant. Content cannot depend on animation to appear.
+
+## School funnel
+
+The native `/school-trips-italy/` route uses a more editorial acquisition treatment while remaining recognisably EcoWise Italy. Its durable palette is deep forest `#12251A`, programme green `#2F7D43`, warm cream `#F5F1DF`, sage `#E8EFDC`, red `#C92F2F` and yellow `#F6BD23`. Red and yellow deliberately echo the approved homepage collage frames.
+
+The funnel uses a documentary photographic hero, oversized but responsive heading, fact card, compact trust strip, alternating programme cards, numbered journey, three-party responsibility grid, educator quotes, seasonality band, accessible FAQ and high-contrast proposal form. Content density is high by design, but every section must answer a customer decision rather than act as decoration.
+
+All funnel CSS remains isolated in `assets/css/school-funnel.css`. Conversion banners injected into preserved school pages use `assets/css/school-conversion.css`; they may not override captured page typography or layout outside the banner. Native pages require the code-owned navigation fallback when no WordPress menu is assigned.

@@ -2,6 +2,21 @@
 
 ## 2026-07-28
 
+- Built Phase 1 of the school lead-generation system as the native, code-owned `/school-trips-italy/` route without changing any of the 36 preserved fidelity pages.
+- Added a teacher-focused journey covering group fit, curriculum-linked programme paths, an illustrative three-day residential itinerary, responsibilities, educator proof, seasonality, planning steps, FAQ and a detailed proposal request.
+- Added the secure `ecowise_school_enquiry` handler with nonce, honeypot, server-side validation, rate limiting, explicit data-use acknowledgement, UTM/referrer capture and delivery to Adam.
+- Added the administrator-only `ecowise_enquiry` lead ledger; inherited contact and newsletter forms now create owned lead records as well as sending email.
+- Added responsive proposal banners to the Schools hub and five high-intent programme pages at runtime while leaving generated snapshots untouched.
+- Added owner-safe titles, descriptions, Open Graph, Twitter metadata and Organization/page/service schema to nine priority routes, including the new funnel and Italian school page.
+- Added privacy-safe `ecowise:conversion` and optional existing-`dataLayer` events without installing any third-party tracker or making new analytics requests.
+- Added `audit/native-routes.json`, preserved native routes during snapshot rebuilds and expanded validation to 36 indexed URLs while keeping the 36-route fidelity contract unchanged.
+- Added idempotent `tools/provision-growth-pages.php`, WordPress checks for 31 published pages/no funnel Elementor data, and `ADAM-QUESTIONS.md` for the remaining evidence and owner decisions.
+- Local WordPress QA passed the complete route/sitemap contract, PHP lint, native menu fallback, responsive overflow checks, a real test proposal submission, private-ledger creation and Mailpit delivery to Adam's configured address; the synthetic QA lead was deleted afterwards.
+- Built deterministic theme 1.1.0 package v23 with 739 verified files, 30,011,321 bytes and SHA-256 `9447BC9F55CEB53F1939718989807451280DE93D7869C0526084C21FB303F098`.
+- Deployed Phase 1 to production and provisioned the native funnel as page ID 4080.
+- Diagnosed a SiteGround PHP opcode-cache split state that initially served the new template without loading the new bootstrap modules. Activated the same verified package under the fresh `ecowise-custom-v24` filesystem path to force a clean compile; no content or URL changed.
+- Passed the production HTTP gate across 36 preserved routes, one native growth route, the exact 36-URL sitemap, four child sitemaps, four native endpoints, two redirects and HEAD handling.
+- Browser-verified the live funnel at 1280 and 375 pixels: correct title, description and route stylesheet; one H1; no broken media; no horizontal overflow; and responsive navigation, form and hero composition.
 - Converted Adam Rose's answers to the 12 growth-audit questions into `BUSINESS-BRIEF.md`, the durable source of truth for priorities, leads, seasonality, group fit, contracting responsibilities, compliance limits and outstanding evidence.
 - Confirmed commercial priority as schools first, families second and corporate third; identified UK schools as the principal missed market and the Netherlands/Northern Europe as secondary school markets.
 - Recorded November–March as the urgent capacity gap, typical groups of 20–30 within a 15–80 range, the common three-day/two-night format and bespoke per-person pricing.

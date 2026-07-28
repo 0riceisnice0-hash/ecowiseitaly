@@ -6,20 +6,20 @@ Ecowise Italy is being moved from Hello Elementor/Elementor Pro to the custom `e
 
 The immediate compatibility contract is:
 
-- 35 URLs listed by WordPress core sitemaps remain indexable.
+- The 35 imported URLs plus the native school funnel remain indexable through WordPress core sitemaps.
 - The linked date archive `/2024/09/22/` remains available even though it is not in the sitemap.
 - `/gateways/` retains its established spelling.
 - `/home/` continues to resolve to `/`.
 - Existing HTTP and `www` variants canonicalize to HTTPS non-`www`.
 - Titles, content, images, links, archives, feeds and the current header/footer presentation remain recognizable and stable.
 
-The 35-route sitemap contract is in `audit/indexed-routes.json`; the 36-route captured contract, including the date archive, is in `audit/captured-routes.json`. Supporting source inventories are in `audit/source/`.
+The 36-route sitemap contract is in `audit/indexed-routes.json`; the 36-route captured contract, including the non-indexed date archive, is in `audit/captured-routes.json`; code-owned routes are kept separately in `audit/native-routes.json`. Supporting source inventories are in `audit/source/`.
 
 The 26 July 2026 SEO, UX, customer-journey and lead-generation findings are consolidated in `GROWTH-AUDIT.md`. Adam Rose's owner-approved offer, seasonality, responsibility and lead-handling facts are recorded separately in `BUSINESS-BRIEF.md`; use it as the commercial source of truth.
 
 ## Current release
 
-The current source release is theme 1.0.18. It retains the approved homepage presentation from 1.0.17 and routes both active form contracts to Adam Rose's owner-approved email. The deterministic handoff archive is `ecowise-custom-theme-2026-07-28-v22.zip`: 733 verified theme files, 29,955,039 bytes, SHA-256 `2AC466D15C56195382D7ADC47C99DA66A5756A9CD1F1B2A30F3120477C717143`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current source release is theme 1.1.0. It retains the approved homepage presentation, adds the code-owned school acquisition funnel, private lead ledger, school-page conversion paths and priority SEO foundation. The deterministic handoff archive is `ecowise-custom-theme-2026-07-28-v23.zip`: 739 verified theme files, 30,011,321 bytes, SHA-256 `9447BC9F55CEB53F1939718989807451280DE93D7869C0526084C21FB303F098`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -29,6 +29,8 @@ The theme has two front-end paths:
 
 1. The fidelity renderer serves reviewed static HTML documents for 36 known public routes. Canonicals were repaired to absolute production URLs, mirror query-hash artifacts were removed, captured analytics was disabled, and required CSS/JS/font files—including the static PDF viewer and 84 on-demand interaction chunks—were vendored beneath the custom theme. Public photographs continue to resolve from the restored WordPress uploads directory.
 2. Native PHP templates handle unmapped pages, future posts, search, 404s and other normal WordPress requests. They do not call Elementor or ACF.
+
+The first deliberate native commercial route is `/school-trips-italy/`, documented in `SCHOOL-FUNNEL.md`. It is provisioned with `tools/provision-growth-pages.php`, appears in the core sitemap and does not alter any captured route. `ADAM-QUESTIONS.md` contains the small set of proof, operational and data-retention decisions still needed for the next phase.
 
 Mapped front-end routes use the fidelity snapshots for both public and logged-in visitors; authenticated responses are explicitly `private, no-store`. This prevents administrators from seeing the unfinished native fallback merely because they are logged in. WordPress previews still bypass fidelity, while admin, REST, AJAX, feeds and sitemaps are never intercepted.
 
@@ -48,7 +50,7 @@ Homepage image choices live separately in `content/homepage-updates.json`. That 
 
 ## Verified Local installation
 
-The primary working installation is `C:\Users\zacpl\Local Sites\ecowise`, Local site ID `6YdNrqjzJ`, available at `http://ecowise.local/`. It runs WordPress 6.8.6, PHP 8.2 and MySQL 8 with `ecowise-custom` active and no active legacy plugins. The restored substantive `wp_` database contains 30 published pages, three published posts and 413 attachments; all 1,950 upload files are present.
+The primary working installation is `C:\Users\zacpl\Local Sites\ecowise`, Local site ID `6YdNrqjzJ`, available at `http://ecowise.local/`. It runs WordPress 6.8.6, PHP 8.2 and MySQL 8 with `ecowise-custom` active and no active legacy plugins. The substantive `wp_` database contains 31 published pages after provisioning the school funnel, three published posts and 413 attachments.
 
 `WP_HOME` and `WP_SITEURL` are pinned to the Local URL in its `wp-config.php`. Keep `DB_HOST` as `localhost`: Local assigns its MySQL port dynamically and supplies it to the site runtime. The original Local rollback SQL at `app\sql\local.sql` was preserved. Internal interactive links are rewritten to the current installation at render time, while canonical metadata intentionally remains on `https://ecowiseitaly.com/`.
 
@@ -59,7 +61,7 @@ The Local deployment passed both:
 
 Use deployment concurrency `1` for this Local installation because its Windows PHP service has two workers. Staging and production continue to default to concurrency `6`.
 
-Forms inside fidelity documents are intercepted in the capture phase by `assets/js/fidelity.js`, which suppresses the dormant captured Elementor handler and sends exactly one request to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields; without JavaScript, WordPress redirects back to the source form with an accessible success/error result. Both contact form `68574d28` and newsletter form `1b3fffa7` now default to Adam's owner-approved `adamecorose@gmail.com`; the inherited former-development newsletter recipient is forbidden by the static validator. The `ecowise_form_recipient` filter receives the default recipient, form type and sanitized fields when production needs an explicit override. Fidelity responses are private-cacheable so a shared cache cannot leak an anonymous snapshot into an editor session; form-result responses are always private and `no-store`.
+Forms inside fidelity documents are intercepted in the capture phase by `assets/js/fidelity.js`, which suppresses the dormant captured Elementor handler and sends exactly one request to a nonce-protected, rate-limited WordPress handler in `inc/forms.php`. The renderer also adds a nonce-protected native POST action and hidden fields; without JavaScript, WordPress redirects back to the source form with an accessible success/error result. Both contact form `68574d28` and newsletter form `1b3fffa7` default to Adam's owner-approved `adamecorose@gmail.com`; the inherited former-development newsletter recipient is forbidden by the static validator. Contact, newsletter and school-proposal enquiries are also written to an administrator-only `ecowise_enquiry` ledger, with school-form email delivery status recorded. The `ecowise_form_recipient` filter receives the default recipient, form type and sanitized fields when production needs an explicit override. Fidelity responses are private-cacheable so a shared cache cannot leak an anonymous snapshot into an editor session; form-result responses are always private and `no-store`.
 
 The four archive captures intentionally retain 20 historical Facebook posts, and the editorial overlay adds three current Road Less Traveled posts to those archives and the service-project page. The theme therefore contains 23 unique Facebook posts. The contact page retains its Google map, and two travel pages retain eight historical web.archive.org airline links. These are external content dependencies and should be permitted by the production content-security policy or reviewed before launch. Captured Google Tag Manager and Microsoft Clarity execution is removed by the snapshot compiler.
 
@@ -71,7 +73,11 @@ The fidelity documents now also expose a complete structural and action layer wi
 
 ## Production installation
 
-Theme 1.0.18 is deployed to `https://ecowiseitaly.com/`. Production is WordPress 6.8.6 at `/home/customer/www/ecowiseitaly.com/public_html`. `ecowise-custom` is active, all legacy plugins have been removed, SiteGround Speed Optimizer is active solely for supported cache management, the front page remains ID 6, the posts page remains ID 2448, the permalink structure remains `/%postname%/`, and the substantive `wp_` content and production uploads remain in place. The current release rollback bundle is `/home/customer/ecowise-deploy-20260728-v22`; it contains the pre-deploy 1.0.17 theme, database export, option/plugin records, PHP-lint log and verified v22 archive. The earlier clean v21 bundle remains the post-malware-cleanup recovery point.
+Theme 1.1.0 is deployed to `https://ecowiseitaly.com/`. Production is WordPress 6.8.6 at `/home/customer/www/ecowiseitaly.com/public_html`. The active stylesheet directory is `ecowise-custom-v24`; this is the verified v23 package under a fresh filesystem path, used to force SiteGround PHP workers to compile the complete 1.1.0 bootstrap after they retained stale opcode state from the previous directory. The directory name is an operational detail only: the theme name, source and release version remain Ecowise Custom 1.1.0.
+
+All legacy plugins remain removed. SiteGround Speed Optimizer is active solely for supported cache management, the front page remains ID 6, the posts page remains ID 2448, the new school funnel is page ID 4080, the permalink structure remains `/%postname%/`, and the substantive `wp_` content and production uploads remain in place. The Phase 1 deployment bundle is `/home/customer/ecowise-deploy-20260728-v23`; it contains the database/options/plugin/user backups, validator, deployment records and verified v23 archive. The pre-Phase-1 theme remains at `wp-content/themes/ecowise-custom-pre-v23`, while the earlier clean v21 bundle remains the post-malware-cleanup recovery point.
+
+After activation, the production HTTP gate passed all 36 preserved routes, the native school funnel, the exact 36-URL content sitemap, four child sitemaps, four native endpoints, two redirects and HEAD handling. Desktop and 375-pixel browser checks confirmed one H1, no broken images, no horizontal overflow, responsive navigation/form layout and the route-specific funnel stylesheet. Priority titles, descriptions, social metadata and JSON-LD are present on their configured live routes. WordPress still has exactly one user: administrator `admin` at `marketinghydron@gmail.com`.
 
 ### July 2026 security cleanup
 

@@ -1,0 +1,72 @@
+{
+  "/": {
+    "title": "Outdoor Education & Eco Adventures in Italy | EcoWise Italy",
+    "description": "Tailored outdoor education, school trips and family eco-adventures in Piemonte, Italy. Ask Adam for a bespoke programme and a reply within 24 hours.",
+    "canonical": "https://ecowiseitaly.com/",
+    "locale": "en_GB",
+    "schemaType": "WebSite"
+  },
+  "/for-schools/": {
+    "title": "School Trips & Outdoor Education in Italy | EcoWise Italy",
+    "description": "Plan a tailored EcoWise Italy outdoor education programme for 15–80 students, with class-sized groups of 20–30 typical. Request a bespoke proposal.",
+    "canonical": "https://ecowiseitaly.com/for-schools/",
+    "locale": "en_GB",
+    "schemaType": "Service",
+    "serviceType": "Tailored outdoor education programmes for schools"
+  },
+  "/for-schools/residential-field-trips/": {
+    "title": "Residential School Trips in Italy | EcoWise Italy",
+    "description": "Explore tailored residential school trips in Italy, commonly three days and two nights. EcoWise Italy supports groups of approximately 15–80 students.",
+    "canonical": "https://ecowiseitaly.com/for-schools/residential-field-trips/",
+    "locale": "en_GB",
+    "schemaType": "Service",
+    "serviceType": "Residential outdoor education programmes"
+  },
+  "/for-schools/day-programs/": {
+    "title": "School Day Programmes in Piemonte | EcoWise Italy",
+    "description": "Explore tailored day programmes for schools in Piemonte, delivered by EcoWise Italy. Ask Adam about group fit, learning goals and current availability.",
+    "canonical": "https://ecowiseitaly.com/for-schools/day-programs/",
+    "locale": "en_GB",
+    "schemaType": "Service",
+    "serviceType": "Outdoor education day programmes"
+  },
+  "/for-schools/science-ecology-environment-field-trips/": {
+    "title": "School Science & Ecology Field Trips in Italy | EcoWise Italy",
+    "description": "Plan hands-on school science, ecology and environmental fieldwork with EcoWise Italy in Piemonte. Ask Adam for a bespoke programme and quote.",
+    "canonical": "https://ecowiseitaly.com/for-schools/science-ecology-environment-field-trips/",
+    "locale": "en_GB",
+    "schemaType": "Service",
+    "serviceType": "School science and ecology field trips"
+  },
+  "/for-schools/science-field-work-data-collection-trips/": {
+    "title": "School Fieldwork & Data Collection in Italy | EcoWise Italy",
+    "description": "Explore tailored school fieldwork and data-collection trips with EcoWise Italy in Piemonte. Ask Adam about group fit and learning goals.",
+    "canonical": "https://ecowiseitaly.com/for-schools/science-field-work-data-collection-trips/",
+    "locale": "en_GB",
+    "schemaType": "Service",
+    "serviceType": "School fieldwork and environmental data collection"
+  },
+  "/per-le-scuole-italiane/": {
+    "title": "Gite Scolastiche e Outdoor Education in Piemonte | EcoWise Italy",
+    "description": "Programmi di educazione ambientale e attività all’aperto per scuole in Piemonte. Richiedi ad Adam una proposta personalizzata e disponibilità.",
+    "canonical": "https://ecowiseitaly.com/per-le-scuole-italiane/",
+    "locale": "it_IT",
+    "schemaType": "Service",
+    "serviceType": "Educazione ambientale e attività all’aperto per scuole"
+  },
+  "/contact-us/": {
+    "title": "Contact EcoWise Italy | School Trips & Eco Adventures",
+    "description": "Contact Adam Rose at EcoWise Italy about school trips, family eco-adventures or team building. Receive a reply within 24 hours.",
+    "canonical": "https://ecowiseitaly.com/contact-us/",
+    "locale": "en_GB",
+    "schemaType": "ContactPage"
+  },
+  "/school-trips-italy/": {
+    "title": "School Trips to Italy | Outdoor Education | EcoWise Italy",
+    "description": "Plan a tailored outdoor education or residential school trip in Piemonte, Italy. Groups of approximately 15–80; Adam replies within 24 hours.",
+    "canonical": "https://ecowiseitaly.com/school-trips-italy/",
+    "locale": "en_GB",
+    "schemaType": "Service",
+    "serviceType": "Tailored school trips and outdoor education in Italy"
+  }
+}

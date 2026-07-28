@@ -11,7 +11,9 @@ $ecowise_includes = array(
 	'/inc/setup.php',
 	'/inc/assets.php',
 	'/inc/template-tags.php',
+	'/inc/growth.php',
 	'/inc/fidelity.php',
+	'/inc/leads.php',
 	'/inc/forms.php',
 	'/inc/seo.php',
 );

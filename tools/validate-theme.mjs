@@ -6,7 +6,9 @@ import path from 'node:path';
 const repositoryRoot = path.resolve(process.argv[2] || '.');
 const themeRoot = path.join(repositoryRoot, 'wp-content', 'themes', 'ecowise-custom');
 const capturedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'captured-routes.json'), 'utf8'));
+const nativeRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'native-routes.json'), 'utf8'));
 const indexedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'indexed-routes.json'), 'utf8'));
+const seoProfiles = JSON.parse(fs.readFileSync(path.join(themeRoot, 'config', 'seo-metadata.json'), 'utf8'));
 const uploadManifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'uploads-manifest.json'), 'utf8'));
 const backupRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'source', 'backup-routes.json'), 'utf8'));
 const editorialUpdates = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'editorial-updates.json'), 'utf8'));
@@ -231,7 +233,15 @@ for (const route of capturedRoutes) {
 }
 
 if (capturedRoutes.length !== 36) errors.push(`expected 36 captured routes; found ${capturedRoutes.length}`);
-if (indexedRoutes.length !== 35) errors.push(`expected 35 indexed routes; found ${indexedRoutes.length}`);
+if (indexedRoutes.length !== 36) errors.push(`expected 36 indexed routes; found ${indexedRoutes.length}`);
+if (nativeRoutes.length !== 1) errors.push(`expected one native growth route; found ${nativeRoutes.length}`);
+const expectedIndexedPaths = new Set([
+  ...capturedRoutes.filter((route) => route.inSitemap !== false).map((route) => route.route),
+  ...nativeRoutes.filter((route) => route.inSitemap !== false).map((route) => route.route),
+]);
+const actualIndexedPaths = new Set(indexedRoutes.map((route) => route.route));
+for (const route of expectedIndexedPaths) if (!actualIndexedPaths.has(route)) errors.push(`indexed route contract is missing ${route}`);
+for (const route of actualIndexedPaths) if (!expectedIndexedPaths.has(route)) errors.push(`indexed route contract has unexpected route ${route}`);
 const expectedFacebookEmbedCount = 80 + (editorialUpdates.serviceFacebookPosts.length * 5);
 const expectedUniqueFacebookPosts = 20 + editorialUpdates.serviceFacebookPosts.length;
 if (facebookEmbedCount !== expectedFacebookEmbedCount) errors.push(`expected ${expectedFacebookEmbedCount} Facebook embed instances; found ${facebookEmbedCount}`);
@@ -467,6 +477,53 @@ if (formsPhp.includes('saqibbalii099@gmail.com') || formsPhp.includes('email@dev
   errors.push('form handler still contains a former-development recipient or sender');
 }
 
+const schoolTemplate = fs.readFileSync(path.join(themeRoot, 'page-school-trips-italy.php'), 'utf8');
+const leadsPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'leads.php'), 'utf8');
+const growthPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'growth.php'), 'utf8');
+const seoPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'seo.php'), 'utf8');
+const schoolCss = fs.readFileSync(path.join(themeRoot, 'assets', 'css', 'school-funnel.css'), 'utf8');
+for (const contract of [
+  'Tailored outdoor education and residential school trips in Piemonte, Italy',
+  '15–80',
+  '20–30',
+  '3 days / 2 nights',
+  'November–March',
+  'within 24 hours',
+  'ecowise_school_enquiry',
+  'privacy_consent',
+  'Do not include pupil names or medical information',
+]) {
+  if (!schoolTemplate.includes(contract)) errors.push(`school funnel is missing required content/form contract (${contract})`);
+}
+for (const forbidden of ['ATOL-protected package', 'guaranteed safe', 'all-inclusive', 'from €']) {
+  if (schoolTemplate.toLowerCase().includes(forbidden.toLowerCase())) errors.push(`school funnel contains an unapproved claim (${forbidden})`);
+}
+for (const leadContract of ['ecowise_enquiry', 'ecowise_record_enquiry', 'adamecorose@gmail.com', '_ecowise_email_delivery', 'check_admin_referer', 'set_transient']) {
+  if (!leadsPhp.includes(leadContract)) errors.push(`lead ledger/handler is missing contract (${leadContract})`);
+}
+if (!formsPhp.includes("ecowise_record_enquiry( $form_type")) errors.push('captured forms are not written to the private enquiry ledger');
+for (const route of nativeRoutes) {
+  const template = path.join(repositoryRoot, ...route.template.split('/'));
+  if (!fs.existsSync(template)) errors.push(`${route.route}: native template is missing (${route.template})`);
+}
+if (!growthPhp.includes("'/school-trips-italy/'") || !growthPhp.includes('ecowise-school-conversion-css')) errors.push('preserved school pages do not expose the school funnel conversion path');
+if (!seoPhp.includes('ecowise_enhance_snapshot_metadata') || !fs.readFileSync(path.join(themeRoot, 'inc', 'fidelity.php'), 'utf8').includes('ecowise_enhance_snapshot_metadata( $document, $route )')) {
+  errors.push('snapshot SEO metadata enhancer is not connected to the fidelity renderer');
+}
+if (!schoolCss.includes('.school-hero') || !schoolCss.includes('@media (max-width: 680px)')) errors.push('school funnel stylesheet is missing its hero or mobile contract');
+
+const allowedSeoRoutes = new Set([...capturedRoutes.map((route) => route.route), ...nativeRoutes.map((route) => route.route)]);
+for (const [route, profile] of Object.entries(seoProfiles)) {
+  if (!allowedSeoRoutes.has(route)) errors.push(`SEO profile targets an unknown route (${route})`);
+  if (!profile.title || profile.title.length > 70) errors.push(`${route}: SEO title is missing or longer than 70 characters`);
+  if (!profile.description || profile.description.length < 70 || profile.description.length > 165) errors.push(`${route}: SEO description must be 70–165 characters`);
+  if (profile.canonical !== `https://ecowiseitaly.com${route === '/' ? '/' : route}`) errors.push(`${route}: SEO canonical is not the production route`);
+  if (!['en_GB', 'it_IT'].includes(profile.locale)) errors.push(`${route}: unsupported SEO locale`);
+}
+for (const priorityRoute of ['/', '/for-schools/', '/for-schools/residential-field-trips/', '/for-schools/day-programs/', '/for-schools/science-ecology-environment-field-trips/', '/for-schools/science-field-work-data-collection-trips/', '/per-le-scuole-italiane/', '/contact-us/', '/school-trips-italy/']) {
+  if (!seoProfiles[priorityRoute]) errors.push(`priority SEO route is missing metadata (${priorityRoute})`);
+}
+
 const malformedThemify = path.join(themeRoot, 'assets', 'fidelity', 'site', 'wp-content', 'plugins', 'skyboot-custom-icons-for-elementor', 'assets', 'css', '_', 'fonts', 'themify.eot');
 if (fs.existsSync(malformedThemify)) errors.push('captured HTML/404 masquerading as themify.eot remains');
 const validThemify = path.join(themeRoot, 'assets', 'fidelity', 'site', 'wp-content', 'plugins', 'skyboot-custom-icons-for-elementor', 'assets', 'fonts', 'themify.eot');
@@ -516,5 +573,5 @@ if (errors.length) {
   process.exit(1);
 }
 
-process.stdout.write(`Theme validation passed: ${capturedRoutes.length} captured routes, ${indexedRoutes.length} indexed routes, ${phpFiles.length} PHP files, ${referencedUploads.size} uploads, ${internalPageLinks.size} internal link targets and ${facebookEmbedCount} Facebook embed instances (${facebookEmbedUrls.size} unique posts) verified.\n`);
+process.stdout.write(`Theme validation passed: ${capturedRoutes.length} captured routes, ${nativeRoutes.length} native growth route, ${indexedRoutes.length} indexed routes, ${phpFiles.length} PHP files, ${referencedUploads.size} uploads, ${internalPageLinks.size} internal link targets and ${facebookEmbedCount} Facebook embed instances (${facebookEmbedUrls.size} unique posts) verified.\n`);
 if (warnings.length) process.stdout.write(`Warnings:\n- ${warnings.join('\n- ')}\n`);

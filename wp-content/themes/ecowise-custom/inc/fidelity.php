@@ -106,6 +106,8 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 	if ( 'HEAD' !== $method ) {
 		// The file is trusted build output committed with the theme.
 		$document = file_get_contents( $real ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		$document = ecowise_enhance_snapshot_metadata( $document, $route );
+		$document = ecowise_enhance_school_snapshot( $document, $route );
 		$config   = array(
 			'endpoint' => admin_url( 'admin-post.php' ),
 			'action'   => 'ecowise_fidelity_form',

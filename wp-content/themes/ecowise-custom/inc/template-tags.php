@@ -28,3 +28,19 @@ function ecowise_posted_on() {
 	);
 }
 
+function ecowise_navigation_fallback( $args = array() ) {
+	$menu_id = ! empty( $args['menu_id'] ) ? $args['menu_id'] : 'primary-menu';
+	$items   = array(
+		home_url( '/' )                    => __( 'Home', 'ecowise' ),
+		home_url( '/for-schools/' )        => __( 'For Schools', 'ecowise' ),
+		home_url( '/school-trips-italy/' ) => __( 'Plan a School Trip', 'ecowise' ),
+		home_url( '/family-ecoadventures/' ) => __( 'Family Eco-Adventures', 'ecowise' ),
+		home_url( '/gateways/' )           => __( 'Getaways', 'ecowise' ),
+		home_url( '/contact-us/' )         => __( 'Contact', 'ecowise' ),
+	);
+	printf( '<ul id="%s" class="menu">', esc_attr( $menu_id ) );
+	foreach ( $items as $url => $label ) {
+		printf( '<li class="menu-item"><a href="%1$s">%2$s</a></li>', esc_url( $url ), esc_html( $label ) );
+	}
+	echo '</ul>';
+}

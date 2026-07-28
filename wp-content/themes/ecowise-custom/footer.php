@@ -12,7 +12,7 @@
 			<p><?php esc_html_e( 'Bringing nature to learning, bringing learning to life.', 'ecowise' ); ?></p>
 		</div>
 		<nav aria-label="<?php esc_attr_e( 'Footer navigation', 'ecowise' ); ?>">
-			<?php wp_nav_menu( array( 'theme_location' => 'footer', 'container' => false, 'fallback_cb' => false ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_id' => 'footer-menu', 'container' => false, 'fallback_cb' => 'ecowise_navigation_fallback' ) ); ?>
 		</nav>
 		<address>
 			<a href="tel:+393421363274">+39 342 136 3274</a><br>

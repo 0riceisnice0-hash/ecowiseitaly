@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://ecowiseitaly.com/school-trips-italy/",
+    "route": "/school-trips-italy/",
+    "pageType": "native-page",
+    "wordpressObjectId": null,
+    "title": "School Trips to Italy | Outdoor Education | EcoWise Italy",
+    "h1": "Tailored outdoor education and residential school trips in Piemonte, Italy",
+    "canonical": "https://ecowiseitaly.com/school-trips-italy/",
+    "robots": "max-image-preview:large",
+    "inSitemap": true,
+    "template": "wp-content/themes/ecowise-custom/page-school-trips-italy.php"
+  }
+]
