@@ -22,14 +22,13 @@ The strongest commercial proposition is unusually credible:
 
 The website currently presents that proof as a large brochure archive. It does not consistently tell a visitor what to book, whether it fits their group, what happens next or why they should enquire now. Most commercial pages lack a contextual call to action. There is no dependable lead ledger, active conversion analytics, privacy layer, verified mail-delivery system or search-performance baseline.
 
-The growth priority should be:
+Adam Rose confirmed the growth priority on 28 July 2026:
 
-1. **International and bilingual schools** in Italy and nearby European markets.
-2. **Italian schools in Piemonte**, especially English/CLIL, environmental education and residential trips.
-3. **Corporate nature team building and retreats** in Piemonte, once real packages and corporate proof exist.
-4. **Families and private eco-adventures**, only after dates, prices, responsibilities and booking logistics are defined.
+1. **Schools**, with the UK as the principal missed market.
+2. **Families and private eco-adventures**.
+3. **Corporate nature team building and retreats**.
 
-Schools should lead because the business already has strong proof, repeat customers, curriculum expertise and high-value tailored programmes. Corporate is a credible second engine but the current page is too thin to sell it. Family/getaway material is attractive but currently reads as ideas rather than a bookable product range.
+Within the school audience, maintain the existing Italian/international-school base while developing direct outreach and licensed travel partnerships for UK schools, followed by the Netherlands and Northern Europe. Schools should lead because the business already has strong proof, repeat customers, curriculum expertise and high-value tailored programmes. The owner-approved operating detail is maintained in `BUSINESS-BRIEF.md`.
 
 ## Stop-the-line finding: leads are going outside the business
 
@@ -39,19 +38,18 @@ The imported Elementor database configured forms with the following recipients:
 - newsletter form: `saqibbalii099@gmail.com`;
 - legacy sender domain: `email@dev3.saqib07.com`.
 
-The custom handler correctly removed Elementor as a dependency, but it preserved the newsletter form's old default recipient. As a result, a current newsletter signup is emailed to `saqibbalii099@gmail.com`. It is not added to an owned mailing list or CRM.
+The custom handler correctly removed Elementor as a dependency, but initially preserved the newsletter form's old default recipient. On 28 July 2026, Adam confirmed that he owns every lead and that all forms should use `adamecorose@gmail.com`; theme 1.0.18 removes the former-development recipient and makes the validator reject its return. Newsletter submissions are still emails rather than records in an owned mailing list or CRM.
 
 The backup proves this configuration predates the custom theme. Public search results associate `saqib07.com` with a freelance web developer, which is consistent with a former development address, but does not by itself prove malicious intent. Regardless of intent, sending current visitor data there is not acceptable.
 
-Before acquiring traffic:
+Before paid acquisition:
 
-1. replace the newsletter recipient with an owner-approved `@ecowiseitaly.com` inbox or proper consent-based mailing platform;
-2. decide whether contact enquiries should reach Adam, Yenka or both;
-3. remove every former-developer recipient/sender from code, WordPress options and historical form configuration;
-4. configure authenticated SMTP and test actual delivery, not merely `wp_mail()` success;
-5. store every enquiry in an owned lead ledger/CRM with timestamps, source and status;
-6. add an autoresponder and monitored failure alert;
-7. publish a privacy notice before collecting further newsletter data.
+1. route every active form to Adam's owner-approved inbox (completed in theme code);
+2. remove every former-developer recipient/sender from active WordPress options and historical form configuration;
+3. configure authenticated SMTP and test actual delivery, not merely `wp_mail()` success;
+4. store every enquiry in an owned lead ledger/CRM with timestamps, source and status;
+5. add an autoresponder and monitored failure alert;
+6. publish a privacy notice before collecting further newsletter data.
 
 This is both a lead-loss issue and a data-protection issue. The European Commission states that people must be told who is collecting their data, why, how long it is kept and who receives it at the point of collection: [European Commission GDPR guidance](https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/principles-gdpr/what-information-must-be-given-individuals-whose-data-collected_en).
 
@@ -480,9 +478,9 @@ Initial directional targets after a clean baseline:
 
 Do not optimise for raw traffic, Facebook embed count or newsletter signups that are not followed up. The unit that matters is a qualified conversation.
 
-## Decisions required from Adam and Yenka
+## Owner answers and remaining evidence
 
-The site can be coded without Elementor, but the business must supply these truths:
+Adam answered the following operating questions on 28 July 2026. The answers and safe publishing boundaries are now captured in `BUSINESS-BRIEF.md`; this list is retained as the audit trail of what was asked:
 
 1. Which work should be prioritised: schools, families, corporate or a specific mix?
 2. Which email/phone/WhatsApp should receive each lead?
@@ -497,7 +495,7 @@ The site can be coded without Elementor, but the business must supply these trut
 11. Is the Via Mazzini address customer-facing and current?
 12. Are the legal entity, VAT number and business details still current?
 
-These answers should be captured once in a structured business brief. AI agents can then keep pages, forms, metadata and campaigns consistent.
+The remaining blockers are supporting specifics rather than strategic decisions: exact ages and staffing ratios; the corrected longer-trip duration; sample or indicative pricing; calendar-confirmed dates; current insurance, qualification, safeguarding and cancellation documents; logo/testimonial permissions; and verified legal/VAT wording.
 
 ## Recommended implementation order
 

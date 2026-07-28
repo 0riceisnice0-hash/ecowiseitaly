@@ -9,7 +9,7 @@ The implementation has two deliberate layers:
 
 The WordPress database and uploads are deployment inputs and are intentionally not stored in Git. See `HANDOVER.md` for restoration and activation instructions.
 
-The current commercial, SEO and customer-journey audit is in `GROWTH-AUDIT.md`.
+The current commercial, SEO and customer-journey audit is in `GROWTH-AUDIT.md`. Owner-approved operating facts and lead responsibilities are in `BUSINESS-BRIEF.md`.
 
 ## Theme location
 

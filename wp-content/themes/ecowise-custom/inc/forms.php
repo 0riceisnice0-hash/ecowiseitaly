@@ -67,7 +67,7 @@ function ecowise_handle_fidelity_form() {
 		$form_type         = 'newsletter';
 		$allowed_for_form  = array( 'name', 'email' );
 		$required_fields   = array( 'email' );
-		$default_recipient = 'saqibbalii099@gmail.com';
+		$default_recipient = 'adamecorose@gmail.com';
 	} else {
 		ecowise_form_respond( false, __( 'This form is not recognized. Refresh the page and try again.', 'ecowise' ), 400 );
 	}

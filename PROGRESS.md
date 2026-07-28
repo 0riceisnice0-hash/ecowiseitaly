@@ -1,5 +1,19 @@
 # Progress log
 
+## 2026-07-28
+
+- Converted Adam Rose's answers to the 12 growth-audit questions into `BUSINESS-BRIEF.md`, the durable source of truth for priorities, leads, seasonality, group fit, contracting responsibilities, compliance limits and outstanding evidence.
+- Confirmed commercial priority as schools first, families second and corporate third; identified UK schools as the principal missed market and the Netherlands/Northern Europe as secondary school markets.
+- Recorded November–March as the urgent capacity gap, typical groups of 20–30 within a 15–80 range, the common three-day/two-night format and bespoke per-person pricing.
+- Documented the separate-contract/invoice model and the constraint that EcoWise Italy does not hold an ATOL licence; prioritised licensed school-travel-operator/DMC partnerships rather than presenting EcoWise Italy as a package organiser.
+- Recorded Adam Rose as owner of all enquiry replies and follow-up with a public response commitment of within 24 hours.
+- Changed the newsletter form default from the inherited former-development address to Adam's owner-approved `adamecorose@gmail.com`; both active form contracts now route to Adam.
+- Added a validation gate that rejects former-development recipient/sender addresses if they reappear in the active form handler.
+- Reframed the acquisition roadmap around a UK-school landing page, winter-capacity offer, teacher planning pack, named school outreach, licensed operator partnerships and a written success-fee model.
+- Built deterministic theme 1.0.18 package v22 with 733 verified files, 29,955,039 bytes and SHA-256 `2AC466D15C56195382D7ADC47C99DA66A5756A9CD1F1B2A30F3120477C717143`.
+- Created the production rollback bundle `/home/customer/ecowise-deploy-20260728-v22`, deployed theme 1.0.18 and purged SiteGround caches.
+- Revalidated production after deployment: all 36 routes, 35 sitemap URLs, four child sitemaps, native endpoints, redirects and HEAD handling pass; both active recipients are Adam's address, the modified PHP lints cleanly, and the sole WordPress administrator remains `marketinghydron@gmail.com`.
+
 ## 2026-07-26
 
 - Completed a live SEO, UX, customer-journey, search-market and lead-generation audit and recorded the prioritised strategy in `GROWTH-AUDIT.md`.

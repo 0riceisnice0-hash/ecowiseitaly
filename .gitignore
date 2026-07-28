@@ -6,6 +6,6 @@ Thumbs.db
 .vscode/
 node_modules/
 vendor/
+dist/
 wp-content/uploads/
 work/
-

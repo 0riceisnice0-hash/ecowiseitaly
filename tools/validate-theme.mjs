@@ -460,8 +460,11 @@ for (const submissionGuard of ['stopImmediatePropagation()', 'capture: true']) {
   if (!fidelityJs.includes(submissionGuard)) errors.push(`form enhancement does not suppress the captured Elementor submit handler (${submissionGuard})`);
 }
 const formsPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'forms.php'), 'utf8');
-for (const formContract of ['68574d28', '1b3fffa7', 'adamecorose@gmail.com', 'saqibbalii099@gmail.com', 'ecowise_form_respond', 'field_44bd0eb', 'field_6fef306']) {
+for (const formContract of ['68574d28', '1b3fffa7', 'adamecorose@gmail.com', 'ecowise_form_respond', 'field_44bd0eb', 'field_6fef306']) {
   if (!formsPhp.includes(formContract)) errors.push(`form handler is missing captured routing/schema contract (${formContract})`);
+}
+if (formsPhp.includes('saqibbalii099@gmail.com') || formsPhp.includes('email@dev3.saqib07.com')) {
+  errors.push('form handler still contains a former-development recipient or sender');
 }
 
 const malformedThemify = path.join(themeRoot, 'assets', 'fidelity', 'site', 'wp-content', 'plugins', 'skyboot-custom-icons-for-elementor', 'assets', 'css', '_', 'fonts', 'themify.eot');
