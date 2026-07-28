@@ -10,6 +10,10 @@ Owner-confirmed operating brief recorded 28 July 2026 from Adam Rose's answers t
 
 Schools are the immediate growth focus. The principal missed market is the United Kingdom, where EcoWise Italy has not yet served a school despite a strong fit. Secondary outbound markets are international and English-speaking schools in the Netherlands and Northern Europe. Existing Italian and international-school relationships remain important proof.
 
+Adam has now narrowed the initial UK audience further: premium independent schools are the strongest direct prospect, alongside international schools. State schools are not excluded, but constrained budgets and established procurement arrangements make them a lower-priority outbound segment.
+
+Past conversations with several UK independent schools reportedly produced positive interest but did not convert because those schools were already contracted to established tour operators. These are historical conversations, not current endorsements, customers or permissions. The prospect names are intentionally excluded from Git; do not name the schools publicly or imply a relationship without fresh written permission.
+
 ## Lead ownership and response
 
 - Adam Rose owns all enquiries, replies, qualification and follow-up.
@@ -86,7 +90,9 @@ EcoWise Italy's strongest differentiators are:
 - flexible programmes for a class-sized group through to larger cohorts;
 - local knowledge and help coordinating suitable accommodation.
 
-Public copy should sell accessibility, educational quality, specificity and clear responsibilities. It should not use fear about war, terrorism, pandemics or other destinations as a sales tactic.
+The intended market position is premium, innovative and unusually personal: a world-class educational experience delivered by a specialist local operator, while still offering competitive overall value in Italy. Public copy may express that ambition through specific programme evidence and educator proof, but must not use unsupported superiority claims or attack UK field centres, hostels, competitors or lower-cost provision.
+
+Price should support the value case rather than lead it. Public copy should sell accessibility, educational quality, specificity and clear responsibilities. It should not use fear about war, terrorism, pandemics or other destinations as a sales tactic.
 
 ## Acquisition model
 
@@ -96,9 +102,18 @@ SEO is necessary but will not create the UK market alone. The school programme n
 2. Create a November–March offer to turn unused capacity into a clear reason to enquire.
 3. Produce a teacher-facing trip-planning pack and a partner-facing one-page capability sheet.
 4. Build a named list of UK independent, international, IB and environmentally focused schools, then run personal outreach to trip coordinators, heads of geography/science, outdoor-education leads and senior leadership.
-5. Build a separate list of UK school-travel operators and Italian destination-management companies that can lawfully package the trip.
+5. Treat specialist UK school-travel operators as the highest-leverage distribution route. Build a separate partner list, alongside suitable Italian destination-management companies, prioritising firms with an established independent-school portfolio and the ability to package and invoice the trip lawfully.
 6. Offer a documented referral/commission arrangement for completed business. Adam has approved the principle of a success-based cut; percentage, payment trigger, attribution window, cancellations and tax treatment remain to be agreed in writing.
 7. Capture every enquiry, source, response time, next action, proposal, outcome and lost reason in the owned lead ledger.
+
+Two distinct acquisition paths should be measured separately:
+
+- direct school acquisition, where EcoWise Italy wins and coordinates the school relationship while services remain separately contracted;
+- operator partnerships, where an appropriately licensed partner packages the trip and EcoWise Italy is the specialist local educational provider.
+
+## Confidentiality
+
+Adam shared private turnover, cost and tax context to explain the scale of the opportunity. Exact financial figures are intentionally excluded from this repository and must not be added to website copy, schema, analytics, proposals, public case studies or outreach material without separate written approval. The safe strategic conclusion is only that EcoWise Italy currently operates during a short part of the year, the wider trip supports substantial supplier spend, and filling more months could materially improve the business and local partner economy.
 
 ## Outstanding owner inputs
 

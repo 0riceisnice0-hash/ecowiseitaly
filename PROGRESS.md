@@ -2,6 +2,8 @@
 
 ## 2026-07-28
 
+- Incorporated Adam's second commercial briefing: prioritised UK independent schools within the schools-first strategy, identified specialist school-tour operators as the highest-leverage distribution route, separated direct-school and operator-partner acquisition paths, and recorded historical UK school interest as private prospect context rather than public proof.
+- Recorded the premium, innovative and personal positioning while forbidding unsupported superiority claims or competitor attacks. Adam's private financial figures were deliberately excluded from Git and all public/customer-facing systems.
 - Built Phase 1 of the school lead-generation system as the native, code-owned `/school-trips-italy/` route without changing any of the 36 preserved fidelity pages.
 - Added a teacher-focused journey covering group fit, curriculum-linked programme paths, an illustrative three-day residential itinerary, responsibilities, educator proof, seasonality, planning steps, FAQ and a detailed proposal request.
 - Added the secure `ecowise_school_enquiry` handler with nonce, honeypot, server-side validation, rate limiting, explicit data-use acknowledgement, UTM/referrer capture and delivery to Adam.

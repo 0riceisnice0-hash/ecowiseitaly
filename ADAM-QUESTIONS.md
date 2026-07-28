@@ -23,5 +23,8 @@ These are the smallest remaining owner questions that materially improve sales o
 8. Which exact curricula and subjects can be marketed confidently: IB PYP, IB Biology, ESS, GCSE, A-level, geography, science or others?
 9. Which November–March programmes work particularly well in colder/wetter conditions, and are there calendar-confirmed periods to promote?
 10. Is Adam comfortable using “more than 20 years” as a prominent marketing headline, rather than only mentioning established school relationships?
+11. Which specialist school-trip tour operators has Adam worked with or approached before, what were their names, and may we mention those past relationships privately when approaching new partners?
+12. Does Adam still have the names, roles, email threads or introductions from the interested UK independent schools he mentioned? These should be transferred privately and treated as prospect history, not public testimonials or stored in Git.
+13. For a partner/referral agreement, what commercial structure would Adam consider: a percentage of EcoWise Italy programme revenue, a fixed amount per pupil, or something else? A lawyer/accountant should confirm the written agreement, tax and cancellation treatment before it is offered.
 
 Do not ask Adam for information already answered in `BUSINESS-BRIEF.md`.
