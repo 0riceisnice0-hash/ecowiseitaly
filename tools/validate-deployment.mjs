@@ -162,7 +162,7 @@ async function validateRoute(route) {
   if (route.pageType === 'native-page') {
     const h1 = extractTag(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i);
     if (h1 !== route.h1) errors.push(`${route.route}: native H1 mismatch (expected "${route.h1}", received "${h1 || '[missing]'}")`);
-    for (const marker of ['data-school-enquiry', 'Request a tailored school-trip proposal', '15–80', 'November–March']) {
+    for (const marker of ['data-school-enquiry', 'Tell Adam what your school is looking for', '15–80', 'November to March', 'elementor-location-header', 'ecowise-school-funnel-css']) {
       if (!html.includes(marker)) errors.push(`${route.route}: native school funnel is missing ${marker}`);
     }
   }

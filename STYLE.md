@@ -92,8 +92,10 @@ Honor `prefers-reduced-motion`. Ken Burns, carousel autoplay and decorative tran
 
 ## School funnel
 
-The native `/school-trips-italy/` route uses a more editorial acquisition treatment while remaining recognisably EcoWise Italy. Its durable palette is deep forest `#12251A`, programme green `#2F7D43`, warm cream `#F5F1DF`, sage `#E8EFDC`, red `#C92F2F` and yellow `#F6BD23`. Red and yellow deliberately echo the approved homepage collage frames.
+The native `/school-trips-italy/` route must use the captured Schools shell rather than the generic native header/footer. Its mountain hero, centred logo/navigation and captured footer are part of the route's visual contract. This reuses deterministic captured markup and assets; it does not load Elementor.
 
-The funnel uses a documentary photographic hero, oversized but responsive heading, fact card, compact trust strip, alternating programme cards, numbered journey, three-party responsibility grid, educator quotes, seasonality band, accessible FAQ and high-contrast proposal form. Content density is high by design, but every section must answer a customer decision rather than act as decoration.
+New funnel sections may be cleaner than the inherited page content, but must retain the site's Outfit/Rubik typography, open white and map-pattern rhythm, documentary photography, restrained shadows and established red/yellow/green accents. Do not introduce a separate campaign-site aesthetic, dark SaaS-style cards or oversized type that feels unrelated to the surrounding site.
 
-All funnel CSS remains isolated in `assets/css/school-funnel.css`. Conversion banners injected into preserved school pages use `assets/css/school-conversion.css`; they may not override captured page typography or layout outside the banner. Native pages require the code-owned navigation fallback when no WordPress menu is assigned.
+The funnel uses the mountain/group hero, a photographic introduction, three programme cards, an illustrative three-day journey, a photograph-and-four-step planning section, two-column responsibilities, seasonality band, educator quotes, accessible FAQ and a focused proposal form. Every section must answer a customer decision and must never expose internal implementation notes, unapproved proof gaps or developer-facing instructions.
+
+All funnel CSS remains isolated in `assets/css/school-funnel.css`. Conversion banners injected into preserved school pages use `assets/css/school-conversion.css`; they may not override captured page typography or layout outside the banner.

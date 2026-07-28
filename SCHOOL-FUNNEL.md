@@ -6,6 +6,8 @@
 
 The page is a native WordPress route rendered by `page-school-trips-italy.php`. It does not use Elementor or ACF and does not replace `/for-schools/` or any preserved route. The preserved Schools hub remains the programme catalogue; the new route is the proposal and qualification journey.
 
+The route deliberately uses the complete captured `/for-schools/` document as its visual shell. The header, logo, navigation, footer, fonts and compatibility assets therefore match the reconstructed site exactly, while the shell's original page-content region is replaced at request time with code-owned PHP markup. `assets/css/school-funnel.css` styles only that replacement content. This is the same deterministic fidelity technique used elsewhere on the site, not an Elementor runtime dependency.
+
 ## Customer journey
 
 The page answers, in order:
@@ -14,9 +16,9 @@ The page answers, in order:
 2. What group and trip formats fit?
 3. What can pupils learn?
 4. What might a three-day journey look like?
-5. Who is responsible for programme, travel and accommodation?
-6. Is there credible educator proof?
-7. How does planning work?
+5. How does planning work?
+6. Who is responsible for programme, travel and accommodation?
+7. Is there credible educator proof?
 8. When might capacity be available?
 9. What does Adam need to prepare a proposal?
 
@@ -77,6 +79,6 @@ Fidelity metadata is added at render time because preserved documents exit befor
 
 ## Editing
 
-Change page copy and structure in `page-school-trips-italy.php`, page styling in `assets/css/school-funnel.css`, form processing in `inc/leads.php`, preserved-page banners in `inc/growth.php`, and metadata in `config/seo-metadata.json`.
+Change page copy, structure and fidelity-shell composition in `page-school-trips-italy.php`, page styling in `assets/css/school-funnel.css`, form processing in `inc/leads.php`, preserved-page banners in `inc/growth.php`, and metadata in `config/seo-metadata.json`.
 
 Any new claim about ages, ratios, qualifications, insurance limits, safety record, current dates, prices, curriculum coverage or permissioned logos must first be recorded in `BUSINESS-BRIEF.md`.

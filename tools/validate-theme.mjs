@@ -483,15 +483,17 @@ const growthPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'growth.php'), 'ut
 const seoPhp = fs.readFileSync(path.join(themeRoot, 'inc', 'seo.php'), 'utf8');
 const schoolCss = fs.readFileSync(path.join(themeRoot, 'assets', 'css', 'school-funnel.css'), 'utf8');
 for (const contract of [
-  'Tailored outdoor education and residential school trips in Piemonte, Italy',
+  'School Trips to Italy',
   '15–80',
   '20–30',
   '3 days / 2 nights',
-  'November–March',
+  'November to March',
   'within 24 hours',
   'ecowise_school_enquiry',
   'privacy_consent',
-  'Do not include pupil names or medical information',
+  'Please do not include pupil names or medical information',
+  '/snapshots/html/for-schools/index.html',
+  'ecowise_enhance_snapshot_metadata',
 ]) {
   if (!schoolTemplate.includes(contract)) errors.push(`school funnel is missing required content/form contract (${contract})`);
 }
@@ -510,7 +512,7 @@ if (!growthPhp.includes("'/school-trips-italy/'") || !growthPhp.includes('ecowis
 if (!seoPhp.includes('ecowise_enhance_snapshot_metadata') || !fs.readFileSync(path.join(themeRoot, 'inc', 'fidelity.php'), 'utf8').includes('ecowise_enhance_snapshot_metadata( $document, $route )')) {
   errors.push('snapshot SEO metadata enhancer is not connected to the fidelity renderer');
 }
-if (!schoolCss.includes('.school-hero') || !schoolCss.includes('@media (max-width: 680px)')) errors.push('school funnel stylesheet is missing its hero or mobile contract');
+if (!schoolCss.includes('.eco-school-hero') || !schoolCss.includes('@media (max-width: 767px)')) errors.push('school funnel stylesheet is missing its fidelity-shell hero or mobile contract');
 
 const allowedSeoRoutes = new Set([...capturedRoutes.map((route) => route.route), ...nativeRoutes.map((route) => route.route)]);
 for (const [route, profile] of Object.entries(seoProfiles)) {

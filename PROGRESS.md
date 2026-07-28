@@ -2,6 +2,11 @@
 
 ## 2026-07-28
 
+- Rebuilt `/school-trips-italy/` after visual review showed that the first native campaign treatment did not belong to the reconstructed site. Version 1.1.1 now uses the exact captured Schools header/footer shell, mountain hero, centred logo/navigation, Outfit/Rubik typography, map backgrounds, photographic framing and established red/yellow/green palette without loading Elementor.
+- Replaced the original planning timeline with a clear photograph-and-four-step customer journey, simplified the enquiry form's initial view, rewrote responsibilities as customer-facing guidance and removed internal/developer language about future document confirmation.
+- Passed the updated static gate and complete local HTTP deployment contract: 36 preserved routes, one native growth route, 36 sitemap URLs, four child sitemaps, four native endpoints, two redirects and HEAD handling.
+- Built deterministic Ecowise Custom 1.1.1 package v24: 739 files, 30,013,931 bytes, SHA-256 `DCBECE27071703AD6F8ADA567C0D0820362F5552E28B0956C4CD5A4F00CEDA4D`.
+- Deployed 1.1.1 to production at the fresh `ecowise-custom-v25` path with the previous 1.1.0 path retained for immediate rollback. Production passed the complete route/sitemap/redirect/HEAD gate; the live funnel has the captured shell, one canonical, one schema graph, no broken images or horizontal overflow, and no internal document-confirmation language.
 - Incorporated Adam's second commercial briefing: prioritised UK independent schools within the schools-first strategy, identified specialist school-tour operators as the highest-leverage distribution route, separated direct-school and operator-partner acquisition paths, and recorded historical UK school interest as private prospect context rather than public proof.
 - Recorded the premium, innovative and personal positioning while forbidding unsupported superiority claims or competitor attacks. Adam's private financial figures were deliberately excluded from Git and all public/customer-facing systems.
 - Built Phase 1 of the school lead-generation system as the native, code-owned `/school-trips-italy/` route without changing any of the 36 preserved fidelity pages.
