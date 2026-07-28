@@ -2,6 +2,8 @@
 
 ## 2026-07-28
 
+- Corrected the wide-desktop school-funnel header collision reported from production. Theme 1.1.2 increases the desktop hero's reserved height and moves its content below the captured overlay header while leaving the 1024px-and-below rules unchanged. Live measurement at the reproduced desktop layout gives 171px between the header bottom and eyebrow, with no horizontal overflow.
+- Built deterministic v25 (739 files, 30,014,071 bytes, SHA-256 `25103CB8193C48D76033E5468281A7720D21191D67D8F71EE128457C177AA420`), deployed it at `ecowise-custom-v26`, purged SiteGround caches and passed the complete production deployment gate.
 - Rebuilt `/school-trips-italy/` after visual review showed that the first native campaign treatment did not belong to the reconstructed site. Version 1.1.1 now uses the exact captured Schools header/footer shell, mountain hero, centred logo/navigation, Outfit/Rubik typography, map backgrounds, photographic framing and established red/yellow/green palette without loading Elementor.
 - Replaced the original planning timeline with a clear photograph-and-four-step customer journey, simplified the enquiry form's initial view, rewrote responsibilities as customer-facing guidance and removed internal/developer language about future document confirmation.
 - Passed the updated static gate and complete local HTTP deployment contract: 36 preserved routes, one native growth route, 36 sitemap URLs, four child sitemaps, four native endpoints, two redirects and HEAD handling.

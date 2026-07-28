@@ -97,6 +97,16 @@
 	z-index: 1;
 }
 
+@media (min-width: 1025px) {
+	.eco-school-hero {
+		min-height: 760px;
+	}
+
+	.eco-school-hero__content {
+		transform: translateY(45px);
+	}
+}
+
 .eco-school-hero h1 {
 	color: #fff;
 	font-size: clamp(50px, 7vw, 78px);
