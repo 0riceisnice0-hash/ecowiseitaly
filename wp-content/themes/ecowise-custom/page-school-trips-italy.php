@@ -50,12 +50,13 @@ ob_start();
 			<div class="eco-school-intro__copy">
 				<p class="eco-school-eyebrow eco-school-eyebrow--red">Bringing learning to life</p>
 				<h2>An exceptional experience, built around your school</h2>
-				<p>EcoWise Italy creates personal, hands-on school trips that connect classroom learning with real landscapes, ecosystems and challenges.</p>
-				<p>Based in north-west Italy, we work with schools to shape a programme around their pupils, learning goals and preferred style of adventure — from focused fieldwork to a multi-day residential experience.</p>
+				<p>EcoWise Italy creates personal, hands-on school trips that connect classroom learning with real landscapes, ecosystems, stories and challenges.</p>
+				<p>Science and fieldwork sit alongside storytelling, myth-making, environmental art, drama and imaginative exploration. Pupils move, notice, create, solve problems and work together — away from screens and fully immersed in a new place.</p>
+				<p>Based in north-west Italy, we shape each programme around the pupils, learning goals and preferred style of adventure, from focused fieldwork to a full residential week.</p>
 				<ul class="eco-school-ticks">
 					<li>Typical class groups of 20–30 pupils</li>
 					<li>Groups of approximately 15–80 considered</li>
-					<li>Day visits, 3-day residentials and longer programmes</li>
+					<li>Day visits, short residentials and immersive 5- or 7-day programmes</li>
 					<li>Personal reply from Adam within 24 hours</li>
 				</ul>
 			</div>
@@ -80,7 +81,11 @@ ob_start();
 				</article>
 				<article class="eco-school-programme">
 					<img src="/wp-content/uploads/2024/11/Ecowise-Italy-254.jpg" alt="A group working together during an outdoor activity">
-					<div><h3>Service, teamwork and wellbeing</h3><p>Combine meaningful environmental action with collaboration, creativity, reflection and memorable group challenges.</p><a href="<?php echo esc_url( home_url( '/for-schools/outdoor-service-education-projects/' ) ); ?>">Explore service learning</a></div>
+					<div><h3>Storytelling, myth and environmental art</h3><p>Reconnect with nature through role-play, drama, story-sharing and creative encounters that give voice to landscapes, living systems and the more-than-human world.</p><a href="<?php echo esc_url( home_url( '/for-schools/storytelling-drama-experiences-in-nature/' ) ); ?>">Explore storytelling in nature</a></div>
+				</article>
+				<article class="eco-school-programme">
+					<img src="/wp-content/uploads/2024/11/ecowisely-tour-1.jpg" alt="Pupils using creativity and teamwork outdoors">
+					<div><h3>Teamwork, service and wellbeing</h3><p>Use physical challenges, problem-solving, conservation and shared adventure to build cooperation, confidence, creativity and connection.</p><a href="<?php echo esc_url( home_url( '/for-schools/team-building-wild-rites-of-passage/' ) ); ?>">Explore teamwork and group development</a></div>
 				</article>
 			</div>
 		</div>
@@ -90,13 +95,18 @@ ob_start();
 		<div class="eco-school-wrap">
 			<div class="eco-school-heading">
 				<p class="eco-school-eyebrow eco-school-eyebrow--red">A flexible starting point</p>
-				<h2>What could a three-day trip look like?</h2>
-				<p>This is an example journey. Your final programme is designed around your pupils, objectives, season and chosen location.</p>
+				<h2>Give the experience time to unfold</h2>
+				<p>For schools travelling internationally, we recommend five days and four nights. A longer stay creates space for deeper exploration, stronger group development and a more rewarding journey through place, story and discovery.</p>
+			</div>
+			<div class="eco-school-lengths" aria-label="Residential trip length options">
+				<div><span>Short stay</span><strong>3 days / 2 nights</strong><p>A concentrated introduction.</p></div>
+				<div class="eco-school-lengths__recommended"><span>Recommended</span><strong>5 days / 4 nights</strong><p>Time to settle, explore and go deeper.</p></div>
+				<div><span>Full immersion</span><strong>7 days / 6 nights</strong><p>A complete week of learning and adventure.</p></div>
 			</div>
 			<div class="eco-school-days">
-				<article><span>Day 1</span><h3>Arrive and connect</h3><p>Meet the landscape, settle into the group and begin with a guided ecological exploration.</p></article>
-				<article><span>Day 2</span><h3>Explore and investigate</h3><p>A full day of practical fieldwork, conservation or curriculum-linked challenges, with time to reflect together.</p></article>
-				<article><span>Day 3</span><h3>Make meaning</h3><p>Bring observations together, share discoveries and connect the experience back to learning at school.</p></article>
+				<article><span>Begin</span><h3>Arrive and connect</h3><p>Meet the landscape, awaken the senses, establish the group and begin exploring through observation, movement and story.</p></article>
+				<article><span>Go deeper</span><h3>Discover and create</h3><p>Build the middle of the trip around fieldwork, wild exploration, teamwork, myth-making, environmental art and practical challenges.</p></article>
+				<article><span>Bring it home</span><h3>Reflect and make meaning</h3><p>Give voice to discoveries, celebrate the shared adventure and connect the experience back to school and everyday life.</p></article>
 			</div>
 		</div>
 	</section>
@@ -131,22 +141,24 @@ ob_start();
 					<h3>EcoWise Italy</h3>
 					<ul>
 						<li>Designs and delivers your educational programme</li>
-						<li>Provides the programme proposal and quote</li>
+						<li>Selects the programme location and checks what is available</li>
+						<li>Books accommodation and food on the school's behalf</li>
 						<li>Manages its activities, risk assessment and safeguarding</li>
-						<li>Helps you identify and coordinate suitable local accommodation</li>
+						<li>Can coordinate local transport where agreed</li>
 					</ul>
 				</article>
 				<article>
 					<h3>Your school</h3>
 					<ul>
-						<li>Chooses the final programme and approves the trip</li>
-						<li>Arranges and contracts travel</li>
+						<li>Shares group details, dates and practical requirements</li>
+						<li>Approves the programme, location and bookings</li>
+						<li>Arranges the main travel to and from the destination</li>
 						<li>Maintains the school’s supervision and insurance arrangements</li>
-						<li>Confirms accommodation and food with the relevant provider</li>
+						<li>Pays the separate programme, accommodation/food and travel invoices</li>
 					</ul>
 				</article>
 			</div>
-			<p class="eco-school-plain-note">Programme, accommodation/food and travel are arranged as separate elements. Adam helps make the process practical and joined-up, while each provider remains responsible for the service it supplies.</p>
+			<p class="eco-school-plain-note"><strong>One joined-up planning process, separate payments.</strong> EcoWise Italy identifies and books the programme site, accommodation and food on the school's behalf as part of its service, with no additional EcoWise coordination fee. The school normally receives and pays three separate invoices: EcoWise Italy; accommodation and food; and travel. If a school books through a tour operator, the operator may instead package the trip and handle supplier payments.</p>
 		</div>
 	</section>
 
@@ -189,9 +201,10 @@ ob_start();
 			</div>
 			<details><summary>What group sizes work?</summary><p>Groups of approximately 15–80 can be considered, with a single class of around 20–30 pupils being typical. The final fit depends on ages, programme, location and staffing.</p></details>
 			<details><summary>Can the trip connect to our curriculum?</summary><p>Yes. Programmes can be shaped around science, ecology, fieldwork, interdisciplinary learning and wider group objectives. Tell Adam the outcomes you need and he will discuss what is feasible.</p></details>
-			<details><summary>Do you offer day and residential trips?</summary><p>Yes. A common residential format is three days and two nights, while day programmes and longer tailored trips can also be discussed.</p></details>
+			<details><summary>How long should a residential trip be?</summary><p>For schools travelling internationally, five days and four nights is the recommended format. Seven days and six nights allows an even deeper experience. Shorter three-day/two-night and two-day/one-night programmes are also possible, as are day visits.</p></details>
 			<details><summary>How is pricing worked out?</summary><p>Every programme receives a bespoke per-person quote based on the group size, duration, activities and location.</p></details>
-			<details><summary>Who arranges travel and accommodation?</summary><p>Your school arranges travel. Adam can help identify and coordinate suitable accommodation, with programme, accommodation/food and travel arranged separately.</p></details>
+			<details><summary>Who arranges travel, accommodation and food?</summary><p>EcoWise Italy chooses the programme location, checks availability, and books suitable accommodation and food on the school's behalf. The school arranges its main travel; EcoWise Italy can sometimes coordinate local transport. The school pays the programme, accommodation/food and travel providers separately unless the trip is packaged through a tour operator.</p></details>
+			<details><summary>Is travel insurance included?</summary><p>No. EcoWise Italy does not sell travel or provide travel insurance. Schools must arrange suitable insurance themselves or through their travel provider. For a flight-inclusive package bought through a UK tour operator, ask the operator what ATOL financial protection applies; ATOL protection is separate from travel insurance.</p></details>
 		</div>
 	</section>
 

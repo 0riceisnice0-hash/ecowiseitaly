@@ -279,7 +279,7 @@
 .eco-school-programmes {
 	display: grid;
 	gap: 24px;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 }
 
 .eco-school-programme {
@@ -318,6 +318,50 @@
 
 .eco-school-section--yellow {
 	background: var(--eco-pale);
+}
+
+.eco-school-lengths {
+	display: grid;
+	gap: 18px;
+	grid-template-columns: repeat(3, 1fr);
+	margin: -12px 0 34px;
+}
+
+.eco-school-lengths > div {
+	background: rgba(255, 255, 255, 0.72);
+	border: 2px solid #fff;
+	padding: 22px 24px;
+	text-align: center;
+}
+
+.eco-school-lengths > div > span {
+	color: var(--eco-red);
+	display: block;
+	font-family: "Outfit", sans-serif;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+}
+
+.eco-school-lengths strong {
+	color: var(--eco-ink);
+	display: block;
+	font-family: "Outfit", sans-serif;
+	font-size: 22px;
+	margin-bottom: 5px;
+}
+
+.eco-school-lengths p {
+	font-size: 14px;
+	margin: 0;
+}
+
+.eco-school-lengths__recommended {
+	background: #fff !important;
+	border-color: var(--eco-yellow) !important;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .eco-school-days {
@@ -711,10 +755,6 @@
 		grid-template-columns: 1fr 1fr;
 	}
 
-	.eco-school-programme:last-child {
-		grid-column: 1 / -1;
-	}
-
 	.eco-school-story__image img {
 		max-height: 560px;
 		min-height: 0;
@@ -778,16 +818,13 @@
 	}
 
 	.eco-school-programmes,
+	.eco-school-lengths,
 	.eco-school-days,
 	.eco-school-responsibilities,
 	.eco-school-quotes,
 	.eco-school-field-grid,
 	.eco-school-season__grid {
 		grid-template-columns: 1fr;
-	}
-
-	.eco-school-programme:last-child {
-		grid-column: auto;
 	}
 
 	.eco-school-heading {

@@ -1,5 +1,16 @@
 # Progress log
 
+## 2026-08-06
+
+- Incorporated Adam's detailed operational corrections into `/school-trips-italy/`: EcoWise Italy selects the programme site, checks availability and books accommodation/food on the school's behalf as an included coordination service; the school arranges main travel and pays the separate programme, accommodation/food and travel invoices.
+- Repositioned the recommended international residential from three days/two nights to five days/four nights, added seven days/six nights as the full-immersion option, and retained shorter residentials and day visits as available formats.
+- Expanded the programme story beyond field science to include storytelling, story-sharing, myth-making, environmental art, drama, role-play, sensory and physical discovery, teamwork, creativity, problem-solving, adventure and critical thinking.
+- Added accurate customer guidance that EcoWise Italy does not sell travel or provide travel insurance, and that ATOL financial protection for qualifying UK flight-inclusive packages is separate from travel insurance.
+- Updated the commercial brief, owner-question list, school-funnel handover and automated content/deployment contracts so these approved facts cannot silently regress.
+- Built deterministic theme 1.1.3 package v26: 739 verified files, 30,017,470 bytes, SHA-256 `7D5516BFB2678CCCC27E4978BB88E339D54D87803993D53F55C3755BF95DBAF8`.
+- Deployed 1.1.3 to production at the fresh `ecowise-custom-v27` path, retained 1.1.2 at `ecowise-custom-v26` for immediate rollback, purged SiteGround caches and reconfirmed the sole WordPress administrator/email as `marketinghydron@gmail.com`.
+- Passed the complete production deployment contract and browser-verified the live page at 1440px and 375px: one H1, no broken images, no horizontal overflow, clear header separation, balanced two-column/one-column programme cards, responsive residential options and readable booking responsibilities; no browser console errors were recorded.
+
 ## 2026-07-28
 
 - Corrected the wide-desktop school-funnel header collision reported from production. Theme 1.1.2 increases the desktop hero's reserved height and moves its content below the captured overlay header while leaving the 1024px-and-below rules unchanged. Live measurement at the reproduced desktop layout gives 171px between the header bottom and eyebrow, with no horizontal overflow.

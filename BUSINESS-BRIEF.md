@@ -30,9 +30,10 @@ Email alone is not a lead ledger. SMTP delivery, an owned CRM or enquiry registe
 
 - Group range: approximately 15–80 students.
 - Typical group: one class, approximately 20–30 students.
-- Common residential format: three days and two nights.
-- Longer week-format trips are operationally preferable.
-- Adam's spoken description of the longer format was internally inconsistent (“five nights, four days”), so exact days and nights must be confirmed before publication.
+- Short residential formats include two days/one night and three days/two nights.
+- Five days/four nights is the recommended format for schools travelling internationally.
+- Seven days/six nights is also available and provides the deepest experience.
+- Longer formats are better educationally for immersion and group development and are commercially preferable for EcoWise Italy.
 - Pricing is a bespoke per-person quote.
 - Per-person pricing generally decreases as group size increases.
 - No minimum or “from” price has been approved.
@@ -54,15 +55,19 @@ EcoWise Italy designs and delivers the educational/outdoor programme, prepares a
 
 - EcoWise Italy's programme is invoiced separately.
 - Food/accommodation and travel are separately contracted or invoiced by their respective providers.
-- Adam advises on and coordinates accommodation.
-- The school arranges transport/travel.
+- EcoWise Italy selects the programme site, checks availability, identifies suitable accommodation/food and makes those bookings on the school's behalf once it has the required group details.
+- This accommodation/food coordination is included within EcoWise Italy's service and does not carry a separate EcoWise coordination fee.
+- The school normally arranges its main travel to and from the destination.
+- EcoWise Italy may coordinate local transport where agreed.
+- In the direct model, the school normally pays three separate invoices or payments: EcoWise Italy; accommodation/food; and travel.
+- In a tour-operator model, the school may pay one packaged invoice to the operator, which then pays the suppliers.
 - EcoWise Italy is responsible for safeguarding during its outdoor programme.
 - The school and relevant providers retain responsibility for travel and accommodation safeguarding.
 - EcoWise Italy holds public liability insurance.
 - Schools generally retain their own insurance.
 - EcoWise Italy has cancellation terms and conditions, but the approved current documents must be supplied before detailed terms are published.
 
-EcoWise Italy does not hold an ATOL licence and must not present itself as selling a protected combined travel package. The preferred growth model is a relationship with an appropriately licensed UK school-travel operator or destination-management partner that can package and invoice the travel components, with EcoWise Italy as the specialist local educational delivery partner.
+EcoWise Italy does not sell travel, provide travel insurance or hold an ATOL licence and must not present itself as selling an ATOL-protected flight-inclusive package. ATOL is financial protection against the failure of an ATOL travel organiser and is separate from travel insurance. The preferred growth model is a relationship with an appropriately licensed UK school-travel operator or destination-management partner that can package and invoice the travel components where appropriate, with EcoWise Italy as the specialist local educational delivery partner. Schools booking directly remain responsible for arranging suitable travel insurance.
 
 ## Customer-facing business details
 
@@ -85,6 +90,10 @@ EcoWise Italy's strongest differentiators are:
 - tailored, small-provider attention rather than a standard mass-market programme;
 - more than 20 years of memorable nature education and repeat relationships;
 - specialist outdoor, ecological and experiential learning;
+- storytelling, story-sharing, myth-making, environmental art, drama and role-play;
+- imaginative exploration that gives voice to landscapes, ecological entities and living systems;
+- sensory and physical discovery away from screens;
+- teamwork, problem-solving, creativity, adventure and critical thinking;
 - English-language delivery in an accessible Italian destination;
 - competitive local accommodation and food costs;
 - flexible programmes for a class-sized group through to larger cohorts;
@@ -121,7 +130,6 @@ Before publishing the complete school sales path, obtain:
 
 - exact ages/educational stages served;
 - maximum practical group by programme and staffing ratio;
-- confirmed longer-trip day/night format;
 - sample quotes or approved indicative pricing;
 - current accommodation/food supplier model and invoice wording;
 - public-liability schedule and coverage wording;

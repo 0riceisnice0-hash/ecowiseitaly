@@ -487,6 +487,11 @@ for (const contract of [
   '15–80',
   '20–30',
   '3 days / 2 nights',
+  '5 days / 4 nights',
+  '7 days / 6 nights',
+  'Books accommodation and food',
+  'storytelling',
+  'ATOL protection is separate from travel insurance',
   'November to March',
   'within 24 hours',
   'ecowise_school_enquiry',
@@ -497,7 +502,7 @@ for (const contract of [
 ]) {
   if (!schoolTemplate.includes(contract)) errors.push(`school funnel is missing required content/form contract (${contract})`);
 }
-for (const forbidden of ['ATOL-protected package', 'guaranteed safe', 'all-inclusive', 'from €']) {
+for (const forbidden of ['ATOL-protected package', 'ATOL-recognised travel insurance', 'guaranteed safe', 'all-inclusive', 'from €']) {
   if (schoolTemplate.toLowerCase().includes(forbidden.toLowerCase())) errors.push(`school funnel contains an unapproved claim (${forbidden})`);
 }
 for (const leadContract of ['ecowise_enquiry', 'ecowise_record_enquiry', 'adamecorose@gmail.com', '_ecowise_email_delivery', 'check_admin_referer', 'set_transient']) {

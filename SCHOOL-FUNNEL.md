@@ -15,14 +15,20 @@ The page answers, in order:
 1. Is this relevant to my school?
 2. What group and trip formats fit?
 3. What can pupils learn?
-4. What might a three-day journey look like?
+4. Why is a five-day/four-night residential the recommended international format?
 5. How does planning work?
 6. Who is responsible for programme, travel and accommodation?
 7. Is there credible educator proof?
 8. When might capacity be available?
 9. What does Adam need to prepare a proposal?
 
-Every date is provisional until Adam checks the calendar. Pricing is described only as a bespoke per-person quote. The page does not present a combined travel package or imply ATOL protection.
+Every date is provisional until Adam checks the calendar. Pricing is described only as a bespoke per-person quote. The page recommends five days/four nights, presents seven days/six nights as a deeper option, and still makes clear that shorter residentials and day visits are possible.
+
+The programme story deliberately balances ecology and field science with EcoWise Italy's distinctive creative and embodied methods: storytelling, myth-making, environmental art, drama, role-play, sensory discovery, physical exploration, teamwork, problem-solving and critical thinking. This breadth should remain visible whenever the funnel is revised.
+
+EcoWise Italy selects the programme location, checks availability, and books accommodation and food on the school's behalf as part of its service. The school normally pays the EcoWise programme, accommodation/food and travel through separate invoices; it arranges its main travel, while EcoWise Italy may coordinate local transport when agreed. A tour operator can instead package the trip and pay suppliers.
+
+The page does not claim that EcoWise Italy sells travel, provides travel insurance or supplies an ATOL-protected package. ATOL is financial protection for qualifying flight-inclusive bookings and is separate from travel insurance; see the UK Civil Aviation Authority's [planning guidance](https://www.caa.co.uk/air-passengers/about-your-trip/planning-your-trip/) and [ATOL requirements](https://www.caa.co.uk/atol-protection/atol-requirements-for-the-travel-industry/do-i-need-an-atol/).
 
 ## Lead handling
 
