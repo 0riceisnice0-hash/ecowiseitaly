@@ -92,6 +92,31 @@ function applyHomepageImages(document, canonical) {
   return result;
 }
 
+function applyMissionStatement(document, canonicalPath, canonical) {
+  let result = document;
+  let replacementCount = 0;
+  const inheritedMission = /Ecowise Italy connects people to nature through storytelling, mindfulness and unplugged-outdoor adventure\. Our playful originality, passion and expert mentoring arouse ecological awareness and insight into our kinship and interconnectedness with our living world inspiring a healthy, beautiful future\./gi;
+  result = result.replace(inheritedMission, () => {
+    replacementCount += 1;
+    return escapeHtml(homepageUpdates.missionStatement);
+  });
+  if (replacementCount !== 1) throw new Error(`${canonical}: expected one inherited mission statement; found ${replacementCount}`);
+
+  if (canonicalPath === '/') {
+    let aboutInsertionCount = 0;
+    result = result.replace(
+      /(<div class="elementor-element[^>]*\bdata-id="605d665"[\s\S]*?<div class="elementor-widget-container">\s*)(<p>Our programs compliment)/i,
+      (match, prefix, existingCopy) => {
+        aboutInsertionCount += 1;
+        return `${prefix}<p><strong>Mission statement:</strong> ${escapeHtml(homepageUpdates.missionStatement)}</p>${existingCopy}`;
+      }
+    );
+    if (aboutInsertionCount !== 1) throw new Error(`${canonical}: expected one homepage About mission insertion point; found ${aboutInsertionCount}`);
+  }
+
+  return result;
+}
+
 function insertBeforeMarker(document, marker, markup, canonical, label) {
   const index = document.indexOf(marker);
   if (index === -1) throw new Error(`${canonical}: could not find insertion marker for ${label}`);
@@ -598,6 +623,10 @@ function repairDocument(html, canonical) {
       'service education updates'
     );
     result = editorialStylesheet(result);
+  }
+
+  if (canonicalPath === '/' || canonicalPath === '/what-is-ecowise/') {
+    result = applyMissionStatement(result, canonicalPath, canonical);
   }
 
   if (canonicalPath === '/') {

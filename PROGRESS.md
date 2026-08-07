@@ -1,5 +1,14 @@
 # Progress log
 
+## 2026-08-07
+
+- Corrected the owner-approved mission statement to add science and read: “EcoWise Italy connects people to nature through science, storytelling, mindfulness, and unplugged outdoor adventure.” The existing second sentence remains unchanged.
+- Added the complete mission statement to the beginning of the homepage About section while retaining it in the homepage hero and the dedicated `/what-is-ecowise/` section.
+- Made `content/homepage-updates.json` the single source for all three mission instances and added static and deployment validation to prevent wording drift or reintroduction of the inherited `unplugged-outdoor` error.
+- Built deterministic theme 1.1.4 package v27: 739 verified files, 30,017,837 bytes, SHA-256 `A67226D9DD0F5DC93E247CCFAF13A3661CE57A20F51CF2BCF734F7FF509CD88B`.
+- Deployed 1.1.4 to production at the fresh `ecowise-custom-v28` path, retaining 1.1.3 at `ecowise-custom-v27` for immediate rollback and purging SiteGround caches.
+- Passed the complete production route/sitemap gate and browser-verified both mission routes at 1440px and 390px: correct instance counts, no legacy wording, no horizontal overflow, no broken images and no console errors. The longer About copy remains balanced beside the framed-photo collage and readable as one column on mobile.
+
 ## 2026-08-06
 
 - Incorporated Adam's detailed operational corrections into `/school-trips-italy/`: EcoWise Italy selects the programme site, checks availability and books accommodation/food on the school's behalf as an included coordination service; the school arranges main travel and pays the separate programme, accommodation/food and travel invoices.

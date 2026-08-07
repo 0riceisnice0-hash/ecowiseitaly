@@ -310,7 +310,12 @@ for (const route of capturedRoutes) {
 }
 
 const homepageHtml = fs.readFileSync(path.join(themeRoot, 'snapshots', 'html', 'home.html'), 'utf8');
+const aboutHtml = fs.readFileSync(path.join(themeRoot, 'snapshots', 'html', 'what-is-ecowise', 'index.html'), 'utf8');
 if (countMatches(homepageHtml, /id=["']ecowise-homepage-styles["']/gi) !== 1) errors.push('homepage frame stylesheet is missing or duplicated');
+const escapedMission = escapeRegExp(homepageUpdates.missionStatement);
+if (countMatches(homepageHtml, new RegExp(escapedMission, 'g')) !== 2) errors.push('homepage must show the approved mission in both the hero and About section');
+if (countMatches(aboutHtml, new RegExp(escapedMission, 'g')) !== 1) errors.push('What is EcoWise Italy page does not show the approved mission statement');
+if (/unplugged-outdoor adventure/i.test(homepageHtml) || /unplugged-outdoor adventure/i.test(aboutHtml)) errors.push('legacy hyphenated mission wording is still present');
 const homepageCss = fs.readFileSync(path.join(themeRoot, 'assets', 'css', 'homepage.css'), 'utf8');
 for (const [elementId, expectedColor] of [
   ['641ee83d', '#cf2e2e'],

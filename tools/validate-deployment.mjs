@@ -8,6 +8,7 @@ const capturedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'aud
 const nativeRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'native-routes.json'), 'utf8'));
 const indexedRoutes = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'audit', 'indexed-routes.json'), 'utf8'));
 const seoProfiles = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'wp-content', 'themes', 'ecowise-custom', 'config', 'seo-metadata.json'), 'utf8'));
+const homepageUpdates = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'homepage-updates.json'), 'utf8'));
 const targetArgument = process.argv[2];
 
 if (!targetArgument || targetArgument === '--help' || targetArgument === '-h') {
@@ -165,6 +166,12 @@ async function validateRoute(route) {
     for (const marker of ['data-school-enquiry', 'Tell Adam what your school is looking for', '15–80', '5 days / 4 nights', '7 days / 6 nights', 'Books accommodation and food', 'storytelling', 'ATOL protection is separate from travel insurance', 'November to March', 'elementor-location-header', 'ecowise-school-funnel-css']) {
       if (!html.includes(marker)) errors.push(`${route.route}: native school funnel is missing ${marker}`);
     }
+  }
+
+  if (route.route === '/' || route.route === '/what-is-ecowise/') {
+    const expectedMissionCount = route.route === '/' ? 2 : 1;
+    const actualMissionCount = html.split(homepageUpdates.missionStatement).length - 1;
+    if (actualMissionCount !== expectedMissionCount) errors.push(`${route.route}: expected ${expectedMissionCount} approved mission statement instance(s), found ${actualMissionCount}`);
   }
 
   const isProductionTarget = ['ecowiseitaly.com', 'www.ecowiseitaly.com'].includes(target.hostname.toLowerCase());

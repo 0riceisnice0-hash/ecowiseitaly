@@ -10,6 +10,8 @@ Customer-facing homepage copy uses `EcoWise Italy`. This presentation rule does 
 
 The visible hero statement, “EcoWise Italy: Bringing nature to learning, bringing learning to life!”, is the page's sole H1. Its fidelity classes and widget-specific typography remain unchanged; only the semantic tag differs from the faulty live capture.
 
+The owner-approved mission statement is stored in `content/homepage-updates.json`. It must appear in the homepage hero, at the beginning of the homepage About copy, and in the Mission statement section of `/what-is-ecowise/`. The three instances are generated from this one value so the wording cannot drift.
+
 ## Purpose
 
 The homepage is a service gateway, not a generic brand manifesto. A visitor should understand within one screen that Ecowise Italy connects learning and nature, then choose the relevant school, service, corporate or eco-adventure path.
@@ -55,7 +57,7 @@ The five choices are part of the hero information architecture. Keep their label
 
 ## About section
 
-The image collage is an important handmade cue. It uses real EcoWise Italy imagery, restrained rotation and overlap. The large photograph has its captured 14px frame in red `#CF2E2E`; the two smaller tilted photographs retain their captured 10px frames in yellow `#FCB900`. These approved colors live in `assets/css/homepage.css`; do not change the image dimensions, rotations, overlap or shadows when maintaining them. The copy must remain the original three-paragraph explanation about reinforcing school teaching, Piemonte and UNESCO recognition unless content owners approve an editorial change.
+The image collage is an important handmade cue. It uses real EcoWise Italy imagery, restrained rotation and overlap. The large photograph has its captured 14px frame in red `#CF2E2E`; the two smaller tilted photographs retain their captured 10px frames in yellow `#FCB900`. These approved colors live in `assets/css/homepage.css`; do not change the image dimensions, rotations, overlap or shadows when maintaining them. The About copy begins with the owner-approved mission statement, followed by the original three-paragraph explanation about reinforcing school teaching, Piemonte and UNESCO recognition.
 
 ## School offer cards
 
