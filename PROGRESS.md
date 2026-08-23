@@ -19,6 +19,7 @@
 - Re-passed the complete production HTTP contract and browser-verified the live school funnel and four media routes at 1280px and 390px: all new asset references resolve through `ecowise-custom-v30`, all 33 gallery files return HTTP 200, the six programme headings are present, no checked route has horizontal overflow and the sole administrator remains `marketinghydron@gmail.com`.
 - Corrected the Corporate Activities photo pair after owner review: the inherited Elementor rule forced both 4:3 landscape images into fixed 340px-tall portrait crops. Theme 1.1.9 applies an explicit route-scoped override so both complete images retain their natural composition at desktop and mobile widths.
 - Built deterministic package v30 (773 files, 49,551,753 bytes, SHA-256 `D330A10BCBE67E3CA30A020F2D75077FA434C88E58E6E7C1B28F751739E8BE1A`) and deployed it at `ecowise-custom-v31`, retaining v30 for immediate rollback. Live measurements confirm `object-fit: contain`, both 2,000×1,500 source images, no horizontal overflow and the complete production route/sitemap contract.
+- Increased the same Corporate Activities photographs after owner review showed that uncropped side-by-side images were too small. Theme 1.1.10 stacks them at the full 308px desktop column width (355px mobile), retaining their complete landscape composition. Package v31 contains 773 files, 49,551,754 bytes and SHA-256 `52CB0C29C69F36CE981FF26005AF3E30B3AA9B9E7E3C877193897603AB3AA5D9`; it is live at `ecowise-custom-v32` with v31 retained for rollback.
 
 ## 2026-08-07
 
