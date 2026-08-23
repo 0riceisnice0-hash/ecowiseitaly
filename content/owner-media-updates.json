@@ -1,0 +1,47 @@
+{
+  "source": {
+    "album": "https://photos.app.goo.gl/WHRn4KTEGfaRGpsF8",
+    "download": "zac website-1-001.zip",
+    "received": "2026-08-23"
+  },
+  "images": [
+    { "number": 1, "file": "01-img_7668.webp", "alt": "Young people holding hands during an outdoor group activity" },
+    { "number": 2, "file": "02-img_7682.webp", "alt": "Young people working together beside a river" },
+    { "number": 3, "file": "03-img_7735.webp", "alt": "A group completing a teamwork activity among rocks" },
+    { "number": 4, "file": "04-img_7740.webp", "alt": "Students exploring a river landscape together" },
+    { "number": 5, "file": "05-img_8819.webp", "alt": "Animal tracks recorded in wet ground" },
+    { "number": 6, "file": "06-img_4472.webp", "alt": "A wild mountain goat among rocks" },
+    { "number": 7, "file": "07-img_4635.webp", "alt": "Students on an ecology field trip in the mountains" },
+    { "number": 8, "file": "08-img_4732.webp", "alt": "Students observing a wooded mountain stream" },
+    { "number": 9, "file": "09-img_6719.webp", "alt": "Students carrying out a practical science investigation outdoors" },
+    { "number": 10, "file": "10-img_6782.webp", "alt": "A pupil in blue carrying out river fieldwork" },
+    { "number": 11, "file": "11-img_7131.webp", "alt": "A school group crossing an old stone bridge" },
+    { "number": 12, "file": "12-img_7196.webp", "alt": "A group gathered in an Alpine landscape" },
+    { "number": 13, "file": "13-img_7243.webp", "alt": "A small snake discovered during a nature study" },
+    { "number": 14, "file": "14-img_7292.webp", "alt": "A waterfall and stone bridge in Piemonte" },
+    { "number": 15, "file": "15-img_7272.webp", "alt": "A large group gathered in front of a rushing waterfall" },
+    { "number": 16, "file": "16-img_7321.webp", "alt": "Cattle grazing in a green Piemonte meadow" },
+    { "number": 17, "file": "17-img_7337.webp", "alt": "A group learning about a local farm and its animals" },
+    { "number": 18, "file": "18-img_7347.webp", "alt": "Visitors meeting local people during an outdoor programme" },
+    { "number": 19, "file": "19-img_7349.webp", "alt": "Friends standing together in a rural field" },
+    { "number": 20, "file": "20-img_3813.webp", "alt": "Students exploring an enclosed natural space" },
+    { "number": 21, "file": "21-img_4029.webp", "alt": "A student group visiting a historic Italian city square" },
+    { "number": 22, "file": "22-img_4067.webp", "alt": "Students resting together during an outdoor day" },
+    { "number": 23, "file": "23-img_4094.webp", "alt": "Students taking part in an outdoor group challenge" },
+    { "number": 24, "file": "24-img_4195.webp", "alt": "Young people wading together in a clear river" },
+    { "number": 25, "file": "25-img_4292.webp", "alt": "Two young people carrying a log together in woodland" },
+    { "number": 26, "file": "26-img_4334.webp", "alt": "A group celebrating beside a structure made from logs" },
+    { "number": 27, "file": "27-img_4484.webp", "alt": "A dragonfly resting on a reed" },
+    { "number": 28, "file": "28-img_4852.webp", "alt": "A participant enjoying a sensory water experience" },
+    { "number": 29, "file": "29-img_6479.webp", "alt": "Environmental art made from leaves and natural materials" },
+    { "number": 30, "file": "30-img_6480.webp", "alt": "A figure created with leaves and natural materials" },
+    { "number": 31, "file": "31-img_1540.webp", "alt": "A group enjoying a sunny hillside in Piemonte" },
+    { "number": 32, "file": "32-img_1617.webp", "alt": "Young people relaxing beside a rocky stream" },
+    { "number": 33, "file": "33-img_1752.webp", "alt": "Students gathered in a grand Italian city square" }
+  ],
+  "assignments": {
+    "corporate": { "hero": 15, "supporting": [2, 3] },
+    "science": { "hero": 10, "carousel": [6, 7, 9], "preserve": "/wp-content/uploads/2024/11/Ecowise-Italy-151.jpg" },
+    "teamBuilding": { "hero": "/wp-content/uploads/2024/11/Ecowise-Italy-145.jpg", "preserve": "/wp-content/uploads/2024/11/teamss.jpg", "gallery": [25, 26] }
+  }
+}

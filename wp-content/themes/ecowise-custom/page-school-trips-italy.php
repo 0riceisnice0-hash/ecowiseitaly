@@ -68,24 +68,32 @@ ob_start();
 			<div class="eco-school-heading">
 				<p class="eco-school-eyebrow eco-school-eyebrow--green">Choose your direction</p>
 				<h2>Learning experiences with purpose</h2>
-				<p>Start with a programme area, then Adam will adapt the content, pace and challenge to your group.</p>
+				<p>Choose the programme area that fits your school’s aims. Adam will then shape the activities, timing and level for your pupils.</p>
 			</div>
 			<div class="eco-school-programmes">
 				<article class="eco-school-programme">
-					<img src="/wp-content/uploads/2024/11/Ecowise-Italy-211.jpg" alt="Students taking part in river fieldwork">
-					<div><h3>Science, ecology and fieldwork</h3><p>Investigate habitats, biodiversity and environmental processes through observation, practical enquiry and data collection.</p><a href="<?php echo esc_url( home_url( '/for-schools/science-ecology-environment-field-trips/' ) ); ?>">Explore science and ecology trips</a></div>
+					<img src="/wp-content/themes/ecowise-custom/assets/images/owner-album/10-img_6782.webp" alt="A pupil in blue carrying out river fieldwork">
+					<div><h3>Science, Ecology &amp; Environment Field Trips</h3><p>Investigate habitats, biodiversity and environmental processes through observation, practical enquiry and data collection.</p><a href="<?php echo esc_url( home_url( '/for-schools/science-ecology-environment-field-trips/' ) ); ?>">Explore science, ecology and environment</a></div>
 				</article>
 				<article class="eco-school-programme">
-					<img src="/wp-content/uploads/2024/11/mindfulll.jpg" alt="Students connecting with nature during an EcoWise Italy programme">
-					<div><h3>Residential outdoor learning</h3><p>Give pupils time to grow in confidence, independence and connection through a shared experience away from school.</p><a href="<?php echo esc_url( home_url( '/for-schools/residential-field-trips/' ) ); ?>">Explore residential trips</a></div>
+					<img src="/wp-content/themes/ecowise-custom/assets/images/owner-album/04-img_7740.webp" alt="Students exploring a river landscape together">
+					<div><h3>Outdoor Service Education Projects</h3><p>Combine practical conservation, community contribution and environmental learning in a purposeful shared project.</p><a href="<?php echo esc_url( home_url( '/for-schools/outdoor-service-education-projects/' ) ); ?>">Explore service education</a></div>
 				</article>
 				<article class="eco-school-programme">
-					<img src="/wp-content/uploads/2024/11/Ecowise-Italy-254.jpg" alt="A group working together during an outdoor activity">
-					<div><h3>Storytelling, myth and environmental art</h3><p>Reconnect with nature through role-play, drama, story-sharing and creative encounters that give voice to landscapes, living systems and the more-than-human world.</p><a href="<?php echo esc_url( home_url( '/for-schools/storytelling-drama-experiences-in-nature/' ) ); ?>">Explore storytelling in nature</a></div>
+					<img src="/wp-content/themes/ecowise-custom/assets/images/owner-album/29-img_6479.webp" alt="Environmental art made from leaves and natural materials">
+					<div><h3>Storytelling &amp; Drama Experiences in Nature</h3><p>Reconnect through role-play, story-sharing, myth-making and creative encounters that give voice to landscapes and living systems.</p><a href="<?php echo esc_url( home_url( '/for-schools/storytelling-drama-experiences-in-nature/' ) ); ?>">Explore storytelling and drama</a></div>
 				</article>
 				<article class="eco-school-programme">
-					<img src="/wp-content/uploads/2024/11/ecowisely-tour-1.jpg" alt="Pupils using creativity and teamwork outdoors">
-					<div><h3>Teamwork, service and wellbeing</h3><p>Use physical challenges, problem-solving, conservation and shared adventure to build cooperation, confidence, creativity and connection.</p><a href="<?php echo esc_url( home_url( '/for-schools/team-building-wild-rites-of-passage/' ) ); ?>">Explore teamwork and group development</a></div>
+					<img src="/wp-content/uploads/2024/11/Ecowise-Italy-145.jpg" alt="A young person jumping with yellow and green balloons">
+					<div><h3>Team Building &amp; Wild Rites of Passage</h3><p>Use physical challenges, problem-solving and shared adventure to build cooperation, confidence, creativity and connection.</p><a href="<?php echo esc_url( home_url( '/for-schools/team-building-wild-rites-of-passage/' ) ); ?>">Explore team building and wild rites</a></div>
+				</article>
+				<article class="eco-school-programme">
+					<img src="/wp-content/uploads/2024/11/mindfulll.jpg" alt="Students connecting mindfully with nature">
+					<div><h3>Mindfulness and Nature Awareness Workshops</h3><p>Slow down, awaken the senses and develop attention, wellbeing and a more personal relationship with the natural world.</p><a href="<?php echo esc_url( home_url( '/for-schools/mindfulness-and-nature-awareness-workshops/' ) ); ?>">Explore mindfulness in nature</a></div>
+				</article>
+				<article class="eco-school-programme">
+					<img src="/wp-content/uploads/2024/11/ecowisely-tour-22.jpg" alt="Young people sharing a wilderness encounter">
+					<div><h3>Wilderness Encounter Groups &amp; Ecoliteracy Camps</h3><p>Spend sustained time exploring wild places through sensory discovery, adventure, ecological enquiry and group reflection.</p><a href="<?php echo esc_url( home_url( '/for-schools/wilderness-encounter-groups-ecoliteracy-camps/' ) ); ?>">Explore wilderness and ecoliteracy</a></div>
 				</article>
 			</div>
 		</div>
@@ -199,11 +207,12 @@ ob_start();
 				<p class="eco-school-eyebrow eco-school-eyebrow--red">Practical questions</p>
 				<h2>Before you enquire</h2>
 			</div>
-			<details><summary>What group sizes work?</summary><p>Groups of approximately 15–80 can be considered, with a single class of around 20–30 pupils being typical. The final fit depends on ages, programme, location and staffing.</p></details>
+			<details><summary>What group sizes and supervision work?</summary><p>Groups of approximately 15–80 can be considered, with a single class of around 20–30 pupils being typical. A usual planning ratio is one accompanying adult for every 10 pupils; the exact fit and staffing are confirmed for the ages, programme and location.</p></details>
 			<details><summary>Can the trip connect to our curriculum?</summary><p>Yes. Programmes can be shaped around science, ecology, fieldwork, interdisciplinary learning and wider group objectives. Tell Adam the outcomes you need and he will discuss what is feasible.</p></details>
 			<details><summary>How long should a residential trip be?</summary><p>For schools travelling internationally, five days and four nights is the recommended format. Seven days and six nights allows an even deeper experience. Shorter three-day/two-night and two-day/one-night programmes are also possible, as are day visits.</p></details>
 			<details><summary>How is pricing worked out?</summary><p>Every programme receives a bespoke per-person quote based on the group size, duration, activities and location.</p></details>
 			<details><summary>Who arranges travel, accommodation and food?</summary><p>EcoWise Italy chooses the programme location, checks availability, and books suitable accommodation and food on the school's behalf. The school arranges its main travel; EcoWise Italy can sometimes coordinate local transport. The school pays the programme, accommodation/food and travel providers separately unless the trip is packaged through a tour operator.</p></details>
+			<details><summary>Can you provide evidence of insurance?</summary><p>Yes. EcoWise Italy holds current public liability insurance. Evidence can be supplied privately to genuine school enquiries during planning; it is not published on the public website.</p></details>
 			<details><summary>Is travel insurance included?</summary><p>No. EcoWise Italy does not sell travel or provide travel insurance. Schools must arrange suitable insurance themselves or through their travel provider. For a flight-inclusive package bought through a UK tour operator, ask the operator what ATOL financial protection applies; ATOL protection is separate from travel insurance.</p></details>
 		</div>
 	</section>

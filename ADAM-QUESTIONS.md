@@ -4,16 +4,16 @@ These are the smallest remaining owner questions that materially improve sales o
 
 ## Please ask now
 
-1. **Ages and supervision:** Which pupil ages/year groups will you accept? What adult-to-student ratios do you require, and do any programmes have lower maximum group sizes than the general 15–80 range?
-2. **Documents:** Please send current copies or clear photographs of:
+1. **Ages and supervision:** Which pupil ages/year groups will you accept? The usual ratio is now recorded as one adult to 10 pupils; do any ages, activities or sites require a stricter ratio, or have lower maximum group sizes than the general 15–80 range?
+2. **Private due-diligence documents:** You have confirmed that EcoWise Italy holds insurance and can send evidence privately rather than publish it. Please send current copies or clear photographs of:
    - public-liability insurance schedule and coverage amount;
    - safeguarding policy;
    - a representative risk assessment;
    - relevant staff qualification certificates;
    - cancellation terms and conditions.
-   For each document, say whether it can be published, sent privately to enquiring schools, or only summarised.
+   For the remaining documents, say whether each can be published, sent privately to enquiring schools, or only summarised.
 3. **Accommodation example:** Give one representative accommodation/food provider, where it is, roughly which group it suits, who is named on the contract and who issues the invoice. We now understand that EcoWise Italy makes the booking on the school's behalf.
-4. **Proof permission:** May the website continue using the November 2024 testimonials from Laura Haines, Claire Dyer, Chantelle Marlene Burgess and Victoria Corkhill? Do we have permission for any associated school logos, or quotes only?
+4. **Testimonial permission:** May the website continue using the November 2024 testimonials from Laura Haines, Claire Dyer, Chantelle Marlene Burgess and Victoria Corkhill? School logos are not required for the current phase.
 5. **Lead retention:** How long should school enquiries remain in the private WordPress enquiry ledger: 12 months, 24 months, or another period? Who besides Adam should be allowed to see them?
 
 ## Commercially valuable next

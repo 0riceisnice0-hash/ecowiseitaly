@@ -1,5 +1,20 @@
 # Progress log
 
+## 2026-08-23
+
+- Recovered the 33-photo `zac website` Google Photos album from `zac website-1-001.zip`, resolved its true shared-album order and generated WebP theme derivatives limited to 2,000 pixels with camera metadata removed; the originals remain untouched outside Git.
+- Added every owner photo to a new responsive Gallery section in album order, with meaningful alt text and direct full-image links.
+- Applied the approved route assignments: Corporate hero image 15 plus support images 2/3; Science hero 10 plus goat/mountain/science carousel images 6/7/9 while retaining the orange-net fieldwork image; Team Building inherited balloon-jump hero plus retained rafting image and replacements 25/26.
+- Made `content/owner-media-updates.json`, `assets/css/owner-media.css` and `MEDIA-UPDATES.md` the deterministic media contract; captured snapshots are regenerated rather than hand-edited.
+- Replaced the school funnel's four generic programme cards with all six full inherited programme categories and clarified how Adam shapes activities, timing and level for each school.
+- Added the owner-confirmed usual planning ratio of one accompanying adult to 10 pupils, carefully qualified by age/programme/site, and stated that current public-liability evidence is supplied privately rather than published. Recorded that school logos are not needed for this phase.
+- Normalised the visible “Science trips” shorthand and lower-case “Field trips” instances to the full “Science, Ecology & Environment Field Trips” title.
+- Audited the supplied Mailchimp campaign and created `SCHOOL-OUTREACH.md`: target roles, official data sources, suppression/compliance controls, September pilot schedule, subject lines, initial email, follow-up and pre-send blockers. No email was sent and no external account was changed.
+- Confirmed the supplied Facebook story is not publicly accessible and did not import an unstable/private post; a public permalink or exported media is still required.
+- Passed static validation, PHP 8.2 syntax lint across 19 files and the complete Local HTTP deployment contract: 36 preserved routes, one native growth route, exact 36-URL sitemap, four child sitemaps, native endpoints, redirects and HEAD handling.
+- Browser-verified Local at desktop and 390-pixel mobile widths: the school header/hero does not overlap, all six cards render responsively, every assigned hero/gallery source is correct, the new Gallery contains 33 ordered images, no modified route has horizontal overflow and no console errors were recorded.
+- Built deterministic theme 1.1.5 package v28: 773 verified files, 49,550,913 bytes, SHA-256 `ADEE4FB2B4038A6FD2A3E9FB30208B976DF1B18DD25EC3FB02F1BEADB8C274A5`.
+
 ## 2026-08-07
 
 - Corrected the owner-approved mission statement to add science and read: “EcoWise Italy connects people to nature through science, storytelling, mindfulness, and unplugged outdoor adventure.” The existing second sentence remains unchanged.

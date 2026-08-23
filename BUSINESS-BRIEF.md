@@ -37,7 +37,8 @@ Email alone is not a lead ledger. SMTP delivery, an owned CRM or enquiry registe
 - Pricing is a bespoke per-person quote.
 - Per-person pricing generally decreases as group size increases.
 - No minimum or “from” price has been approved.
-- Student ages and adult-to-student ratios remain to be confirmed.
+- A usual planning ratio is one accompanying adult for every 10 pupils.
+- The exact ratio and maximum group remain subject to pupils' ages, programme, site and Adam's final confirmation; do not present 1:10 as a universal statutory or programme guarantee.
 
 ## Availability and seasonality
 
@@ -77,10 +78,11 @@ EcoWise Italy does not sell travel, provide travel insurance or hold an ATOL lic
 
 ## Proof and permissions
 
-- Logo and testimonial permissions are not yet documented.
-- Do not add a school/company logo until Adam identifies the organisation and confirms permission.
+- No school logos are required for the current sales phase.
+- Do not add a school/company logo later unless Adam identifies the organisation and confirms permission.
 - Existing testimonials may remain as inherited content, but any new case study should record the person's role, school, date and permission.
-- Insurance schedules, qualification certificates, safeguarding policy, cancellation terms and risk-assessment examples must be collected into an owner-approved due-diligence pack.
+- EcoWise Italy holds current public liability insurance. The evidence is not approved for public download but may be supplied privately to genuine school enquiries during planning.
+- Insurance schedules, qualification certificates, safeguarding policy, cancellation terms and risk-assessment examples must still be collected into an owner-approved due-diligence pack.
 - Avoid absolute safety claims until the exact claim and supporting record have been confirmed.
 
 ## Positioning
@@ -128,15 +130,15 @@ Adam shared private turnover, cost and tax context to explain the scale of the o
 
 Before publishing the complete school sales path, obtain:
 
-- exact ages/educational stages served;
-- maximum practical group by programme and staffing ratio;
+- exact ages/educational stages served and any programme-specific ratio exceptions;
+- maximum practical group by programme;
 - sample quotes or approved indicative pricing;
 - current accommodation/food supplier model and invoice wording;
 - public-liability schedule and coverage wording;
 - qualifications and safeguarding documentation;
 - current cancellation terms;
 - operator/DMC legal review of the proposed partnership model;
-- logo and testimonial permission list;
+- testimonial permission list;
 - live calendar or an owner-approved availability process;
 - legal entity/VAT details checked against current records.
 

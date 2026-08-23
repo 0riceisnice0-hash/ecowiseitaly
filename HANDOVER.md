@@ -15,11 +15,11 @@ The immediate compatibility contract is:
 
 The 36-route sitemap contract is in `audit/indexed-routes.json`; the 36-route captured contract, including the non-indexed date archive, is in `audit/captured-routes.json`; code-owned routes are kept separately in `audit/native-routes.json`. Supporting source inventories are in `audit/source/`.
 
-The 26 July 2026 SEO, UX, customer-journey and lead-generation findings are consolidated in `GROWTH-AUDIT.md`. Adam Rose's owner-approved offer, seasonality, responsibility and lead-handling facts are recorded separately in `BUSINESS-BRIEF.md`; use it as the commercial source of truth.
+The 26 July 2026 SEO, UX, customer-journey and lead-generation findings are consolidated in `GROWTH-AUDIT.md`. Adam Rose's owner-approved offer, seasonality, responsibility and lead-handling facts are recorded separately in `BUSINESS-BRIEF.md`; use it as the commercial source of truth. August owner-photo assignments are in `MEDIA-UPDATES.md`, and the prepared-but-not-sent UK acquisition sequence is in `SCHOOL-OUTREACH.md`.
 
 ## Current release
 
-The current source release is theme 1.1.4. It retains the approved homepage presentation, adds the code-owned school acquisition funnel, private lead ledger, school-page conversion paths and priority SEO foundation. The owner-approved mission statement is generated from `content/homepage-updates.json` into the homepage hero, homepage About section and `/what-is-ecowise/`, preventing the three instances from drifting. The funnel composes its custom PHP content inside the captured Schools shell so its header, hero, logo/navigation, typography and footer match the reconstructed site without an Elementor runtime. The deterministic handoff archive is `ecowise-custom-theme-2026-08-07-v27.zip`: 739 verified theme files, 30,017,837 bytes, SHA-256 `A67226D9DD0F5DC93E247CCFAF13A3661CE57A20F51CF2BCF734F7FF509CD88B`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
+The current source release is theme 1.1.5. It retains the approved homepage presentation, code-owned school acquisition funnel, private lead ledger, school-page conversion paths and priority SEO foundation. The funnel now exposes all six inherited programme families, plus the owner-approved 1:10 planning ratio and private insurance-evidence process. The owner-supplied album is compiled into Corporate, Science, Team Building and Gallery from `content/owner-media-updates.json`; it is not a collection of hand-edited snapshots. The deterministic handoff archive is `ecowise-custom-theme-2026-08-23-v28.zip`: 773 verified theme files, 49,550,913 bytes, SHA-256 `ADEE4FB2B4038A6FD2A3E9FB30208B976DF1B18DD25EC3FB02F1BEADB8C274A5`. Its machine-readable contract is `release/theme-package.json`. Rebuild future archives with `python3 tools/package-theme.py <output.zip>` and use the checksum printed by the command; do not manually re-zip the directory. The packager normalizes approved text-file line endings and writes a fixed stored-ZIP structure so the same source produces the same archive on Windows and Linux.
 
 ## What is implemented
 
@@ -47,6 +47,8 @@ Curated content added after the original capture lives in `content/editorial-upd
 The generated sections use `assets/css/editorial.css`. The validator derives its editorial contracts from the JSON and requires every configured item on its intended routes.
 
 Homepage image choices live separately in `content/homepage-updates.json`. That file is the source of truth for the five hero slides and three About-collage assignments; regenerate snapshots after changing it. The compiler also enforces the public `EcoWise Italy` presentation rule across visible and accessible snapshot copy while deliberately leaving technical paths and logo artwork intact.
+
+The 33-image owner album is similarly code-owned through `content/owner-media-updates.json`. The theme derivatives are under `assets/images/owner-album/`; route-specific presentation is in `assets/css/owner-media.css`. `MEDIA-UPDATES.md` records the exact Google Photos order and Adam/Yenka assignments. Do not reorder, replace or recompress these images without updating all three sources and regenerating snapshots.
 
 ## Verified Local installation
 

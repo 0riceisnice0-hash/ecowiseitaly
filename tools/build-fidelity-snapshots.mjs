@@ -14,6 +14,8 @@ const editorialUpdatesFile = path.join(repositoryRoot, 'content', 'editorial-upd
 const editorialUpdates = JSON.parse(fs.readFileSync(editorialUpdatesFile, 'utf8'));
 const homepageUpdatesFile = path.join(repositoryRoot, 'content', 'homepage-updates.json');
 const homepageUpdates = JSON.parse(fs.readFileSync(homepageUpdatesFile, 'utf8'));
+const ownerMediaUpdatesFile = path.join(repositoryRoot, 'content', 'owner-media-updates.json');
+const ownerMediaUpdates = JSON.parse(fs.readFileSync(ownerMediaUpdatesFile, 'utf8'));
 const themeVersion = fs.readFileSync(path.join(themeRoot, 'style.css'), 'utf8').match(/^Version:\s*(\S+)/m)?.[1];
 
 if (!themeVersion) {
@@ -41,12 +43,105 @@ function editorialStylesheet(document) {
   return themeStylesheet(document, 'ecowise-editorial-styles', 'editorial.css');
 }
 
+function ownerMediaStylesheet(document) {
+  return themeStylesheet(document, 'ecowise-owner-media-styles', 'owner-media.css');
+}
+
+function ownerImage(number) {
+  const image = ownerMediaUpdates.images.find((item) => item.number === number);
+  if (!image) throw new Error(`Owner album image ${number} is not defined`);
+  return {
+    ...image,
+    url: `/wp-content/themes/ecowise-custom/assets/images/owner-album/${image.file}`,
+  };
+}
+
+function ownerGalleryMarkup() {
+  const images = ownerMediaUpdates.images.map((image) => {
+    const url = `/wp-content/themes/ecowise-custom/assets/images/owner-album/${image.file}`;
+    return `<a class="ecowise-owner-gallery__item" href="${escapeHtml(url)}"><img alt="${escapeHtml(image.alt)}" decoding="async" loading="lazy" src="${escapeHtml(url)}"/></a>`;
+  }).join('\n');
+  return `<section aria-labelledby="ecowise-owner-gallery-title" class="ecowise-owner-gallery"><div class="ecowise-owner-gallery__inner"><h2 id="ecowise-owner-gallery-title">More EcoWise Italy photographs</h2><p>Recent moments from school, nature and group programmes in Piemonte.</p><div class="ecowise-owner-gallery__grid">${images}</div></div></section>`;
+}
+
+function mediaCarouselSlides(images) {
+  return images.map((image) => `<div aria-roledescription="slide" class="swiper-slide" role="group"><div aria-label="${escapeHtml(image.alt)}" class="elementor-carousel-image" role="img" style="background-image:url('${escapeHtml(image.url)}')"></div></div>`).join('\n');
+}
+
+function teamGalleryItem(image, position) {
+  const settings = Buffer.from(JSON.stringify({ url: image.url, slideshow: 'd437761' })).toString('base64');
+  const action = `#elementor-action%3Aaction%3Dlightbox%26settings%3D${encodeURIComponent(settings)}`;
+  return `<a aria-label="Open ${escapeHtml(image.alt)}" class="e-gallery-item elementor-gallery-item elementor-animated-content" data-e-action-hash="${action}" data-elementor-lightbox-slideshow="d437761" data-elementor-open-lightbox="yes" href="${escapeHtml(image.url)}"><div aria-label="${escapeHtml(image.alt)}" class="e-gallery-image elementor-gallery-item__image" data-height="900" data-thumbnail="${escapeHtml(image.url)}" data-width="1200" role="img" style="background-image:url('${escapeHtml(image.url)}')"></div><div class="elementor-gallery-item__overlay"></div></a>`;
+}
+
+function applyOwnerMediaUpdates(document, canonicalPath, canonical) {
+  let result = document;
+  let changed = false;
+
+  if (canonicalPath === '/corporate-team-building-vacation/') {
+    const support = ownerMediaUpdates.assignments.corporate.supporting.map(ownerImage);
+    let count = 0;
+    result = result.replace(
+      /(<div class="elementor-element elementor-element-58994f5[\s\S]*?<div class="elementor-widget-container">)[\s\S]*?(<\/div>\s*<\/div>)/i,
+      (match, prefix, suffix) => {
+        count += 1;
+        return `${prefix}<div class="ecowise-owner-photo-pair">${support.map((image) => `<img alt="${escapeHtml(image.alt)}" decoding="async" loading="lazy" src="${escapeHtml(image.url)}"/>`).join('')}</div>${suffix}`;
+      }
+    );
+    if (count !== 1) throw new Error(`${canonical}: expected one corporate support image widget; found ${count}`);
+    changed = true;
+  }
+
+  if (canonicalPath === '/for-schools/science-ecology-environment-field-trips/') {
+    const assignment = ownerMediaUpdates.assignments.science;
+    const slides = assignment.carousel.map(ownerImage);
+    slides.push({ url: assignment.preserve, alt: 'Pupils carrying out river fieldwork with sampling nets' });
+    let count = 0;
+    result = result.replace(/(<div class="swiper-wrapper">)[\s\S]*?(<\/div>\s*<div aria-label="Previous")/i, (match, prefix, suffix) => {
+      count += 1;
+      return `${prefix}${mediaCarouselSlides(slides)}</div>\n<div aria-label="Previous"`;
+    });
+    if (count !== 1) throw new Error(`${canonical}: expected one science media carousel; found ${count}`);
+    changed = true;
+  }
+
+  if (canonicalPath === '/for-schools/team-building-wild-rites-of-passage/') {
+    const images = ownerMediaUpdates.assignments.teamBuilding.gallery.map(ownerImage);
+    let count = 0;
+    result = result.replace(
+      /(<a[^>]+href="[^\"]*teammm\.jpg"[\s\S]*?<\/a>)\s*(<a[^>]+href="[^\"]*ecowisely-tour-19\.jpg"[\s\S]*?<\/a>)/i,
+      () => {
+        count += 1;
+        return `${teamGalleryItem(images[0], 2)}\n${teamGalleryItem(images[1], 3)}`;
+      }
+    );
+    if (count !== 1) throw new Error(`${canonical}: expected two replaceable team-building gallery images; found ${count}`);
+    changed = true;
+  }
+
+  if (canonicalPath === '/gallery/') {
+    const footerIndex = result.indexOf('<div role="contentinfo"');
+    const contentEnd = footerIndex === -1 ? -1 : result.lastIndexOf('</div>', footerIndex);
+    if (footerIndex === -1 || contentEnd === -1) throw new Error(`${canonical}: could not find gallery content boundary`);
+    result = `${result.slice(0, contentEnd)}${ownerGalleryMarkup()}\n${result.slice(contentEnd)}`;
+    changed = true;
+  }
+
+  return changed ? ownerMediaStylesheet(result) : result;
+}
+
 function normalizedBrandCopy(value) {
   const placeholder = '__ECOWISE_ITALY_BRAND__';
   return String(value)
     .replace(/\bEcoWise Italy\b/gi, placeholder)
     .replace(/\bEcoWise\b/gi, placeholder)
     .replaceAll(placeholder, 'EcoWise Italy');
+}
+
+function normalizeProgrammeTitles(document) {
+  return document
+    .replace(/Science, Ecology &amp; Environment Field trips/g, 'Science, Ecology &amp; Environment Field Trips')
+    .replace(/>Science trips</g, '>Science, Ecology &amp; Environment Field Trips<');
 }
 
 function normalizeBrandPresentation(document) {
@@ -634,7 +729,9 @@ function repairDocument(html, canonical) {
     result = themeStylesheet(result, 'ecowise-homepage-styles', 'homepage.css');
   }
 
-  return normalizeBrandPresentation(result).replace(/[ \t]+$/gm, '');
+  result = applyOwnerMediaUpdates(result, canonicalPath, canonical);
+
+  return normalizeBrandPresentation(normalizeProgrammeTitles(result)).replace(/[ \t]+$/gm, '');
 }
 
 const inventory = parseCsv(fs.readFileSync(inventoryFile, 'utf8').replace(/^\uFEFF/, ''));

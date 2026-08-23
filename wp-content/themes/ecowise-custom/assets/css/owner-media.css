@@ -1,0 +1,94 @@
+/* Owner-approved August 2026 image placements, generated into captured routes. */
+
+.elementor-3706 .elementor-element.elementor-element-b4207c0 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.33), rgba(0, 0, 0, 0.33)), url("../images/owner-album/15-img_7272.webp") !important;
+	background-position: center 48% !important;
+}
+
+.elementor-375 .elementor-element.elementor-element-5c223c8 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url("../images/owner-album/10-img_6782.webp") !important;
+	background-position: center 42% !important;
+}
+
+.elementor-387 .elementor-element.elementor-element-6d5ded1 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url("/wp-content/uploads/2024/11/Ecowise-Italy-145.jpg") !important;
+	background-position: center 45% !important;
+}
+
+.ecowise-owner-photo-pair {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ecowise-owner-photo-pair img {
+	aspect-ratio: 4 / 3;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+.ecowise-owner-gallery {
+	background: #f5f6ea;
+	padding: 76px 24px 88px;
+}
+
+.ecowise-owner-gallery__inner {
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+.ecowise-owner-gallery h2,
+.ecowise-owner-gallery p {
+	text-align: center;
+}
+
+.ecowise-owner-gallery h2 {
+	color: #263f2d;
+	font-family: "Outfit", sans-serif;
+	font-size: clamp(32px, 4vw, 52px);
+	margin: 0 0 8px;
+}
+
+.ecowise-owner-gallery p {
+	color: #4d5b50;
+	font-size: 17px;
+	margin: 0 auto 34px;
+}
+
+.ecowise-owner-gallery__grid {
+	display: grid;
+	gap: 12px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ecowise-owner-gallery__item {
+	background: #dde3d4;
+	display: block;
+	overflow: hidden;
+}
+
+.ecowise-owner-gallery__item img {
+	aspect-ratio: 4 / 3;
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 250ms ease;
+	width: 100%;
+}
+
+.ecowise-owner-gallery__item:hover img,
+.ecowise-owner-gallery__item:focus img {
+	transform: scale(1.035);
+}
+
+@media (max-width: 767px) {
+	.ecowise-owner-photo-pair,
+	.ecowise-owner-gallery__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.ecowise-owner-gallery {
+		padding: 54px 18px 64px;
+	}
+}
