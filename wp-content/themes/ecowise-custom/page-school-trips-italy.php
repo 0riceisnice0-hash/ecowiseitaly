@@ -305,6 +305,7 @@ if ( is_readable( $shell_file ) ) {
 		);
 		$document = str_replace( '</head>', $assets . '</head>', $document );
 		$document = str_replace( '</body>', $script . '</body>', $document );
+		$document = ecowise_rewrite_theme_asset_urls( $document );
 		$document = ecowise_rewrite_snapshot_links( $document );
 		echo $document; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return;

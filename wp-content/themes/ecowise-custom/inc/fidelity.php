@@ -68,6 +68,23 @@ function ecowise_rewrite_snapshot_links( $document ) {
 	);
 }
 
+/**
+ * Resolve code-owned snapshot assets through the active theme directory.
+ *
+ * Snapshot build output uses the stable, unversioned development path. Live
+ * releases use versioned theme directories so PHP opcode caches cannot serve a
+ * mixture of old and new files during a deployment.
+ */
+function ecowise_rewrite_theme_asset_urls( $document ) {
+	$theme_base = trailingslashit( get_stylesheet_directory_uri() );
+
+	return preg_replace(
+		'#(?:(?:https?:)?//(?:www\.)?ecowiseitaly\.com)?/wp-content/themes/ecowise-custom/#i',
+		$theme_base,
+		$document
+	);
+}
+
 function ecowise_maybe_serve_fidelity_snapshot() {
 	$is_rest_request = ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || isset( $_GET['rest_route'] );
 	$is_sitemap      = (bool) get_query_var( 'sitemap' ) || isset( $_GET['sitemap'] );
@@ -148,6 +165,7 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 			esc_url( get_theme_file_uri( '/assets/js/fidelity.js' ) . '?ver=' . wp_get_theme()->get( 'Version' ) )
 		);
 		$document = str_replace( '</body>', $enhancement . '</body>', $document );
+		$document = ecowise_rewrite_theme_asset_urls( $document );
 		$document = ecowise_rewrite_snapshot_links( $document );
 		echo $document; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}

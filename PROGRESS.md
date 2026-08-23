@@ -13,7 +13,10 @@
 - Confirmed the supplied Facebook story is not publicly accessible and did not import an unstable/private post; a public permalink or exported media is still required.
 - Passed static validation, PHP 8.2 syntax lint across 19 files and the complete Local HTTP deployment contract: 36 preserved routes, one native growth route, exact 36-URL sitemap, four child sitemaps, native endpoints, redirects and HEAD handling.
 - Browser-verified Local at desktop and 390-pixel mobile widths: the school header/hero does not overlap, all six cards render responsively, every assigned hero/gallery source is correct, the new Gallery contains 33 ordered images, no modified route has horizontal overflow and no console errors were recorded.
-- Built deterministic theme 1.1.5 package v28: 773 verified files, 49,550,913 bytes, SHA-256 `ADEE4FB2B4038A6FD2A3E9FB30208B976DF1B18DD25EC3FB02F1BEADB8C274A5`.
+- Built and deployed the owner-media release, then caught a production-only asset-path problem during browser QA: new snapshot images still referenced the stable development directory while production uses versioned theme directories. Added a renderer-level active-theme asset resolver and redeployed before handoff.
+- Built deterministic theme 1.1.6 package v29: 773 verified files, 49,551,599 bytes, SHA-256 `1313177B38DFE8E4D6706A380D227950FEF0FB6D61D4855E57059ED73ABE0664`.
+- Deployed 1.1.6 to production at `ecowise-custom-v30`, retaining 1.1.5 at `ecowise-custom-v29` and 1.1.4 at `ecowise-custom-v28` for rollback. The current deployment bundle is `/home/customer/ecowise-deploy-20260823-v29`.
+- Re-passed the complete production HTTP contract and browser-verified the live school funnel and four media routes at 1280px and 390px: all new asset references resolve through `ecowise-custom-v30`, all 33 gallery files return HTTP 200, the six programme headings are present, no checked route has horizontal overflow and the sole administrator remains `marketinghydron@gmail.com`.
 
 ## 2026-08-07
 
