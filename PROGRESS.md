@@ -17,6 +17,8 @@
 - Built deterministic theme 1.1.6 package v29: 773 verified files, 49,551,599 bytes, SHA-256 `1313177B38DFE8E4D6706A380D227950FEF0FB6D61D4855E57059ED73ABE0664`.
 - Deployed 1.1.6 to production at `ecowise-custom-v30`, retaining 1.1.5 at `ecowise-custom-v29` and 1.1.4 at `ecowise-custom-v28` for rollback. The current deployment bundle is `/home/customer/ecowise-deploy-20260823-v29`.
 - Re-passed the complete production HTTP contract and browser-verified the live school funnel and four media routes at 1280px and 390px: all new asset references resolve through `ecowise-custom-v30`, all 33 gallery files return HTTP 200, the six programme headings are present, no checked route has horizontal overflow and the sole administrator remains `marketinghydron@gmail.com`.
+- Corrected the Corporate Activities photo pair after owner review: the inherited Elementor rule forced both 4:3 landscape images into fixed 340px-tall portrait crops. Theme 1.1.9 applies an explicit route-scoped override so both complete images retain their natural composition at desktop and mobile widths.
+- Built deterministic package v30 (773 files, 49,551,753 bytes, SHA-256 `D330A10BCBE67E3CA30A020F2D75077FA434C88E58E6E7C1B28F751739E8BE1A`) and deployed it at `ecowise-custom-v31`, retaining v30 for immediate rollback. Live measurements confirm `object-fit: contain`, both 2,000×1,500 source images, no horizontal overflow and the complete production route/sitemap contract.
 
 ## 2026-08-07
 

@@ -16,15 +16,18 @@
 }
 
 .ecowise-owner-photo-pair {
+	align-content: start;
+	align-items: start;
 	display: grid;
 	gap: 16px;
+	grid-auto-rows: max-content;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.ecowise-owner-photo-pair img {
-	aspect-ratio: 4 / 3;
-	height: 100%;
-	object-fit: cover;
+.elementor-3706 .elementor-element.elementor-element-58994f5 .ecowise-owner-photo-pair img {
+	display: block;
+	height: auto !important;
+	object-fit: contain !important;
 	width: 100%;
 }
 
