@@ -2,9 +2,12 @@
 
 > Owner/legal review required before approval. This assessment supports a narrow, manually reviewed pilot; it does not approve bulk sending or override the rules of a recipient's country.
 
-Assessment date: 3 September 2026  
-Campaign: EWI-SCHOOLS-2026-09-03-A  
-Controller: EcoWise Italy — exact legal name to be confirmed  
+Assessment date: 3 September 2026
+
+Campaign: EWI-SCHOOLS-2026-09-03-A
+
+Controller: EcoWise Italy — exact legal name to be confirmed
+
 Decision owner: Adam Rose
 
 ## 1. Purpose test
@@ -57,10 +60,14 @@ Do not use this assessment for:
 
 ## 5. Sign-off
 
-Owner decision: **Not yet approved**  
-Decision: Approve / Revise / Reject  
-Approved by: ____________________  
-Date: ____________________  
+Owner decision: **Not yet approved**
+
+Decision: Approve / Revise / Reject
+
+Approved by: ____________________
+
+Date: ____________________
+
 Review date: ____________________
 
 Professional legal review is recommended before cross-border sending at scale. This working assessment is not legal advice.

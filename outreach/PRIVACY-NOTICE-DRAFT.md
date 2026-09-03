@@ -8,8 +8,10 @@ Last updated: 3 September 2026
 
 EcoWise Italy is responsible for the personal information described in this notice.
 
-Address: Via Mazzini 97, 14020 Aramengo, Asti, Italy  
-Email: adamecorose@gmail.com  
+Address: Via Mazzini 97, 14020 Aramengo, Asti, Italy
+
+Email: adamecorose@gmail.com
+
 Telephone: +39 342 136 3274
 
 ## Why we may contact schools and education professionals
