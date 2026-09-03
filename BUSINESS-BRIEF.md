@@ -32,7 +32,7 @@ Email alone is not a lead ledger. SMTP delivery, an owned CRM or enquiry registe
 - Typical group: one class, approximately 20–30 students.
 - Short residential formats include two days/one night and three days/two nights.
 - Five days/four nights is the recommended format for schools travelling internationally.
-- Seven days/six nights is also available and provides the deepest experience.
+- Seven days/six nights and multi-week formats are also available; EcoWise Italy can tailor the programme for as long as the school wants to stay.
 - Longer formats are better educationally for immersion and group development and are commercially preferable for EcoWise Italy.
 - Pricing is a bespoke per-person quote.
 - Per-person pricing generally decreases as group size increases.
@@ -45,6 +45,7 @@ Email alone is not a lead ledger. SMTP delivery, an owned CRM or enquiry registe
 - November through March has historically had substantial unsold capacity and is the priority season to fill.
 - Spring and autumn can be available.
 - April and May tend to book quickly.
+- EcoWise Italy works throughout the year, including spring and summer; November–March is a commercial priority because it has historically offered the greatest spare capacity, not because delivery is limited to those months.
 - These are recurring seasonal patterns, not confirmation that any specific date is free.
 - Adam must check the live calendar before a date or booking is promised.
 
@@ -94,7 +95,7 @@ EcoWise Italy's strongest differentiators are:
 - specialist outdoor, ecological and experiential learning;
 - storytelling, story-sharing, myth-making, environmental art, drama and role-play;
 - imaginative exploration that gives voice to landscapes, ecological entities and living systems;
-- sensory and physical discovery away from screens;
+- nature awareness and forest schooling away from screens, alongside sensory and physical discovery;
 - teamwork, problem-solving, creativity, adventure and critical thinking;
 - English-language delivery in an accessible Italian destination;
 - competitive local accommodation and food costs;

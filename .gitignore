@@ -1,6 +1,8 @@
 .DS_Store
 Thumbs.db
 *.log
+*.inspect.ndjson
+__pycache__/
 .env
 .idea/
 .vscode/

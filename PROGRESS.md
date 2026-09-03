@@ -1,5 +1,14 @@
 # Progress log
 
+## 2026-09-03
+
+- Incorporated Adam's final campaign corrections: EcoWise Italy has designed and tailored outdoor education for more than 20 years; the offer combines environmental science and ecology with storytelling, environmental art, teamwork, nature awareness and forest schooling away from screens; programmes may extend to multi-week immersion; delivery is available year-round, including spring and summer.
+- Built a transparent school-outreach register containing the complete current GIAS universe of 1,548 open English independent schools serving secondary-age pupils, an initial 39-school continental-European research list, 40 publicly displayed generic inboxes found among the first 80 prioritised UK prospects, formula-driven prioritisation, launch gates, campaign copy, send audit and suppression controls.
+- Created matching responsive HTML and plain-text campaign versions and a rendered visual preview. The cold introduction contains no tracking pixel or third-party analytics.
+- Drafted the outreach privacy notice and legitimate-interests assessment with explicit owner/legal review gates rather than presenting them as approved legal advice.
+- Verified live DNS has SiteGround mail exchange records, SPF, the default DKIM record and DMARC. No public `/privacy-policy/` page was found, so privacy information remains a launch blocker.
+- No prospect was marked approved, no email was sent and no external account was changed. Remaining launch gates are the actual sending mailbox and inbox-placement tests, privacy information, recipient verification/approval and explicit batch authorisation.
+
 ## 2026-08-23
 
 - Recovered the 33-photo `zac website` Google Photos album from `zac website-1-001.zip`, resolved its true shared-album order and generated WebP theme derivatives limited to 2,000 pixels with camera metadata removed; the originals remain untouched outside Git.

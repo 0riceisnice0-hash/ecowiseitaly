@@ -23,7 +23,7 @@ Mailchimp remains appropriate for people who expressly subscribe or ask for ongo
 
 ## Launch sequence
 
-1. **23 August–4 September:** verify the sender domain, SPF, DKIM and DMARC; publish/verify the privacy notice; build and manually qualify the first 50-school list; create the suppression register; test deliverability internally.
+1. **3–7 September:** confirm the sending mailbox; publish/verify the privacy notice; manually approve the first 15–20 UK recipients and up to five European international-school recipients from the research register; create the suppression register; test deliverability internally. SPF, DKIM and DMARC were confirmed in live DNS on 3 September 2026.
 2. **Tuesday 8 September, 09:30 UK time:** send a manually approved pilot of 15–20 messages to role or general school inboxes. Watch bounces, complaints and replies for 48 hours.
 3. **Thursday 10 September:** review the pilot. Stop if recipient quality, legal basis or sender reputation is weak; otherwise release the remaining reviewed first batch.
 4. **Seven working days later:** one concise follow-up with a useful planning detail and a direct question. Do not send repeated follow-ups to non-responsive schools beyond the approved sequence.
@@ -43,9 +43,11 @@ Adam owns every response and promises a personal reply within 24 hours. Record s
 
 Hello,
 
-I’m Adam Rose from EcoWise Italy. For more than 20 years we have designed tailored outdoor education in Piemonte, combining science and ecology with storytelling, environmental art, teamwork, sensory discovery and time away from screens.
+I’m Adam Rose from EcoWise Italy. For more than 20 years we have designed and tailored outdoor education in Piemonte, combining environmental science and ecology with storytelling, environmental art, teamwork, nature awareness and forest schooling away from screens.
 
-For schools travelling internationally, we recommend five days and four nights: enough time for pupils to settle into the landscape, investigate habitats, solve practical challenges, create stories and develop as a group. Programmes can also be shorter or extend to a full seven-day immersion.
+For schools travelling internationally, we recommend five days and four nights: enough time for pupils to settle into the landscape, investigate habitats, solve practical challenges, create stories and develop as a group. Programmes can also be shorter or extend to a multi-week immersion.
+
+We work throughout the year, including spring and summer. November to March often offers greater flexibility, subject to Adam confirming the live calendar.
 
 EcoWise Italy designs and delivers the programme, selects the location, and books suitable accommodation and food on the school’s behalf. Your school arranges its main travel and pays the programme, accommodation/food and travel providers separately. We hold public liability insurance and can provide evidence privately during planning.
 
@@ -80,12 +82,20 @@ Adam
 ## Pre-send blockers
 
 - Confirm the actual domain mailbox that will send; `adamecorose@gmail.com` can receive leads, but cold outreach should preferably authenticate as an `@ecowiseitaly.com` address.
-- Verify SPF, DKIM and DMARC and run a test that lands in Gmail and Microsoft 365 inboxes.
+- SPF, DKIM and DMARC are present in live DNS. After confirming the sending mailbox, run tests that land in Gmail and Microsoft 365 inboxes.
 - Confirm the privacy notice covers prospect research, legitimate interests, source disclosure, objections and retention.
 - Approve a legitimate-interests assessment for named business contacts.
 - Build and review the recipient and suppression lists; do not use “every school” as an unqualified blast target.
 - Confirm Adam's calendar and the programme/site combinations suitable for November–March before making a seasonal offer.
-- Confirm whether “more than 20 years” remains approved as a prominent claim.
+- “More than 20 years” remains owner-approved as a prominent claim.
 - Decide the operator commission model separately; do not mention a percentage until it is documented.
 
 No email has been sent and no external account has been changed as part of this phase.
+
+## Prepared launch artefacts
+
+- `outreach/school-campaign-2026-09-03.html` is the responsive visual advert preview. It uses no tracking pixel and contains no third-party analytics.
+- `outreach/school-campaign-2026-09-03.txt` is the matching plain-text version.
+- `outreach/PRIVACY-NOTICE-DRAFT.md` is a publication-ready starting point after the owner confirms the exact controller details, providers and retention decisions. It is intentionally not presented as approved legal advice.
+- `outreach/LEGITIMATE-INTERESTS-ASSESSMENT-DRAFT.md` documents the purpose, necessity, balancing test and safeguards for a narrow manually reviewed pilot. Adam must sign it before the corresponding gate is complete.
+- The dated outreach workbook contains the UK market universe, European research register, public role-inbox research, launch gates, campaign copy, send log and suppression register. A row is not approved until its human review is `Verified`, send decision is `Send`, suppression is `No`, and the launch gates are complete.
