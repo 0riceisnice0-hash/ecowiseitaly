@@ -6,6 +6,7 @@
 - Re-audited the outreach register. It contains a 1,548-school UK market universe, but only 40 researched public inboxes: the 20-school pilot plus 20 addresses that still required verification. The raw universe is not a prepared 1,000-recipient send list.
 - Rechecked the remaining 20 public role/general inboxes against current official school sites and documented them as a distinct UK wave 2. Recommended Monday 14 September at 09:30 UK rather than a Sunday send; no message was sent or scheduled during this audit.
 - Reconfirmed that the Gmail account is limited to 500 daily sends and SiteGround describes its bundled hosting email as standard communication rather than bulk-marketing infrastructure. Retained controlled, individually addressed waves and explicit suppression handling as the deliverability-safe workflow.
+- After Zac's explicit approval, scheduled all 20 UK wave 2 messages for Monday 14 September 2026 at 09:30 BST. Every message uses `Adam Rose — EcoWise Italy <schools@ecowiseitaly.com>`, the approved rich HTML campaign, one school in To and `zacbartleywork@gmail.com` plus `yenx@yahoo.com` in BCC. Gmail reconciliation showed exactly 20 matching scheduled rows; an opened scheduled message confirmed the intended sender, recipients, content and time.
 
 ## 2026-09-03
 

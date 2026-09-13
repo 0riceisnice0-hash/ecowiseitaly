@@ -1,8 +1,8 @@
-# UK school wave 2 — prepared 13 September 2026
+# UK school wave 2 — scheduled 13 September 2026
 
-Recommended send window: Monday 14 September 2026 at 09:30 Europe/London. Sender: `Adam Rose — EcoWise Italy <schools@ecowiseitaly.com>`. BCC on every message: `zacbartleywork@gmail.com`, `yenx@yahoo.com`. Copy: `EWI-SCHOOLS-2026-09-03-A`.
+Scheduled send: Monday 14 September 2026 at 09:30 Europe/London. Sender: `Adam Rose — EcoWise Italy <schools@ecowiseitaly.com>`. BCC on every message: `zacbartleywork@gmail.com`, `yenx@yahoo.com`. Copy: `EWI-SCHOOLS-2026-09-03-A`.
 
-This is the complete next available UK tranche in the current research register. It contains 20 public school-level role or general inboxes. Each address was rechecked against a current official school page on 13 September 2026. It does not authorise sending; scheduling is a separate representational action requiring Zac's explicit approval.
+This is the complete next available UK tranche in the current research register. It contains 20 public school-level role or general inboxes. Each address was rechecked against a current official school page on 13 September 2026. Zac explicitly approved scheduling on 13 September. Gmail was reconciled after scheduling and showed exactly 20 separate matching scheduled rows for 14 September; an opened message showed the correct sender, school recipient, both monitoring BCCs, rich HTML content and 09:30 send time.
 
 | # | School | Public inbox | Official source |
 |---:|---|---|---|
