@@ -1,5 +1,12 @@
 # Progress log
 
+## 2026-09-13
+
+- Audited the 8 September UK pilot in the sending Gmail account: all 20 scheduled messages were sent; no delivery failure or opt-out is visible in that account. Recorded the owner-reported outcome of four schools forwarding internally and one out-of-office, while retaining the limitation that replies forwarded to Adam are not fully observable in the sending inbox.
+- Re-audited the outreach register. It contains a 1,548-school UK market universe, but only 40 researched public inboxes: the 20-school pilot plus 20 addresses that still required verification. The raw universe is not a prepared 1,000-recipient send list.
+- Rechecked the remaining 20 public role/general inboxes against current official school sites and documented them as a distinct UK wave 2. Recommended Monday 14 September at 09:30 UK rather than a Sunday send; no message was sent or scheduled during this audit.
+- Reconfirmed that the Gmail account is limited to 500 daily sends and SiteGround describes its bundled hosting email as standard communication rather than bulk-marketing infrastructure. Retained controlled, individually addressed waves and explicit suppression handling as the deliverability-safe workflow.
+
 ## 2026-09-03
 
 - Incorporated Adam's final campaign corrections: EcoWise Italy has designed and tailored outdoor education for more than 20 years; the offer combines environmental science and ecology with storytelling, environmental art, teamwork, nature awareness and forest schooling away from screens; programmes may extend to multi-week immersion; delivery is available year-round, including spring and summer.
