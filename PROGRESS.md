@@ -1,5 +1,9 @@
 # Progress log
 
+## 2026-09-27
+
+- Incorporated Adam's latest copy clarification across the master email and LinkedIn draft: removed “forest schooling,” added field science, real-world ecosystems, hands-on practical investigation and theoretical learning, and clarified shorter programmes, five-day residentials and multi-week trips.
+
 ## 2026-09-13
 
 - Audited the 8 September UK pilot in the sending Gmail account: all 20 scheduled messages were sent; no delivery failure or opt-out is visible in that account. Recorded the owner-reported outcome of four schools forwarding internally and one out-of-office, while retaining the limitation that replies forwarded to Adam are not fully observable in the sending inbox.
@@ -10,7 +14,7 @@
 
 ## 2026-09-03
 
-- Incorporated Adam's final campaign corrections: EcoWise Italy has designed and tailored outdoor education for more than 20 years; the offer combines environmental science and ecology with storytelling, environmental art, teamwork, nature awareness and forest schooling away from screens; programmes may extend to multi-week immersion; delivery is available year-round, including spring and summer.
+- Incorporated Adam's September campaign corrections: EcoWise Italy has designed and tailored outdoor education for more than 20 years; the offer combines environmental science and ecology with storytelling, environmental art, teamwork, nature awareness and time away from screens; programmes may extend to multi-week immersion; delivery is available year-round, including spring and summer.
 - Built a transparent school-outreach register containing the complete current GIAS universe of 1,548 open English independent schools serving secondary-age pupils, an initial 39-school continental-European research list, 40 publicly displayed generic inboxes found among the first 80 prioritised UK prospects, formula-driven prioritisation, launch gates, campaign copy, send audit and suppression controls.
 - Created matching responsive HTML and plain-text campaign versions and a rendered visual preview. The cold introduction contains no tracking pixel or third-party analytics.
 - Drafted the outreach privacy notice and legitimate-interests assessment with explicit owner/legal review gates rather than presenting them as approved legal advice.

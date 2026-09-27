@@ -24,7 +24,7 @@ Mailchimp remains appropriate for people who expressly subscribe or ask for ongo
 ## Launch sequence
 
 1. **3–7 September:** confirm the sending mailbox; publish/verify the privacy notice; manually approve the first 15–20 UK recipients and up to five European international-school recipients from the research register; create the suppression register; test deliverability internally. SPF, DKIM and DMARC were confirmed in live DNS on 3 September 2026.
-2. **Tuesday 8 September, 09:30 UK time:** send a manually approved pilot of 15–20 messages to role or general school inboxes. Watch bounces, complaints and replies for 48 hours.
+2. **Tuesday 8 September, 09:30 UK time:** send a manually approved pilot of 20 individually addressed messages to role or general school inboxes, with `zacbartleywork@gmail.com` and `yenx@yahoo.com` BCC'd on every message. Watch bounces, complaints and replies for 48 hours.
 3. **Thursday 10 September:** review the pilot. Stop if recipient quality, legal basis or sender reputation is weak; otherwise release the remaining reviewed first batch.
 4. **Seven working days later:** one concise follow-up with a useful planning detail and a direct question. Do not send repeated follow-ups to non-responsive schools beyond the approved sequence.
 5. **Late September:** a final value-led follow-up only to the best-fit unresponsive schools, then suppress them from this campaign.
@@ -43,9 +43,11 @@ Adam owns every response and promises a personal reply within 24 hours. Record s
 
 Hello,
 
-I’m Adam Rose from EcoWise Italy. For more than 20 years we have designed and tailored outdoor education in Piemonte, combining environmental science and ecology with storytelling, environmental art, teamwork, nature awareness and forest schooling away from screens.
+I’m Adam Rose from EcoWise Italy. For more than 20 years we have designed and tailored outdoor education in Piemonte, combining environmental science and ecology with storytelling, environmental art, teamwork, nature awareness and time away from screens.
 
-For schools travelling internationally, we recommend five days and four nights: enough time for pupils to settle into the landscape, investigate habitats, solve practical challenges, create stories and develop as a group. Programmes can also be shorter or extend to a multi-week immersion.
+We work with schools throughout the year, delivering shorter programmes, five-day residentials and multi-week trips. For schools travelling internationally, we recommend five days and four nights: enough time for pupils to settle into the landscape, create stories and develop as a group.
+
+Pupils are immersed in field science and real-world ecosystems through hands-on practical investigation and theoretical learning. They solve practical challenges, build confidence as a group and reconnect with nature away from screens.
 
 We work throughout the year, including spring and summer. November to March often offers greater flexibility, subject to Adam confirming the live calendar.
 
