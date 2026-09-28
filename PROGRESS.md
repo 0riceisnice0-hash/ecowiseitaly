@@ -1,5 +1,15 @@
 # Progress log
 
+## 2026-09-28
+
+- Prepared 200 new unique UK school role/general inboxes from official school pages, excluding the 40 previously researched/contacted school records. Removed three obvious false or mismatched research results. Publication is evidence of a public contact, not SMTP deliverability verification.
+- Following Zac's instruction to expand outreach without repeating the pilot, scheduled four private BCC batches of 50 schools in Gmail: 29 and 30 September, 1 and 2 October 2026, all at 09:30 BST. Each uses Adam Rose — EcoWise Italy <schools@ecowiseitaly.com>, To schools@ecowiseitaly.com, and BCC copies to Zac and Yenka.
+- Reconciled the stored recipient details of all four scheduled messages against the 200-school list; every school and both copy recipients were present. Gmail showed exactly four scheduled campaign messages. These are queued sends, not delivered messages or 200 individually addressed compositions.
+- Used the corrected rich HTML master campaign, removed the inaccurate “one-to-one” footer wording for the BCC batch format, and retained the opt-out, postal address and school-planning link. No tracking pixel added.
+- Google Apps Script creation under the intended sending account failed with a broken Google redirect. No campaign code, OAuth grant or time trigger was installed. Gmail native Schedule Send is the only active scheduler; do not install the abandoned script as that risks duplicate sends.
+- Saved the recipient/source register and scheduling proof; no site/theme code or deployment was changed.
+- Sent Yenka and Zac a formatted email containing all 200 school names, public inboxes and the four confirmed send dates. Gmail confirmed “Message sent”.
+
 ## 2026-09-27
 
 - Incorporated Adam's latest copy clarification across the master email and LinkedIn draft: removed “forest schooling,” added field science, real-world ecosystems, hands-on practical investigation and theoretical learning, and clarified shorter programmes, five-day residentials and multi-week trips.

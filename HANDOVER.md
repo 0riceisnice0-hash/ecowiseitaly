@@ -15,7 +15,7 @@ The immediate compatibility contract is:
 
 The 36-route sitemap contract is in `audit/indexed-routes.json`; the 36-route captured contract, including the non-indexed date archive, is in `audit/captured-routes.json`; code-owned routes are kept separately in `audit/native-routes.json`. Supporting source inventories are in `audit/source/`.
 
-The 26 July 2026 SEO, UX, customer-journey and lead-generation findings are consolidated in `GROWTH-AUDIT.md`. Adam Rose's owner-approved offer, seasonality, responsibility and lead-handling facts are recorded separately in `BUSINESS-BRIEF.md`; use it as the commercial source of truth. August owner-photo assignments are in `MEDIA-UPDATES.md`, and the prepared-but-not-sent UK acquisition sequence is in `SCHOOL-OUTREACH.md`.
+The 26 July 2026 SEO, UX, customer-journey and lead-generation findings are consolidated in `GROWTH-AUDIT.md`. Adam Rose's owner-approved offer, seasonality, responsibility and lead-handling facts are recorded separately in `BUSINESS-BRIEF.md`; use it as the commercial source of truth. August owner-photo assignments are in `MEDIA-UPDATES.md`. Current outreach operations are in `SCHOOL-OUTREACH.md`: four native Gmail BCC batches cover 200 new schools at 09:30 BST, 29 September–2 October 2026. The exact source/date register is `outreach/uk-wave-200-recipients-2026-09-27.md`. Do not resend or activate the abandoned Apps Script scheduler; replies, bounces and objections require manual review.
 
 ## Current release
 

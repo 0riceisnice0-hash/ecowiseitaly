@@ -2,6 +2,16 @@
 
 This is the prepared September 2026 acquisition phase. It does not authorise sending. A human must review the final recipient list, sender identity and copy before any external message leaves an EcoWise Italy-controlled mailbox.
 
+## Current campaign operations
+
+Zac explicitly authorised a new 200-school campaign, excluding previous recipients. Gmail now holds four scheduled HTML messages, each with 50 schools in BCC, plus copy inboxes `zacbartleywork@gmail.com` and `yenx@yahoo.com`. The sender is `Adam Rose — EcoWise Italy <schools@ecowiseitaly.com>`; To is the same schools address. Scheduled times are 09:30 BST on 29 September, 30 September, 1 October and 2 October 2026.
+
+The exact recipient/source/date register is `outreach/uk-wave-200-recipients-2026-09-27.md` and its matching workbook. All four saved recipient sets were reconciled against that register. Scheduled is not delivered: review Sent, bounces, objections and Adam's forwarded replies after each send. There is no automatic suppression/monitoring system. If an objection arrives before a later batch, remove that recipient from the scheduled batch manually. School recipients cannot see the other BCC recipients. Adam and the copy recipients get one copy per batch, not 50 individual copies.
+
+The failed Apps Script attempt is not active; native Gmail scheduling is the sole send mechanism. Do not install a second scheduler or resend these 200 while the messages remain queued. The Gmail account/computer does not need to stay open for native scheduled sends.
+
+The earlier launch sequence below is retained as historical planning, not an instruction to repeat old contacts or automatically run follow-ups. Wider future outreach still requires deduplication, suppression and a recipient-lawfulness check; a public inbox alone does not establish consent or corporate subscriber status.
+
 ## Goal and audience
 
 The first goal is qualified conversations with UK independent and international schools for residential outdoor education in Piemonte, especially underused November–March capacity. Prioritise schools with senior/prep pupils, boarding or international outlook, environmental/science programmes, IB provision, an established trips programme, and budgets for overseas residential learning.
