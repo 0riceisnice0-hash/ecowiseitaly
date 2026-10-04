@@ -1,5 +1,12 @@
 # Progress log
 
+## 2026-10-04
+
+- Checked the sending Gmail account: all four scheduled 50-school batches appear in Sent at 09:30 BST on 29 and 30 September and 1 and 2 October. No future campaign batch remains scheduled. A focused search found no delivery-failure notices in this sending account; Adam's forwarded replies are not fully visible here.
+- Owner reported no qualified enquiries, five schools saying they would pass the message to the relevant person, and two explicit “no thanks” objections. These response counts are owner-reported, not independently audited against Adam's inbox.
+- Added Hurtwood House School (`info@hurtwood.net`) and Royal High School GDST (`admissions@rhsb.gdst.net`) to the local, Git-ignored do-not-contact register. Future school outreach must screen both the exact inbox and school identity; do not interpret the shared `gdst.net` domain as a group-wide opt-out.
+- Sent no additional prospect messages and did not activate the abandoned Apps Script scheduler.
+
 ## 2026-09-28
 
 - Prepared 200 new unique UK school role/general inboxes from official school pages, excluding the 40 previously researched/contacted school records. Removed three obvious false or mismatched research results. Publication is evidence of a public contact, not SMTP deliverability verification.
