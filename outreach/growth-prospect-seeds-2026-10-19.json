@@ -1,0 +1,38 @@
+{
+  "schools": [
+    ["Aiglon College", "https://www.aiglon.ch/"],
+    ["Leysin American School", "https://www.las.ch/"],
+    ["TASIS Switzerland", "https://www.tasis.ch/"],
+    ["Institut Le Rosey", "https://www.rosey.ch/"],
+    ["Le Regent International School", "https://www.regentschool.ch/"],
+    ["Lyceum Alpinum Zuoz", "https://www.lyceum-alpinum.ch/"],
+    ["Inter-Community School Zurich", "https://www.icsz.ch/"],
+    ["Zurich International School", "https://www.zis.ch/"],
+    ["International School of Zug and Luzern", "https://www.iszl.ch/"],
+    ["International School of Geneva", "https://www.ecolint.ch/"],
+    ["International School of Lausanne", "https://www.isl.ch/"],
+    ["International School Basel", "https://www.isbasel.ch/"],
+    ["St George's International School", "https://www.stgeorges.ch/"],
+    ["Haut-Lac International Bilingual School", "https://www.haut-lac.ch/"],
+    ["La Garenne International School", "https://www.la-garenne.ch/"],
+    ["Institut Montana Zugerberg", "https://www.montana-zug.ch/"],
+    ["Brillantmont International School", "https://www.brillantmont.ch/"],
+    ["International School of Schaffhausen", "https://www.issh.ch/"],
+    ["College Champittet", "https://www.champittet.ch/"],
+    ["ENSR International School", "https://www.ensr.ch/"]
+  ],
+  "operators": [
+    ["Discover the World Education", "https://www.discover-the-world.com/study-trips/"],
+    ["Rayburn Tours", "https://www.rayburntours.com/"],
+    ["Equity", "https://www.equity.co.uk/"],
+    ["NST", "https://www.nstgroup.co.uk/educational-school-trips"],
+    ["Halsbury Travel", "https://www.halsbury.com/"],
+    ["Travelbound", "https://www.travelbound.co.uk/"],
+    ["WST / Next Generation Travel", "https://www.ngttravel.com/our-brands/wst/"],
+    ["Select School Travel", "https://www.selectschooltravel.com/"],
+    ["Voyager School Travel", "https://www.voyagerschooltravel.com/"],
+    ["European Study Tours", "https://www.euro-study-tours.co.uk/"],
+    ["The School Travel Company", "https://www.theschooltravelcompany.com/"],
+    ["Adaptable Travel", "https://www.adaptabletravel.co.uk/"]
+  ]
+}

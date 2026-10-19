@@ -1,0 +1,2 @@
+# Generated PDF streams must remain byte-identical across platforms.
+*.pdf binary

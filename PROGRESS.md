@@ -1,5 +1,15 @@
 # Progress log
 
+## 2026-10-19 — school sales-resource release
+
+- Deployed custom theme 1.2.0 to `ecowise-custom-v33`, retaining v32 and a pre-release SQL backup for rollback. Final package: 775 files, 51,035,596 bytes; checksum in `release/theme-package.json`.
+- Built and visually reviewed all eight pages of two branded PDFs: six-page teacher planning pack and two-page school-travel partner brief. Compressed photographs for practical downloads and added public resource cards without email gating.
+- Added a sourced Beau Soleil science example, explicitly representative photography and an illustrative five-day itinerary to the native school funnel. Improved programme/accommodation responsibility wording and retained separate billing, insurance boundaries and multi-week options.
+- Added evidence to four inherited school routes and resource links to all six school proposal banners. Preserved sitemap/route contracts and existing enquiry requirements.
+- Checked desktop and 390-pixel phone layouts, header clearance, card contrast and horizontal overflow; corrected inherited heading/button colour conflicts before final packaging.
+- Researched 20 Swiss international schools and 12 UK school-tour operators from official sources. Prepared 32 individual introductions, master school/operator/referral copy and two LinkedIn posts. No new messages were sent or scheduled.
+- Updated business positioning to remove forest-schooling terminology in line with Adam's instruction. Added architecture/rebuild guidance and a ready-to-forward Yenka update. Preserved unrelated existing worktree changes.
+
 ## 2026-10-19
 
 - Resolved the owner-supplied Facebook share link to EcoWise Italy post `1088675720460799`, confirmed its public text about the tenth annual Beau Soleil College science/field sampling trip, and added it above the existing service-project posts on News and its equivalent archive views.

@@ -13,6 +13,36 @@
 	overflow: hidden;
 }
 
+.eco-school-hero__resource { margin: 25px 0 0; font-size: 15px; }
+.eco-school-hero__resource a { color: #fff; font-weight: 600; text-underline-offset: 4px; }
+.eco-school-hero__resource span { display: block; margin-top: 6px; font-size: 13px; color: #fff; }
+.eco-school-evidence { display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: center; }
+.eco-school-evidence__photo { margin: 0; min-width: 0; }
+.eco-school-evidence__photo img { display: block; width: 100%; border: 9px solid #fff; border-radius: 8px; box-shadow: 0 14px 40px #173b2417; }
+.eco-school-evidence__photo figcaption { font-size: 12px; margin-top: 12px; }
+.eco-school-downloads { display: grid; grid-template-columns: 1.25fr 1fr; gap: 26px; }
+.eco-school-download { background: #f2f6ef; border: 1px solid #dce6d7; border-radius: 20px; padding: 38px; }
+.eco-school-download--teacher { background: #234a35; color: #fff; }
+.eco-school-download h3 { font-size: 29px; line-height: 1.2; }
+.eco-school-download--teacher h3 { color: #fff; }
+.eco-school-page .eco-school-download--teacher h3 { color: #fff; }
+.eco-school-page a.eco-school-button--yellow { color: #202020; }
+.eco-school-page a.eco-school-button--outline { color: #fff; }
+.eco-school-page a.eco-school-text-link { color: #26743b; }
+.eco-school-page .eco-school-hero__content p.eco-school-hero__resource { font-size: 15px; margin: 24px auto 0; }
+.eco-school-download__tag { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 20px; }
+.eco-school-download--teacher .eco-school-button { margin-top: 15px; }
+.eco-school-itinerary { display: grid; gap: 16px; list-style: none; padding: 0; margin: 30px 0; }
+.eco-school-itinerary li { display: grid; grid-template-columns: 80px 1fr; gap: 24px; background: #fff; padding: 24px 30px; border-radius: 16px; }
+.eco-school-itinerary li > span { font-family: Outfit,sans-serif; color: #26743b; font-weight: 700; font-size: 21px; }
+.eco-school-itinerary h3 { font-size: 23px; margin: 0 0 8px; }
+.eco-school-itinerary p { margin: 0; }
+@media (max-width: 767px) {
+  .eco-school-evidence, .eco-school-downloads { grid-template-columns: 1fr; gap: 30px; }
+  .eco-school-download { padding: 26px; }
+  .eco-school-itinerary li { grid-template-columns: 1fr; gap: 10px; padding: 22px; }
+}
+
 .eco-school-page *,
 .eco-school-page *::before,
 .eco-school-page *::after {

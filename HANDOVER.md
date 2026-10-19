@@ -19,6 +19,14 @@ The 26 July 2026 SEO, UX, customer-journey and lead-generation findings are cons
 
 ## Current release
 
+Theme **1.2.0 is live in `ecowise-custom-v33`**. The current package is `ecowise-custom-theme-2026-10-19-v33.zip`: 775 files, 51,035,596 bytes, SHA-256 `C054490C3BBE4DEF8B18C3DA803170B241FBE88F7D3B4F93F42C076FB8BFA04F`. Deployment records and the pre-release database backup are in `/home/customer/ecowise-growth-20261019`; v32 remains available for rollback. The final contrast correction is included in the packaged source. The manifest is `release/theme-package.json`.
+
+The school funnel now contains a sourced Beau Soleil field-science example (photographs explicitly representative), a five-day illustrative itinerary and two ungated PDF downloads at `/school-trips-italy/#teacher-resources`. `tools/build-school-sales-pdfs.py` rebuilds the six-page teacher guide and two-page travel-partner brief in the theme's `assets/documents/` directory. Four inherited school routes expose the same evidence; all six school proposal banners link to the guide. Existing form requirements, routes and sitemap coverage remain unchanged.
+
+The growth research and prepared introductions cover 20 Swiss international schools and 12 UK school-tour operators. Read `outreach/swiss-schools-and-operators-2026-10-19.md`, `outreach/prepared-introductions-2026-10-19.md` and `outreach/school-growth-launch-kit-2026-10-19.md`. These are researched prospects and drafts, NOT sent messages or deliverability-verified addresses. No new outreach was scheduled in this phase. `YENKA-UPDATE-2026-10-19.md` is the ready-to-forward summary.
+
+### Prior release retained for context
+
 The News editorial update is deployed in the existing active `ecowise-custom-v32` directory. It adds the Beau Soleil science-trip post through `newsFacebookPosts` in `content/editorial-updates.json` to News and equivalent archives, separately from `serviceFacebookPosts`. The total is now 24 unique Facebook posts across 99 embed instances. The single new card uses a phone-compatible Facebook rendering width, and editorial CSS has a content hash for cache refresh. The seven original production files are retained at `/home/customer/ecowise-news-20261019/backup` for exact rollback. The current package superseding the earlier archive described below is `ecowise-custom-theme-2026-10-19-v32.zip`: 773 files, 49,557,539 bytes, SHA-256 `6153536CD24E74312E4A6BD191A37BA5489B3A69A717590089930883C0E5D23F`. The manifest is `release/theme-package.json`.
 
 The private Search Console review is saved outside this public repository at `C:/Users/zacpl/Documents/Codex/2026-07-21/usi/outputs/ecowise-2026-10-19/search-and-outreach-review.md`. It distinguishes Google search clicks from direct/email visits. The owner reports a third opt-out whose identity is still needed; the two identified schools remain in the local private suppression register.

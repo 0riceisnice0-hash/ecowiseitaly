@@ -10,6 +10,10 @@ The route deliberately uses the complete captured `/for-schools/` document as it
 
 ## Customer journey
 
+The October sales-resource expansion adds a sourced Beau Soleil field-science example before the programme choices, followed by two ungated downloads at `#teacher-resources`: a six-page teacher planning pack and a two-page school-travel partner brief. Photographs in the evidence section are labelled representative, not presented as photographs from that particular school visit. A five-day/four-night illustrative itinerary now makes the recommended format concrete; seven-day and multi-week options remain available. No dates or fixed prices are promised.
+
+The PDF source is `tools/build-school-sales-pdfs.py`; output lives under the theme's `assets/documents/`. Rebuild both PDFs and visually inspect every rendered page after changes. Share `/school-trips-italy/#teacher-resources`, not a versioned theme-directory URL. Existing school proposal banners link here, and four inherited school routes also show the sourced science example. New layouts remain scoped to the school CSS files and preserve the original site shell.
+
 The page answers, in order:
 
 1. Is this relevant to my school?

@@ -49,6 +49,14 @@
   text-transform: uppercase;
 }
 
+.ecowise-school-cta__actions { display: flex; flex-direction: column; align-items: center; gap: 12px; flex: 0 0 auto; }
+.ecowise-school-cta .ecowise-school-cta__download { background: transparent; color: #fff; padding: 6px 0; min-height: 30px; text-transform: none; text-decoration: underline; text-underline-offset: 4px; font: 500 14px/1.4 Rubik,sans-serif; letter-spacing: 0; }
+.ecowise-school-proof { max-width: 1100px; margin: 70px auto 0; padding: 34px; border-left: 6px solid #f3d84b; background: #f2f6ef; font: 16px/1.6 Rubik,sans-serif; color: #34483a; }
+.ecowise-school-proof h2 { font: 600 clamp(1.5rem,3vw,2rem)/1.2 Outfit,sans-serif; color: #234a35; margin: 8px 0 18px; }
+.ecowise-school-proof > p:first-child { text-transform: uppercase; font-size: 12px; letter-spacing: .09em; font-weight: 600; }
+.ecowise-school-proof a { color: #234a35; font-weight: 600; text-underline-offset: 4px; }
+@media (max-width: 720px) { .ecowise-school-proof { margin: 45px 18px 0; padding: 24px; } .ecowise-school-cta__actions { align-items: stretch; } }
+
 @media (max-width: 720px) {
   .ecowise-school-cta {
     margin-top: 48px;

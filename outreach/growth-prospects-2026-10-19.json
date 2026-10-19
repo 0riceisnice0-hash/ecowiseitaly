@@ -1,0 +1,591 @@
+[
+  {
+    "type": "schools",
+    "name": "Aiglon College",
+    "website": "https://www.aiglon.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.aiglon.ch/",
+    "emails": [
+      {
+        "email": "info@aiglon.ch",
+        "source": "https://www.aiglon.ch/"
+      }
+    ],
+    "evidence": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "boarding"
+    ],
+    "page_title": "Aiglon College | International Boarding School in Switzerland"
+  },
+  {
+    "type": "schools",
+    "name": "Leysin American School",
+    "website": "https://www.las.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.las.ch/admissions/contact-las",
+    "emails": [],
+    "evidence": [
+      "International Baccalaureate",
+      "boarding",
+      "science",
+      "educational",
+      "outdoor"
+    ],
+    "page_title": "Boarding School in Switzerland - Leysin American School"
+  },
+  {
+    "type": "schools",
+    "name": "TASIS Switzerland",
+    "website": "https://www.tasis.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.tasis.ch/contact-us",
+    "emails": [
+      {
+        "email": "reception@tasis.ch",
+        "source": "https://www.tasis.ch/contact-us"
+      }
+    ],
+    "evidence": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "boarding",
+      "science",
+      "outdoor"
+    ],
+    "page_title": "TASIS The American School in Switzerland"
+  },
+  {
+    "type": "schools",
+    "name": "Institut Le Rosey",
+    "website": "https://www.rosey.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.rosey.ch/information/contact/",
+    "emails": [],
+    "evidence": [
+      "International Baccalaureate",
+      "boarding"
+    ],
+    "page_title": "Institut Le Rosey | World-renowned Swiss Boarding School"
+  },
+  {
+    "type": "schools",
+    "name": "Le Regent International School",
+    "website": "https://www.regentschool.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.regentschool.ch/information/contact",
+    "emails": [
+      {
+        "email": "admissions@regentschool.ch",
+        "source": "https://www.regentschool.ch/information/contact"
+      },
+      {
+        "email": "info@regentschool.ch",
+        "source": "https://www.regentschool.ch/information/contact"
+      }
+    ],
+    "evidence": [
+      "boarding",
+      "educational",
+      "outdoor"
+    ],
+    "page_title": "Le Régent: Premier International Boarding School"
+  },
+  {
+    "type": "schools",
+    "name": "Lyceum Alpinum Zuoz",
+    "website": "https://www.lyceum-alpinum.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.lyceum-alpinum.ch/",
+    "emails": [
+      {
+        "email": "info@lyceum-alpinum.ch",
+        "source": "https://www.lyceum-alpinum.ch/"
+      }
+    ],
+    "evidence": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "outdoor"
+    ],
+    "page_title": "Internationales Internat Schweiz | Lyceum Alpinum Zuoz"
+  },
+  {
+    "type": "schools",
+    "name": "Inter-Community School Zurich",
+    "website": "https://www.icsz.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.icsz.ch/contact-location",
+    "emails": [],
+    "evidence": [
+      "International Baccalaureate",
+      "educational"
+    ],
+    "page_title": "ICS Zurich | Private International IB World School"
+  },
+  {
+    "type": "schools",
+    "name": "Zurich International School",
+    "website": "https://www.zis.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.zis.ch/our-school/contacts",
+    "emails": [],
+    "evidence": [
+      "International Baccalaureate",
+      "science",
+      "educational"
+    ],
+    "page_title": "Zurich International School | Leading International & Bilingual School in Switzerland"
+  },
+  {
+    "type": "schools",
+    "name": "International School of Zug and Luzern",
+    "website": "https://www.iszl.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.iszl.ch/contact/contact-us/",
+    "emails": [
+      {
+        "email": "admissions@iszl.ch",
+        "source": "https://www.iszl.ch/contact/contact-us/"
+      }
+    ],
+    "evidence": [
+      "International Baccalaureate",
+      "science",
+      "outdoor"
+    ],
+    "page_title": "International School Switzerland | ISZL"
+  },
+  {
+    "type": "schools",
+    "name": "International School of Geneva",
+    "website": "https://www.ecolint.ch/en",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.ecolint.ch/en/contact-admissions",
+    "emails": [
+      {
+        "email": "admissions@ecolint.ch",
+        "source": "https://www.ecolint.ch/en/contact-admissions"
+      }
+    ],
+    "evidence": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "educational"
+    ],
+    "page_title": "Ecolint: International School of Geneva"
+  },
+  {
+    "type": "schools",
+    "name": "International School of Lausanne",
+    "website": "https://www.isl.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.isl.ch/about-us/contact",
+    "emails": [
+      {
+        "email": "info@isl.ch",
+        "source": "https://www.isl.ch/about-us/contact"
+      },
+      {
+        "email": "admissions@isl.ch",
+        "source": "https://www.isl.ch/about-us/contact"
+      }
+    ],
+    "evidence": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "educational",
+      "outdoor"
+    ],
+    "page_title": "Discover ISL | International School of Lausanne"
+  },
+  {
+    "type": "schools",
+    "name": "International School Basel",
+    "website": "https://www.isbasel.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.isbasel.ch/contact-us",
+    "emails": [],
+    "evidence": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "science",
+      "educational",
+      "outdoor"
+    ],
+    "page_title": "International School Basel | International Baccalaureate in Basel"
+  },
+  {
+    "type": "schools",
+    "name": "St George's International School",
+    "website": "https://www.stgeorges.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.stgeorges.ch/",
+    "emails": [],
+    "evidence": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "boarding",
+      "educational"
+    ],
+    "page_title": "▷ ST GEORGE'S INTERNATIONAL SCHOOL in SWITZERLAND, MONTREUX"
+  },
+  {
+    "type": "schools",
+    "name": "Haut-Lac International Bilingual School",
+    "website": "https://haut-lac.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://haut-lac.ch/",
+    "emails": [],
+    "evidence": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "boarding",
+      "science",
+      "educational",
+      "fieldwork",
+      "outdoor"
+    ],
+    "page_title": "Swiss International School | Bilingual Education | Haut-Lac"
+  },
+  {
+    "type": "schools",
+    "name": "La Garenne International School",
+    "website": "https://www.la-garenne.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.la-garenne.ch/",
+    "emails": [
+      {
+        "email": "info@la-garenne.ch",
+        "source": "https://www.la-garenne.ch/"
+      }
+    ],
+    "evidence": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "boarding",
+      "school trips",
+      "outdoor"
+    ],
+    "page_title": "Private International Boarding School in Switzerland | La Garenne School"
+  },
+  {
+    "type": "schools",
+    "name": "Institut Montana Zugerberg",
+    "website": "https://www.montana-zug.ch/en/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.montana-zug.ch/en/",
+    "emails": [
+      {
+        "email": "info@montana-zug.ch",
+        "source": "https://www.montana-zug.ch/en/"
+      }
+    ],
+    "evidence": [
+      "boarding"
+    ],
+    "page_title": "Day and Boarding School in Switzerland | Institut Montana"
+  },
+  {
+    "type": "schools",
+    "name": "Brillantmont International School",
+    "website": "https://www.brillantmont.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.brillantmont.ch/contact",
+    "emails": [
+      {
+        "email": "info@brillantmont.ch",
+        "source": "https://www.brillantmont.ch/contact"
+      }
+    ],
+    "evidence": [
+      "boarding",
+      "educational"
+    ],
+    "page_title": "Brillantmont International Boarding and Day School Switzerland"
+  },
+  {
+    "type": "schools",
+    "name": "International School of Schaffhausen",
+    "website": "https://www.issh.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.issh.ch/contact?header-cta",
+    "emails": [],
+    "evidence": [
+      "IB Diploma",
+      "boarding",
+      "educational",
+      "outdoor"
+    ],
+    "page_title": "International School in Schaffhausen, near Zurich | ISSH"
+  },
+  {
+    "type": "schools",
+    "name": "College Champittet",
+    "website": "https://www.nordangliaeducation.com/fr/champittet",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.nordangliaeducation.com/fr/champittet/contact-us",
+    "emails": [
+      {
+        "email": "admissions@champittet.ch",
+        "source": "https://www.nordangliaeducation.com/fr/champittet/contact-us"
+      }
+    ],
+    "evidence": [
+      "science"
+    ],
+    "page_title": "Collège Champittet | Ecole Internationale à Lausanne"
+  },
+  {
+    "type": "schools",
+    "name": "ENSR International School",
+    "website": "https://www.ensr.ch/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.ensr.ch/contact",
+    "emails": [
+      {
+        "email": "info@ensr.ch",
+        "source": "https://www.ensr.ch/contact"
+      },
+      {
+        "email": "admissions@edu.ensr.ch",
+        "source": "https://www.ensr.ch/contact"
+      }
+    ],
+    "evidence": [
+      "International Baccalaureate",
+      "boarding",
+      "outdoor"
+    ],
+    "page_title": "International Private Bilingual School Switzerland | ENSR"
+  },
+  {
+    "type": "operators",
+    "name": "Discover the World Education",
+    "website": "https://www.discovertheworldeducation.com/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.discovertheworldeducation.com/contact-us/",
+    "emails": [],
+    "evidence": [
+      "science",
+      "geography",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "School Trips Abroad and Educational Visits | Discover the World"
+  },
+  {
+    "type": "operators",
+    "name": "Rayburn Tours",
+    "website": "https://www.rayburntours.com/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.rayburntours.com/contact-us/",
+    "emails": [],
+    "evidence": [
+      "geography",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "School Trips | School Travel Company | Rayburn Tours twitter facebook youtube instagram"
+  },
+  {
+    "type": "operators",
+    "name": "Equity",
+    "website": "https://www.equity.co.uk/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.equity.co.uk/contact-us/",
+    "emails": [
+      {
+        "email": "tours@equity.co.uk",
+        "source": "https://www.equity.co.uk/contact-us/"
+      }
+    ],
+    "evidence": [
+      "science",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "Home | Equity - the school travel people"
+  },
+  {
+    "type": "operators",
+    "name": "NST",
+    "website": "https://www.nstgroup.co.uk/educational-school-trips",
+    "checked": "2026-10-19",
+    "status": "official indexed page verified",
+    "contact": "https://www.nstgroup.co.uk/get-in-touch",
+    "emails": [
+      {
+        "email": "info@nstgroup.co.uk",
+        "source": "https://www.nstgroup.co.uk/educational-school-trips"
+      }
+    ],
+    "evidence": [
+      "school trips",
+      "science",
+      "geography"
+    ],
+    "error": "URLError"
+  },
+  {
+    "type": "operators",
+    "name": "Halsbury Travel",
+    "website": "https://www.halsbury.com/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.halsbury.com/contact-halsbury-travel",
+    "emails": [
+      {
+        "email": "enquiries@halsbury.com",
+        "source": "https://www.halsbury.com/contact-halsbury-travel"
+      }
+    ],
+    "evidence": [
+      "science",
+      "geography",
+      "school trips",
+      "educational",
+      "outdoor"
+    ],
+    "page_title": "Educational School Trips in the UK, Europe & Beyond"
+  },
+  {
+    "type": "operators",
+    "name": "Travelbound",
+    "website": "https://www.travelbound.co.uk/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.travelbound.co.uk/contact-us/",
+    "emails": [],
+    "evidence": [
+      "science",
+      "geography",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "\n\t\tEducational Trips for Schools & Universities | Travelbound\t"
+  },
+  {
+    "type": "operators",
+    "name": "WST / Next Generation Travel",
+    "website": "https://www.ngttravel.com/our-brands/wst/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.ngttravel.com/contact-us/",
+    "emails": [],
+    "evidence": [
+      "science",
+      "geography",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "About WST | Our Travel Brands | NGT"
+  },
+  {
+    "type": "operators",
+    "name": "Select School Travel",
+    "website": "https://selectschooltravel.com/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://selectschooltravel.com/",
+    "emails": [],
+    "evidence": [
+      "geography",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "Home - Select School Travel"
+  },
+  {
+    "type": "operators",
+    "name": "Voyager School Travel",
+    "website": "https://www.voyagerschooltravel.com/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.voyagerschooltravel.com/contact/",
+    "emails": [],
+    "evidence": [
+      "science",
+      "geography",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "School Trips Abroad | Educational Travel Specialists - Voyager School Travel"
+  },
+  {
+    "type": "operators",
+    "name": "European Study Tours",
+    "website": "https://www.euro-study-tours.co.uk/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.euro-study-tours.co.uk/contact-us/",
+    "emails": [],
+    "evidence": [
+      "science",
+      "geography",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "European Study Tours; School & Educational Tours KS3 - KS5 | ESTO"
+  },
+  {
+    "type": "operators",
+    "name": "The School Travel Company",
+    "website": "https://www.theschooltravelcompany.com/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.theschooltravelcompany.com/contact-us-2/",
+    "emails": [],
+    "evidence": [
+      "science",
+      "geography",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "School Trips Made Simple | The School Travel Company"
+  },
+  {
+    "type": "operators",
+    "name": "Adaptable Travel",
+    "website": "https://www.adaptabletravel.co.uk/",
+    "checked": "2026-10-19",
+    "status": "official page read",
+    "contact": "https://www.adaptabletravel.co.uk/contact-us",
+    "emails": [
+      {
+        "email": "info@adaptabletravel.co.uk",
+        "source": "https://www.adaptabletravel.co.uk/contact-us"
+      }
+    ],
+    "evidence": [
+      "science",
+      "geography",
+      "school trips",
+      "educational"
+    ],
+    "page_title": "School Trips and Educational Travel | Adaptable Travel"
+  }
+]

@@ -33,6 +33,7 @@ ob_start();
 				<a class="eco-school-button eco-school-button--yellow" href="#school-enquiry" data-eco-event="proposal_cta" data-eco-location="hero">Plan your school trip</a>
 				<a class="eco-school-button eco-school-button--outline" href="#school-programmes" data-eco-event="programme_explore" data-eco-location="hero">Explore the experience</a>
 			</div>
+			<p class="eco-school-hero__resource"><a href="#teacher-resources">Download the teacher planning guide</a> <span>Six useful pages to share with colleagues.</span></p>
 		</div>
 		<div class="eco-school-hero__shape" aria-hidden="true">
 			<svg preserveAspectRatio="none" viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path d="M761.9,44.1L643.1,27.2L333.8,98L0,3.8V100H1000V3.9Z"></path></svg>
@@ -56,9 +57,54 @@ ob_start();
 				<ul class="eco-school-ticks">
 					<li>Typical class groups of 20–30 pupils</li>
 					<li>Groups of approximately 15–80 considered</li>
-					<li>Day visits, short residentials and immersive 5- or 7-day programmes</li>
+					<li>Day visits, five-day residentials and multi-week programmes</li>
 					<li>Personal reply from Adam within 24 hours</li>
 				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section id="school-evidence" class="eco-school-section eco-school-section--soft">
+		<div class="eco-school-wrap eco-school-evidence">
+			<figure class="eco-school-evidence__photo">
+				<img src="<?php echo esc_url( get_theme_file_uri( '/assets/images/owner-album/10-img_6782.webp' ) ); ?>" alt="A pupil practising river fieldwork with EcoWise Italy" loading="lazy">
+				<figcaption>Representative EcoWise Italy fieldwork photography.</figcaption>
+			</figure>
+			<div>
+				<p class="eco-school-eyebrow eco-school-eyebrow--green">Field science in practice</p>
+				<h2>Ten annual trips.<br>Real field investigation.</h2>
+				<p>In October 2026, EcoWise Italy shared its tenth annual environmental science and field sampling trip with Beau Soleil College: five days of intensive, interdisciplinary science.</p>
+				<ul class="eco-school-ticks">
+					<li>Established methods for sampling terrestrial and aquatic environments</li>
+					<li>Practical data collection for DP biology and environmental studies internal assessment projects</li>
+					<li>Time to connect hands-on investigation with theoretical learning</li>
+				</ul>
+				<p>Tell Adam what your pupils are studying. He will discuss suitable fieldwork and programme options with you.</p>
+				<a class="eco-school-text-link" href="https://www.facebook.com/Ecowiseitaly/posts/1088675720460799/" target="_blank" rel="noopener">Read the Beau Soleil trip report on Facebook</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="teacher-resources" class="eco-school-section eco-school-resources">
+		<div class="eco-school-wrap">
+			<div class="eco-school-heading">
+				<p class="eco-school-eyebrow eco-school-eyebrow--green">Take the next step</p>
+				<h2>Something useful for the staff room</h2>
+				<p>Bring the idea to your colleagues with a clear programme outline, planning responsibilities and practical questions to discuss.</p>
+			</div>
+			<div class="eco-school-downloads">
+				<article class="eco-school-download eco-school-download--teacher">
+					<span class="eco-school-download__tag">For teachers · 6-page PDF</span>
+					<h3>Your school-trip planning guide</h3>
+					<p>A five-day example, learning experiences, the Beau Soleil field-science example, who organises what and a first-enquiry checklist.</p>
+					<a class="eco-school-button eco-school-button--yellow" href="<?php echo esc_url( get_theme_file_uri( '/assets/documents/ecowise-italy-teacher-planning-pack.pdf' ) ); ?>" data-eco-event="planning_pack_download" data-eco-location="teacher_resources">Download the teacher guide</a>
+				</article>
+				<article class="eco-school-download">
+					<span class="eco-school-download__tag">For school-travel operators · 2-page PDF</span>
+					<h3>A local education partner in Piemonte</h3>
+					<p>Explore the programme offer, local delivery model and practical points for a school-travel partnership with Adam.</p>
+					<a class="eco-school-text-link" href="<?php echo esc_url( get_theme_file_uri( '/assets/documents/ecowise-italy-school-travel-partner-brief.pdf' ) ); ?>" data-eco-event="partner_brief_download" data-eco-location="teacher_resources">Download the partner brief</a>
+				</article>
 			</div>
 		</div>
 	</section>
@@ -111,11 +157,14 @@ ob_start();
 				<div class="eco-school-lengths__recommended"><span>Recommended</span><strong>5 days / 4 nights</strong><p>Time to settle, explore and go deeper.</p></div>
 				<div><span>Full immersion</span><strong>7 days / 6 nights</strong><p>A complete week of learning and adventure.</p></div>
 			</div>
-			<div class="eco-school-days">
-				<article><span>Begin</span><h3>Arrive and connect</h3><p>Meet the landscape, awaken the senses, establish the group and begin exploring through observation, movement and story.</p></article>
-				<article><span>Go deeper</span><h3>Discover and create</h3><p>Build the middle of the trip around fieldwork, wild exploration, teamwork, myth-making, environmental art and practical challenges.</p></article>
-				<article><span>Bring it home</span><h3>Reflect and make meaning</h3><p>Give voice to discoveries, celebrate the shared adventure and connect the experience back to school and everyday life.</p></article>
-			</div>
+			<ol class="eco-school-itinerary" aria-label="Illustrative five-day programme">
+				<li><span>Day 1</span><div><h3>Arrive and connect</h3><p>Meet the landscape, establish the group and begin observation, sensory discovery and place-based enquiry.</p></div></li>
+				<li><span>Day 2</span><div><h3>Explore habitats</h3><p>Investigate suitable terrestrial or aquatic environments and practise observation, recording and agreed field methods.</p></div></li>
+				<li><span>Day 3</span><div><h3>Investigate and interpret</h3><p>Develop a focused question, collect appropriate data and discuss what the evidence tells you.</p></div></li>
+				<li><span>Day 4</span><div><h3>Create and collaborate</h3><p>Deepen the enquiry through teamwork, practical challenge, storytelling or environmental art, shaped around your aims.</p></div></li>
+				<li><span>Day 5</span><div><h3>Reflect and bring it home</h3><p>Share discoveries, review learning and connect the experience with what happens next in the classroom.</p></div></li>
+			</ol>
+			<p class="eco-school-plain-note">This is an illustrative structure, adapted with your school for the pupils, season, site and weather. Travel arrangements affect the activity time available. Multi-week programmes can also be discussed.</p>
 		</div>
 	</section>
 
@@ -131,7 +180,7 @@ ob_start();
 					<div><span>1</span><p><strong>Tell us about your school.</strong> Share your group, possible dates and what you want pupils to gain.</p></div>
 					<div><span>2</span><p><strong>Adam explores the possibilities.</strong> He checks the fit, discusses ideas and replies personally within 24 hours.</p></div>
 					<div><span>3</span><p><strong>Your programme takes shape.</strong> EcoWise Italy develops the activities, locations and programme quote with you.</p></div>
-					<div><span>4</span><p><strong>We help bring the details together.</strong> Adam supports local coordination while your school retains control of travel and final approvals.</p></div>
+					<div><span>4</span><p><strong>We bring the local details together.</strong> EcoWise Italy books accommodation and food on your school's behalf. You approve the arrangements and organise your main travel.</p></div>
 				</div>
 			</div>
 		</div>
@@ -209,7 +258,7 @@ ob_start();
 			</div>
 			<details><summary>What group sizes and supervision work?</summary><p>Groups of approximately 15–80 can be considered, with a single class of around 20–30 pupils being typical. A usual planning ratio is one accompanying adult for every 10 pupils; the exact fit and staffing are confirmed for the ages, programme and location.</p></details>
 			<details><summary>Can the trip connect to our curriculum?</summary><p>Yes. Programmes can be shaped around science, ecology, fieldwork, interdisciplinary learning and wider group objectives. Tell Adam the outcomes you need and he will discuss what is feasible.</p></details>
-			<details><summary>How long should a residential trip be?</summary><p>For schools travelling internationally, five days and four nights is the recommended format. Seven days and six nights allows an even deeper experience. Shorter three-day/two-night and two-day/one-night programmes are also possible, as are day visits.</p></details>
+			<details><summary>How long should a residential trip be?</summary><p>For schools travelling internationally, five days and four nights is the recommended format. Seven days and six nights or a multi-week programme allows an even deeper experience. Shorter three-day/two-night and two-day/one-night programmes are also possible, as are day visits.</p></details>
 			<details><summary>How is pricing worked out?</summary><p>Every programme receives a bespoke per-person quote based on the group size, duration, activities and location.</p></details>
 			<details><summary>Who arranges travel, accommodation and food?</summary><p>EcoWise Italy chooses the programme location, checks availability, and books suitable accommodation and food on the school's behalf. The school arranges its main travel; EcoWise Italy can sometimes coordinate local transport. The school pays the programme, accommodation/food and travel providers separately unless the trip is packaged through a tour operator.</p></details>
 			<details><summary>Can you provide evidence of insurance?</summary><p>Yes. EcoWise Italy holds current public liability insurance. Evidence can be supplied privately to genuine school enquiries during planning; it is not published on the public website.</p></details>
@@ -263,7 +312,7 @@ ob_start();
 						<div class="eco-school-field-grid">
 							<label>Estimated accompanying adults<input type="number" name="adults" min="0" max="50" inputmode="numeric"></label>
 							<label>Date flexibility<select name="date_flexibility"><option value="">Please choose</option><option>Exact dates required</option><option>Flexible by a few days</option><option>Flexible within the term</option><option>Open to November–March</option></select></label>
-							<label>Preferred duration<input type="text" name="duration" placeholder="e.g. 3 days / 2 nights"></label>
+							<label>Preferred duration<input type="text" name="duration" placeholder="e.g. 5 days / 4 nights"></label>
 						</div>
 						<label>Access or dietary planning notes<textarea name="requirements" rows="3" placeholder="Please do not include pupil names or medical information."></textarea></label>
 						<label>Anything else Adam should know<textarea name="message" rows="3"></textarea></label>
@@ -297,7 +346,7 @@ if ( is_readable( $shell_file ) ) {
 		$version  = wp_get_theme()->get( 'Version' );
 		$assets   = sprintf(
 			'<link id="ecowise-school-funnel-css" rel="stylesheet" href="%1$s"><script>window.ecowiseSchoolFunnel=true;</script>',
-			esc_url( get_theme_file_uri( '/assets/css/school-funnel.css' ) . '?ver=' . $version )
+			esc_url( get_theme_file_uri( '/assets/css/school-funnel.css' ) . '?ver=' . $version . '-' . filemtime( get_theme_file_path( '/assets/css/school-funnel.css' ) ) )
 		);
 		$script   = sprintf(
 			'<script src="%s" defer></script>',

@@ -95,7 +95,7 @@ EcoWise Italy's strongest differentiators are:
 - specialist outdoor, ecological and experiential learning;
 - storytelling, story-sharing, myth-making, environmental art, drama and role-play;
 - imaginative exploration that gives voice to landscapes, ecological entities and living systems;
-- nature awareness and forest schooling away from screens, alongside sensory and physical discovery;
+- nature awareness away from screens, alongside sensory and physical discovery (Adam subsequently asked that “forest schooling” be removed from the acquisition language);
 - teamwork, problem-solving, creativity, adventure and critical thinking;
 - English-language delivery in an accessible Italian destination;
 - competitive local accommodation and food costs;
