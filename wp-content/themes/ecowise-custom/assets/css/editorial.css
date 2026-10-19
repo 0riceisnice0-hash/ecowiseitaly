@@ -52,6 +52,11 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.ecowise-editorial-grid--single {
+  grid-template-columns: minmax(0, 376px);
+  justify-content: center;
+}
+
 .ecowise-editorial-card {
   background: #fff;
   border: 1px solid #dcdcdc;
@@ -158,6 +163,10 @@
 }
 
 @media (max-width: 767px) {
+  .ecowise-editorial-grid--single .ecowise-facebook-card {
+    padding: 0;
+  }
+
   .ecowise-editorial-section {
     padding: 52px 18px 58px;
   }

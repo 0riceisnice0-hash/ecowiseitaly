@@ -4,6 +4,8 @@ This is the prepared September 2026 acquisition phase. It does not authorise sen
 
 ## Current campaign operations
 
+The 19 October owner update reports three opt-outs and no enquiries. Only two objections have been identified by school/inbox; obtain the third before further outreach. A private review of the supplied Search Console export and next-work priorities is saved outside this public repository at `C:/Users/zacpl/Documents/Codex/2026-07-21/usi/outputs/ecowise-2026-10-19/search-and-outreach-review.md`. Search Console cannot measure clicks from the email advert or identify individual visitors. The Beau Soleil science-trip post is now live on News and is a source for a future approved case study. No European campaign has been scheduled.
+
 As of 4 October 2026, all four 50-school batches appear in Gmail Sent at their scheduled 09:30 BST times; nothing from this campaign remains scheduled. The owner reports five internal referrals, two “no thanks” objections and no qualified enquiries. This is a response snapshot, not a final outcome or a verified delivery rate. A focused search of the sending Gmail account found no delivery-failure notices. Adam's receiving/forwarded inbox is needed for a complete bounce and reply audit.
 
 The two objections are stored locally in `outreach/suppression-private.csv`, which is deliberately Git-ignored. Screen exact inbox and school name before every future contact. Do not overwrite this file from a fresh checkout or assume a public clone has the private suppression data. The two current records are Hurtwood House School and Royal High School GDST. No further send is queued or authorised by this status record.

@@ -1,5 +1,14 @@
 # Progress log
 
+## 2026-10-19
+
+- Resolved the owner-supplied Facebook share link to EcoWise Italy post `1088675720460799`, confirmed its public text about the tenth annual Beau Soleil College science/field sampling trip, and added it above the existing service-project posts on News and its equivalent archive views.
+- Added a separate `newsFacebookPosts` content group so science news does not get inserted into the service-project page. Kept the direct Facebook fallback and checked the embed on desktop and 390-pixel mobile. Corrected the new post's Facebook rendering width to prevent cropped text on phones; editorial CSS URLs now include a content hash to refresh cached styling.
+- Published seven changed theme assets/snapshots to the existing active `ecowise-custom-v32` directory after verifying live hashes against the recorded source. The rollback copy is `/home/customer/ecowise-news-20261019/backup`. The restore preflight, PHP lint, static theme gate and full public route/sitemap/endpoint gate passed; the sole owner account is retained. Updated the restore validator to recognise the established versioned theme-directory convention.
+- Packaged the updated source as `ecowise-custom-theme-2026-10-19-v32.zip`: 773 files, 49,557,539 bytes, SHA-256 `6153536CD24E74312E4A6BD191A37BA5489B3A69A717590089930883C0E5D23F`. Theme version remains 1.1.10 for this editorial update.
+- Analysed the owner-supplied Search Console export without changing it. The selected filter and actual supplied date coverage differ from the earlier three-month description. Saved the private analysis and next-work recommendations outside this public repository at `C:/Users/zacpl/Documents/Codex/2026-07-21/usi/outputs/ecowise-2026-10-19/search-and-outreach-review.md`.
+- Owner now reports three opt-outs. Two named schools remain in the private suppression register; the third identity is still required. Sent no new outreach and installed no analytics or paid service.
+
 ## 2026-10-04
 
 - Checked the sending Gmail account: all four scheduled 50-school batches appear in Sent at 09:30 BST on 29 and 30 September and 1 and 2 October. No future campaign batch remains scheduled. A focused search found no delivery-failure notices in this sending account; Adam's forwarded replies are not fully visible here.

@@ -21,8 +21,10 @@ function ecowise_preflight_expect( $condition, $message ) {
 }
 
 ecowise_preflight_expect( 'wp_' === $wpdb->prefix, "Expected the substantive wp_ table prefix; received {$wpdb->prefix}." );
-ecowise_preflight_expect( 'ecowise-custom' === get_option( 'template' ), 'Ecowise Custom is not the active parent theme.' );
-ecowise_preflight_expect( 'ecowise-custom' === get_option( 'stylesheet' ), 'Ecowise Custom is not the active stylesheet.' );
+$active_stylesheet = (string) get_option( 'stylesheet' );
+ecowise_preflight_expect( 1 === preg_match( '/^ecowise-custom(?:-v[0-9]+)?$/', $active_stylesheet ), 'Ecowise Custom is not the active stylesheet.' );
+ecowise_preflight_expect( $active_stylesheet === get_option( 'template' ), 'The active parent theme and stylesheet differ.' );
+ecowise_preflight_expect( 'Ecowise Custom' === wp_get_theme()->get( 'Name' ), 'The active theme is not named Ecowise Custom.' );
 ecowise_preflight_expect( 'page' === get_option( 'show_on_front' ), 'Settings > Reading is not configured to use a static front page.' );
 ecowise_preflight_expect( 6 === (int) get_option( 'page_on_front' ), 'Front page is not WordPress object 6.' );
 ecowise_preflight_expect( 2448 === (int) get_option( 'page_for_posts' ), 'Posts page is not WordPress object 2448.' );

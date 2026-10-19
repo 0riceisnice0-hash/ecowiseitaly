@@ -242,8 +242,9 @@ const expectedIndexedPaths = new Set([
 const actualIndexedPaths = new Set(indexedRoutes.map((route) => route.route));
 for (const route of expectedIndexedPaths) if (!actualIndexedPaths.has(route)) errors.push(`indexed route contract is missing ${route}`);
 for (const route of actualIndexedPaths) if (!expectedIndexedPaths.has(route)) errors.push(`indexed route contract has unexpected route ${route}`);
-const expectedFacebookEmbedCount = 80 + (editorialUpdates.serviceFacebookPosts.length * 5);
-const expectedUniqueFacebookPosts = 20 + editorialUpdates.serviceFacebookPosts.length;
+const newsFacebookPosts = editorialUpdates.newsFacebookPosts || [];
+const expectedFacebookEmbedCount = 80 + (editorialUpdates.serviceFacebookPosts.length * 5) + (newsFacebookPosts.length * 4);
+const expectedUniqueFacebookPosts = 20 + editorialUpdates.serviceFacebookPosts.length + newsFacebookPosts.length;
 if (facebookEmbedCount !== expectedFacebookEmbedCount) errors.push(`expected ${expectedFacebookEmbedCount} Facebook embed instances; found ${facebookEmbedCount}`);
 if (facebookEmbedUrls.size !== expectedUniqueFacebookPosts) errors.push(`expected ${expectedUniqueFacebookPosts} unique Facebook post URLs; found ${facebookEmbedUrls.size}`);
 if (pdfViewerCount !== 16) errors.push(`expected 16 archive PDF viewers; found ${pdfViewerCount}`);
@@ -272,7 +273,8 @@ for (const route of archiveEditorialRoutes) {
   const html = fs.readFileSync(path.join(repositoryRoot, ...routeAudit.snapshot.split('/')), 'utf8');
   if (countMatches(html, /data-ecowise-editorial=["']latest-service-updates["']/gi) !== 1) errors.push(`${route}: latest service update section is missing or duplicated`);
   if (/elementor-element-302344d/i.test(html)) errors.push(`${route}: the former hidden article block was not moved out of News`);
-  for (const post of editorialUpdates.serviceFacebookPosts) {
+  if (newsFacebookPosts.length && countMatches(html, /data-ecowise-editorial=["']latest-news-updates["']/gi) !== 1) errors.push(`${route}: latest news section is missing or duplicated`);
+  for (const post of [...newsFacebookPosts, ...editorialUpdates.serviceFacebookPosts]) {
     if (countMatches(html, new RegExp(`facebook\\.com%2FEcowiseitaly%2Fposts%2F${escapeRegExp(new URL(post.facebookUrl).pathname.split('/').filter(Boolean).at(-1))}%2F`, 'gi')) !== 1) {
       errors.push(`${route}: expected one embed for ${post.facebookUrl}`);
     }

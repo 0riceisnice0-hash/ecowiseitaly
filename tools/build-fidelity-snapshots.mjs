@@ -2,6 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 const [inventoryFile, mirrorRoot, themeRoot, auditRoot, sitemapFile] = process.argv.slice(2);
 
@@ -40,7 +41,9 @@ function themeStylesheet(document, id, filename) {
 }
 
 function editorialStylesheet(document) {
-  return themeStylesheet(document, 'ecowise-editorial-styles', 'editorial.css');
+  const digest = createHash('sha256').update(fs.readFileSync(path.join(themeRoot, 'assets/css/editorial.css'))).digest('hex').slice(0, 12);
+  return themeStylesheet(document, 'ecowise-editorial-styles', 'editorial.css')
+    .replace(`editorial.css?ver=${escapeHtml(themeVersion)}`, `editorial.css?ver=${escapeHtml(themeVersion)}-${digest}`);
 }
 
 function ownerMediaStylesheet(document) {
@@ -249,10 +252,11 @@ function resourceSectionMarkup(resources) {
 
 function facebookSectionMarkup(posts, options = {}) {
   const cards = posts.map((post) => {
-    const pluginUrl = `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(post.facebookUrl)}&show_text=true&width=500`;
+    const width = Number(post.width) || 500;
+    const pluginUrl = `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(post.facebookUrl)}&show_text=true&width=${width}`;
     return `
 <article class="ecowise-editorial-card ecowise-facebook-card">
-  <iframe allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen="true" height="${Number(post.height) || 820}" loading="lazy" scrolling="no" src="${escapeHtml(pluginUrl)}" title="${escapeHtml(post.title)}" width="500"></iframe>
+  <iframe allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen="true" height="${Number(post.height) || 820}" loading="lazy" scrolling="no" src="${escapeHtml(pluginUrl)}" title="${escapeHtml(post.title)}" width="${width}"></iframe>
   <p class="ecowise-facebook-fallback"><a href="${escapeHtml(post.facebookUrl)}" rel="noopener" target="_blank">View ${escapeHtml(post.title)} on Facebook</a></p>
 </article>`;
   }).join('');
@@ -263,7 +267,7 @@ function facebookSectionMarkup(posts, options = {}) {
     <p class="ecowise-editorial-eyebrow">${escapeHtml(options.eyebrow)}</p>
     <h2 class="ecowise-editorial-title" id="${escapeHtml(options.id)}-title">${escapeHtml(options.title)}</h2>
     <p class="ecowise-editorial-intro">${escapeHtml(options.intro)}</p>
-    <div class="ecowise-editorial-grid">${cards}
+    <div class="ecowise-editorial-grid${posts.length === 1 ? ' ecowise-editorial-grid--single' : ''}">${cards}
     </div>
   </div>
 </section>`;
@@ -674,6 +678,13 @@ function repairDocument(html, canonical) {
 
   const editorialArchiveRoutes = ['/news/', '/author/admin/', '/category/uncategorized/', '/2024/09/22/'];
   if (editorialArchiveRoutes.includes(canonicalPath)) {
+    const latestNews = (editorialUpdates.newsFacebookPosts || []).length ? facebookSectionMarkup(editorialUpdates.newsFacebookPosts, {
+      id: 'latest-news-updates',
+      eyebrow: 'Latest from EcoWise Italy',
+      title: 'Science and discovery in Piemonte',
+      intro: 'Our tenth annual environmental science and field sampling trip with Beau Soleil College: five days of interdisciplinary learning in the field.',
+      white: true,
+    }) : '';
     const latestUpdates = facebookSectionMarkup(editorialUpdates.serviceFacebookPosts, {
       id: 'latest-service-updates',
       eyebrow: 'Latest from Ecowise',
@@ -685,7 +696,7 @@ function repairDocument(html, canonical) {
       result,
       '<div class="elementor-element elementor-element-302344d ',
       '<div class="elementor-element elementor-element-3e4a64df ',
-      latestUpdates,
+      latestNews + latestUpdates,
       canonical,
       'archive resource block'
     );
