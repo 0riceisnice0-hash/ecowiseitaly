@@ -1,0 +1,315 @@
+[
+  {
+    "name": "International School of Paris",
+    "country": "France",
+    "website": "https://www.isparis.edu/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "secondary",
+      "English"
+    ],
+    "contacts": [
+      "https://www.isparis.edu/contact-us",
+      "https://www.isparis.edu/contact-us/campus-directions"
+    ],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "American School of Paris",
+    "country": "France",
+    "website": "https://www.asparis.org/",
+    "email_domains": [
+      "asparis.org",
+      "asparis.fr"
+    ],
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "boarding",
+      "science",
+      "outdoor",
+      "English"
+    ],
+    "contacts": [],
+    "emails": [
+      {
+        "email": "admissions@asparis.fr",
+        "source": "https://www.asparis.org/"
+      }
+    ],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "The British School of Paris",
+    "country": "France",
+    "website": "https://www.britishschool.fr/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "sixth form",
+      "science",
+      "English"
+    ],
+    "contacts": [
+      "https://www.britishschool.fr/admissions/contact-admissions/",
+      "https://www.britishschool.fr/admissions/contact-admissions/"
+    ],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "Ermitage International School",
+    "country": "France",
+    "website": "https://www.ermitage.fr/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "boarding",
+      "secondary",
+      "English"
+    ],
+    "contacts": [
+      "https://www.ermitage.fr/contact-us"
+    ],
+    "emails": [
+      {
+        "email": "admissions@ermitage.fr",
+        "source": "https://www.ermitage.fr/contact-us"
+      }
+    ],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "ICS Paris",
+    "country": "France",
+    "website": "https://www.icsparis.fr/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "secondary",
+      "English"
+    ],
+    "contacts": [
+      "https://www.icsparis.fr/admissions/contact-us"
+    ],
+    "emails": [
+      {
+        "email": "reception@icsparis.fr",
+        "source": "https://www.icsparis.fr/"
+      },
+      {
+        "email": "admissions@icsparis.fr",
+        "source": "https://www.icsparis.fr/"
+      }
+    ],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "Ecole Jeannine Manuel",
+    "country": "France",
+    "website": "https://ecolejeanninemanuel.org/",
+    "email_domains": [
+      "ecolejeanninemanuel.org",
+      "ejm.net"
+    ],
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "science",
+      "English"
+    ],
+    "contacts": [
+      "https://ecolejeanninemanuel.org/contactez-nous/",
+      "https://ecolejeanninemanuel.org/contactez-nous/"
+    ],
+    "emails": [
+      {
+        "email": "info@ejm.net",
+        "source": "https://ecolejeanninemanuel.org/"
+      }
+    ],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "International School of Lyon",
+    "country": "France",
+    "website": "https://www.islyon.org/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "secondary",
+      "English"
+    ],
+    "contacts": [
+      "https://www.islyon.org/contact-us/"
+    ],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "International School of Toulouse",
+    "country": "France",
+    "website": "https://www.intst.eu/",
+    "email_domains": [
+      "intst.eu",
+      "intst.net"
+    ],
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "IB Diploma",
+      "secondary",
+      "English"
+    ],
+    "contacts": [
+      "https://www.intst.eu/contact-us-1"
+    ],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "International School of Nice",
+    "country": "France",
+    "website": "https://www.isn-nice.com/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "International Baccalaureate",
+      "IB Diploma",
+      "English"
+    ],
+    "contacts": [],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "Mougins British International School",
+    "country": "France",
+    "website": "https://mougins.britishinternationalschool.com/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "secondary",
+      "sixth form",
+      "outdoor",
+      "English"
+    ],
+    "contacts": [
+      "https://mougins.britishinternationalschool.com/contact"
+    ],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "International Bilingual School of Provence",
+    "country": "France",
+    "website": "https://www.ibsofprovence.com/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [],
+    "contacts": [
+      "https://www.ibsofprovence.com/contactez-nous"
+    ],
+    "emails": [
+      {
+        "email": "info@ibsofprovence.com",
+        "source": "https://www.ibsofprovence.com/contactez-nous"
+      }
+    ],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "Bordeaux International School",
+    "country": "France",
+    "website": "https://www.bordeaux-school.com/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "secondary",
+      "English"
+    ],
+    "contacts": [
+      "https://www.bordeaux-school.com/contact",
+      "https://www.bordeaux-school.com/contact/join-our-team"
+    ],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "International School of Bearn",
+    "country": "France",
+    "website": "https://www.isbearn.com/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "secondary",
+      "English"
+    ],
+    "contacts": [
+      "https://www.isbearn.com/contact/"
+    ],
+    "emails": [
+      {
+        "email": "contact@isbearn.com",
+        "source": "https://www.isbearn.com/"
+      }
+    ],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "Ombrosa International School",
+    "country": "France",
+    "website": "https://www.ombrosa.com/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "secondary"
+    ],
+    "contacts": [
+      "https://www.ombrosa.com/contact/"
+    ],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "Sainte Victoire International School",
+    "country": "France",
+    "website": "https://www.svis.fr/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "boarding"
+    ],
+    "contacts": [
+      "https://www.svis.fr/contact"
+    ],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  },
+  {
+    "name": "EIB Paris",
+    "country": "France",
+    "website": "https://www.eibparis.com/",
+    "checked": "2026-11-10",
+    "status": "official homepage read",
+    "signals": [
+      "International Baccalaureate",
+      "English"
+    ],
+    "contacts": [],
+    "emails": [],
+    "send_status": "not authorised or scheduled"
+  }
+]

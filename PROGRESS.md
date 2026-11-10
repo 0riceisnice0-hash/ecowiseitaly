@@ -1,5 +1,14 @@
 # Progress log
 
+## 2026-11-10 — campaign review and interrupted release reconciliation
+
+- Rechecked live production: `ecowise-custom-v34`, theme 1.3.0. Reconciled the October acquisition release source, package manifest and documentation that remained unfinished when the session stopped. No new production deployment was needed for this reconciliation.
+- Recorded the completed October work: four search-intent school-route expansions and internal links, eleven metadata profiles, corrected five-day residential description, active-directory social image, five-control first enquiry, private aggregate acquisition reporting and its privacy/retention safeguards.
+- Verified copies of all seven operator introductions sent at 09:30 BST on 20 October. Added the exact operator/source register. The available mailbox search found a Halsbury automatic acknowledgement; no claim of a complete Adam-inbox audit is made.
+- Reviewed aggregate campaign activity and all five recent private contact records; saved the findings outside the public repository. None of those records was a relevant school/family/corporate buying enquiry. Did not delete or reclassify source records automatically.
+- Checked official websites for 16 French international/bilingual schools, retaining only sourced generic inboxes or official contact routes. Excluded PTA/recruitment routes and unrelated cross-school email domains. Kept country/contact/permission review separate from a send queue.
+- Reviewed current Swiss and French regulator guidance and documented country-specific launch gates. Prepared European school introduction copy; sent/scheduled no new messages and did not enable a scheduler.
+
 ## 2026-10-19 — school sales-resource release
 
 - Deployed custom theme 1.2.0 to `ecowise-custom-v33`, retaining v32 and a pre-release SQL backup for rollback. Final package: 775 files, 51,035,596 bytes; checksum in `release/theme-package.json`.

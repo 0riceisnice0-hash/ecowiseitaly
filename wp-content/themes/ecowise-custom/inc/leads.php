@@ -109,6 +109,9 @@ function ecowise_record_enquiry( $type, $fields, $source = '', $email = '' ) {
 	update_post_meta( $post_id, '_ecowise_enquiry_email', $email );
 	update_post_meta( $post_id, '_ecowise_enquiry_status', 'new' );
 	update_post_meta( $post_id, '_ecowise_enquiry_source', esc_url_raw( $source ) );
+	if ( function_exists( 'ecowise_acquisition_count' ) ) {
+		ecowise_acquisition_count( 'enquiry_recorded', $source, $fields['utm_campaign'] ?? 'unattributed', 'email' === ( $fields['utm_medium'] ?? '' ) ? 'email' : 'direct-other' );
+	}
 	return $post_id;
 }
 
@@ -158,7 +161,7 @@ function ecowise_handle_school_enquiry() {
 	$fields['source_page'] = isset( $_POST['source_page'] ) ? esc_url_raw( wp_unslash( $_POST['source_page'] ) ) : home_url( '/school-trips-italy/' );
 	$fields['referrer']    = isset( $_POST['referrer'] ) ? esc_url_raw( wp_unslash( $_POST['referrer'] ) ) : '';
 
-	$required = array( 'school_name', 'contact_name', 'role', 'country', 'email', 'pupil_ages', 'students', 'preferred_dates', 'trip_format', 'objectives' );
+	$required = array( 'school_name', 'contact_name', 'email', 'objectives' );
 	foreach ( $required as $key ) {
 		if ( empty( $fields[ $key ] ) ) {
 			ecowise_school_enquiry_redirect( 'incomplete' );

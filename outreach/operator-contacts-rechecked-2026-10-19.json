@@ -1,0 +1,73 @@
+[
+  {
+    "name": "Discover the World Education",
+    "source": "https://www.discovertheworldeducation.com/contact-us/",
+    "emails": []
+  },
+  {
+    "name": "Rayburn Tours",
+    "source": "https://www.rayburntours.com/contact-us/",
+    "error": "HTTPError"
+  },
+  {
+    "name": "Equity",
+    "source": "https://www.equity.co.uk/contact-us/",
+    "emails": [
+      "tours@equity.co.uk"
+    ]
+  },
+  {
+    "name": "NST",
+    "source": "https://www.nstgroup.co.uk/get-in-touch",
+    "error": "URLError"
+  },
+  {
+    "name": "Halsbury Travel",
+    "source": "https://www.halsbury.com/contact-halsbury-travel",
+    "emails": [
+      "enquiries@halsbury.com"
+    ]
+  },
+  {
+    "name": "Travelbound",
+    "source": "https://www.travelbound.co.uk/contact-us/",
+    "emails": []
+  },
+  {
+    "name": "WST / Next Generation Travel",
+    "source": "https://www.ngttravel.com/contact-us/",
+    "emails": [
+      "enquiries@ngttravel.com",
+      "info@angliatours.co.uk"
+    ]
+  },
+  {
+    "name": "Select School Travel",
+    "source": "https://selectschooltravel.com/",
+    "error": "HTTPError"
+  },
+  {
+    "name": "Voyager School Travel",
+    "source": "https://www.voyagerschooltravel.com/contact/",
+    "error": "HTTPError"
+  },
+  {
+    "name": "European Study Tours",
+    "source": "https://www.euro-study-tours.co.uk/contact-us/",
+    "error": "HTTPError"
+  },
+  {
+    "name": "The School Travel Company",
+    "source": "https://www.theschooltravelcompany.com/contact-us-2/",
+    "emails": [
+      "info@theschooltravelcompany.com"
+    ]
+  },
+  {
+    "name": "Adaptable Travel",
+    "source": "https://www.adaptabletravel.co.uk/contact-us",
+    "emails": [
+      "info@adaptabletravel.co.uk"
+    ]
+  }
+]

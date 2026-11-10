@@ -1,0 +1,18 @@
+[
+  {"name":"International School of Paris","country":"France","website":"https://www.isparis.edu/"},
+  {"name":"American School of Paris","country":"France","website":"https://www.asparis.org/","email_domains":["asparis.org","asparis.fr"]},
+  {"name":"The British School of Paris","country":"France","website":"https://www.britishschool.fr/"},
+  {"name":"Ermitage International School","country":"France","website":"https://www.ermitage.fr/"},
+  {"name":"ICS Paris","country":"France","website":"https://www.icsparis.fr/"},
+  {"name":"Ecole Jeannine Manuel","country":"France","website":"https://www.ecolejeanninemanuel.org/","email_domains":["ecolejeanninemanuel.org","ejm.net"]},
+  {"name":"International School of Lyon","country":"France","website":"https://www.islyon.org/"},
+  {"name":"International School of Toulouse","country":"France","website":"https://www.intst.eu/","email_domains":["intst.eu","intst.net"]},
+  {"name":"International School of Nice","country":"France","website":"https://www.isn-nice.com/"},
+  {"name":"Mougins British International School","country":"France","website":"https://www.mougins-school.com/"},
+  {"name":"International Bilingual School of Provence","country":"France","website":"https://www.ibsofprovence.com/"},
+  {"name":"Bordeaux International School","country":"France","website":"https://www.bordeaux-school.com/"},
+  {"name":"International School of Bearn","country":"France","website":"https://www.isbearn.com/"},
+  {"name":"Ombrosa International School","country":"France","website":"https://www.ombrosa.com/"},
+  {"name":"Sainte Victoire International School","country":"France","website":"https://www.svis.fr/"},
+  {"name":"EIB Paris","country":"France","website":"https://www.eibparis.com/"}
+]

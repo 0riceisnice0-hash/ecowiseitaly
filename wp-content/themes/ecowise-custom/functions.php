@@ -16,6 +16,7 @@ $ecowise_includes = array(
 	'/inc/leads.php',
 	'/inc/forms.php',
 	'/inc/seo.php',
+	'/inc/acquisition.php',
 );
 
 foreach ( $ecowise_includes as $ecowise_include ) {

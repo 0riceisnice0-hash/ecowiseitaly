@@ -4,6 +4,12 @@ This is the prepared September 2026 acquisition phase. It does not authorise sen
 
 ## Current campaign operations
 
+Current reconciled status: seven individual operator introductions sent on 20 October at 09:30 BST. All seven BCC copies were verified in Zac's work inbox on 10 November; the exact recipients and sources are in `outreach/operator-send-register-2026-10-20.md`. A Halsbury automatic acknowledgement was found, not a buying response. This is not a complete audit of Adam's receiving inbox.
+
+European school preparation now contains 16 French schools checked against official sites, plus the existing 20 Swiss prospects. Read `outreach/europe-campaign-review-2026-11-10.md` before using either list: country rules differ, the Swiss list is not an opt-in list, and no new campaign has been scheduled or sent. The final recipient list/copy/timing still requires direct review and authorisation. Read-only activity and form qualification findings are stored privately outside the public repo; saved spam messages must not be reported as business enquiries.
+
+### Earlier preparation notes
+
 The completed 19 October growth-assets phase has NOT sent or scheduled any new messages. `outreach/swiss-schools-and-operators-2026-10-19.md` records 20 Swiss international schools and 12 UK school-tour operators with official contact destinations and observed programme signals. Generic role inboxes are included only where publicly found; otherwise use the official contact route. This is source research, not SMTP/deliverability verification or evidence of interest.
 
 `outreach/prepared-introductions-2026-10-19.md` contains 32 individual drafts, built with `tools/build-growth-drafts.py`. The master copy, actual-referral reply template and two LinkedIn posts are in `outreach/school-growth-launch-kit-2026-10-19.md`. They use the new public teacher/partner resources and avoid the disapproved forest-schooling wording. Review relevance, suppressions and recipient-country rules before any sending; the unidentified third opt-out still needs reconciliation. No mass-European-send permission is implied by producing these assets.

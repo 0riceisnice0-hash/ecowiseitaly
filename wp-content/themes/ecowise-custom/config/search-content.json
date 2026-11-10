@@ -1,0 +1,37 @@
+{
+  "/for-schools/residential-field-trips/": {
+    "heading": "Residential school trips in Piemonte: a full week to explore",
+    "intro": "For schools travelling to Italy, five days and four nights gives pupils time to settle into a landscape, investigate it and develop a shared story. EcoWise Italy designs each residential around the group, rather than selling a fixed off-the-shelf itinerary.",
+    "sections": [
+      {"heading": "What can a five-day residential include?", "text": "An introductory exploration can lead into terrestrial and aquatic field science, practical group challenges, storytelling, environmental art and reflection. The balance depends on the pupils' ages and learning priorities. The teacher planning guide contains an illustrative five-day journey, not a fixed timetable or a promise of specific sites."},
+      {"heading": "Who books accommodation and food?", "text": "EcoWise Italy chooses the programme location, checks availability and books accommodation and food on the school's behalf. That coordination is included in its service. Schools normally arrange their main travel and pay three separate invoices: programme, accommodation/food and travel. Local transport can sometimes be coordinated by agreement."},
+      {"heading": "Can the residential be longer or shorter?", "text": "Yes. Five days and four nights is recommended for international groups; seven-day and multi-week programmes can provide more depth. Shorter residentials and day programmes remain possible. Delivery is available throughout the year, subject to Adam confirming the dates, programme and accommodation."}
+    ],
+    "links": [{"label": "Explore the five-day school-trip programme", "url": "/school-trips-italy/"}, {"label": "Science and ecology field trips", "url": "/for-schools/science-ecology-environment-field-trips/"}]
+  },
+  "/for-schools/science-field-work-data-collection-trips/": {
+    "heading": "IB biology and environmental studies fieldwork in Italy",
+    "intro": "Real-world ecosystems give pupils a reason to connect practical investigation with theoretical learning. EcoWise Italy can shape fieldwork in Piemonte around a school's biology or environmental studies aims, with the teacher confirming the assessment requirements before the programme is designed.",
+    "sections": [
+      {"heading": "Terrestrial and aquatic investigation", "text": "A programme can include observing habitats, choosing field methods, gathering terrestrial and aquatic samples and discussing what the data can and cannot show. Methods and locations are selected for the group and conditions. Pupils can practise recording, collaboration, problem-solving and critical thinking in a real landscape."},
+      {"heading": "Supporting DP biology and environmental studies projects", "text": "EcoWise Italy's public October 2026 report describes its tenth annual five-day science trip with Beau Soleil College, including data collection for DP biology and environmental studies internal assessments. For a new group, teachers should discuss their current course, research questions and fieldwork needs with Adam. EcoWise Italy does not award qualifications or guarantee assessment outcomes."},
+      {"heading": "Plan the fieldwork with Adam", "text": "Send the course or year group, approximate pupil numbers, preferred season and learning aims. A five-day/four-night residential is a useful starting point, with longer programmes available. Each proposal is tailored and priced per person; dates and site availability are confirmed individually."}
+    ],
+    "links": [{"label": "Read the Beau Soleil field-science example", "url": "/school-trips-italy/#school-evidence"}, {"label": "Download the teacher planning guide", "url": "/school-trips-italy/#teacher-resources"}]
+  },
+  "/for-schools/science-ecology-environment-field-trips/": {
+    "heading": "Environmental science and ecology school trips in Italy",
+    "intro": "Explore Piemonte through hands-on field investigation and theoretical learning. EcoWise Italy brings environmental science together with teamwork, storytelling, environmental art and nature awareness, so the experience is rigorous without becoming a classroom lesson moved outdoors.",
+    "sections": [
+      {"heading": "Start with the learning question", "text": "Teachers can bring a curriculum topic, an ecological question or wider group aims. Adam shapes the programme around the pupils' ages, experience and time available. Habitat exploration, terrestrial and aquatic field methods and group problem-solving can be combined with creative interpretation of the landscape."},
+      {"heading": "Day visit or residential science programme?", "text": "A day programme can focus on a particular theme. A five-day/four-night residential allows more time for investigation, reflection and group development. Seven-day and multi-week formats are also possible, with dates, sites and accommodation checked for each enquiry."}
+    ],
+    "links": [{"label": "IB biology and environmental studies data collection", "url": "/for-schools/science-field-work-data-collection-trips/"}, {"label": "Residential school trips in Italy", "url": "/for-schools/residential-field-trips/"}, {"label": "Ask Adam for a school-trip proposal", "url": "/school-trips-italy/#school-enquiry"}]
+  },
+  "/for-schools/": {
+    "heading": "Find the right outdoor education trip for your school",
+    "intro": "EcoWise Italy works with schools throughout the year in Piemonte, north-west Italy. A typical class is 20–30 pupils, with programmes discussed for groups of approximately 15–80. Start with the learning aims and Adam will help shape the programme, location and duration.",
+    "sections": [{"heading": "Science, creativity and group development", "text": "Choose a focus in science and ecology, service learning, storytelling and drama, team building, mindfulness and nature awareness, or wilderness and ecoliteracy. These are starting points for a tailored programme, not restrictions on what your pupils can explore."}],
+    "links": [{"label": "Plan a five-day school trip to Italy", "url": "/school-trips-italy/"}, {"label": "Explore residential programmes", "url": "/for-schools/residential-field-trips/"}, {"label": "Explore biology and environmental studies fieldwork", "url": "/for-schools/science-field-work-data-collection-trips/"}]
+  }
+}

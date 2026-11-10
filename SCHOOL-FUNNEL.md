@@ -42,6 +42,8 @@ The public planning baseline is one accompanying adult for every 10 pupils, with
 
 The proposal form posts to the nonce-protected `ecowise_school_enquiry` WordPress action in `inc/leads.php`.
 
+The first enquiry has five required controls: school name, contact name, email, learning aims and data-use acknowledgement. Role, country, ages, pupil numbers, dates and format sit with the optional planning details. The server requires the same four text fields plus acknowledgement; do not reintroduce a full trip-planning questionnaire as a prerequisite to a first conversation.
+
 Protection and handling include:
 
 - honeypot field;
@@ -70,7 +72,7 @@ The script creates or updates the published WordPress page, removes any Elemento
 
 ## SEO foundation
 
-Packaged metadata is in `config/seo-metadata.json`. Nine priority routes receive owner-safe:
+Packaged metadata is in `config/seo-metadata.json`. Eleven priority routes receive owner-safe:
 
 - search titles and descriptions;
 - Open Graph metadata;
@@ -79,7 +81,9 @@ Packaged metadata is in `config/seo-metadata.json`. Nine priority routes receive
 - production canonicals;
 - Italian locale presentation for `/per-le-scuole-italiane/`.
 
-Fidelity metadata is added at render time because preserved documents exit before normal `wp_head` execution. Native metadata uses normal WordPress hooks. No analytics network request is activated; both front-end runtimes emit local `ecowise:conversion` events and push only when an owner-controlled `dataLayer` already exists.
+Fidelity metadata is added at render time because preserved documents exit before normal `wp_head` execution. Native metadata uses normal WordPress hooks. The four route-specific search expansions are in `config/search-content.json`, rendered by `inc/growth.php`, with links between the existing residential, science, fieldwork and proposal routes. Do not hand-edit generated snapshots.
+
+Both front-end runtimes emit local `ecowise:conversion` events. The first-party aggregate collector now receives approved events through `assets/js/acquisition.js`; see `ACQUISITION-MEASUREMENT.md` for privacy, retention, bot/QA limitations and removal. There is no third-party analytics service. Form records require manual qualification before being reported as leads.
 
 ## Validation contract
 

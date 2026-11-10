@@ -164,7 +164,7 @@ function ecowise_maybe_serve_fidelity_snapshot() {
 			wp_json_encode( $config, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ),
 			esc_url( get_theme_file_uri( '/assets/js/fidelity.js' ) . '?ver=' . wp_get_theme()->get( 'Version' ) )
 		);
-		$document = str_replace( '</body>', $enhancement . '</body>', $document );
+		$document = str_replace( '</body>', $enhancement . ecowise_acquisition_markup() . '</body>', $document );
 		$document = ecowise_rewrite_theme_asset_urls( $document );
 		$document = ecowise_rewrite_snapshot_links( $document );
 		echo $document; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

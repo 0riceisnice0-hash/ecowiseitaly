@@ -296,20 +296,20 @@ ob_start();
 
 					<div class="eco-school-field-grid">
 						<label>School name <span>*</span><input type="text" name="school_name" required autocomplete="organization"></label>
-						<label>Country <span>*</span><input type="text" name="country" required autocomplete="country-name"></label>
 						<label>Your name <span>*</span><input type="text" name="contact_name" required autocomplete="name"></label>
-						<label>Your role <span>*</span><input type="text" name="role" required autocomplete="organization-title"></label>
 						<label>Email <span>*</span><input type="email" name="email" required autocomplete="email"></label>
 						<label>Phone / WhatsApp<input type="tel" name="phone" autocomplete="tel"></label>
-						<label>Pupil ages or year groups <span>*</span><input type="text" name="pupil_ages" required placeholder="e.g. Year 6, ages 10–11"></label>
-						<label>Estimated pupils <span>*</span><input type="number" name="students" required min="1" max="200" inputmode="numeric"></label>
-						<label>Preferred dates or season <span>*</span><input type="text" name="preferred_dates" required placeholder="Exact dates or a flexible period"></label>
-						<label>Trip format <span>*</span><select name="trip_format" required><option value="">Please choose</option><option>Day programme</option><option>Residential trip</option><option>Not sure yet</option></select></label>
 					</div>
-					<label>Learning priorities or outcomes <span>*</span><textarea name="objectives" required rows="4" placeholder="Curriculum links, ecology, fieldwork, service learning, teamwork…"></textarea></label>
+					<label>What would you like your pupils to experience? <span>*</span><textarea name="objectives" required rows="4" placeholder="A few sentences is enough. Add ages, numbers or dates if you know them."></textarea></label>
 					<details class="eco-school-form-more">
 						<summary>Add more planning detail <span>(optional)</span></summary>
 						<div class="eco-school-field-grid">
+							<label>Country<input type="text" name="country" autocomplete="country-name"></label>
+							<label>Your role<input type="text" name="role" autocomplete="organization-title"></label>
+							<label>Pupil ages or year groups<input type="text" name="pupil_ages" placeholder="e.g. Year 6, ages 10–11"></label>
+							<label>Estimated pupils<input type="number" name="students" min="1" max="200" inputmode="numeric"></label>
+							<label>Preferred dates or season<input type="text" name="preferred_dates" placeholder="Exact dates or a flexible period"></label>
+							<label>Trip format<select name="trip_format"><option value="">Not decided yet</option><option>Day programme</option><option>Residential trip</option></select></label>
 							<label>Estimated accompanying adults<input type="number" name="adults" min="0" max="50" inputmode="numeric"></label>
 							<label>Date flexibility<select name="date_flexibility"><option value="">Please choose</option><option>Exact dates required</option><option>Flexible by a few days</option><option>Flexible within the term</option><option>Open to November–March</option></select></label>
 							<label>Preferred duration<input type="text" name="duration" placeholder="e.g. 5 days / 4 nights"></label>
@@ -353,7 +353,7 @@ if ( is_readable( $shell_file ) ) {
 			esc_url( get_theme_file_uri( '/assets/js/site.js' ) . '?ver=' . $version )
 		);
 		$document = str_replace( '</head>', $assets . '</head>', $document );
-		$document = str_replace( '</body>', $script . '</body>', $document );
+		$document = str_replace( '</body>', $script . ecowise_acquisition_markup() . '</body>', $document );
 		$document = ecowise_rewrite_theme_asset_urls( $document );
 		$document = ecowise_rewrite_snapshot_links( $document );
 		echo $document; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

@@ -16,7 +16,7 @@
   },
   "/for-schools/residential-field-trips/": {
     "title": "Residential School Trips in Italy | EcoWise Italy",
-    "description": "Explore tailored residential school trips in Italy, commonly three days and two nights. EcoWise Italy supports groups of approximately 15–80 students.",
+    "description": "Five-day residential school trips in Piemonte, Italy: field science, ecology, creativity and teamwork. Tailored programmes, accommodation coordination and quotes.",
     "canonical": "https://ecowiseitaly.com/for-schools/residential-field-trips/",
     "locale": "en_GB",
     "schemaType": "Service",
@@ -39,8 +39,8 @@
     "serviceType": "School science and ecology field trips"
   },
   "/for-schools/science-field-work-data-collection-trips/": {
-    "title": "School Fieldwork & Data Collection in Italy | EcoWise Italy",
-    "description": "Explore tailored school fieldwork and data-collection trips with EcoWise Italy in Piemonte. Ask Adam about group fit and learning goals.",
+    "title": "IB Biology & ESS Fieldwork Trips in Italy | EcoWise Italy",
+    "description": "Plan IB biology and environmental studies fieldwork in Piemonte, Italy. Terrestrial and aquatic sampling, practical investigation and tailored data collection.",
     "canonical": "https://ecowiseitaly.com/for-schools/science-field-work-data-collection-trips/",
     "locale": "en_GB",
     "schemaType": "Service",
@@ -60,6 +60,22 @@
     "canonical": "https://ecowiseitaly.com/contact-us/",
     "locale": "en_GB",
     "schemaType": "ContactPage"
+  },
+  "/corporate-team-building-vacation/": {
+    "title": "Outdoor Team Building in Piemonte, Italy | EcoWise Italy",
+    "description": "Tailored outdoor team building and group retreats in Piemonte, Italy. Explore creative challenges, nature awareness and shared adventures with Adam Rose.",
+    "canonical": "https://ecowiseitaly.com/corporate-team-building-vacation/",
+    "locale": "en_GB",
+    "schemaType": "Service",
+    "serviceType": "Outdoor corporate team building and group retreats"
+  },
+  "/for-schools/outdoor-service-education-projects/": {
+    "title": "Service Learning School Trips in Italy | EcoWise Italy",
+    "description": "Explore outdoor service learning and environmental education in Piemonte, Italy. Shape a practical school programme around your group's aims with EcoWise Italy.",
+    "canonical": "https://ecowiseitaly.com/for-schools/outdoor-service-education-projects/",
+    "locale": "en_GB",
+    "schemaType": "Service",
+    "serviceType": "Outdoor service learning for schools"
   },
   "/school-trips-italy/": {
     "title": "School Trips to Italy | Outdoor Education | EcoWise Italy",

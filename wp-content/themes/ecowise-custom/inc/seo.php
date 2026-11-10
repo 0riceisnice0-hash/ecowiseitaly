@@ -90,7 +90,7 @@ function ecowise_schema_graph( $profile, $route ) {
 }
 
 function ecowise_metadata_markup( $profile, $route ) {
-	$image  = 'https://ecowiseitaly.com/wp-content/themes/ecowise-custom/assets/images/homepage/river-fieldwork.jpeg';
+	$image  = get_theme_file_uri( '/assets/images/homepage/river-fieldwork.jpeg' );
 	$locale = isset( $profile['locale'] ) ? $profile['locale'] : 'en_GB';
 	$schema = ecowise_schema_graph( $profile, $route );
 	return sprintf(

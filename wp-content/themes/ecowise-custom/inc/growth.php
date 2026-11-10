@@ -7,6 +7,22 @@
 
 defined( 'ABSPATH' ) || exit;
 
+function ecowise_search_content( $route ) {
+	$file = get_theme_file_path( '/config/search-content.json' );
+	$all = is_readable( $file ) ? json_decode( file_get_contents( $file ), true ) : array();
+	if ( empty( $all[ $route ] ) ) { return ''; }
+	$item = $all[ $route ];
+	$html = '<section class="ecowise-search-content" aria-label="School programme planning"><h2>' . esc_html( $item['heading'] ) . '</h2><p>' . esc_html( $item['intro'] ) . '</p><div class="ecowise-search-content__grid">';
+	foreach ( $item['sections'] as $section ) {
+		$html .= '<div><h3>' . esc_html( $section['heading'] ) . '</h3><p>' . esc_html( $section['text'] ) . '</p></div>';
+	}
+	$html .= '</div><nav aria-label="Related school programmes"><ul>';
+	foreach ( $item['links'] as $link ) {
+		$html .= '<li><a href="' . esc_url( home_url( $link['url'] ) ) . '">' . esc_html( $link['label'] ) . '</a></li>';
+	}
+	return $html . '</ul></nav></section>';
+}
+
 function ecowise_school_conversion_routes() {
 	return array(
 		'/for-schools/',
@@ -46,7 +62,7 @@ function ecowise_enhance_school_snapshot( $document, $route ) {
 		$proof = '<section class="ecowise-school-proof" aria-label="Field science programme example"><p>Field science in practice</p><h2>Ten annual science trips with Beau Soleil College</h2><p>EcoWise Italy\'s October 2026 report describes five days of interdisciplinary science, terrestrial and aquatic field sampling, and data collection for DP biology and environmental studies projects.</p><a href="' . esc_url( home_url( '/school-trips-italy/#school-evidence' ) ) . '">Explore the field-science example</a></section>';
 	}
 	if ( false === strpos( $document, 'ecowise-school-cta' ) ) {
-		$document = preg_replace( '/(<(?:footer\b|div\b(?=[^>]*\brole=["\']contentinfo["\'])))/i', $proof . $banner . '$1', $document, 1 );
+		$document = preg_replace( '/(<(?:footer\b|div\b(?=[^>]*\brole=["\']contentinfo["\'])))/i', ecowise_search_content( $route ) . $proof . $banner . '$1', $document, 1 );
 	}
 
 	return $document;
