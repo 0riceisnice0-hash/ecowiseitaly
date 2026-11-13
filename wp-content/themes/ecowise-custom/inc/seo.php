@@ -86,6 +86,13 @@ function ecowise_schema_graph( $profile, $route ) {
 		$page['about'] = array( '@id' => $org_id );
 	}
 	$graph[] = $page;
+	if ( in_array( $route, array( '/planning-a-school-trip-to-italy/', '/school-travel-partners/' ), true ) ) {
+		$graph[] = array( '@type' => 'BreadcrumbList', 'itemListElement' => array(
+			array( '@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => $site_url ),
+			array( '@type' => 'ListItem', 'position' => 2, 'name' => 'For schools', 'item' => $site_url . 'for-schools/' ),
+			array( '@type' => 'ListItem', 'position' => 3, 'name' => $profile['title'], 'item' => $profile['canonical'] ),
+		) );
+	}
 	return array( '@context' => 'https://schema.org', '@graph' => $graph );
 }
 

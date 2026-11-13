@@ -10,6 +10,8 @@ The route deliberately uses the complete captured `/for-schools/` document as it
 
 ## Customer journey
 
+The current acquisition surface includes three native routes and 38 sitemap URLs. The teacher checklist at `/planning-a-school-trip-to-italy/` addresses approval/planning questions; `/school-travel-partners/` explains the local programme supplier proposition. Both use `page-growth-resource.php`, scoped CSS and `config/growth-resources.json`. Provision them explicitly with `tools/provision-growth-resources.php`; activation must not overwrite content. Ten inherited school routes now carry proposal banners. Six other customer routes have audience-specific enquiry banners. There are 23 curated metadata profiles; the captured route contract remains 36.
+
 The October sales-resource expansion adds a sourced Beau Soleil field-science example before the programme choices, followed by two ungated downloads at `#teacher-resources`: a six-page teacher planning pack and a two-page school-travel partner brief. Photographs in the evidence section are labelled representative, not presented as photographs from that particular school visit. A five-day/four-night illustrative itinerary now makes the recommended format concrete; seven-day and multi-week options remain available. No dates or fixed prices are promised.
 
 The PDF source is `tools/build-school-sales-pdfs.py`; output lives under the theme's `assets/documents/`. Rebuild both PDFs and visually inspect every rendered page after changes. Share `/school-trips-italy/#teacher-resources`, not a versioned theme-directory URL. Existing school proposal banners link here, and four inherited school routes also show the sourced science example. New layouts remain scoped to the school CSS files and preserve the original site shell.
@@ -92,7 +94,7 @@ Both front-end runtimes emit local `ecowise:conversion` events. The first-party 
 - `audit/indexed-routes.json` merges the 35 imported indexed URLs with the native route.
 - The snapshot compiler preserves native routes when rebuilding the indexed inventory.
 - Static validation checks page claims, form security, lead routing, metadata profiles and native-route files.
-- Deployment validation checks the native H1/content, priority metadata/schema and exact 36-URL sitemap.
+- Deployment validation checks the three native routes, priority metadata/schema and exact 38-URL sitemap.
 - WordPress validation requires 31 published pages and forbids Elementor data on the funnel page.
 
 ## Editing

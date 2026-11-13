@@ -1,5 +1,16 @@
 # Progress log
 
+## 2026-11-13 — cross-site acquisition and conversion release
+
+- Deployed native teacher checklist and travel-partner resources as v35/theme 1.4.0, then the broader conversion release as v36/theme 1.4.1. Created only the two code-owned page records (4102/4103); production now has 33 pages, three posts, 413 attachments and 38 sitemap URLs. All 36 captured routes remain preserved.
+- Expanded curated search metadata from eleven to 23 routes, including family, corporate, credibility and remaining school programme pages. Added useful internal resource links rather than creating duplicate keyword landing pages.
+- Expanded school proposal banners from six to ten routes and added six contextual customer banners. Family/corporate contact subjects are safely prefilled from allowlisted interests; live browser checks confirmed both. No form was submitted during QA.
+- Expanded aggregate acquisition coverage to all known public routes and added the supplier campaign tag. No cookies, personal browsing IDs or external analytics were introduced. Counts before/after the route-coverage expansion are not like-for-like traffic measurements.
+- Completed one invited supplier email (Malatesta Viaggi) and one official supplier application (Academic Travel Abroad). The user stopped work during a third draft; it remains UNSENT. Further execution resumed with site acquisition work, not a European school blast. Exact states and source links are in `outreach/supplier-invitations-2026-11-13.md`.
+- Fixed a WP-CLI eval scope error in the restore validator: errors now share a named global accumulator, and production receives an explicit repository root. An intentionally incorrect expected page count fails exit 1. Correct preflight verifies 33 pages and 1,915 manifest-listed uploads; acquisition transaction tests pass. The earlier zero-upload result was not adequate verification.
+- Live deployment validation passes: 36 preserved routes, three native routes, 38 sitemap URLs, four child sitemaps, four native endpoints, two redirects and HEAD handling. Mobile teacher page has no horizontal overflow, menu opens, and header/content do not overlap; viewport reset after testing. Desktop partner page and live enquiry journeys checked. Screenshots are in workspace `outputs/ecowise-2026-11-13/`.
+- Final deterministic archive: `ecowise-custom-theme-2026-11-13-v36.zip`, 781 files, 51,081,821 bytes, SHA-256 `EEAA8958A2DF1E8B75949BC483EC01B0A706A87915F5F05BD4FEC96366EF1E11`. Production bundle `/home/customer/ecowise-conversion-20261113` retains SQL backup; v35 is immediate rollback and v34 remains available. `GROWTH-EXECUTION.md` records the durable operating system; it is not a background automation. No new bookings or ranking gains are claimed.
+
 ## 2026-11-10 — campaign review and interrupted release reconciliation
 
 - Rechecked live production: `ecowise-custom-v34`, theme 1.3.0. Reconciled the October acquisition release source, package manifest and documentation that remained unfinished when the session stopped. No new production deployment was needed for this reconciliation.

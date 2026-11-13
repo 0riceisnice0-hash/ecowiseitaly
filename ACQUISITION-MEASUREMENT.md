@@ -6,7 +6,7 @@ The custom theme's `inc/acquisition.php` owns the `{$wpdb->prefix}ecowise_acquis
 
 Rows are daily aggregates of page, broad source, allowlisted campaign and allowlisted event. There are no visitor IDs, cookies, localStorage/sessionStorage, full referrers, device fingerprints, per-recipient tags or individual browsing histories. Approved campaign tags propagate through internal links in the URL and into enquiry fields. Direct returns and untagged journeys cannot be matched to earlier visits. The report is not an email-open, unique-visitor, delivery or booking report.
 
-The current route allowlist is the eleven paths in `ecowise_seo_profiles()`, including the main school funnel and contact page. Other routes are not counted by this collector. Do not call the page-load sum total website traffic or compare it directly with a whole-site analytics report.
+The current route allowlist is the union of the fidelity route map and SEO profiles, covering all known public routes. Before the November expansion, only eleven SEO-profiled paths were counted; do not compare the expanded totals as a like-for-like traffic increase. Do not call page-load sums unique visitors or compare them directly with a whole-site analytics report.
 
 Browser events include page loads, guide/partner download clicks, contact-link clicks, proposal CTA and form starts. Each event name is counted at most once per document load. Counts can include refreshes, automated traffic and owner activity. Browser user agents advertising bots, Do Not Track visitors and logged-in administrators are excluded, but this is not a bot-proof measurement system. QA visits on launch day are part of the initial aggregate baseline and must not be described as external campaign interest.
 
@@ -22,6 +22,6 @@ Only administrators with `manage_options` can read the report. Public event coll
 
 Activation installs the table and cleanup schedule via `ecowise_acquisition_install()`. Re-activating a previous theme does not delete stored counts. `wp eval-file tools/test-acquisition.php` checks insert/increment logic in a rolled-back InnoDB transaction, rejects unknown events/routes and checks the five required enquiry controls. The public route/SEO gate remains `node tools/validate-deployment.mjs https://ecowiseitaly.com`.
 
-New campaign slugs must be added to the allowlist and deployed before their links are used. Do not recycle an October campaign name for a November campaign simply to obtain counts. The proposed European campaign is not yet enabled, scheduled or sent.
+New campaign slugs must be added to the allowlist and deployed before their links are used. Do not recycle an October campaign name for a November campaign simply to obtain counts. `supplier-invitations-2026-11` identifies invited supplier-channel introductions; it does not indicate a European school campaign. The proposed European school campaign is not scheduled or sent.
 
 Removal: remove the acquisition include and markup calls, stop the scheduled cleanup hook and retain/export the private aggregate table as required before separately approving any deletion. Removing measurement must not remove the private enquiry ledger or enquiry routing.

@@ -28,7 +28,7 @@ function ecowise_acquisition_cleanup() {
 add_action( 'ecowise_acquisition_cleanup', 'ecowise_acquisition_cleanup' );
 
 function ecowise_acquisition_campaigns() {
-	return array( 'unattributed', 'operators-2026-10', 'swiss-schools-2026-10', 'linkedin-2026-10', 'uk-schools-2026-10' );
+	return array( 'unattributed', 'operators-2026-10', 'swiss-schools-2026-10', 'linkedin-2026-10', 'uk-schools-2026-10', 'supplier-invitations-2026-11' );
 }
 
 function ecowise_acquisition_count( $event, $page, $campaign = 'unattributed', $source = 'direct-other' ) {
@@ -39,7 +39,7 @@ function ecowise_acquisition_count( $event, $page, $campaign = 'unattributed', $
 	$source = in_array( $source, array( 'email', 'google', 'bing', 'facebook', 'linkedin', 'internal', 'direct-other' ), true ) ? $source : 'direct-other';
 	$page = '/' . trim( (string) wp_parse_url( $page, PHP_URL_PATH ), '/' );
 	$page = '/' === $page ? '/' : $page . '/';
-	$routes = array_keys( ecowise_seo_profiles() );
+	$routes = array_unique( array_merge( array_keys( ecowise_fidelity_map() ), array_keys( ecowise_seo_profiles() ) ) );
 	if ( ! in_array( $page, $routes, true ) ) { return false; }
 	return false !== $wpdb->query( $wpdb->prepare(
 		"INSERT INTO {$wpdb->prefix}ecowise_acquisition (day,page,campaign,source,event,total) VALUES (%s,%s,%s,%s,%s,1) ON DUPLICATE KEY UPDATE total=total+1",

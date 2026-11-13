@@ -4,6 +4,8 @@ This is the prepared September 2026 acquisition phase. It does not authorise sen
 
 ## Current campaign operations
 
+Current supplier-channel state is recorded in `outreach/supplier-invitations-2026-11-13.md`: Malatesta Viaggi introduction sent; Academic Travel Abroad supplier application confirmed; Much Better Adventures model-question draft UNSENT. These are distinct from the school batches below. No European school campaign or new scheduler was activated. Use `GROWTH-EXECUTION.md` for the broader search/conversion acquisition system, not raw send volume as a success metric.
+
 Current reconciled status: seven individual operator introductions sent on 20 October at 09:30 BST. All seven BCC copies were verified in Zac's work inbox on 10 November; the exact recipients and sources are in `outreach/operator-send-register-2026-10-20.md`. A Halsbury automatic acknowledgement was found, not a buying response. This is not a complete audit of Adam's receiving inbox.
 
 European school preparation now contains 16 French schools checked against official sites, plus the existing 20 Swiss prospects. Read `outreach/europe-campaign-review-2026-11-10.md` before using either list: country rules differ, the Swiss list is not an opt-in list, and no new campaign has been scheduled or sent. The final recipient list/copy/timing still requires direct review and authorisation. Read-only activity and form qualification findings are stored privately outside the public repo; saved spam messages must not be reported as business enquiries.

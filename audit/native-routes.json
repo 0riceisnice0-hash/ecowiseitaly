@@ -10,5 +10,29 @@
     "robots": "max-image-preview:large",
     "inSitemap": true,
     "template": "wp-content/themes/ecowise-custom/page-school-trips-italy.php"
+  },
+  {
+    "url": "https://ecowiseitaly.com/planning-a-school-trip-to-italy/",
+    "route": "/planning-a-school-trip-to-italy/",
+    "pageType": "native-page",
+    "wordpressObjectId": null,
+    "title": "Planning a School Trip to Italy: Teacher Checklist | EcoWise Italy",
+    "h1": "Planning a school trip to Italy",
+    "canonical": "https://ecowiseitaly.com/planning-a-school-trip-to-italy/",
+    "robots": "max-image-preview:large",
+    "inSitemap": true,
+    "template": "wp-content/themes/ecowise-custom/page-growth-resource.php"
+  },
+  {
+    "url": "https://ecowiseitaly.com/school-travel-partners/",
+    "route": "/school-travel-partners/",
+    "pageType": "native-page",
+    "wordpressObjectId": null,
+    "title": "School Travel Partners: Local Programmes in Italy | EcoWise Italy",
+    "h1": "A local education partner in Piemonte",
+    "canonical": "https://ecowiseitaly.com/school-travel-partners/",
+    "robots": "max-image-preview:large",
+    "inSitemap": true,
+    "template": "wp-content/themes/ecowise-custom/page-growth-resource.php"
   }
 ]

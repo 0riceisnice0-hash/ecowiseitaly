@@ -233,8 +233,8 @@ for (const route of capturedRoutes) {
 }
 
 if (capturedRoutes.length !== 36) errors.push(`expected 36 captured routes; found ${capturedRoutes.length}`);
-if (indexedRoutes.length !== 36) errors.push(`expected 36 indexed routes; found ${indexedRoutes.length}`);
-if (nativeRoutes.length !== 1) errors.push(`expected one native growth route; found ${nativeRoutes.length}`);
+if (indexedRoutes.length !== 38) errors.push(`expected 38 indexed routes; found ${indexedRoutes.length}`);
+if (nativeRoutes.length !== 3) errors.push(`expected three native growth routes; found ${nativeRoutes.length}`);
 const expectedIndexedPaths = new Set([
   ...capturedRoutes.filter((route) => route.inSitemap !== false).map((route) => route.route),
   ...nativeRoutes.filter((route) => route.inSitemap !== false).map((route) => route.route),

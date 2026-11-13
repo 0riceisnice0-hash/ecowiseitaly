@@ -77,6 +77,80 @@
     "schemaType": "Service",
     "serviceType": "Outdoor service learning for schools"
   },
+  "/planning-a-school-trip-to-italy/": {
+    "title": "Planning a School Trip to Italy: Teacher Checklist | EcoWise Italy",
+    "description": "Plan an Italy school residential: learning aims, duration, group information, accommodation, travel responsibilities and questions to ask before approval.",
+    "canonical": "https://ecowiseitaly.com/planning-a-school-trip-to-italy/",
+    "locale": "en_GB",
+    "schemaType": "WebPage"
+  },
+  "/school-travel-partners/": {
+    "title": "School Travel Partners: Local Programmes in Italy | EcoWise Italy",
+    "description": "Explore a local educational delivery partnership in Piemonte: field science, outdoor learning, programme planning and accommodation coordination with EcoWise Italy.",
+    "canonical": "https://ecowiseitaly.com/school-travel-partners/",
+    "locale": "en_GB",
+    "schemaType": "WebPage"
+  },
+  "/family-ecoadventures/": {
+    "title": "Family Eco Adventures in Piemonte, Italy | EcoWise Italy",
+    "description": "Explore tailored family eco-adventures in Piemonte, Italy: nature awareness, discovery and time together outdoors. Discuss your family's interests with Adam.",
+    "canonical": "https://ecowiseitaly.com/family-ecoadventures/",
+    "locale": "en_GB", "schemaType": "Service", "serviceType": "Tailored family eco-adventures"
+  },
+  "/gateways/": {
+    "title": "Nature Getaways & Eco Adventures in Italy | EcoWise Italy",
+    "description": "Discover nature getaways, family eco-adventures and outdoor group experiences in Piemonte, Italy. Explore the options and discuss a tailored programme with Adam.",
+    "canonical": "https://ecowiseitaly.com/gateways/",
+    "locale": "en_GB", "schemaType": "Service", "serviceType": "Nature getaways and eco-adventures"
+  },
+  "/for-schools/storytelling-drama-experiences-in-nature/": {
+    "title": "Storytelling & Drama School Trips in Italy | EcoWise Italy",
+    "description": "Bring storytelling, myth-making and drama into outdoor learning in Piemonte. Explore imaginative school experiences shaped around your group with EcoWise Italy.",
+    "canonical": "https://ecowiseitaly.com/for-schools/storytelling-drama-experiences-in-nature/",
+    "locale": "en_GB", "schemaType": "Service", "serviceType": "Storytelling and drama in outdoor education"
+  },
+  "/for-schools/team-building-wild-rites-of-passage/": {
+    "title": "School Team Building in Italy | EcoWise Italy",
+    "description": "Explore outdoor school team building in Piemonte, Italy. Practical challenges, creativity and shared discovery in a programme tailored to your pupils and aims.",
+    "canonical": "https://ecowiseitaly.com/for-schools/team-building-wild-rites-of-passage/",
+    "locale": "en_GB", "schemaType": "Service", "serviceType": "Outdoor team building for schools"
+  },
+  "/for-schools/mindfulness-and-nature-awareness-workshops/": {
+    "title": "Nature Awareness Workshops for Schools | EcoWise Italy",
+    "description": "Explore mindfulness and nature awareness with school groups in Piemonte, Italy. Sensory discovery, reflection and outdoor learning tailored with EcoWise Italy.",
+    "canonical": "https://ecowiseitaly.com/for-schools/mindfulness-and-nature-awareness-workshops/",
+    "locale": "en_GB", "schemaType": "Service", "serviceType": "School mindfulness and nature awareness workshops"
+  },
+  "/for-schools/wilderness-encounter-groups-ecoliteracy-camps/": {
+    "title": "Wilderness & Ecoliteracy School Camps in Italy | EcoWise Italy",
+    "description": "Explore wilderness encounters and ecoliteracy camps in Piemonte, Italy. Discuss your school's learning goals, group and programme with Adam at EcoWise Italy.",
+    "canonical": "https://ecowiseitaly.com/for-schools/wilderness-encounter-groups-ecoliteracy-camps/",
+    "locale": "en_GB", "schemaType": "Service", "serviceType": "Wilderness encounters and ecoliteracy camps for schools"
+  },
+  "/what-is-ecowise/": {
+    "title": "About EcoWise Italy | Outdoor Education in Piemonte",
+    "description": "Meet EcoWise Italy's approach to science, storytelling, mindfulness and outdoor adventure. Explore learning experiences for schools, families and groups in Piemonte.",
+    "canonical": "https://ecowiseitaly.com/what-is-ecowise/",
+    "locale": "en_GB", "schemaType": "AboutPage"
+  },
+  "/what-they-say-about-us/": {
+    "title": "School Trip Reviews & Experiences | EcoWise Italy",
+    "description": "Read the published experiences of educators and groups who have worked with EcoWise Italy, then explore a tailored school programme in Piemonte, Italy.",
+    "canonical": "https://ecowiseitaly.com/what-they-say-about-us/",
+    "locale": "en_GB", "schemaType": "WebPage"
+  },
+  "/news/": {
+    "title": "Outdoor Education News & School Stories | EcoWise Italy",
+    "description": "Explore EcoWise Italy news, school field-science experiences and outdoor education stories from Piemonte. Find programme ideas and practical teacher resources.",
+    "canonical": "https://ecowiseitaly.com/news/",
+    "locale": "en_GB", "schemaType": "CollectionPage"
+  },
+  "/gallery/": {
+    "title": "School Trips & Eco Adventure Photo Gallery | EcoWise Italy",
+    "description": "See photographs of EcoWise Italy's outdoor learning, fieldwork and group adventures. Explore experiences in Piemonte and discuss a programme for your group.",
+    "canonical": "https://ecowiseitaly.com/gallery/",
+    "locale": "en_GB", "schemaType": "CollectionPage"
+  },
   "/school-trips-italy/": {
     "title": "School Trips to Italy | Outdoor Education | EcoWise Italy",
     "description": "Plan a tailored outdoor education or residential school trip in Piemonte, Italy. Groups of approximately 15–80; Adam replies within 24 hours.",

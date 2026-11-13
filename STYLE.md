@@ -99,3 +99,7 @@ New funnel sections may be cleaner than the inherited page content, but must ret
 The funnel uses the mountain/group hero, a photographic introduction, six programme cards matching the inherited programme catalogue, a duration journey, a photograph-and-four-step planning section, two-column responsibilities, seasonality band, educator quotes, accessible FAQ and a focused proposal form. Every section must answer a customer decision and must never expose internal implementation notes, unapproved proof gaps or developer-facing instructions.
 
 All funnel CSS remains isolated in `assets/css/school-funnel.css`. Conversion banners injected into preserved school pages use `assets/css/school-conversion.css`; they may not override captured page typography or layout outside the banner.
+
+## Planning and partner resources
+
+Native resource pages reuse the same captured Schools header/footer, Outfit typography, forest greens and yellow enquiry buttons. `assets/css/growth-resources.css` owns their scoped layout: a spacious green hero, readable article column, pale planning sidebar, documentary image and final enquiry panel. Keep explicit hero clearance beneath the overlaid header (230px desktop, 175px narrow layout). Collapse the article/sidebar into reading order on small screens; image height must remain natural. These pages must not restyle the captured navigation or other routes. Family/corporate/news conversion banners reuse `school-conversion.css`, not a competing design system.

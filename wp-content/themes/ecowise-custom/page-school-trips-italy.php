@@ -104,6 +104,7 @@ ob_start();
 					<h3>A local education partner in Piemonte</h3>
 					<p>Explore the programme offer, local delivery model and practical points for a school-travel partnership with Adam.</p>
 					<a class="eco-school-text-link" href="<?php echo esc_url( get_theme_file_uri( '/assets/documents/ecowise-italy-school-travel-partner-brief.pdf' ) ); ?>" data-eco-event="partner_brief_download" data-eco-location="teacher_resources">Download the partner brief</a>
+					<p><a href="<?php echo esc_url( home_url( '/school-travel-partners/' ) ); ?>">Explore a travel partnership</a></p>
 				</article>
 			</div>
 		</div>

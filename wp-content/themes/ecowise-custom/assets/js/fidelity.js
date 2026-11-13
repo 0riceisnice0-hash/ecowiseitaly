@@ -4,6 +4,13 @@
   const config = window.ecowiseFidelity;
   if (!config) return;
 
+  const enquiryInterests = {family:'Family eco-adventure enquiry',corporate:'Corporate team-building enquiry'};
+  const enquiryInterest = new URLSearchParams(window.location.search).get('interest');
+  const enquirySubject = document.querySelector('[name="form_fields[field_6fef306]"]');
+  if (enquirySubject && !enquirySubject.value && enquiryInterests[enquiryInterest]) {
+    enquirySubject.value = enquiryInterests[enquiryInterest];
+  }
+
   function emitConversion(name, details) {
     const payload = Object.assign({ event: name, page_path: window.location.pathname }, details || {});
     window.dispatchEvent(new CustomEvent('ecowise:conversion', { detail: payload }));

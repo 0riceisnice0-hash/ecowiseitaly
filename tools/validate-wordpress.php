@@ -9,14 +9,14 @@ defined( 'ABSPATH' ) || exit( "Run this file through WP-CLI with WordPress loade
 
 global $wpdb;
 
-$errors   = array();
+$GLOBALS['ecowise_preflight_errors'] = array();
+$errors   =& $GLOBALS['ecowise_preflight_errors'];
 $warnings = array();
-$root     = dirname( __DIR__ );
+$root     = getenv( 'ECOWISE_REPOSITORY_ROOT' ) ?: dirname( __DIR__ );
 
 function ecowise_preflight_expect( $condition, $message ) {
-	global $errors;
 	if ( ! $condition ) {
-		$errors[] = $message;
+		$GLOBALS['ecowise_preflight_errors'][] = $message;
 	}
 }
 
@@ -70,7 +70,8 @@ ecowise_preflight_expect( 3899 <= $total_posts, "Expected at least 3,899 restore
 $published_pages = wp_count_posts( 'page' );
 $published_posts = wp_count_posts( 'post' );
 $attachments     = wp_count_posts( 'attachment' );
-ecowise_preflight_expect( 31 === (int) $published_pages->publish, "Expected 31 published pages; found {$published_pages->publish}." );
+$expected_pages = (int) ( getenv( 'ECOWISE_EXPECTED_PAGES' ) ?: 31 );
+ecowise_preflight_expect( $expected_pages === (int) $published_pages->publish, "Expected {$expected_pages} published pages; found {$published_pages->publish}." );
 ecowise_preflight_expect( 3 === (int) $published_posts->publish, "Expected three published posts; found {$published_posts->publish}." );
 ecowise_preflight_expect( 413 === (int) $attachments->inherit, "Expected 413 attachments; found {$attachments->inherit}." );
 
@@ -143,7 +144,7 @@ if ( $errors ) {
 	exit( 1 );
 }
 
-echo "WordPress restore validation passed: wp_ database, Ecowise Custom theme, reading/permalink settings, account ownership, 31 pages, 3 posts, 413 attachments and {$upload_count} upload files verified." . PHP_EOL;
+echo "WordPress restore validation passed: wp_ database, Ecowise Custom theme, reading/permalink settings, account ownership, {$expected_pages} pages, 3 posts, 413 attachments and {$upload_count} upload files verified." . PHP_EOL;
 if ( $warnings ) {
 	echo 'Warnings:' . PHP_EOL . '- ' . implode( PHP_EOL . '- ', $warnings ) . PHP_EOL;
 }

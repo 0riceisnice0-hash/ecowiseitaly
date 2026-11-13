@@ -6,18 +6,26 @@ Ecowise Italy is being moved from Hello Elementor/Elementor Pro to the custom `e
 
 The immediate compatibility contract is:
 
-- The 35 imported URLs plus the native school funnel remain indexable through WordPress core sitemaps.
+- The 35 imported URLs plus three native acquisition routes remain indexable through WordPress core sitemaps.
 - The linked date archive `/2024/09/22/` remains available even though it is not in the sitemap.
 - `/gateways/` retains its established spelling.
 - `/home/` continues to resolve to `/`.
 - Existing HTTP and `www` variants canonicalize to HTTPS non-`www`.
 - Titles, content, images, links, archives, feeds and the current header/footer presentation remain recognizable and stable.
 
-The 36-route sitemap contract is in `audit/indexed-routes.json`; the 36-route captured contract, including the non-indexed date archive, is in `audit/captured-routes.json`; code-owned routes are kept separately in `audit/native-routes.json`. Supporting source inventories are in `audit/source/`.
+The 38-route sitemap contract is in `audit/indexed-routes.json`; the 36-route captured contract, including the non-indexed date archive, is in `audit/captured-routes.json`; code-owned routes are kept separately in `audit/native-routes.json`. Supporting source inventories are in `audit/source/`.
 
 The 26 July 2026 SEO, UX, customer-journey and lead-generation findings are consolidated in `GROWTH-AUDIT.md`. Adam Rose's owner-approved offer, seasonality, responsibility and lead-handling facts are recorded separately in `BUSINESS-BRIEF.md`; use it as the commercial source of truth. August owner-photo assignments are in `MEDIA-UPDATES.md`. Current outreach operations are in `SCHOOL-OUTREACH.md`: four native Gmail BCC batches reached Sent at 09:30 BST, 29 September–2 October 2026, covering 200 new schools. The exact source/date register is `outreach/uk-wave-200-recipients-2026-09-27.md`. On 4 October the owner reported five internal referrals, two objections and no qualified enquiries. The objections are in the local Git-ignored `outreach/suppression-private.csv`; preserve and screen that file before future outreach. Do not resend or activate the abandoned Apps Script scheduler; replies, bounces and objections require manual review.
 
 ## Current release
+
+**Current verified production: theme 1.4.1, `ecowise-custom-v36`.** Package: `ecowise-custom-theme-2026-11-13-v36.zip`, 781 files, 51,081,821 bytes, SHA-256 `EEAA8958A2DF1E8B75949BC483EC01B0A706A87915F5F05BD4FEC96366EF1E11`. Deployment and pre-release SQL backup: `/home/customer/ecowise-conversion-20261113`; immediate rollback: v35. The preceding resource provisioning bundle is `/home/customer/ecowise-growth-20261113` (v34 retained).
+
+The current live database has 33 published pages, three posts and 413 attachments. The two new native pages are `/planning-a-school-trip-to-italy/` (4102) and `/school-travel-partners/` (4103); the sitemap has 38 URLs. There are 23 search metadata profiles, contextual enquiry banners across ten school and six other customer routes, and safe family/corporate subject prefills. Existing layouts, slugs and captured route coverage remain preserved. Measurement now accepts all known public routes, not only SEO-profiled routes. See `GROWTH-EXECUTION.md` for the acquisition system and `outreach/supplier-invitations-2026-11-13.md` for exact outbound states. Two supplier introductions completed; the Much Better Adventures draft is UNSENT. No European school blast or new automated outreach was launched.
+
+Production restore and acquisition tests pass, including 1,915 manifest-listed uploads. The WordPress validator now uses an explicit repository root and shared error accumulator; an intentional wrong page-count test fails correctly. Local installation counts below are historical and are not production counts.
+
+### Previous 1.3.0 acquisition release
 
 **Current verified production: theme 1.3.0, `ecowise-custom-v34`.** The acquisition release was activated on 19 October and rechecked on 10 November. Its deterministic archive is `ecowise-custom-theme-2026-10-19-v34.zip`: 778 files, 51,054,646 bytes, SHA-256 `256821B2E4C4EEE22E3A996678FD1088E0C1851435C06517F16E7A560C309757`. Deployment and pre-release SQL backup: `/home/customer/ecowise-acquisition-20261019`; rollback: v33. The previous session ended before its source release and handover reconciliation were committed; the current records now include that work.
 

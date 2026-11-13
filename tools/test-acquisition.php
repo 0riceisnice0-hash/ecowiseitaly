@@ -12,6 +12,8 @@ try {
     if ( ! ecowise_acquisition_count( 'page_view', '/school-trips-italy/', 'operators-2026-10', 'email' ) ) { throw new Exception( 'Insert failed' ); }
     if ( ! ecowise_acquisition_count( 'page_view', '/school-trips-italy/', 'operators-2026-10', 'email' ) ) { throw new Exception( 'Increment failed' ); }
     if ( (int) $wpdb->get_var( "SELECT SUM(total) FROM $table" ) !== $before + 2 ) { throw new Exception( 'Atomic aggregate count wrong' ); }
+    if ( ! ecowise_acquisition_count( 'page_view', '/news/' ) ) { throw new Exception( 'Preserved customer route was not measured' ); }
+    if ( (int) $wpdb->get_var( "SELECT SUM(total) FROM $table" ) !== $before + 3 ) { throw new Exception( 'Whole-site route count wrong' ); }
     if ( ! wp_next_scheduled( 'ecowise_acquisition_cleanup' ) ) { throw new Exception( 'Retention cleanup missing' ); }
     $html = ecowise_search_content( '/for-schools/science-field-work-data-collection-trips/' );
     if ( false === strpos( $html, 'IB biology' ) || false === strpos( $html, '#teacher-resources' ) ) { throw new Exception( 'Fieldwork search content missing' ); }
