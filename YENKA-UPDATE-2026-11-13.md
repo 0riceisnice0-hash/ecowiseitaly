@@ -8,7 +8,7 @@ The work now goes beyond sending adverts. These changes are live:
 - A practical [teacher planning checklist](https://ecowiseitaly.com/planning-a-school-trip-to-italy/) is live, alongside the existing teacher pack and five-day example.
 - A dedicated [travel-partner page](https://ecowiseitaly.com/school-travel-partners/) now explains how operators can work with EcoWise Italy as a local educational supplier.
 - Measurement covers the site's known public pages, helping distinguish browsing, guide use and enquiries without installing an external tracker.
-- Two supplier introductions were completed through official supplier channels: Malatesta Viaggi and Academic Travel Abroad. These are introductions, not confirmed partnerships. One further draft remains unsent.
+- Three supplier approaches completed through official channels: Malatesta Viaggi, Academic Travel Abroad and European Cultural Experiences. Five further tailored partnership emails are verified in Gmail Scheduled for 16–18 November: One Up Travel, Albatross, Argiletum, Côté Découvertes and Éditions de L’Avenir/JDE. The full timetable has been emailed to Yenka, with Zac copied. These are introductions, not confirmed partnerships. The separate Much Better Adventures draft remains unsent.
 
 The original site presentation and existing addresses remain intact. Desktop/mobile checks, enquiry routing and all preserved public routes passed. The sitemap now contains 38 URLs.
 

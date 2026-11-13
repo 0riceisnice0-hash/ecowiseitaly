@@ -2,6 +2,7 @@
 
 ## 2026-11-13 — cross-site acquisition and conversion release
 
+- Later in the same working day, completed ECE's invited supplier email and, after explicit user clarification to schedule next week today, saved five tailored partner proposals in native Gmail for 16–18 November. Opened all five saved scheduled messages to verify From, BCC summary and timestamp. Sent Yenka the exact recipient/timing register with Zac copied. No bulk school blast, recurring scheduler, automatic follow-up or paid service was enabled. Read `outreach/partner-schedule-2026-11-16.md`; the earlier two-completed count below is historical. Much Better Adventures remains unsent.
 - Deployed native teacher checklist and travel-partner resources as v35/theme 1.4.0, then the broader conversion release as v36/theme 1.4.1. Created only the two code-owned page records (4102/4103); production now has 33 pages, three posts, 413 attachments and 38 sitemap URLs. All 36 captured routes remain preserved.
 - Expanded curated search metadata from eleven to 23 routes, including family, corporate, credibility and remaining school programme pages. Added useful internal resource links rather than creating duplicate keyword landing pages.
 - Expanded school proposal banners from six to ten routes and added six contextual customer banners. Family/corporate contact subjects are safely prefilled from allowlisted interests; live browser checks confirmed both. No form was submitted during QA.

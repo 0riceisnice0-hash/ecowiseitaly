@@ -2,6 +2,15 @@
 
 ## Completed
 
+### European Cultural Experiences — sent
+
+- Official invitation: https://www.ecetravel.com/our-partners/ — supplier partners across Europe.
+- To: `partners@ecetravel.com`; From `Adam Rose — EcoWise Italy <schools@ecowiseitaly.com>`; BCC `zacbartleywork@gmail.com`, `yenx@yahoo.com`.
+- Subject: **ECE supplier proposal: field science and creative outdoor learning in Piemonte**.
+- Tailored introduction referencing its science/education/performing-arts offer, EcoWise's public Beau Soleil example and programme-only supplier role. No package protection, fixed terms or capacity promise.
+- Gmail confirmed **Message sent**, 13 November 2026, 16:58 GMT. Evidence: workspace `outputs/ecowise-2026-11-13/ece-supplier-sent.png`.
+- Five other invitation responses were subsequently scheduled for 16–18 November; read `partner-schedule-2026-11-16.md`. They are scheduled, not already sent.
+
 ### Malatesta Viaggi — sent
 
 - Official invitation: [Work with us](https://malatesta.com/malatesta/language/en/work-with-us-2/).
