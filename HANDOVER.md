@@ -19,6 +19,8 @@ The 26 July 2026 SEO, UX, customer-journey and lead-generation findings are cons
 
 ## Current release
 
+Current teacher-audience distribution: five distinct editorial/resource pitches sent on 13 November to School Management Plus, School Travel Organiser, Horizons, ACER Teacher and International School Leader. All are verified in Sent; none is yet accepted/published. Read `outreach/editorial-submissions-2026-11-13.md` for exact recipients, subjects, source invitations, AI disclosures and reply gates. No publication/rights agreement or paid placement was accepted. These are separate from the five scheduled operator messages below.
+
 Current outbound queue: five individual invited supplier/partner introductions are saved in native Gmail Scheduled for 16–18 November; see `outreach/partner-schedule-2026-11-16.md` before contacting any of them. ECE, Malatesta and Academic Travel Abroad already completed. Yenka has been emailed the timetable. There is no recurring sending automation; Gmail alone owns these five scheduled deliveries.
 
 **Current verified production: theme 1.4.1, `ecowise-custom-v36`.** Package: `ecowise-custom-theme-2026-11-13-v36.zip`, 781 files, 51,081,821 bytes, SHA-256 `EEAA8958A2DF1E8B75949BC483EC01B0A706A87915F5F05BD4FEC96366EF1E11`. Deployment and pre-release SQL backup: `/home/customer/ecowise-conversion-20261113`; immediate rollback: v35. The preceding resource provisioning bundle is `/home/customer/ecowise-growth-20261113` (v34 retained).

@@ -30,6 +30,8 @@ Support these destinations rather than creating multiple thin pages for near-ide
 
 ## Distribution rules
 
+Teacher-audience editorial distribution has a separate execution register: `outreach/editorial-submissions-2026-11-13.md`. Distinct pitches were actually sent to five educator publications. Do not equate submission with acceptance or promise free placement. Respect publication-specific co-author, originality, AI-disclosure and rights requirements; paid advertising is a separate decision. The existing teacher checklist can be offered as an already-public resource, not misrepresented as an unpublished exclusive.
+
 Use appropriate supplier invitations and official partnership applications where businesses explicitly ask providers to contact them. The current completed actions and one unsent draft are in `outreach/supplier-invitations-2026-11-13.md`. Do not duplicate them. European school research remains research, not a send queue. Country-specific rules, the Italy-based sender and platform terms must be checked before activating unsolicited marketing; a public inbox is not blanket permission.
 
 The relevant Italian regulator guidance is [Garante marketing guidance](https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10197559) and [Garante email-marketing decision](https://garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/10262499). The supplier approach is deliberately separate from buying or scraping a mass school list. Preserve objections and previous-recipient records. No fake traffic, backlinks, invented reviews or new paid spend.
