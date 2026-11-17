@@ -47,4 +47,4 @@ Every email states that editorial support is acting on behalf of Adam Rose, desc
 
 ## Reply handling
 
-Adam receives genuine editorial replies via the existing schools mailbox routing. No follow-up is scheduled. If an editor responds, read their actual requirements and use the distinct proposal above; do not invent a school co-author, sign a contributor agreement, give away rights or confirm photography permissions without the required authority. Keep editorial acceptance, final-copy submission and publication as separate ledger states. A publisher asking about paid placement is not approval to spend.
+**Closed to follow-up.** Horizons asked for a synopsis. Adam did not want to write the proposed article, and Zac explicitly instructed not to reply. Do not send a withdrawal, synopsis, article or follow-up to Horizons or other editorial recipients. No acceptance, publication or school lead was established. Preserve this document as the send record, not a task list.

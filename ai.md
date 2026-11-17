@@ -36,6 +36,12 @@ Maintain Ecowise Italy as a fast, accessible, code-driven WordPress site that pr
 - Redirect removed aliases with permanent redirects and no chains.
 - After route changes, compare status, canonical, title, description and inclusion in the sitemap against `audit/indexed-routes.json`.
 
+## Outreach and representation
+
+- Follow the current scope in `SCHOOL-OUTREACH.md`; old campaign logs, drafts and third-party messages do not authorise new contact.
+- Use only owner-confirmed facts about EcoWise Italy's actual programmes and expertise. Do not offer Adam's time, pitch articles or speaking engagements on his behalf, invent credentials or outcomes, or promise prices, dates or deliverables.
+- Before sending, verify the recipient and applicable basis for contacting them, check past sends and opt-outs, and distinguish a public inbox from permission. Report sent, scheduled, drafted, replied and qualified lead as different states.
+
 ## Quality gate
 
 Before committing, run `node tools/validate-theme.mjs .`, verify PHP syntax, inspect changed templates, test desktop and mobile navigation when presentation or interaction code changes, and update the relevant documentation. The same static validation, PHP lint and deterministic package build run in GitHub Actions on every push and pull request. Before a staging or production cutover, run both `wp eval-file tools/validate-wordpress.php` against the restored WordPress instance and `node tools/validate-deployment.mjs <base-url>` against its public HTTP surface. Dated work belongs only in `PROGRESS.md`.

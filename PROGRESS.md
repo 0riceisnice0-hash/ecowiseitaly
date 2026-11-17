@@ -1,5 +1,11 @@
 # Progress log
 
+## 2026-11-17 — school-only email scope
+
+- Adam reported that the Horizons pitch misrepresented what he wanted to write and did not help sell trips. Horizons' request for a synopsis was checked in the available campaign copy mailbox. Zac instructed: no reply to Horizons, no promises of work, and email schools only about EcoWise Italy trips.
+- Checked the available campaign mailbox and searched for relevant school requests or invited proposals. Found no verified eligible school recipient; no school email was sent or scheduled, no editorial reply was sent, and no live-site changes were made. The mailbox check did not cover Adam's entire inbox. Prior partner schedule was not altered or rechecked.
+- Updated the agent rulebook, handover and campaign docs to reflect the scope and to prevent old editorial and partner records from being used as instructions.
+
 ## 2026-11-13 — cross-site acquisition and conversion release
 
 - After the user prioritised direct teacher demand over agents, researched publisher-owned submission rules and sent five distinct editorial/resource pitches: School Management Plus, School Travel Organiser, Horizons, ACER Teacher and International School Leader. Each send confirmed and all five reconciled in Gmail Sent, including sender/BCC checks. AI drafting assistance disclosed; no pupil evidence, school endorsement, image permission, publication guarantee or paid placement invented. TIE's school co-author requirement and Klingbrief's no-self-recommendation rule respected. The ISL pitch explicitly targets its open April–June 2027 theme. Full status is `outreach/editorial-submissions-2026-11-13.md`; no articles are yet accepted/published, and no auto-follow-up was created.

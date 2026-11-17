@@ -30,9 +30,9 @@ Support these destinations rather than creating multiple thin pages for near-ide
 
 ## Distribution rules
 
-Teacher-audience editorial distribution has a separate execution register: `outreach/editorial-submissions-2026-11-13.md`. Distinct pitches were actually sent to five educator publications. Do not equate submission with acceptance or promise free placement. Respect publication-specific co-author, originality, AI-disclosure and rights requirements; paid advertising is a separate decision. The existing teacher checklist can be offered as an already-public resource, not misrepresented as an unpublished exclusive.
+Current outbound scope is **email to schools about actual EcoWise Italy school trips only**; see `SCHOOL-OUTREACH.md`. No editorial submissions or follow-ups, no reply to Horizons, no new operator outreach, and no commitments on behalf of Adam. The teacher checklist is an existing reference for interested schools, not an offer to create new material. Editorial and supplier registers are historical.
 
-Use appropriate supplier invitations and official partnership applications where businesses explicitly ask providers to contact them. The current completed actions and one unsent draft are in `outreach/supplier-invitations-2026-11-13.md`. Do not duplicate them. European school research remains research, not a send queue. Country-specific rules, the Italy-based sender and platform terms must be checked before activating unsolicited marketing; a public inbox is not blanket permission.
+European school research remains research, not a send queue. Country-specific rules, the Italy-based sender and platform terms must be checked before sending. A public inbox is not blanket permission. Document the applicable basis or school invitation and respect its scope.
 
 The relevant Italian regulator guidance is [Garante marketing guidance](https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10197559) and [Garante email-marketing decision](https://garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/10262499). The supplier approach is deliberately separate from buying or scraping a mass school list. Preserve objections and previous-recipient records. No fake traffic, backlinks, invented reviews or new paid spend.
 
@@ -41,7 +41,7 @@ The relevant Italian regulator guidance is [Garante marketing guidance](https://
 This is a working checklist, **not an installed recurring automation**. No agent runs in the background after the chat ends.
 
 1. Review actual replies, delivery failures, objections and private enquiries before deciding further contact. Do not infer Adam's inbox state from the source mailbox alone.
-2. Screen new contacts against sent and suppression records. Progress appropriate invited supplier channels; do not resend identical school adverts.
+2. Screen eligible school contacts against sent and suppression records. Do not resend identical school adverts or contact third parties outside the current scope.
 3. Use Search Console query/page evidence to improve the existing destination with the strongest relevance. Keep brand and non-brand searches separate. Log changed coverage when comparing counts.
 4. Fix the largest observed conversion obstacle: missing evidence, an unclear responsibility, broken mobile interaction or unnecessary first-enquiry requirement. Test the resulting route.
 5. Record qualified enquiries, proposals and confirmed bookings separately. Record a referral as a referral, not a sales lead. Record spam as spam without silently deleting the source.
